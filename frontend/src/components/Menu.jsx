@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import logoImg from '../assets/Logo.png';
 import TwoD from '../assets/2d.png';
 
@@ -50,6 +50,22 @@ const Item = styled.div`
   cursor: pointer;
   font-family: Inter;
   padding: 7.5px 0;
+  &:hover {
+    background-color: transparent;
+    color: #b2792d;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    width: 78%;
+    transform: scaleX(0);
+    height: 2px;
+    background-color: #0087ca;
+    transition: transform 0.25s ease-out;
+  }
+  &:hover:after {
+    transform: scaleX(1);
+  }
 `;
 
 const Hr = styled.hr`
@@ -58,6 +74,7 @@ const Hr = styled.hr`
 `;
 
 const Login = styled.div``;
+
 const Button = styled.button`
   font-family: Inter;
   padding: 5px 15px;
