@@ -88,6 +88,7 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   gap: 5px;
+  margin: 10px auto;
   &:hover {
     background-color: transparent;
     border: 1px solid #b2792d;
