@@ -19,6 +19,7 @@ import Filter2Icon from '@mui/icons-material/Filter2';
 import ThreeDRotationIcon from '@mui/icons-material/ThreeDRotation';
 import GestureIcon from '@mui/icons-material/Gesture';
 import VibrationIcon from '@mui/icons-material/Vibration';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   flex: 1;
@@ -100,9 +101,11 @@ const Menu = ({ darkmode, setDarkMode }) => {
   return (
     <Container>
       <Wrapper>
-        <Logo>
-          <Img src={logoImg} />
-        </Logo>
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <Logo>
+            <Img src={logoImg} />
+          </Logo>
+        </Link>
         <Item>
           <HomeIcon />
           HOME

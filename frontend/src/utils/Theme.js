@@ -5,12 +5,14 @@ export const darkTheme = {
   textSoft: '#aaaaaa',
   soft: '#373737',
   content: '#373737',
+  titleColor: 'white',
 };
 export const coloredTheme = {
   bg: '#132550',
   bgLighter: '#132550',
   text: 'white',
-  textSoft: '#b2792d',
+  textSoft: '#373737',
   soft: '#b2792d',
   content: '#ffffff',
+  titleColor: 'black',
 };
