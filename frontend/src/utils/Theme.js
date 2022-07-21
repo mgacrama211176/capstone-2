@@ -3,7 +3,7 @@ export const darkTheme = {
   bgLighter: '#202020',
   text: 'white',
   textSoft: '#aaaaaa',
-  soft: '#373737',
+  soft: '#b2792d',
   content: '#373737',
   titleColor: 'white',
 };
