@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 //MUI
 import PersonPinIcon from '@mui/icons-material/PersonPin';
@@ -76,10 +77,12 @@ const Navbar = () => {
           />
           <SearchIcon />
         </Search>
-        <Button>
-          <PersonPinIcon />
-          Sign In
-        </Button>
+        <Link to="/signin">
+          <Button>
+            <PersonPinIcon />
+            Sign In
+          </Button>
+        </Link>
       </Wrapper>
     </Container>
   );

@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 //ROUTER DOM
 import Home from './pages/Home';
 import Video from './pages/Video';
+import Signin from './pages/Signin';
 
 const Continer = styled.div`
   display: flex;
@@ -32,6 +33,7 @@ const App = () => {
             <Wrapper>
               <Routes>
                 <Route path="/" element={<Home />}></Route>
+                <Route path="/signin" element={<Signin />}></Route>
                 <Route path="/video/:id" element={<Video />}></Route>
               </Routes>
             </Wrapper>

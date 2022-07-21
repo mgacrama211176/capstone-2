@@ -1,7 +1,8 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import logoImg from '../assets/Logo.png';
-import TwoD from '../assets/2d.png';
+
+import { Link } from 'react-router-dom';
 
 //MUI
 import HomeIcon from '@mui/icons-material/Home';
@@ -19,7 +20,6 @@ import Filter2Icon from '@mui/icons-material/Filter2';
 import ThreeDRotationIcon from '@mui/icons-material/ThreeDRotation';
 import GestureIcon from '@mui/icons-material/Gesture';
 import VibrationIcon from '@mui/icons-material/Vibration';
-import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   flex: 1;
@@ -130,10 +130,12 @@ const Menu = ({ darkmode, setDarkMode }) => {
         <Hr />
         <Login>
           Sign in to like videos, comment and subscribe.
-          <Button>
-            <PersonPinIcon />
-            Sign In
-          </Button>
+          <Link to={'/signin'}>
+            <Button>
+              <PersonPinIcon />
+              Sign In
+            </Button>
+          </Link>
         </Login>
         <Hr />
         Categories
