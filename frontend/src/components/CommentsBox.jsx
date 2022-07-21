@@ -34,6 +34,7 @@ const Date = styled.span`
 
 const Text = styled.span`
   color: ${({ theme }) => theme.titleColor};
+  font-size: 14px;
 `;
 
 const CommentsBox = () => {

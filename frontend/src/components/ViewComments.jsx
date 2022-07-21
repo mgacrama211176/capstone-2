@@ -22,7 +22,7 @@ const Input = styled.input`
   outline: none;
   padding: 5px;
   width: 100%;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.titleColor};
 `;
 
 const ViewComments = () => {

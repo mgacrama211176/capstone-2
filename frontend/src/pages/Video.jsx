@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import CommentsBox from '../components/CommentsBox';
 import ViewComments from '../components/ViewComments';
+import Card from '../components/Card';
 //MUI
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
@@ -267,7 +268,16 @@ const Video = () => {
         <CommentsBox />
         <CommentsBox />
       </Content>
-      <Recommendation>recommendation</Recommendation>
+      <Recommendation>
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+      </Recommendation>
     </Container>
   );
 };
