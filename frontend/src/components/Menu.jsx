@@ -31,6 +31,7 @@ const Container = styled.div`
   position: sticky;
   top: 0;
 `;
+
 const Wrapper = styled.div`
   padding: 0 26px;
 `;
@@ -52,6 +53,7 @@ const Item = styled.div`
   font-family: Inter;
   padding: 6px 0;
   transition: 0.2s ease-in;
+  color: ${({ theme }) => theme.text};
   &:hover {
     background-color: transparent;
     color: #b2792d;
@@ -108,10 +110,12 @@ const Menu = ({ darkmode, setDarkMode }) => {
             <Img src={logoImg} />
           </Logo>
         </Link>
-        <Item>
-          <HomeIcon />
-          HOME
-        </Item>
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <Item>
+            <HomeIcon />
+            HOME
+          </Item>
+        </Link>
         <Item>
           <ExploreIcon />
           Explore

@@ -15,12 +15,12 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 56px);
+  height: calc(90vh - 56px);
   color: ${({ theme }) => theme.titleColor};
   font-family: 'Roboto', sans-serif;
 `;
 
-const Wrapper = styled.div`
+const LoginWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -84,6 +84,7 @@ const Button = styled.button`
   font-weight: bolder;
   cursor: pointer;
   padding: 10px;
+  margin-top: 10px;
   border-radius: 15px;
   border: 1px solid white;
   color: ${({ theme }) => theme.textSoft};
@@ -100,7 +101,7 @@ const Button = styled.button`
 const Options = styled.div`
   display: flex;
   gap: 50px;
-  margin-top: 5px;
+  margin: 5px 0px 40px 0px;
 `;
 
 const H6 = styled.h6`
@@ -116,7 +117,7 @@ const H6 = styled.h6`
 const Signin = () => {
   return (
     <Container>
-      <Wrapper>
+      <LoginWrapper>
         <Image src={Logo}></Image>
         <Title>Login Using</Title>
         <IconsContainer>
@@ -151,7 +152,7 @@ const Signin = () => {
           <H6>Not yet registered? </H6>
           <H6>Forgot Password </H6>
         </Options>
-      </Wrapper>
+      </LoginWrapper>
     </Container>
   );
 };
