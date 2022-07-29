@@ -11,7 +11,7 @@ export const coloredTheme = {
   bg: '#132550',
   bgLighter: '#132550',
   text: 'white',
-  textSoft: '#373737',
+  textSoft: '#ffffff',
   soft: '#b2792d',
   content: '#ffffff',
   titleColor: 'black',

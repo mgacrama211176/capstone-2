@@ -25,7 +25,7 @@ const Container = styled.div`
   flex: 1;
   background-color: ${({ theme }) => theme.bg};
   color: ${({ theme }) => theme.text};
-  height: 100vh;
+  min-height: 100vh;
   font-size: 14px;
   font-family: Inter;
   position: sticky;
