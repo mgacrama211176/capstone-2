@@ -25,7 +25,7 @@ const Container = styled.div`
   flex: 1;
   background-color: ${({ theme }) => theme.bg};
   color: ${({ theme }) => theme.text};
-  min-height: 100vh;
+  height: 100vh;
   font-size: 14px;
   font-family: Inter;
   position: sticky;
@@ -41,7 +41,7 @@ const Logo = styled.div`
 `;
 
 const Img = styled.img`
-  height: 10rem;
+  height: 5rem;
 `;
 
 const Item = styled.div`
@@ -50,7 +50,8 @@ const Item = styled.div`
   gap: 20px;
   cursor: pointer;
   font-family: Inter;
-  padding: 7.5px 0;
+  padding: 6px 0;
+  transition: 0.2s ease-in;
   &:hover {
     background-color: transparent;
     color: #b2792d;
@@ -90,6 +91,7 @@ const Button = styled.button`
   align-items: center;
   gap: 5px;
   margin: 10px auto;
+  transition: 0.2s ease-in;
   &:hover {
     background-color: transparent;
     border: 1px solid #b2792d;

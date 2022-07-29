@@ -57,6 +57,7 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   gap: 5px;
+  transition: 0.2s ease-in;
   &:hover {
     background-color: transparent;
     border: 1px solid #b2792d;
