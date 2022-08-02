@@ -3,12 +3,8 @@ import styled, { ThemeProvider } from 'styled-components';
 import Menu from './components/Menu';
 import Navbar from './components/Navbar';
 import { coloredTheme, darkTheme } from './utils/Theme';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
-//ROUTER DOM
-import Home from './pages/Home';
-import Video from './pages/Video';
-import Signin from './pages/Signin';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import AnimatedRoutes from './components/AnimatedRoutes';
 
 const Continer = styled.div`
   display: flex;
@@ -31,11 +27,7 @@ const App = () => {
           <Main setDarkMode={setDarkMode} darkmode={darkmode}>
             <Navbar />
             <Wrapper>
-              <Routes>
-                <Route path="/" element={<Home />}></Route>
-                <Route path="/signin" element={<Signin />}></Route>
-                <Route path="/video/:id" element={<Video />}></Route>
-              </Routes>
+              <AnimatedRoutes />
             </Wrapper>
           </Main>
         </BrowserRouter>

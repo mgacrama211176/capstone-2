@@ -10,6 +10,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import Facebook from '../assets/icons/facebook.png';
 import Gmail from '../assets/icons/gmail.png';
 import Linkedin from '../assets/icons/linkedin.png';
+import PersonIcon from '@mui/icons-material/Person';
 
 //Framer Motion
 import { motion } from 'framer-motion';
@@ -30,7 +31,7 @@ const LoginWrapper = styled.div`
   flex-direction: column;
   color: white;
   background-color: ${({ theme }) => theme.bg};
-  padding: 20px 50px;
+  padding: 10px 25px;
   border: 1px solid;
   gap: 10px;
   border-radius: 20px;
@@ -118,7 +119,7 @@ const H6 = styled.h6`
   }
 `;
 
-const Signin = () => {
+const Signup = () => {
   return (
     <motion.div
       initial={{ width: 0, opacity: 0 }}
@@ -127,12 +128,11 @@ const Signin = () => {
         x: window.innerWidth,
         y: window.innerHeight,
       }}
-      // transition={{'1s'}}
     >
       <Container>
         <LoginWrapper>
           <Image src={Logo}></Image>
-          <Title>Login Using</Title>
+          <Title>Signup Using</Title>
           <IconsContainer>
             <Icons src={Facebook} alt="facebook"></Icons>
             <Icons src={Gmail} alt="gmail"></Icons>
@@ -146,24 +146,32 @@ const Signin = () => {
           <H4> Email Address </H4>
           <InputWrapper>
             <EmailIcon />
-            <Input placeholder="E-Mail@user.com" type="text" />
+            <Input placeholder="Username@user.com" type="text" />
           </InputWrapper>
+
+          <H4> User Name </H4>
+          <InputWrapper>
+            <PersonIcon />
+            <Input placeholder="User Name" type="text" />
+          </InputWrapper>
+
           <H4> Password </H4>
           <InputWrapper>
             <LockIcon />
             <Input placeholder="Password" type="password" />
+            <Input placeholder="Confirm Password" type="password" />
           </InputWrapper>
 
           <InputWrapper>
             <Button>
-              Login
+              SignUp
               <LoginIcon />
             </Button>
           </InputWrapper>
 
           <Options>
-            <Link to={'/signup'}>
-              <H6>Not yet registered? </H6>
+            <Link to={'/signin'}>
+              <H6>Already Signed up? </H6>
             </Link>
             <H6>Forgot Password </H6>
           </Options>
@@ -173,4 +181,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default Signup;

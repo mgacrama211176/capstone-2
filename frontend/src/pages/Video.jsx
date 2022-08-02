@@ -10,6 +10,9 @@ import ScreenShareIcon from '@mui/icons-material/ScreenShare';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 
+//framer motion
+import { motion } from 'framer-motion';
+
 const Container = styled.div`
   display: flex;
   gap: 24px;
@@ -199,86 +202,92 @@ const Subscribe = styled.button`
 
 const Video = () => {
   return (
-    <Container>
-      <Content>
-        <VideoWrapper>
-          <iframe
-            width="100%"
-            height="720"
-            src="https://www.youtube.com/embed/-ies20lteQY"
-            title="Fil Anime Test"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
-        </VideoWrapper>
-        <Title>Test Vid</Title>
-        <Details>
-          <Info>7, 948,154 views • Jun 22,2022</Info>
-          <Buttons>
-            <Like>
-              <ThumbUpIcon />
-              123
-            </Like>
-            <Dislike>
-              <ThumbDownIcon />
-              Dislike
-            </Dislike>
-            <Share>
-              <ScreenShareIcon />
-              Share
-            </Share>
-            <Save>
-              <SaveAltIcon />
-              Save
-            </Save>
-          </Buttons>
-        </Details>
-        <Hr />
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opcaity: 0 }}
+    >
+      <Container>
+        <Content>
+          <VideoWrapper>
+            <iframe
+              width="100%"
+              height="720"
+              src="https://www.youtube.com/embed/-ies20lteQY"
+              title="Fil Anime Test"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </VideoWrapper>
+          <Title>Test Vid</Title>
+          <Details>
+            <Info>7, 948,154 views • Jun 22,2022</Info>
+            <Buttons>
+              <Like>
+                <ThumbUpIcon />
+                123
+              </Like>
+              <Dislike>
+                <ThumbDownIcon />
+                Dislike
+              </Dislike>
+              <Share>
+                <ScreenShareIcon />
+                Share
+              </Share>
+              <Save>
+                <SaveAltIcon />
+                Save
+              </Save>
+            </Buttons>
+          </Details>
+          <Hr />
 
-        <Channel>
-          <ChannelInfo>
-            <Image src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350" />
-            <ChannelDetail>
-              <ChannelName>Animator</ChannelName>
-              <ChannelCounter>200K subscribers</ChannelCounter>
-              <Description>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Perferendis ipsa dolorem facere numquam, culpa aspernatur
-                consequuntur amet nemo accusantium hic nulla commodi architecto
-                eos, at nostrum nesciunt consequatur! Aperiam, aut!
-              </Description>
-            </ChannelDetail>
-          </ChannelInfo>
+          <Channel>
+            <ChannelInfo>
+              <Image src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350" />
+              <ChannelDetail>
+                <ChannelName>Animator</ChannelName>
+                <ChannelCounter>200K subscribers</ChannelCounter>
+                <Description>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Perferendis ipsa dolorem facere numquam, culpa aspernatur
+                  consequuntur amet nemo accusantium hic nulla commodi
+                  architecto eos, at nostrum nesciunt consequatur! Aperiam, aut!
+                </Description>
+              </ChannelDetail>
+            </ChannelInfo>
 
-          <Subscribe>
-            <NotificationsActiveIcon />
-            SUBSCRIBE
-          </Subscribe>
-        </Channel>
+            <Subscribe>
+              <NotificationsActiveIcon />
+              SUBSCRIBE
+            </Subscribe>
+          </Channel>
 
-        <ViewComments></ViewComments>
-        <CommentsBox />
-        <CommentsBox />
-        <CommentsBox />
-        <CommentsBox />
-        <CommentsBox />
-        <CommentsBox />
-        <CommentsBox />
-        <CommentsBox />
-        <CommentsBox />
-      </Content>
-      <Recommendation>
-        <Card type="sm" />
-        <Card type="sm" />
-        <Card type="sm" />
-        <Card type="sm" />
-        <Card type="sm" />
-        <Card type="sm" />
-        <Card type="sm" />
-        <Card type="sm" />
-      </Recommendation>
-    </Container>
+          <ViewComments></ViewComments>
+          <CommentsBox />
+          <CommentsBox />
+          <CommentsBox />
+          <CommentsBox />
+          <CommentsBox />
+          <CommentsBox />
+          <CommentsBox />
+          <CommentsBox />
+          <CommentsBox />
+        </Content>
+        <Recommendation>
+          <Card type="sm" />
+          <Card type="sm" />
+          <Card type="sm" />
+          <Card type="sm" />
+          <Card type="sm" />
+          <Card type="sm" />
+          <Card type="sm" />
+          <Card type="sm" />
+        </Recommendation>
+      </Container>
+    </motion.div>
   );
 };
 
