@@ -9,6 +9,7 @@ import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import ScreenShareIcon from '@mui/icons-material/ScreenShare';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import { device } from '../media';
 
 //framer motion
 import { motion } from 'framer-motion';
@@ -22,7 +23,11 @@ const Container = styled.div`
 const Content = styled.div`
   flex: 5;
 `;
-const VideoWrapper = styled.div``;
+const VideoWrapper = styled.div`
+  /* LAPTOP */
+  @media ${device.laptop} {
+  }
+`;
 
 const Title = styled.h1`
   font-size: 18px;

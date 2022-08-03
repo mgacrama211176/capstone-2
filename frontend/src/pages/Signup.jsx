@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Logo from '../assets/Logo.png';
 //MUI
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 import LoginIcon from '@mui/icons-material/Login';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 //Icons
 import Facebook from '../assets/icons/facebook.png';
@@ -15,6 +18,9 @@ import PersonIcon from '@mui/icons-material/Person';
 //Framer Motion
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+
+//fetch data
+import Terms from '../assets/terms.pdf';
 
 const Container = styled.div`
   display: flex;
@@ -119,7 +125,32 @@ const H6 = styled.h6`
   }
 `;
 
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
 const Signup = () => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+    fetch(Terms)
+      .then((row) => row.text())
+      .then((text) => {
+        console.log('text:', text);
+        setTerms(text);
+      });
+  };
+  const handleClose = () => setOpen(false);
+
+  const [terms, setTerms] = useState('');
   return (
     <motion.div
       initial={{ width: 0, opacity: 0 }}
@@ -163,11 +194,19 @@ const Signup = () => {
           </InputWrapper>
 
           <InputWrapper>
-            <Button>
+            <Button onClick={handleOpen}>
               SignUp
               <LoginIcon />
             </Button>
           </InputWrapper>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>{terms}</Box>
+          </Modal>
 
           <Options>
             <Link to={'/signin'}>

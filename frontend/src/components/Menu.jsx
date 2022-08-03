@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import logoImg from '../assets/Logo.png';
+import { device } from '../media';
 
 import { Link } from 'react-router-dom';
 
@@ -70,6 +71,10 @@ const Item = styled.div`
   &:hover:after {
     transform: scaleX(1);
   }
+  @media (max-width: 1440px) {
+    gap: 10px;
+    font-size: 12px;
+  } ;
 `;
 
 const Hr = styled.hr`

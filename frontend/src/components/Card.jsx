@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import tile from '../assets/home_post_2.gif';
+import { device } from '../media';
 
 const Container = styled.div`
   width: ${(props) => props.type !== 'sm' && '360px'};
@@ -9,6 +10,21 @@ const Container = styled.div`
   cursor: pointer;
   display: ${(props) => props.type === 'sm' && 'flex'};
   gap: 15px;
+
+  /* TABLET */
+  @media ${device.tablet} {
+    width: 257px;
+  }
+
+  /* LAPTOP*/
+  @media ${device.laptop} {
+    width: 244px;
+  }
+
+  /* LAPTOP LARGE*/
+  @media ${device.laptopL} {
+    width: 264px;
+  }
 `;
 
 const Image = styled.img`
@@ -16,6 +32,16 @@ const Image = styled.img`
   height: ${(props) => (props.type === 'sm' ? '120px' : '202px')};
   background-color: #999;
   flex: 1;
+
+  /* mobileL */
+  @media ${device.mobileL} {
+    width: 100%;
+  }
+
+  /* TABLET */
+  @media ${device.tablet} {
+    width: 100%;
+  }
 `;
 
 const Details = styled.div`
@@ -36,7 +62,7 @@ const ChannelImage = styled.img`
 const Texts = styled.div``;
 
 const Title = styled.h1`
-  font-size: 14px;
+  font-size: ${(props) => props.type !== 'sm' && '12px'};
   font-weight: 500;
   color: ${({ theme }) => theme.titleColor};
 `;
