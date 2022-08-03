@@ -1,10 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import React from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 //MUI
-import PersonPinIcon from '@mui/icons-material/PersonPin';
-import SearchIcon from '@mui/icons-material/Search';
+import PersonPinIcon from "@mui/icons-material/PersonPin";
+import SearchIcon from "@mui/icons-material/Search";
 
 const Container = styled.div`
   position: sticky;
@@ -78,7 +78,7 @@ const Navbar = () => {
           />
           <SearchIcon />
         </Search>
-        <Link to="/signin">
+        <Link to="/signin" style={{ textDecoration: "none" }}>
           <Button>
             <PersonPinIcon />
             Sign In

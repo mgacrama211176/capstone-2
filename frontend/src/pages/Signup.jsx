@@ -1,26 +1,29 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import Logo from '../assets/Logo.png';
+import React, { useState } from "react";
+import styled from "styled-components";
+import Logo from "../assets/Logo.png";
+import { device } from "../media";
+
 //MUI
-import EmailIcon from '@mui/icons-material/Email';
-import LockIcon from '@mui/icons-material/Lock';
-import LoginIcon from '@mui/icons-material/Login';
-import Modal from '@mui/material/Modal';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import EmailIcon from "@mui/icons-material/Email";
+import LockIcon from "@mui/icons-material/Lock";
+import LoginIcon from "@mui/icons-material/Login";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import CategoryIcon from "@mui/icons-material/Category";
 
 //Icons
-import Facebook from '../assets/icons/facebook.png';
-import Gmail from '../assets/icons/gmail.png';
-import Linkedin from '../assets/icons/linkedin.png';
-import PersonIcon from '@mui/icons-material/Person';
+import Facebook from "../assets/icons/facebook.png";
+import Gmail from "../assets/icons/gmail.png";
+import Linkedin from "../assets/icons/linkedin.png";
+import PersonIcon from "@mui/icons-material/Person";
 
 //Framer Motion
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 //fetch data
-import Terms from '../assets/terms.pdf';
+import Terms from "../assets/terms.pdf";
 
 const Container = styled.div`
   display: flex;
@@ -28,7 +31,7 @@ const Container = styled.div`
   justify-content: center;
   height: calc(90vh - 56px);
   color: ${({ theme }) => theme.titleColor};
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 `;
 
 const LoginWrapper = styled.div`
@@ -42,10 +45,22 @@ const LoginWrapper = styled.div`
   gap: 10px;
   border-radius: 20px;
   max-width: 50%;
+
+  /* LAPTOP */
+  @media ${device.laptop} {
+    max-width: 50%;
+    padding: 5px 50px;
+    gap: 5px;
+    margin-top: 50px;
+  }
 `;
 
 const Image = styled.img`
   max-width: 25%;
+  @media ${device.laptop} {
+    max-width: 20%;
+    margin: -10px;
+  }
 `;
 
 const Title = styled.h1`
@@ -88,6 +103,14 @@ const Input = styled.input`
   border-radius: 5px;
   padding: 5px;
 `;
+const Select = styled.select`
+  /* LAPTOP */
+  @media ${device.laptop} {
+    width: 180px;
+    text-align: center;
+  }
+`;
+const Option = styled.option``;
 
 const Button = styled.button`
   display: flex;
@@ -126,13 +149,13 @@ const H6 = styled.h6`
 `;
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
@@ -144,17 +167,17 @@ const Signup = () => {
     fetch(Terms)
       .then((row) => row.text())
       .then((text) => {
-        console.log('text:', text);
+        console.log("text:", text);
         setTerms(text);
       });
   };
   const handleClose = () => setOpen(false);
 
-  const [terms, setTerms] = useState('');
+  const [terms, setTerms] = useState("");
   return (
     <motion.div
       initial={{ width: 0, opacity: 0 }}
-      animate={{ width: '100%', opacity: 1 }}
+      animate={{ width: "100%", opacity: 1 }}
       exit={{
         x: window.innerWidth,
         y: window.innerHeight,
@@ -186,6 +209,16 @@ const Signup = () => {
             <Input placeholder="User Name" type="text" />
           </InputWrapper>
 
+          <H4> User Category </H4>
+          <InputWrapper>
+            <CategoryIcon />
+            <Select id="category">
+              <Option value="Viewer">Viewer</Option>
+              <Option value="Animator">Animator</Option>
+              <Option value="Employer">Employer</Option>
+            </Select>
+          </InputWrapper>
+
           <H4> Password </H4>
           <InputWrapper>
             <LockIcon />
@@ -209,7 +242,7 @@ const Signup = () => {
           </Modal>
 
           <Options>
-            <Link to={'/signin'}>
+            <Link to={"/signin"} style={{ textDecoration: "none" }}>
               <H6>Already Signed up? </H6>
             </Link>
             <H6>Forgot Password </H6>

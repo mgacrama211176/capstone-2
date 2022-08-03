@@ -1,19 +1,21 @@
-import React from 'react';
-import styled from 'styled-components';
-import Logo from '../assets/Logo.png';
+import React from "react";
+import styled from "styled-components";
+import Logo from "../assets/Logo.png";
+import { device } from "../media";
+
 //MUI
-import EmailIcon from '@mui/icons-material/Email';
-import LockIcon from '@mui/icons-material/Lock';
-import LoginIcon from '@mui/icons-material/Login';
+import EmailIcon from "@mui/icons-material/Email";
+import LockIcon from "@mui/icons-material/Lock";
+import LoginIcon from "@mui/icons-material/Login";
 
 //Icons
-import Facebook from '../assets/icons/facebook.png';
-import Gmail from '../assets/icons/gmail.png';
-import Linkedin from '../assets/icons/linkedin.png';
+import Facebook from "../assets/icons/facebook.png";
+import Gmail from "../assets/icons/gmail.png";
+import Linkedin from "../assets/icons/linkedin.png";
 
 //Framer Motion
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -21,7 +23,7 @@ const Container = styled.div`
   justify-content: center;
   height: calc(90vh - 56px);
   color: ${({ theme }) => theme.titleColor};
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 `;
 
 const LoginWrapper = styled.div`
@@ -35,6 +37,12 @@ const LoginWrapper = styled.div`
   gap: 10px;
   border-radius: 20px;
   max-width: 50%;
+
+  /* LAPTOP */
+  @media ${device.laptop} {
+    padding: 10px 25px;
+    gap: 5px;
+  }
 `;
 
 const Image = styled.img`
@@ -122,7 +130,7 @@ const Signin = () => {
   return (
     <motion.div
       initial={{ width: 0, opacity: 0 }}
-      animate={{ width: '100%', opacity: 1 }}
+      animate={{ width: "100%", opacity: 1 }}
       exit={{
         x: window.innerWidth,
         y: window.innerHeight,
@@ -162,7 +170,7 @@ const Signin = () => {
           </InputWrapper>
 
           <Options>
-            <Link to={'/signup'}>
+            <Link to={"/signup"} style={{ textDecoration: "none" }}>
               <H6>Not yet registered? </H6>
             </Link>
             <H6>Forgot Password </H6>

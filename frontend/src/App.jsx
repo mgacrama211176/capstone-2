@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import Menu from './components/Menu';
-import Navbar from './components/Navbar';
-import { coloredTheme, darkTheme } from './utils/Theme';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import AnimatedRoutes from './components/AnimatedRoutes';
-import { device } from './media';
+import React, { useState } from "react";
+import styled, { ThemeProvider } from "styled-components";
+import Menu from "./components/Menu";
+import Navbar from "./components/Navbar";
+import { coloredTheme, darkTheme } from "./utils/Theme";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import AnimatedRoutes from "./components/AnimatedRoutes";
+import { device } from "./media";
 
 const Continer = styled.div`
   display: flex;
