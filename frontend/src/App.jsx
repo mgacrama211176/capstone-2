@@ -30,13 +30,22 @@ const Wrapper = styled.div`
 
 const App = () => {
   const [darkmode, setDarkMode] = useState(true);
+
+  const [burger, setBurger] = useState("none");
+
+  const setOpen = () => {
+    if (burger === "none") {
+      setBurger("block");
+    } else setBurger("none");
+    // setBurger("block");
+  };
   return (
     <ThemeProvider theme={darkmode ? coloredTheme : darkTheme}>
       <Continer>
         <BrowserRouter>
-          <Menu setDarkMode={setDarkMode} darkmode={darkmode} />
+          <Menu setDarkMode={setDarkMode} darkmode={darkmode} burger={burger} />
           <Main setDarkMode={setDarkMode} darkmode={darkmode}>
-            <Navbar />
+            <Navbar setOpen={setOpen} />
             <Wrapper>
               <AnimatedRoutes />
             </Wrapper>

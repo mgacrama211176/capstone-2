@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, { createGlobalStyle, keyframes } from "styled-components";
-import logoImg from "../assets/Logo.png";
 import { device } from "../media";
 
 import { Link } from "react-router-dom";
@@ -27,11 +26,12 @@ const Container = styled.div`
   flex: 1;
   background-color: ${({ theme }) => theme.bg};
   color: ${({ theme }) => theme.text};
-  height: 100vh;
+  height: 170vh;
   font-size: 14px;
   font-family: "Inter", sans-serif;
   position: sticky;
   top: 0;
+  transition: 1s ease;
 
   & button,
   div {
@@ -41,21 +41,22 @@ const Container = styled.div`
 
   /* LAPTOP */
   @media ${device.laptop} {
-    height: 140vh;
+    height: 170vh;
+  }
+
+  /* TABLET */
+  @media ${device.tablet} {
+    height: 170vh;
+  }
+  /* Mobile S */
+  @media ${device.mobileS} {
+    height: 185vh;
+    display: none;
   }
 `;
 
 const Wrapper = styled.div`
   padding: 0 26px;
-`;
-const Logo = styled.div`
-  display: flex;
-  align-content: center;
-  gap: 5px;
-`;
-
-const Img = styled.img`
-  height: 5rem;
 `;
 
 const Item = styled.div`
@@ -120,87 +121,88 @@ const Button = styled.button`
   }
 `;
 
-const Menu = ({ darkmode, setDarkMode }) => {
+//for Mobile Hamburger
+const MobileWrapper = styled.div``;
+
+const Menu = ({ darkmode, setDarkMode, burger }) => {
   return (
-    <Container>
+    <Container style={{ display: `${burger}` }}>
       <Wrapper>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Logo>
-            <Img src={logoImg} />
-          </Logo>
-        </Link>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Item>
-            <HomeIcon />
-            HOME
-          </Item>
-        </Link>
-        <Item>
-          <ExploreIcon />
-          Explore
-        </Item>
-        <Item>
-          <SubscriptionsIcon />
-          Subscription
-        </Item>
-        <Hr />
-        <Item>
-          <LibraryBooksIcon />
-          Library
-        </Item>
-        <Item>
-          <HistoryIcon />
-          History
-        </Item>
-        <Hr />
-        <Login>
-          Sign in to like videos, comment and subscribe.
-          <Link to={"/signin"} style={{ textDecoration: "none" }}>
-            <Button>
-              <PersonPinIcon />
-              Sign In
-            </Button>
+        <MobileWrapper>
+          {/* <MenuIcon /> */}
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Item>
+              <HomeIcon />
+              HOME
+            </Item>
           </Link>
-        </Login>
-        <Hr />
-        Categories
-        <Item>
-          <BrushIcon />
-          Traditional Animation
-        </Item>
-        <Item>
-          <Filter2Icon />
-          2D Animation
-        </Item>
-        <Item>
-          <ThreeDRotationIcon />
-          3D Animation
-        </Item>
-        <Item>
-          <GestureIcon />
-          Motion Graphics
-        </Item>
-        <Item>
-          <VibrationIcon />
-          Stop Motion
-        </Item>
-        <Hr />
-        <Item>
-          <SettingsIcon />
-          Settings
-        </Item>
-        <Item>
-          <FlagIcon />
-          Report
-        </Item>
-        <Item>
-          <LiveHelpIcon />
-          Help
-        </Item>
-        <Item onClick={() => setDarkMode(!darkmode)}>
-          <LightModeIcon />
-          {darkmode ? "Dark" : "Light"} Mode
-        </Item>
+          <Item>
+            <ExploreIcon />
+            Explore
+          </Item>
+          <Item>
+            <SubscriptionsIcon />
+            Subscription
+          </Item>
+          <Hr />
+          <Item>
+            <LibraryBooksIcon />
+            Library
+          </Item>
+          <Item>
+            <HistoryIcon />
+            History
+          </Item>
+          <Hr />
+          <Login>
+            Sign in to like videos, comment and subscribe.
+            <Link to={"/signin"} style={{ textDecoration: "none" }}>
+              <Button>
+                <PersonPinIcon />
+                Sign In
+              </Button>
+            </Link>
+          </Login>
+          <Hr />
+          Categories
+          <Item>
+            <BrushIcon />
+            Traditional Animation
+          </Item>
+          <Item>
+            <Filter2Icon />
+            2D Animation
+          </Item>
+          <Item>
+            <ThreeDRotationIcon />
+            3D Animation
+          </Item>
+          <Item>
+            <GestureIcon />
+            Motion Graphics
+          </Item>
+          <Item>
+            <VibrationIcon />
+            Stop Motion
+          </Item>
+          <Hr />
+          <Item>
+            <SettingsIcon />
+            Settings
+          </Item>
+          <Item>
+            <FlagIcon />
+            Report
+          </Item>
+          <Item>
+            <LiveHelpIcon />
+            Help
+          </Item>
+          <Item onClick={() => setDarkMode(!darkmode)}>
+            <LightModeIcon />
+            {darkmode ? "Dark" : "Light"} Mode
+          </Item>
+        </MobileWrapper>
       </Wrapper>
     </Container>
   );

@@ -22,9 +22,6 @@ import PersonIcon from "@mui/icons-material/Person";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-//fetch data
-import Terms from "../assets/terms.pdf";
-
 const Container = styled.div`
   display: flex;
   align-items: center;
@@ -32,6 +29,15 @@ const Container = styled.div`
   height: calc(90vh - 56px);
   color: ${({ theme }) => theme.titleColor};
   font-family: "Roboto", sans-serif;
+  margin: 150px 0px;
+
+  @media ${device.laptop} {
+    margin: 80px 0px;
+  }
+
+  @media ${device.tablet} {
+    margin: 120px 0px;
+  }
 `;
 
 const LoginWrapper = styled.div`
@@ -44,15 +50,18 @@ const LoginWrapper = styled.div`
   border: 1px solid;
   gap: 10px;
   border-radius: 20px;
-  max-width: 50%;
+  max-width: 100%;
 
   /* LAPTOP */
   @media ${device.laptop} {
     max-width: 50%;
     padding: 5px 50px;
     gap: 5px;
-    margin-top: 50px;
   }
+
+  /* Mobile S */
+  /* @media ${device.mobileS} {
+    max-width: 100%; */
 `;
 
 const Image = styled.img`
@@ -77,12 +86,24 @@ const IconsContainer = styled.div`
 const Icons = styled.img`
   max-width: 5%;
   cursor: pointer;
+  /* Mobile S */
+  @media ${device.mobileS} {
+    max-width: 15%;
+  }
 `;
 
 const InputWrapper = styled.div`
   display: flex;
   flex-direction: row;
   gap: 5px;
+
+  align-items: center;
+`;
+
+const PasswordWrapper = styled.div`
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
 `;
 
 const H4 = styled.h4``;
@@ -139,6 +160,7 @@ const Options = styled.div`
 `;
 
 const H6 = styled.h6`
+  margin: 10px 5px;
   cursor: pointer;
   transition: 0.2s ease-in;
   color: white;
@@ -161,19 +183,6 @@ const style = {
 };
 
 const Signup = () => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => {
-    setOpen(true);
-    fetch(Terms)
-      .then((row) => row.text())
-      .then((text) => {
-        console.log("text:", text);
-        setTerms(text);
-      });
-  };
-  const handleClose = () => setOpen(false);
-
-  const [terms, setTerms] = useState("");
   return (
     <motion.div
       initial={{ width: 0, opacity: 0 }}
@@ -185,7 +194,7 @@ const Signup = () => {
     >
       <Container>
         <LoginWrapper>
-          <Image src={Logo}></Image>
+          {/* <Image src={Logo}></Image> */}
           <Title>Signup Using</Title>
           <IconsContainer>
             <Icons src={Facebook} alt="facebook"></Icons>
@@ -220,26 +229,26 @@ const Signup = () => {
           </InputWrapper>
 
           <H4> Password </H4>
+
           <InputWrapper>
             <LockIcon />
-            <Input placeholder="Password" type="password" />
-            <Input placeholder="Confirm Password" type="password" />
+            <PasswordWrapper>
+              <Input placeholder="Password" type="password" />
+              <Input placeholder="Confirm Password" type="password" />
+            </PasswordWrapper>
           </InputWrapper>
 
           <InputWrapper>
-            <Button onClick={handleOpen}>
+            <input type="checkbox" name="" id="" />
+            <H6>I have read and understood the TERMS AND CONDITIONS</H6>
+          </InputWrapper>
+
+          <InputWrapper>
+            <Button>
               SignUp
               <LoginIcon />
             </Button>
           </InputWrapper>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={style}>{terms}</Box>
-          </Modal>
 
           <Options>
             <Link to={"/signin"} style={{ textDecoration: "none" }}>

@@ -1,13 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import logoImg from "../assets/Logo.png";
+import { device } from "../media";
 
 //MUI
 import PersonPinIcon from "@mui/icons-material/PersonPin";
 import SearchIcon from "@mui/icons-material/Search";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const Container = styled.div`
-  position: sticky;
+  position: block;
   top: 0;
   background-color: ${({ theme }) => theme.bg};
 `;
@@ -17,9 +20,31 @@ const Wrapper = styled.div`
   align-items: center;
   height: 100%;
   padding: 0px 20px;
-  justify-content: flex-end;
+  justify-content: space-between;
   position: relative; ;
 `;
+
+const LeftContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+const Burger = styled.div`
+  cursor: pointer;
+  color: white;
+`;
+
+const Logo = styled.div`
+  display: flex;
+  align-content: center;
+  gap: 5px;
+`;
+
+const Img = styled.img`
+  height: 5rem;
+`;
+
 const Search = styled.div`
   position: absolute;
   left: 0px;
@@ -33,6 +58,19 @@ const Search = styled.div`
   border: 1px solid #b2792d;
   border-radius: 5px;
   background-color: white;
+
+  /* Mobile S */
+  @media ${device.mobileS} {
+    width: 20%;
+  }
+  /* Mobile M */
+  @media ${device.mobileM} {
+    width: 30%;
+  }
+  /* Mobile L */
+  @media ${device.mobileL} {
+    width: 30%;
+  }
 `;
 
 const Input = styled.input`
@@ -65,10 +103,22 @@ const Button = styled.button`
   }
 `;
 
-const Navbar = () => {
+const Navbar = ({ setOpen, setClose }) => {
   return (
     <Container>
       <Wrapper>
+        <LeftContainer>
+          {}
+          <Burger onClick={setOpen}>
+            <MenuIcon />
+          </Burger>
+
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Logo>
+              <Img src={logoImg} />
+            </Logo>
+          </Link>
+        </LeftContainer>
         <Search>
           <Input
             type="search"

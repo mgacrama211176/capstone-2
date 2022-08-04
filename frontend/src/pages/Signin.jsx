@@ -24,6 +24,7 @@ const Container = styled.div`
   height: calc(90vh - 56px);
   color: ${({ theme }) => theme.titleColor};
   font-family: "Roboto", sans-serif;
+  margin: 40px 0px;
 `;
 
 const LoginWrapper = styled.div`
@@ -39,18 +40,32 @@ const LoginWrapper = styled.div`
   max-width: 50%;
 
   /* LAPTOP */
-  @media ${device.laptop} {
+  /* @media ${device.laptop} {
     padding: 10px 25px;
     gap: 5px;
-  }
+  } */
+
+  /* Mobile S */
+  /* @media ${device.mobileS} {
+    margin-top: 100px;
+  } */
 `;
 
 const Image = styled.img`
   max-width: 25%;
+
+  /* Mobile S */
+  @media ${device.mobileS} {
+    max-width: 50%;
+  }
 `;
 
 const Title = styled.h1`
   margin-bottom: 10px;
+
+  @media ${device.mobileS} {
+    font-size: 20px;
+  }
 `;
 
 const IconsContainer = styled.div`
@@ -63,6 +78,11 @@ const IconsContainer = styled.div`
 const Icons = styled.img`
   max-width: 5%;
   cursor: pointer;
+
+  /* Mobile S */
+  @media ${device.mobileS} {
+    max-width: 20%;
+  }
 `;
 
 const InputWrapper = styled.div`
@@ -139,7 +159,7 @@ const Signin = () => {
     >
       <Container>
         <LoginWrapper>
-          <Image src={Logo}></Image>
+          {/* <Image src={Logo}></Image> */}
           <Title>Login Using</Title>
           <IconsContainer>
             <Icons src={Facebook} alt="facebook"></Icons>
