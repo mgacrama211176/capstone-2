@@ -21,7 +21,7 @@ const AnimatedRoutes = () => {
         <Route path="/signin" element={<Signin />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/video/:id" element={<Video />}></Route>
-        <Route path="/profile" element={<Profile />}></Route>
+        <Route path="/profile/:username" element={<Profile />}></Route>
       </Routes>
     </AnimatePresence>
   );

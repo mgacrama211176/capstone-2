@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
+//Components
+import Card from "../components/Card";
+
 //MUI
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 
@@ -8,7 +11,9 @@ const Container = styled.div`
   @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 `;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  background-color: ${({ theme }) => theme.bg};
+`;
 
 const Banner = styled.div`
   max-width: 100vw;
@@ -64,9 +69,41 @@ const ProfilePhoto = styled.img`
 
 const H1 = styled.h1`
   font-family: "Inter", sans-serif;
+  color: white;
 `;
 
-const H4 = styled.h4``;
+const H3 = styled.h3`
+  color: ${({ theme }) => theme.titleColor};
+  padding: 10px;
+`;
+
+const H4 = styled.h4`
+  font-family: "Inter", sans-serif;
+  color: white;
+  cursor: pointer;
+  &:hover {
+    background-color: transparent;
+    color: #b2792d;
+    text-decoration: underline;
+  }
+`;
+
+const H5 = styled.h5`
+  color: ${({ theme }) => theme.profileSubs};
+`;
+
+const ProfileLinks = styled.div`
+  display: flex;
+  gap: 70px;
+  padding: 20px;
+`;
+
+const UploadWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 100vw;
+`;
 
 const Profile = () => {
   return (
@@ -81,10 +118,30 @@ const Profile = () => {
           <ProfilePhoto src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350" />
           <ProfileHeader>
             <H1>Animator</H1>
-            <H4>Subscribers: 0</H4>
+            <H5>Subscribers: 0</H5>
           </ProfileHeader>
         </ProfileNav>
+        <ProfileLinks>
+          <H4>Home</H4>
+          <H4>Videos</H4>
+          <H4>Saved</H4>
+          <H4>About</H4>
+        </ProfileLinks>
       </Wrapper>
+      <H3>About</H3>
+      <H3>Subscribed</H3>
+
+      <H3>My Uploads</H3>
+      <UploadWrapper>
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </UploadWrapper>
     </Container>
   );
 };
