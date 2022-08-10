@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 
   /* LAPTOP */
   @media ${device.laptop} {
-    padding: 22px 46px;
+    padding: 10px 46px;
   }
 
   /* TABLET */

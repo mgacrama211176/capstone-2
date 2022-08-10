@@ -26,17 +26,42 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(90vh - 56px);
+  height: calc(50h - 56px);
   color: ${({ theme }) => theme.titleColor};
   font-family: "Roboto", sans-serif;
-  margin: 150px 0px;
+  margin: 40px 0px;
 
+  /* LAPTOP Desktop */
+  @media ${device.desktop} {
+    height: calc(100vh - 56px);
+  }
+  /* LAPTOP L */
+  @media ${device.laptopL} {
+    height: calc(100vh - 56px);
+  }
+  /* LAPTOP */
   @media ${device.laptop} {
-    margin: 80px 0px;
+    height: calc(100vh - 56px);
   }
 
+  /* Tablet */
   @media ${device.tablet} {
-    margin: 120px 0px;
+    height: calc(100vh - 56px);
+  }
+
+  /* Mobile L */
+  @media ${device.mobileL} {
+    height: calc(100vh - 56px);
+  }
+  /* Mobile M */
+  @media ${device.mobileM} {
+    margin: 100px 0px;
+    height: calc(100vh - 56px);
+  }
+  /* Mobile S */
+  @media ${device.mobileS} {
+    margin: 100px 0px;
+    height: calc(100vh - 56px);
   }
 `;
 
@@ -55,8 +80,17 @@ const LoginWrapper = styled.div`
   /* LAPTOP */
   @media ${device.laptop} {
     max-width: 50%;
-    padding: 5px 50px;
+    padding: 20px 50px;
     gap: 5px;
+  }
+
+  /* Tablet */
+  @media ${device.tablet} {
+    max-width: 50%;
+    padding: 20px 50px;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
   }
 
   /* Mobile S */

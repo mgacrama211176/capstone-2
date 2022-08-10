@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
-  padding: 0px 20px;
+  padding: 0px 10px;
   justify-content: space-between;
   position: relative; ;
 `;
@@ -42,7 +42,7 @@ const Logo = styled.div`
 `;
 
 const Img = styled.img`
-  height: 5rem;
+  height: 4rem;
 `;
 
 const Search = styled.div`
@@ -74,11 +74,11 @@ const Search = styled.div`
 `;
 
 const Input = styled.input`
-  border: none;
   background-color: transparent;
   width: 100%;
   height: 2em;
   font-family: Inter;
+  border: none;
 `;
 
 const Button = styled.button`

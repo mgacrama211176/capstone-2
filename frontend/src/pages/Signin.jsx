@@ -21,10 +21,16 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(90vh - 56px);
+  height: calc(70vh - 56px);
   color: ${({ theme }) => theme.titleColor};
   font-family: "Roboto", sans-serif;
   margin: 40px 0px;
+
+  /* LAPTOP */
+  @media ${device.laptop} {
+    margin: 0px;
+    margin: 40px 0px;
+  }
 `;
 
 const LoginWrapper = styled.div`
@@ -40,10 +46,10 @@ const LoginWrapper = styled.div`
   max-width: 50%;
 
   /* LAPTOP */
-  /* @media ${device.laptop} {
-    padding: 10px 25px;
+  @media ${device.laptop} {
+    padding: 25px 25px;
     gap: 5px;
-  } */
+  }
 
   /* Mobile S */
   /* @media ${device.mobileS} {
