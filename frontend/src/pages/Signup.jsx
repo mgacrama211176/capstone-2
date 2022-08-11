@@ -26,12 +26,12 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(50h - 56px);
+  height: calc(100vh - 56px);
   color: ${({ theme }) => theme.titleColor};
   font-family: "Roboto", sans-serif;
   margin: 40px 0px;
 
-  /* LAPTOP Desktop */
+  /*  Desktop */
   @media ${device.desktop} {
     height: calc(100vh - 56px);
   }
@@ -41,7 +41,7 @@ const Container = styled.div`
   }
   /* LAPTOP */
   @media ${device.laptop} {
-    height: calc(100vh - 56px);
+    margin: 80px 0px;
   }
 
   /* Tablet */
@@ -120,9 +120,15 @@ const IconsContainer = styled.div`
 const Icons = styled.img`
   max-width: 5%;
   cursor: pointer;
+
   /* Mobile S */
   @media ${device.mobileS} {
     max-width: 15%;
+  }
+
+  /* LAPTOP L */
+  @media ${device.laptopL} {
+    max-width: 10%;
   }
 `;
 

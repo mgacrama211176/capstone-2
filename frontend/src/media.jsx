@@ -12,14 +12,14 @@ const size = {
 };
 
 export const device = {
-  mobileS: `(max-width: ${size.mobileS})`,
-  mobileM: `(min-width: ${size.mobileM})`,
-  mobileL: `(min-width: ${size.mobileL})`,
-  tablet: `(min-width: ${size.tablet})`,
-  laptop: `(min-width: ${size.laptop})`,
-  laptopL: `(min-width: ${size.laptopL})`,
-  desktop: `(min-width: ${size.desktop})`,
-  desktopL: `(min-width: ${size.desktopL})`,
+  mobileS: `(max-width: ${size.mobileS}) { ... }`,
+  mobileM: `(min-width: ${size.mobileM}) { ... }`,
+  mobileL: `(min-width: ${size.mobileL}) { ... }`,
+  tablet: `(min-width: ${size.tablet} and (max-width: 1023px)) { ... }`,
+  laptop: `(min-width: ${size.laptop} and (max-width: 1439px)) { ... }`,
+  laptopL: `(min-width: ${size.laptopL} and (max-width: 1919px)) { ... }`,
+  desktop: `(min-width: ${size.desktop}) { ... }`,
+  desktopL: `(min-width: ${size.desktopL}) { ... }`,
 };
 
 const media = () => {

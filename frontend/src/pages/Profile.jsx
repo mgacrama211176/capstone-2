@@ -6,6 +6,7 @@ import Card from "../components/Card";
 
 //MUI
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import EditIcon from "@mui/icons-material/Edit";
 
 const Container = styled.div`
   @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
@@ -14,6 +15,8 @@ const Container = styled.div`
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.bg};
 `;
+
+const Icons = styled.div``;
 
 const Banner = styled.div`
   max-width: 100vw;
@@ -67,6 +70,12 @@ const ProfilePhoto = styled.img`
   border-radius: 100%;
 `;
 
+const About = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+`;
+
 const H1 = styled.h1`
   font-family: "Inter", sans-serif;
   color: white;
@@ -92,6 +101,15 @@ const H5 = styled.h5`
   color: ${({ theme }) => theme.profileSubs};
 `;
 
+const DescriptionContainer = styled.div`
+  padding: 10px;
+`;
+const Description = styled.h4``;
+
+const Textarea = styled.textarea`
+  padding: 10px;
+`;
+
 const ProfileLinks = styled.div`
   display: flex;
   gap: 70px;
@@ -101,7 +119,7 @@ const ProfileLinks = styled.div`
 const UploadWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 10px;
   max-width: 100vw;
 `;
 
@@ -128,7 +146,20 @@ const Profile = () => {
           <H4>About</H4>
         </ProfileLinks>
       </Wrapper>
-      <H3>About</H3>
+      <About>
+        <H3>About</H3>
+
+        <EditIcon />
+      </About>
+
+      <DescriptionContainer>
+        <Description>Description: </Description>
+        <Textarea
+          cols="100"
+          rows="10"
+          placeholder="Tell us about yourself animator"
+        ></Textarea>
+      </DescriptionContainer>
       <H3>Subscribed</H3>
 
       <H3>My Uploads</H3>

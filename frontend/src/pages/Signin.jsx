@@ -28,8 +28,7 @@ const Container = styled.div`
 
   /* LAPTOP */
   @media ${device.laptop} {
-    margin: 0px;
-    margin: 40px 0px;
+    margin: 80px 0px;
   }
 `;
 
@@ -87,7 +86,7 @@ const Icons = styled.img`
 
   /* Mobile S */
   @media ${device.mobileS} {
-    max-width: 20%;
+    max-width: 10%;
   }
 `;
 
