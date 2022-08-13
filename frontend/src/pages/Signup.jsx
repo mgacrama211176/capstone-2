@@ -1,26 +1,26 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import Logo from "../assets/Logo.png";
-import { device } from "../media";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import Logo from '../assets/Logo.png';
+import { device } from '../media';
 
 //MUI
-import EmailIcon from "@mui/icons-material/Email";
-import LockIcon from "@mui/icons-material/Lock";
-import LoginIcon from "@mui/icons-material/Login";
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import CategoryIcon from "@mui/icons-material/Category";
+import EmailIcon from '@mui/icons-material/Email';
+import LockIcon from '@mui/icons-material/Lock';
+import LoginIcon from '@mui/icons-material/Login';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import CategoryIcon from '@mui/icons-material/Category';
 
 //Icons
-import Facebook from "../assets/icons/facebook.png";
-import Gmail from "../assets/icons/gmail.png";
-import Linkedin from "../assets/icons/linkedin.png";
-import PersonIcon from "@mui/icons-material/Person";
+import Facebook from '../assets/icons/facebook.png';
+import Gmail from '../assets/icons/gmail.png';
+import Linkedin from '../assets/icons/linkedin.png';
+import PersonIcon from '@mui/icons-material/Person';
 
 //Framer Motion
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -28,40 +28,41 @@ const Container = styled.div`
   justify-content: center;
   height: calc(100vh - 56px);
   color: ${({ theme }) => theme.titleColor};
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin: 40px 0px;
 
-  /*  Desktop */
+  /* Desktop
   @media ${device.desktop} {
     height: calc(100vh - 56px);
   }
-  /* LAPTOP L */
+  LAPTOP L
   @media ${device.laptopL} {
     height: calc(100vh - 56px);
   }
-  /* LAPTOP */
+  LAPTOP
   @media ${device.laptop} {
     margin: 80px 0px;
   }
 
-  /* Tablet */
+  Tablet
   @media ${device.tablet} {
     height: calc(100vh - 56px);
   }
 
-  /* Mobile L */
+  Mobile L
   @media ${device.mobileL} {
     height: calc(100vh - 56px);
   }
-  /* Mobile M */
+  Mobile M
   @media ${device.mobileM} {
     margin: 100px 0px;
     height: calc(100vh - 56px);
-  }
+  } */
+
   /* Mobile S */
   @media ${device.mobileS} {
-    margin: 100px 0px;
-    height: calc(100vh - 56px);
+    max-width: 375px;
+    max-height: 70vh;
   }
 `;
 
@@ -76,26 +77,6 @@ const LoginWrapper = styled.div`
   gap: 10px;
   border-radius: 20px;
   max-width: 100%;
-
-  /* LAPTOP */
-  @media ${device.laptop} {
-    max-width: 50%;
-    padding: 20px 50px;
-    gap: 5px;
-  }
-
-  /* Tablet */
-  @media ${device.tablet} {
-    max-width: 50%;
-    padding: 20px 50px;
-    gap: 5px;
-    justify-content: center;
-    align-items: center;
-  }
-
-  /* Mobile S */
-  /* @media ${device.mobileS} {
-    max-width: 100%; */
 `;
 
 const Image = styled.img`
@@ -108,6 +89,11 @@ const Image = styled.img`
 
 const Title = styled.h1`
   margin-bottom: 10px;
+
+  /* Mobile S */
+  @media ${device.mobileS} {
+    font-size: 18px;
+  }
 `;
 
 const IconsContainer = styled.div`
@@ -123,12 +109,7 @@ const Icons = styled.img`
 
   /* Mobile S */
   @media ${device.mobileS} {
-    max-width: 15%;
-  }
-
-  /* LAPTOP L */
-  @media ${device.laptopL} {
-    max-width: 10%;
+    max-width: 2em;
   }
 `;
 
@@ -146,7 +127,12 @@ const PasswordWrapper = styled.div`
   justify-content: center;
 `;
 
-const H4 = styled.h4``;
+const H4 = styled.h4`
+  /* Mobile S */
+  @media ${device.mobileS} {
+    font-size: 14px;
+  }
+`;
 
 const HrContainer = styled.div`
   display: flex;
@@ -197,6 +183,11 @@ const Options = styled.div`
   display: flex;
   gap: 50px;
   margin: 5px 0px 40px 0px;
+
+  /* Mobile S */
+  @media ${device.mobileS} {
+    gap: 30px;
+  }
 `;
 
 const H6 = styled.h6`
@@ -210,23 +201,11 @@ const H6 = styled.h6`
   }
 `;
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
-
 const Signup = () => {
   return (
     <motion.div
       initial={{ width: 0, opacity: 0 }}
-      animate={{ width: "100%", opacity: 1 }}
+      animate={{ width: '100%', opacity: 1 }}
       exit={{
         x: window.innerWidth,
         y: window.innerHeight,
@@ -291,7 +270,7 @@ const Signup = () => {
           </InputWrapper>
 
           <Options>
-            <Link to={"/signin"} style={{ textDecoration: "none" }}>
+            <Link to={'/signin'} style={{ textDecoration: 'none' }}>
               <H6>Already Signed up? </H6>
             </Link>
             <H6>Forgot Password </H6>

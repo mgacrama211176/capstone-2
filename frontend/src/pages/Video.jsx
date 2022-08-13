@@ -18,14 +18,59 @@ const Container = styled.div`
   display: flex;
   gap: 24px;
   font-family: 'Roboto', sans-serif;
+
+  /* Mobile S */
+  @media ${device.mobileS} {
+    max-width: 320px;
+    padding: 5px;
+  }
+
+  /* Mobile M */
+  @media ${device.mobileM} {
+    max-width: 424px;
+  }
+
+  /* Mobile L */
+  @media ${device.mobileL} {
+    max-width: 767px;
+  }
+
+  /* Tablet */
+  @media ${device.tablet} {
+    max-width: 1023px;
+  }
+
+  /* Tablet */
+  @media ${device.laptopL} {
+    max-width: 1919px;
+  }
+  /* Desktop */
+  @media ${device.desktop} {
+    max-width: 2559px;
+  }
 `;
 
 const Content = styled.div`
   flex: 5;
 `;
 const VideoWrapper = styled.div`
-  /* LAPTOP */
-  @media ${device.laptop} {
+  display: flex;
+  justify-content: center;
+  /* Mobile S */
+  @media ${device.mobileS} {
+    max-width: 374px;
+  }
+`;
+
+const Iframe = styled.iframe`
+  margin-top: 10px;
+  max-width: 320px;
+  height: 720;
+
+  /* Mobile S */
+  @media ${device.mobileS} {
+    max-width: 320px;
+    height: 720;
   }
 `;
 
@@ -35,15 +80,30 @@ const Title = styled.h1`
   margin-top: 10px;
   margin-bottom: 10px;
   color: ${({ theme }) => theme.titleColor};
+
+  @media ${device.mobileS} {
+    font-size: 14px;
+    font-weight: 600;
+  }
 `;
+
 const Details = styled.div`
   display: flex;
   align-content: center;
   justify-content: space-between;
+
+  @media ${device.mobileS} {
+    font-size: 11px;
+    font-weight: 600;
+  }
 `;
 
 const Info = styled.span`
   color: ${({ theme }) => theme.titleColor};
+
+  @media ${device.mobileS} {
+    font-size: 11px;
+  }
 `;
 
 const Buttons = styled.div`
@@ -118,6 +178,8 @@ const Recommendation = styled.div`
 const Channel = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 10px;
 `;
 
 const ChannelInfo = styled.div`
@@ -149,6 +211,11 @@ const ChannelCounter = styled.span`
 
 const Description = styled.p`
   font-size: 14px;
+
+  @media ${device.mobileS} {
+    font-size: 12px;
+    margin-bottom: 20px;
+  }
 `;
 
 const Subscribe = styled.button`
@@ -203,6 +270,13 @@ const Subscribe = styled.button`
       transform: translate(1px, -2px) rotate(-1deg);
     }
   }
+
+  /* Mobile S */
+  @media ${device.mobileS} {
+    padding: 5px 10px;
+    gap: 3px;
+    font-size: 12px;
+  }
 `;
 
 const Video = () => {
@@ -215,19 +289,18 @@ const Video = () => {
       <Container>
         <Content>
           <VideoWrapper>
-            <iframe
-              width="100%"
-              height="720"
+            <Iframe
               src="https://www.youtube.com/embed/-ies20lteQY"
               title="Fil Anime Test"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
-            ></iframe>
+            ></Iframe>
           </VideoWrapper>
           <Title>Test Vid</Title>
+          <Info>7, 948,154 views • Jun 22,2022</Info>
+          <Hr />
           <Details>
-            <Info>7, 948,154 views • Jun 22,2022</Info>
             <Buttons>
               <Like>
                 <ThumbUpIcon />
@@ -248,19 +321,12 @@ const Video = () => {
             </Buttons>
           </Details>
           <Hr />
-
           <Channel>
             <ChannelInfo>
               <Image src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350" />
               <ChannelDetail>
                 <ChannelName>Animator</ChannelName>
                 <ChannelCounter>200K subscribers</ChannelCounter>
-                <Description>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Perferendis ipsa dolorem facere numquam, culpa aspernatur
-                  consequuntur amet nemo accusantium hic nulla commodi
-                  architecto eos, at nostrum nesciunt consequatur! Aperiam, aut!
-                </Description>
               </ChannelDetail>
             </ChannelInfo>
 
@@ -269,7 +335,23 @@ const Video = () => {
               SUBSCRIBE
             </Subscribe>
           </Channel>
+          <Description>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
+            ipsa dolorem facere numquam, culpa aspernatur consequuntur amet nemo
+            accusantium hic nulla commodi architecto eos, at nostrum nesciunt
+            consequatur! Aperiam, aut!
+          </Description>
 
+          <Recommendation>
+            <Card type="sm" />
+            <Card type="sm" />
+            <Card type="sm" />
+            <Card type="sm" />
+            <Card type="sm" />
+            <Card type="sm" />
+            <Card type="sm" />
+            <Card type="sm" />
+          </Recommendation>
           <ViewComments></ViewComments>
           <CommentsBox />
           <CommentsBox />
@@ -281,16 +363,6 @@ const Video = () => {
           <CommentsBox />
           <CommentsBox />
         </Content>
-        <Recommendation>
-          <Card type="sm" />
-          <Card type="sm" />
-          <Card type="sm" />
-          <Card type="sm" />
-          <Card type="sm" />
-          <Card type="sm" />
-          <Card type="sm" />
-          <Card type="sm" />
-        </Recommendation>
       </Container>
     </motion.div>
   );

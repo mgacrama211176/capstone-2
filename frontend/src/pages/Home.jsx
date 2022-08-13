@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { device } from '../media';
 
 //Components
 import Card from '../components/Card';
@@ -11,6 +12,17 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  padding: 10px;
+
+  /* Mobile S */
+  @media ${device.mobileS} {
+    justify-content: center;
+  }
+
+  /* Tablet */
+  @media ${device.tablet} {
+    gap: 40px;
+  }
 `;
 
 const Wrapper = styled.div``;

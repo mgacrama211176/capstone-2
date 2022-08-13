@@ -11,20 +11,25 @@ const Container = styled.div`
   display: ${(props) => props.type === 'sm' && 'flex'};
   gap: 15px;
 
-  /* TABLET */
-  @media ${device.tablet} {
-    width: 257px;
+  /* Mobile S */
+  @media ${device.mobileS} {
+    gap: 5px;
+    margin: ${(props) => (props.type === 'sm' ? '15px 0px' : '0px')};
+    max-width: ${(props) => (props.type === 'sm' ? '264px' : '300px')};
+    gap: ${(props) => (props.type === 'sm' ? '15px' : '0px')};
   }
 
-  /* LAPTOP*/
-  @media ${device.laptop} {
-    width: 244px;
-  }
+  /* Tablet */
+  /* @media ${device.tablet} {
+    margin-bottom: 5px;
+    max-width: 260px;
+  } */
 
-  /* LAPTOP LARGE*/
-  @media ${device.laptopL} {
-    width: 264px;
-  }
+  /* Laptop */
+  /* @media ${device.laptop} {
+    margin-bottom: 5px;
+    max-width: 220px;
+  } */
 `;
 
 const Image = styled.img`
@@ -32,16 +37,6 @@ const Image = styled.img`
   height: ${(props) => (props.type === 'sm' ? '120px' : '202px')};
   background-color: #999;
   flex: 1;
-
-  /* mobileL */
-  @media ${device.mobileL} {
-    width: 100%;
-  }
-
-  /* TABLET */
-  @media ${device.tablet} {
-    width: 100%;
-  }
 `;
 
 const Details = styled.div`
@@ -50,7 +45,14 @@ const Details = styled.div`
   gap: 12px;
   font-family: Inter;
   flex: 1;
+
+  /* Mobile S */
+  @media ${device.mobileS} {
+    gap: 5px;
+    margin-top: ${(props) => (props.type === 'sm' ? '0px' : '0px')};
+  }
 `;
+
 const ChannelImage = styled.img`
   width: 36px;
   height: 36px;
@@ -59,7 +61,16 @@ const ChannelImage = styled.img`
   display: ${(props) => props.type === 'sm' && 'none'};
 `;
 
-const Texts = styled.div``;
+const Texts = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  /* Mobile S */
+  @media ${device.mobileS} {
+    max-width: ${(props) => (props.type === 'sm' ? '100px' : '0px')};
+  }
+`;
 
 const Title = styled.h1`
   font-size: ${(props) => props.type !== 'sm' && '12px'};
@@ -89,7 +100,9 @@ const Card = ({ type }) => {
             src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350"
           />
           <Texts>
-            <Title>Test Title</Title>
+            <Title>
+              Test Titleasdasdasdwd asdasdasdasdasasdasdsadasdasdasdasd
+            </Title>
             <AnimatorName>Test Animator</AnimatorName>
             <Info>660, 987 vies • 1 day ago</Info>
           </Texts>

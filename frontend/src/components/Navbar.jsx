@@ -1,18 +1,53 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import logoImg from "../assets/Logo.png";
-import { device } from "../media";
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import logoImg from '../assets/Logo.png';
+import { device } from '../media';
 
 //MUI
-import PersonPinIcon from "@mui/icons-material/PersonPin";
-import SearchIcon from "@mui/icons-material/Search";
-import MenuIcon from "@mui/icons-material/Menu";
+import PersonPinIcon from '@mui/icons-material/PersonPin';
+import SearchIcon from '@mui/icons-material/Search';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const Container = styled.div`
   position: block;
   top: 0;
   background-color: ${({ theme }) => theme.bg};
+
+  /* Mobile S */
+  @media ${device.mobileS} {
+    max-width: 320px;
+  }
+
+  /* Mobile M */
+  @media ${device.mobileM} {
+    max-width: 424px;
+  }
+
+  /* Mobile L */
+  @media ${device.mobileL} {
+    max-width: 767px;
+  }
+
+  /* Tablet */
+  @media ${device.tablet} {
+    max-width: 1023px;
+  }
+
+  /* laptop */
+  @media ${device.laptop} {
+    max-width: 1440px;
+  }
+
+  /* laptop L */
+  @media ${device.laptopL} {
+    max-width: 1919px;
+  }
+
+  /* Desktop */
+  @media ${device.desktop} {
+    max-width: 2559px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -21,7 +56,32 @@ const Wrapper = styled.div`
   height: 100%;
   padding: 0px 10px;
   justify-content: space-between;
-  position: relative; ;
+  position: relative;
+
+  /* Mobile S */
+  @media ${device.mobileS} {
+    max-width: 374px;
+  }
+
+  /* Mobile M */
+  @media ${device.mobileM} {
+    max-width: 424px;
+  }
+
+  /* Tablet */
+  @media ${device.tablet} {
+    max-width: 1023px;
+  }
+
+  /* laptop L */
+  @media ${device.laptopL} {
+    max-width: 1919px;
+  }
+
+  /* Desktop */
+  @media ${device.desktop} {
+    max-width: 2559px;
+  }
 `;
 
 const LeftContainer = styled.div`
@@ -61,15 +121,12 @@ const Search = styled.div`
 
   /* Mobile S */
   @media ${device.mobileS} {
-    width: 20%;
+    max-width: 20%;
   }
-  /* Mobile M */
-  @media ${device.mobileM} {
-    width: 30%;
-  }
+
   /* Mobile L */
   @media ${device.mobileL} {
-    width: 30%;
+    max-width: 30%;
   }
 `;
 
@@ -101,6 +158,11 @@ const Button = styled.button`
     border: 1px solid #b2792d;
     color: #b2792d;
   }
+
+  /* Mobile S */
+  @media ${device.mobileS} {
+    padding: 5px 5px;
+  }
 `;
 
 const Navbar = ({ setOpen, setClose }) => {
@@ -113,7 +175,7 @@ const Navbar = ({ setOpen, setClose }) => {
             <MenuIcon />
           </Burger>
 
-          <Link to="/" style={{ textDecoration: "none" }}>
+          <Link to="/" style={{ textDecoration: 'none' }}>
             <Logo>
               <Img src={logoImg} />
             </Logo>
@@ -128,7 +190,7 @@ const Navbar = ({ setOpen, setClose }) => {
           />
           <SearchIcon />
         </Search>
-        <Link to="/signin" style={{ textDecoration: "none" }}>
+        <Link to="/signin" style={{ textDecoration: 'none' }}>
           <Button>
             <PersonPinIcon />
             Sign In

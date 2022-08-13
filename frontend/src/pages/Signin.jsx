@@ -1,21 +1,21 @@
-import React from "react";
-import styled from "styled-components";
-import Logo from "../assets/Logo.png";
-import { device } from "../media";
+import React from 'react';
+import styled from 'styled-components';
+import Logo from '../assets/Logo.png';
+import { device } from '../media';
 
 //MUI
-import EmailIcon from "@mui/icons-material/Email";
-import LockIcon from "@mui/icons-material/Lock";
-import LoginIcon from "@mui/icons-material/Login";
+import EmailIcon from '@mui/icons-material/Email';
+import LockIcon from '@mui/icons-material/Lock';
+import LoginIcon from '@mui/icons-material/Login';
 
 //Icons
-import Facebook from "../assets/icons/facebook.png";
-import Gmail from "../assets/icons/gmail.png";
-import Linkedin from "../assets/icons/linkedin.png";
+import Facebook from '../assets/icons/facebook.png';
+import Gmail from '../assets/icons/gmail.png';
+import Linkedin from '../assets/icons/linkedin.png';
 
 //Framer Motion
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -23,12 +23,37 @@ const Container = styled.div`
   justify-content: center;
   height: calc(70vh - 56px);
   color: ${({ theme }) => theme.titleColor};
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin: 40px 0px;
 
-  /* LAPTOP */
-  @media ${device.laptop} {
-    margin: 80px 0px;
+  /* Mobile S */
+  @media ${device.mobileS} {
+    max-width: 320px;
+    margin: 0px 0px;
+  }
+
+  /* Mobile M */
+  @media ${device.mobileM} {
+    max-width: 424px;
+  }
+
+  /* Mobile L */
+  @media ${device.mobileL} {
+    max-width: 767px;
+  }
+
+  /* Tablet */
+  @media ${device.tablet} {
+    max-width: 1023px;
+  }
+
+  /* Tablet */
+  @media ${device.laptopL} {
+    max-width: 1919px;
+  }
+  /* Desktop */
+  @media ${device.desktop} {
+    max-width: 2559px;
   }
 `;
 
@@ -43,26 +68,10 @@ const LoginWrapper = styled.div`
   gap: 10px;
   border-radius: 20px;
   max-width: 50%;
-
-  /* LAPTOP */
-  @media ${device.laptop} {
-    padding: 25px 25px;
-    gap: 5px;
-  }
-
-  /* Mobile S */
-  /* @media ${device.mobileS} {
-    margin-top: 100px;
-  } */
 `;
 
 const Image = styled.img`
   max-width: 25%;
-
-  /* Mobile S */
-  @media ${device.mobileS} {
-    max-width: 50%;
-  }
 `;
 
 const Title = styled.h1`
@@ -86,7 +95,7 @@ const Icons = styled.img`
 
   /* Mobile S */
   @media ${device.mobileS} {
-    max-width: 10%;
+    max-width: 2em;
   }
 `;
 
@@ -155,7 +164,7 @@ const Signin = () => {
   return (
     <motion.div
       initial={{ width: 0, opacity: 0 }}
-      animate={{ width: "100%", opacity: 1 }}
+      animate={{ width: '100%', opacity: 1 }}
       exit={{
         x: window.innerWidth,
         y: window.innerHeight,
@@ -195,7 +204,7 @@ const Signin = () => {
           </InputWrapper>
 
           <Options>
-            <Link to={"/signup"} style={{ textDecoration: "none" }}>
+            <Link to={'/signup'} style={{ textDecoration: 'none' }}>
               <H6>Not yet registered? </H6>
             </Link>
             <H6>Forgot Password </H6>
