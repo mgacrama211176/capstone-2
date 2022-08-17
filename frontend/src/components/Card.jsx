@@ -19,17 +19,24 @@ const Container = styled.div`
     gap: ${(props) => (props.type === 'sm' ? '15px' : '0px')};
   }
 
-  /* Tablet */
-  /* @media ${device.tablet} {
-    margin-bottom: 5px;
-    max-width: 260px;
-  } */
+  /* Mobile M */
+  @media ${device.mobileM} {
+  }
 
-  /* Laptop */
-  /* @media ${device.laptop} {
-    margin-bottom: 5px;
-    max-width: 220px;
-  } */
+  /* Mobile L */
+  @media ${device.mobileL} {
+  }
+
+  /* Tablet */
+  @media ${device.tablet} {
+  }
+
+  /* Tablet */
+  @media ${device.laptopL} {
+  }
+  /* Desktop */
+  @media ${device.desktop} {
+  }
 `;
 
 const Image = styled.img`
@@ -65,6 +72,7 @@ const Texts = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  min-width: ${(props) => (props.type === 'sm' ? '0px' : '300px')};
 
   /* Mobile S */
   @media ${device.mobileS} {
@@ -76,6 +84,7 @@ const Title = styled.h1`
   font-size: ${(props) => props.type !== 'sm' && '12px'};
   font-weight: 500;
   color: ${({ theme }) => theme.titleColor};
+  display: flex;
 `;
 
 const AnimatorName = styled.h2`
@@ -99,10 +108,8 @@ const Card = ({ type }) => {
             type={type}
             src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350"
           />
-          <Texts>
-            <Title>
-              Test Titleasdasdasdwd asdasdasdasdasasdasdsadasdasdasdasd
-            </Title>
+          <Texts type={type}>
+            <Title>Test edit animation for web media queries</Title>
             <AnimatorName>Test Animator</AnimatorName>
             <Info>660, 987 vies • 1 day ago</Info>
           </Texts>

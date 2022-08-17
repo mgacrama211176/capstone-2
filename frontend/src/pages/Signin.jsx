@@ -21,10 +21,8 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(70vh - 56px);
   color: ${({ theme }) => theme.titleColor};
   font-family: 'Roboto', sans-serif;
-  margin: 40px 0px;
 
   /* Mobile S */
   @media ${device.mobileS} {
@@ -68,6 +66,7 @@ const LoginWrapper = styled.div`
   gap: 10px;
   border-radius: 20px;
   max-width: 50%;
+  margin-top: 2em;
 `;
 
 const Image = styled.img`

@@ -26,43 +26,39 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 56px);
   color: ${({ theme }) => theme.titleColor};
   font-family: 'Roboto', sans-serif;
-  margin: 40px 0px;
-
-  /* Desktop
-  @media ${device.desktop} {
-    height: calc(100vh - 56px);
-  }
-  LAPTOP L
-  @media ${device.laptopL} {
-    height: calc(100vh - 56px);
-  }
-  LAPTOP
-  @media ${device.laptop} {
-    margin: 80px 0px;
-  }
-
-  Tablet
-  @media ${device.tablet} {
-    height: calc(100vh - 56px);
-  }
-
-  Mobile L
-  @media ${device.mobileL} {
-    height: calc(100vh - 56px);
-  }
-  Mobile M
-  @media ${device.mobileM} {
-    margin: 100px 0px;
-    height: calc(100vh - 56px);
-  } */
+  margin: 30px;
 
   /* Mobile S */
   @media ${device.mobileS} {
-    max-width: 375px;
-    max-height: 70vh;
+    max-width: 320px;
+    margin: 40px 0px;
+    /* height: calc(100vh - 56px); */
+  }
+
+  /* Mobile M */
+  @media ${device.mobileM} {
+    max-width: 424px;
+  }
+
+  /* Mobile L */
+  @media ${device.mobileL} {
+    max-width: 767px;
+  }
+
+  /* Tablet */
+  @media ${device.tablet} {
+    max-width: 1023px;
+  }
+
+  /* Tablet */
+  @media ${device.laptopL} {
+    max-width: 1919px;
+  }
+  /* Desktop */
+  @media ${device.desktop} {
+    max-width: 2559px;
   }
 `;
 
@@ -122,6 +118,7 @@ const InputWrapper = styled.div`
 `;
 
 const PasswordWrapper = styled.div`
+  display: flex;
   flex-direction: column;
   align-content: center;
   justify-content: center;
