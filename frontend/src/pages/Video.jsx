@@ -22,7 +22,6 @@ const Container = styled.div`
   /* Mobile S */
   @media ${device.mobileS} {
     max-width: 320px;
-    padding: 5px;
   }
 
   /* Mobile M */
@@ -56,22 +55,37 @@ const Content = styled.div`
 const VideoWrapper = styled.div`
   display: flex;
   justify-content: center;
+  align-content: center;
+  align-items: center;
+
   /* Mobile S */
   @media ${device.mobileS} {
-    max-width: 374px;
+    max-width: 320px;
+  }
+
+  /* Mobile M */
+  @media ${device.mobileM} {
+    max-width: 370px;
   }
 `;
 
 const Iframe = styled.iframe`
   margin-top: 10px;
-  max-width: 320px;
-  height: 720;
+  min-width: 15em;
 
   /* Mobile S */
   @media ${device.mobileS} {
     max-width: 320px;
-    height: 720;
   }
+
+  /* Mobile M */
+  @media ${device.mobileM} {
+    min-width: 370px;
+  }
+`;
+
+const VideoInformationContainer = styled.div`
+  padding: 5px;
 `;
 
 const Title = styled.h1`
@@ -297,71 +311,73 @@ const Video = () => {
               allowfullscreen
             ></Iframe>
           </VideoWrapper>
-          <Title>Test Vid</Title>
-          <Info>7, 948,154 views • Jun 22,2022</Info>
-          <Hr />
-          <Details>
-            <Buttons>
-              <Like>
-                <ThumbUpIcon />
-                123
-              </Like>
-              <Dislike>
-                <ThumbDownIcon />
-                Dislike
-              </Dislike>
-              <Share>
-                <ScreenShareIcon />
-                Share
-              </Share>
-              <Save>
-                <SaveAltIcon />
-                Save
-              </Save>
-            </Buttons>
-          </Details>
-          <Hr />
-          <Channel>
-            <ChannelInfo>
-              <Image src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350" />
-              <ChannelDetail>
-                <ChannelName>Animator</ChannelName>
-                <ChannelCounter>200K subscribers</ChannelCounter>
-              </ChannelDetail>
-            </ChannelInfo>
+          <VideoInformationContainer>
+            <Title>Test Vid</Title>
+            <Info>7, 948,154 views • Jun 22,2022</Info>
+            <Hr />
+            <Details>
+              <Buttons>
+                <Like>
+                  <ThumbUpIcon />
+                  123
+                </Like>
+                <Dislike>
+                  <ThumbDownIcon />
+                  Dislike
+                </Dislike>
+                <Share>
+                  <ScreenShareIcon />
+                  Share
+                </Share>
+                <Save>
+                  <SaveAltIcon />
+                  Save
+                </Save>
+              </Buttons>
+            </Details>
+            <Hr />
+            <Channel>
+              <ChannelInfo>
+                <Image src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350" />
+                <ChannelDetail>
+                  <ChannelName>Animator</ChannelName>
+                  <ChannelCounter>200K subscribers</ChannelCounter>
+                </ChannelDetail>
+              </ChannelInfo>
 
-            <Subscribe>
-              <NotificationsActiveIcon />
-              SUBSCRIBE
-            </Subscribe>
-          </Channel>
-          <Description>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-            ipsa dolorem facere numquam, culpa aspernatur consequuntur amet nemo
-            accusantium hic nulla commodi architecto eos, at nostrum nesciunt
-            consequatur! Aperiam, aut!
-          </Description>
+              <Subscribe>
+                <NotificationsActiveIcon />
+                SUBSCRIBE
+              </Subscribe>
+            </Channel>
+            <Description>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Perferendis ipsa dolorem facere numquam, culpa aspernatur
+              consequuntur amet nemo accusantium hic nulla commodi architecto
+              eos, at nostrum nesciunt consequatur! Aperiam, aut!
+            </Description>
 
-          <Recommendation>
-            <Card type="sm" />
-            <Card type="sm" />
-            <Card type="sm" />
-            <Card type="sm" />
-            <Card type="sm" />
-            <Card type="sm" />
-            <Card type="sm" />
-            <Card type="sm" />
-          </Recommendation>
-          <ViewComments></ViewComments>
-          <CommentsBox />
-          <CommentsBox />
-          <CommentsBox />
-          <CommentsBox />
-          <CommentsBox />
-          <CommentsBox />
-          <CommentsBox />
-          <CommentsBox />
-          <CommentsBox />
+            <Recommendation>
+              <Card type="sm" />
+              <Card type="sm" />
+              <Card type="sm" />
+              <Card type="sm" />
+              <Card type="sm" />
+              <Card type="sm" />
+              <Card type="sm" />
+              <Card type="sm" />
+            </Recommendation>
+            <ViewComments></ViewComments>
+            <CommentsBox />
+            <CommentsBox />
+            <CommentsBox />
+            <CommentsBox />
+            <CommentsBox />
+            <CommentsBox />
+            <CommentsBox />
+            <CommentsBox />
+            <CommentsBox />
+          </VideoInformationContainer>
         </Content>
       </Container>
     </motion.div>
