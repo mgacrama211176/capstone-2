@@ -11,20 +11,28 @@ const Container = styled.div`
   display: ${(props) => props.type === 'sm' && 'flex'};
   gap: 15px;
 
-  /* Mobile S */
+  /* Mobile S [fixed]*/
   @media ${device.mobileS} {
     gap: 5px;
     margin: ${(props) => (props.type === 'sm' ? '15px 0px' : '0px')};
-    max-width: ${(props) => (props.type === 'sm' ? '264px' : '300px')};
+    max-width: ${(props) => (props.type === 'sm' ? '340px' : '300px')};
     gap: ${(props) => (props.type === 'sm' ? '15px' : '0px')};
   }
 
   /* Mobile M */
   @media ${device.mobileM} {
+    gap: 5px;
+    margin: ${(props) => (props.type === 'sm' ? '15px 0px' : '0px')};
+    max-width: ${(props) => (props.type === 'sm' ? '340px' : '300px')};
+    gap: ${(props) => (props.type === 'sm' ? '15px' : '0px')};
   }
 
   /* Mobile L */
   @media ${device.mobileL} {
+    gap: 5px;
+    margin: ${(props) => (props.type === 'sm' ? '15px 0px' : '0px')};
+    max-width: ${(props) => (props.type === 'sm' ? '420px' : '300px')};
+    gap: ${(props) => (props.type === 'sm' ? '15px' : '0px')};
   }
 
   /* Tablet */
@@ -53,8 +61,25 @@ const Details = styled.div`
   font-family: Inter;
   flex: 1;
 
-  /* Mobile S */
+  /* Mobile S [fixed]*/
   @media ${device.mobileS} {
+    gap: 5px;
+    margin-top: ${(props) => (props.type === 'sm' ? '0px' : '0px')};
+  }
+
+  /* Mobile M */
+  @media ${device.mobileM} {
+    gap: 5px;
+    margin-top: ${(props) => (props.type === 'sm' ? '0px' : '0px')};
+  }
+
+  /* Mobile L */
+  @media ${device.mobileL} {
+    gap: 5px;
+    margin-top: ${(props) => (props.type === 'sm' ? '0px' : '0px')};
+  }
+  /* Desktop */
+  @media ${device.desktop} {
     gap: 5px;
     margin-top: ${(props) => (props.type === 'sm' ? '0px' : '0px')};
   }
@@ -74,9 +99,9 @@ const Texts = styled.div`
   flex-wrap: wrap;
   min-width: ${(props) => (props.type === 'sm' ? '0px' : '300px')};
 
-  /* Mobile S */
+  /* Mobile S [fixed]*/
   @media ${device.mobileS} {
-    max-width: ${(props) => (props.type === 'sm' ? '100px' : '0px')};
+    max-width: ${(props) => (props.type === 'sm' ? '200px' : '0px')};
   }
 `;
 

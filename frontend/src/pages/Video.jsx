@@ -56,31 +56,16 @@ const VideoWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-content: center;
-  align-items: center;
-
-  /* Mobile S */
-  @media ${device.mobileS} {
-    max-width: 320px;
-  }
-
-  /* Mobile M */
-  @media ${device.mobileM} {
-    max-width: 370px;
-  }
 `;
 
 const Iframe = styled.iframe`
   margin-top: 10px;
-  min-width: 15em;
+  width: 100%;
+  border: none;
 
-  /* Mobile S */
-  @media ${device.mobileS} {
-    max-width: 320px;
-  }
-
-  /* Mobile M */
-  @media ${device.mobileM} {
-    min-width: 370px;
+  /* Tablet */
+  @media ${device.laptopL} {
+    height: 20rem;
   }
 `;
 
@@ -303,13 +288,7 @@ const Video = () => {
       <Container>
         <Content>
           <VideoWrapper>
-            <Iframe
-              src="https://www.youtube.com/embed/-ies20lteQY"
-              title="Fil Anime Test"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></Iframe>
+            <Iframe src="https://www.youtube.com/embed/tgbNymZ7vqY?playlist=tgbNymZ7vqY&loop=1"></Iframe>
           </VideoWrapper>
           <VideoInformationContainer>
             <Title>Test Vid</Title>
