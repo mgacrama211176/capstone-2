@@ -63,9 +63,14 @@ const Iframe = styled.iframe`
   width: 100%;
   border: none;
 
+  /* Mobile S */
+  @media ${device.mobileS} {
+    max-height: 420px;
+  }
+
   /* Tablet */
-  @media ${device.laptopL} {
-    height: 20rem;
+  @media ${device.tablet} {
+    min-height: 720px;
   }
 `;
 

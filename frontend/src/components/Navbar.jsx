@@ -170,7 +170,6 @@ const Navbar = ({ setOpen, setClose }) => {
     <Container>
       <Wrapper>
         <LeftContainer>
-          {}
           <Burger onClick={setOpen}>
             <MenuIcon />
           </Burger>

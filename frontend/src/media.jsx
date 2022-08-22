@@ -11,13 +11,13 @@ const size = {
 };
 
 export const device = {
-  mobileS: `only screen and (max-width: ${size.mobileS}) { ... }`,
+  mobileS: `only screen and (min-width: ${size.mobileS}) { ... }`,
   mobileM: `only screen and (min-width: ${size.mobileM}){ ... }`,
-  mobileL: `only screen and (min-width: ${size.mobileL}){ ... }`,
-  tablet: `only screen and (min-width: ${size.tablet}){ ... }`,
-  laptop: `only screen and (min-width: ${size.laptop}){ ... }`,
-  laptopL: `only screen and (min-width: ${size.laptopL}){ ... }`,
-  desktopL: `only screen and (min-width: ${size.desktopL}){ ... }`,
+  mobileL: `only screen and (max-width: ${size.mobileL}){ ... }`,
+  tablet: `only screen and (max-width: ${size.tablet}){ ... }`,
+  laptop: `only screen and (max-width: ${size.laptop}){ ... }`,
+  laptopL: `only screen and (max-width: ${size.laptopL}){ ... }`,
+  desktopL: `only screen and (max-width: ${size.desktopL}){ ... }`,
 };
 
 const media = () => {

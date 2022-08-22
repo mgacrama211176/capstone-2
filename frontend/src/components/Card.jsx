@@ -10,7 +10,6 @@ const Container = styled.div`
   cursor: pointer;
   display: ${(props) => props.type === 'sm' && 'flex'};
   gap: 15px;
-
   /* Mobile S [fixed]*/
   @media ${device.mobileS} {
     gap: 5px;
