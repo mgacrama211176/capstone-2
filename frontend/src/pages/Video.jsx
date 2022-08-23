@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import CommentsBox from '../components/CommentsBox';
 import ViewComments from '../components/ViewComments';
 import Card from '../components/Card';
@@ -9,10 +9,15 @@ import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import ScreenShareIcon from '@mui/icons-material/ScreenShare';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
-import { device } from '../media';
+
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 //framer motion
 import { motion } from 'framer-motion';
+
+//Media Queries
+import { device } from '../media';
 
 const Container = styled.div`
   display: flex;
@@ -177,9 +182,41 @@ const Hr = styled.hr`
 `;
 
 const Recommendation = styled.div`
+  padding-left: 50px;
+  display: flex;
+  align-items: center;
   flex: 2;
   flex-direction: row;
   width: 30%;
+  gap: 10px;
+`;
+
+const sharedStyleButton = css`
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  height: 3em;
+  &:hover {
+    background-color: #e9e9e9;
+  }
+`;
+
+const ButtonContainer = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const Next = styled.button`
+  ${sharedStyleButton}
+  position: absolute;
+  left: 0;
+`;
+
+const Previous = styled.button`
+  ${sharedStyleButton}
+  position: absolute;
+  right: 0;
 `;
 
 const Channel = styled.div`
@@ -357,9 +394,19 @@ const Video = () => {
               <Card type="sm" />
               <Card type="sm" />
               <Card type="sm" />
+
+              <ButtonContainer>
+                <Previous>
+                  <ArrowBackIosIcon />
+                </Previous>
+                <Next>
+                  <ArrowForwardIosIcon />
+                </Next>
+              </ButtonContainer>
             </Recommendation>
 
             <ViewComments></ViewComments>
+
             <CommentsBox />
             <CommentsBox />
             <CommentsBox />
