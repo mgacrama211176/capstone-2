@@ -32,6 +32,7 @@ const Container = styled.div`
   position: sticky;
   top: 0;
   transition: 1s ease;
+  padding-top: 60px;
 
   & button,
   div {

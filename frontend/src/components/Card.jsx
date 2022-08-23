@@ -8,8 +8,9 @@ const Container = styled.div`
   width: ${(props) => props.type !== 'sm' && '360px'};
   margin-bottom: ${(props) => (props.type === 'sm' ? '10px' : '45px')};
   cursor: pointer;
-  display: ${(props) => props.type === 'sm' && 'flex'};
+  /* display: flex; */
   gap: 15px;
+
   /* Mobile S [fixed]*/
   @media ${device.mobileS} {
     gap: 5px;
@@ -47,7 +48,7 @@ const Container = styled.div`
 `;
 
 const Image = styled.img`
-  width: 100%;
+  width: ${(props) => (props.type === 'sm' ? '13em' : '18em')};
   height: ${(props) => (props.type === 'sm' ? '120px' : '202px')};
   background-color: #999;
   flex: 1;

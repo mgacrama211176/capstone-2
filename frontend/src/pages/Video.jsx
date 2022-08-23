@@ -178,7 +178,10 @@ const Hr = styled.hr`
 
 const Recommendation = styled.div`
   flex: 2;
+  flex-direction: row;
+  width: 30%;
 `;
+
 const Channel = styled.div`
   display: flex;
   justify-content: space-between;
@@ -295,6 +298,7 @@ const Video = () => {
           <VideoWrapper>
             <Iframe src="https://www.youtube.com/embed/tgbNymZ7vqY?playlist=tgbNymZ7vqY&loop=1"></Iframe>
           </VideoWrapper>
+
           <VideoInformationContainer>
             <Title>Test Vid</Title>
             <Info>7, 948,154 views • Jun 22,2022</Info>
@@ -319,6 +323,7 @@ const Video = () => {
                 </Save>
               </Buttons>
             </Details>
+
             <Hr />
             <Channel>
               <ChannelInfo>
@@ -341,6 +346,8 @@ const Video = () => {
               eos, at nostrum nesciunt consequatur! Aperiam, aut!
             </Description>
 
+            <Title>Recommended Videos</Title>
+
             <Recommendation>
               <Card type="sm" />
               <Card type="sm" />
@@ -351,6 +358,7 @@ const Video = () => {
               <Card type="sm" />
               <Card type="sm" />
             </Recommendation>
+
             <ViewComments></ViewComments>
             <CommentsBox />
             <CommentsBox />
