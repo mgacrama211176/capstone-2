@@ -10,78 +10,22 @@ import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 
 const Container = styled.div`
-  position: block;
+  position: relative;
   top: 0;
   background-color: ${({ theme }) => theme.bg};
-
-  /* Mobile S */
-  @media ${device.mobileS} {
-    max-width: 320px;
-  }
-
-  /* Mobile M */
-  @media ${device.mobileM} {
-    max-width: 424px;
-  }
-
-  /* Mobile L */
-  @media ${device.mobileL} {
-    max-width: 767px;
-  }
-
-  /* Tablet */
-  @media ${device.tablet} {
-    max-width: 1023px;
-  }
-
-  /* laptop */
-  @media ${device.laptop} {
-    max-width: 1440px;
-  }
-
-  /* laptop L */
-  @media ${device.laptopL} {
-    max-width: 1919px;
-  }
-
-  /* Desktop */
-  @media ${device.desktop} {
-    max-width: 2559px;
-  }
+  max-width: 100vw;
+  padding: 0 1rem;
+  overflow: hidden;
 `;
 
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
-  padding: 0px 10px;
+
   justify-content: space-between;
   position: relative;
-
-  /* Mobile S */
-  @media ${device.mobileS} {
-    max-width: 374px;
-  }
-
-  /* Mobile M */
-  @media ${device.mobileM} {
-    max-width: 424px;
-  }
-
-  /* Tablet */
-  @media ${device.tablet} {
-    max-width: 1023px;
-  }
-
-  /* laptop L */
-  @media ${device.laptopL} {
-    max-width: 1919px;
-  }
-
-  /* Desktop */
-  @media ${device.desktop} {
-    max-width: 2559px;
-  }
+  width: 100%;
 `;
 
 const LeftContainer = styled.div`
@@ -118,16 +62,7 @@ const Search = styled.div`
   border: 1px solid #b2792d;
   border-radius: 5px;
   background-color: white;
-
-  /* Mobile S */
-  @media ${device.mobileS} {
-    max-width: 20%;
-  }
-
-  /* Mobile L */
-  @media ${device.mobileL} {
-    max-width: 30%;
-  }
+  width: 30%;
 `;
 
 const Input = styled.input`

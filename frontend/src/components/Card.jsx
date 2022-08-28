@@ -5,11 +5,11 @@ import tile from '../assets/home_post_2.gif';
 import { device } from '../media';
 
 const Container = styled.div`
-  width: ${(props) => props.type !== 'sm' && '360px'};
+  max-width: ${(props) => props.type !== 'sm' && '360px'};
   margin-bottom: ${(props) => (props.type === 'sm' ? '10px' : '45px')};
+  display: ${(props) => (props.type === 'sm' ? 'flex' : '')};
   cursor: pointer;
-  /* display: flex; */
-  gap: 15px;
+  flex-wrap: wrap;
 
   /* Mobile S [fixed]*/
   @media ${device.mobileS} {
@@ -48,7 +48,7 @@ const Container = styled.div`
 `;
 
 const Image = styled.img`
-  width: ${(props) => (props.type === 'sm' ? '13em' : '18em')};
+  width: ${(props) => (props.type === 'sm' ? '15em' : '18em')};
   height: ${(props) => (props.type === 'sm' ? '120px' : '202px')};
   background-color: #999;
   flex: 1;
@@ -60,6 +60,7 @@ const Details = styled.div`
   gap: 12px;
   font-family: Inter;
   flex: 1;
+  max-width: 100vw;
 
   /* Mobile S [fixed]*/
   @media ${device.mobileS} {

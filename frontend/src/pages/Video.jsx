@@ -10,9 +10,6 @@ import ScreenShareIcon from '@mui/icons-material/ScreenShare';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-
 //framer motion
 import { motion } from 'framer-motion';
 
@@ -23,60 +20,25 @@ const Container = styled.div`
   display: flex;
   gap: 24px;
   font-family: 'Roboto', sans-serif;
-
-  /* Mobile S */
-  @media ${device.mobileS} {
-    max-width: 320px;
-  }
-
-  /* Mobile M */
-  @media ${device.mobileM} {
-    max-width: 424px;
-  }
-
-  /* Mobile L */
-  @media ${device.mobileL} {
-    max-width: 767px;
-  }
-
-  /* Tablet */
-  @media ${device.tablet} {
-    max-width: 1023px;
-  }
-
-  /* Tablet */
-  @media ${device.laptopL} {
-    max-width: 1919px;
-  }
-  /* Desktop */
-  @media ${device.desktop} {
-    max-width: 2559px;
-  }
+  max-width: 100vw;
 `;
 
 const Content = styled.div`
   flex: 5;
+  max-width: 100vw;
 `;
 const VideoWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-content: center;
+  max-width: 100vw;
 `;
 
 const Iframe = styled.iframe`
   margin-top: 10px;
-  width: 100%;
   border: none;
-
-  /* Mobile S */
-  @media ${device.mobileS} {
-    max-height: 420px;
-  }
-
-  /* Tablet */
-  @media ${device.tablet} {
-    min-height: 720px;
-  }
+  width: 100%;
+  height: 30vh;
 `;
 
 const VideoInformationContainer = styled.div`
@@ -127,6 +89,7 @@ const Button = styled.div`
   align-items: center;
   gap: 5px;
 `;
+
 const Like = styled.div`
   cursor: pointer;
   display: flex;
@@ -151,6 +114,7 @@ const Dislike = styled.div`
     transform: scale(1.1);
   }
 `;
+
 const Share = styled.div`
   cursor: pointer;
   display: flex;
@@ -163,6 +127,7 @@ const Share = styled.div`
     transform: scale(1.1);
   }
 `;
+
 const Save = styled.div`
   cursor: pointer;
   display: flex;
@@ -179,44 +144,19 @@ const Save = styled.div`
 const Hr = styled.hr`
   border: 0.5px solid ${({ theme }) => theme.soft};
   margin: 15px 0px;
+  width: 100%;
 `;
 
 const Recommendation = styled.div`
-  padding-left: 50px;
   display: flex;
   align-items: center;
   flex: 2;
   flex-direction: row;
-  width: 30%;
-  gap: 10px;
-`;
+  max-width: 100vw;
+  gap: 3rem;
 
-const sharedStyleButton = css`
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  height: 3em;
-  &:hover {
-    background-color: #e9e9e9;
-  }
-`;
-
-const ButtonContainer = styled.div`
-  position: absolute;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const Next = styled.button`
-  ${sharedStyleButton}
-  position: absolute;
-  left: 0;
-`;
-
-const Previous = styled.button`
-  ${sharedStyleButton}
-  position: absolute;
-  right: 0;
+  overflow: auto;
+  white-space: nowrap;
 `;
 
 const Channel = styled.div`
@@ -394,15 +334,6 @@ const Video = () => {
               <Card type="sm" />
               <Card type="sm" />
               <Card type="sm" />
-
-              <ButtonContainer>
-                <Previous>
-                  <ArrowBackIosIcon />
-                </Previous>
-                <Next>
-                  <ArrowForwardIosIcon />
-                </Next>
-              </ButtonContainer>
             </Recommendation>
 
             <ViewComments></ViewComments>
