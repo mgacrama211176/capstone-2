@@ -1,6 +1,6 @@
-import { createConnection } from 'mongoose';
-import { createError } from '../error';
-import VideoModel from '../models/Video';
+import { createError } from '../error.js';
+import VideoModel from '../models/Video.js';
+import User from '../models/User.js';
 
 export const addVideo = async (request, response, next) => {
   const newVideo = new VideoModel({ userId: request.user.id, ...request.body });
@@ -16,7 +16,7 @@ export const updateVideo = async (request, response, next) => {
   try {
     const video = await VideoModel.findById(request.params.id);
     if (!video) {
-      return next(createConnection(404, 'Video not found!'));
+      return next(createError(404, 'Video not found!'));
     }
     if (request.user.id === video.userId) {
       const updateVideo = await VideoModel.findByIdAndUpdate(
@@ -43,7 +43,10 @@ export const deleteVideo = async (request, response, next) => {
     }
     if (request.user.id === video.userId) {
       await VideoModel.findByIdAndDelete(request.params.id);
+
       response.status(200).json('Video has been deleted');
+    } else {
+      return next(403, 'You can only delete your own video!');
     }
   } catch (err) {
     next(err);
@@ -72,7 +75,7 @@ export const addView = async (request, response, next) => {
 
 export const random = async (request, response, next) => {
   try {
-    const videos = await VideoModel.aggregate([{ $sample: { size: 40 } }]);
+    const videos = await VideoModel.aggregate([{ $sample: { size: 1 } }]);
     response.status(200).json(videos);
   } catch (err) {
     next(err);
@@ -90,6 +93,17 @@ export const trend = async (request, response, next) => {
 
 export const sub = async (request, response, next) => {
   try {
+    const user = await User.findById(request.user.id);
+    const subscribedChannels = user.subscribedUsers;
+
+    const list = await Promise.all(
+      subscribedChannels.map((channelId) => {
+        return VideoModel.find({ userId: channelId });
+      })
+    );
+    response
+      .status(200)
+      .json(list.flat().sort((a, b) => b.createdAt - a.createdAt));
   } catch (err) {
     next(err);
   }

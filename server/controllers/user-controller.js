@@ -45,7 +45,7 @@ export const getUser = async (request, response, next) => {
 //localhost:3000/api/users/sub/UserID to search
 export const subscribe = async (request, response, next) => {
   try {
-    await findByIdAndUpdate(request.user.id, {
+    await User.findByIdAndUpdate(request.user.id, {
       $push: { subscribedUsers: request.params.id },
     });
     await User.findByIdAndUpdate(request.params.id, {
