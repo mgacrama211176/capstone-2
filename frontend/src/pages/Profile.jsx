@@ -1,178 +1,133 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-//Components
-import Card from "../components/Card";
+import ProfileImg from '../assets/Body.jpg';
 
-//MUI
-import CameraAltIcon from "@mui/icons-material/CameraAlt";
-import EditIcon from "@mui/icons-material/Edit";
+//MUI ICONS
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 const Container = styled.div`
-  @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+  scroll-behavior: smooth;
 `;
 
-const Wrapper = styled.div`
-  background-color: ${({ theme }) => theme.bg};
+const Wrapper = styled.div``;
+
+const ProfileHeading = styled.div`
+  margin-top: 50px;
 `;
 
-const Icons = styled.div``;
+const Info = styled.div`
+  display: grid;
+  grid-template-columns: auto auto;
+`;
 
-const Banner = styled.div`
-  max-width: 100vw;
-  height: 200px;
+const BasicInfo = styled.div`
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  background-image: url("https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
+  border: 1px solid red;
 `;
 
-const CustomizeBanner = styled.div`
-  display: flex;
-  justify-content: center;
+const BasicInfoWrapper = styled.div`
+  border: 1px solid blue;
   align-items: center;
+  flex-flow: wrap column;
   cursor: pointer;
-  background-color: transparent;
-  max-width: 20px;
-  min-height: 20px;
-  border: 1px solid transparent;
-  border-radius: 100%;
-  margin: 10px;
-  padding: 5px;
-  align-items: center;
-  transition-duration: 1s;
-  z-index: 1;
-  color: white;
+  padding: 10px;
+
   &:hover {
-    background-color: #132550;
+    opacity: 0.8;
   }
 `;
 
-const ProfileNav = styled.div`
-  display: flex;
+const ImgContainer = styled.div`
+  width: 15%;
 `;
 
-const ProfileHeader = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+const Img = styled.img`
+  width: 100%;
+  border-radius: 10%;
 `;
 
-const ProfilePhoto = styled.img`
-  border: 1px solid transparent;
-  width: 100px;
-  height: 100px;
+const AnimatorName = styled.h1`
+  cursor: pointer;
+  transition-duration: 2s;
+  font-size: 3em;
+  font-weight: 500;
+`;
+
+const AnimatorJobDesc = styled.div`
+  font-size: 1.7rem;
+  font-weight: 100;
+`;
+
+const Email = styled.p`
+  font-size: 1.3rem;
+`;
+
+const SocialMediaWrapper = styled.div`
+  margin-top: 5px;
+  gap: 15px;
+`;
+
+const AboutAnimator = styled.div`
+  display: flex;
+  border: 1px solid green;
+`;
+
+const ProfileNavigator = styled.nav`
+  display: flex;
+  gap: 3rem;
+  height: 50px;
+`;
+
+const Options = styled.div`
   margin: 10px;
-  border-radius: 100%;
-`;
-
-const About = styled.div`
-  display: flex;
-  align-items: center;
+  font-size: 1rem;
   cursor: pointer;
-`;
-
-const H1 = styled.h1`
-  font-family: "Inter", sans-serif;
-  color: white;
-`;
-
-const H3 = styled.h3`
-  color: ${({ theme }) => theme.titleColor};
-  padding: 10px;
-`;
-
-const H4 = styled.h4`
-  font-family: "Inter", sans-serif;
-  color: white;
-  cursor: pointer;
+  transition: 0.2s ease;
   &:hover {
-    background-color: transparent;
     color: #b2792d;
     text-decoration: underline;
   }
-`;
-
-const H5 = styled.h5`
-  color: ${({ theme }) => theme.profileSubs};
-`;
-
-const DescriptionContainer = styled.div`
-  padding: 10px;
-`;
-const Description = styled.h4``;
-
-const Textarea = styled.textarea`
-  padding: 10px;
-`;
-
-const ProfileLinks = styled.div`
-  display: flex;
-  gap: 70px;
-  padding: 20px;
-`;
-
-const UploadWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  max-width: 100vw;
 `;
 
 const Profile = () => {
   return (
     <Container>
       <Wrapper>
-        <Banner>
-          <CustomizeBanner>
-            <CameraAltIcon />
-          </CustomizeBanner>
-        </Banner>
-        <ProfileNav>
-          <ProfilePhoto src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350" />
-          <ProfileHeader>
-            <H1>Animator</H1>
-            <H5>Subscribers: 0</H5>
-          </ProfileHeader>
-        </ProfileNav>
-        <ProfileLinks>
-          <H4>Home</H4>
-          <H4>Videos</H4>
-          <H4>Saved</H4>
-          <H4>About</H4>
-        </ProfileLinks>
+        <ProfileHeading>
+          <Info>
+            <BasicInfo>
+              <BasicInfoWrapper>
+                <ImgContainer>
+                  <Img src={ProfileImg}></Img>
+                </ImgContainer>
+                <AnimatorName>Marlon Gacrama Jr.</AnimatorName>
+                <AnimatorJobDesc>Full-Stack Web Developer</AnimatorJobDesc>
+                <Email>mgacrama_ccs@uspf.edu.ph</Email>
+                <SocialMediaWrapper>
+                  <FacebookIcon />
+                  <InstagramIcon />
+                  <YouTubeIcon />
+                  <LinkedInIcon />
+                  <TwitterIcon />
+                </SocialMediaWrapper>
+              </BasicInfoWrapper>
+            </BasicInfo>
+            <AboutAnimator>
+              <ProfileNavigator>
+                <Options>About</Options>
+                <Options>Art Works</Options>
+                <Options>Experience</Options>
+                <Options>Contact</Options>
+              </ProfileNavigator>
+            </AboutAnimator>
+          </Info>
+        </ProfileHeading>
       </Wrapper>
-      <About>
-        <H3>About</H3>
-
-        <EditIcon />
-      </About>
-
-      <DescriptionContainer>
-        <Description>Description: </Description>
-        <Textarea
-          cols="100"
-          rows="10"
-          placeholder="Tell us about yourself animator"
-        ></Textarea>
-      </DescriptionContainer>
-      <H3>Subscribed</H3>
-
-      <H3>My Uploads</H3>
-      <UploadWrapper>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-      </UploadWrapper>
     </Container>
   );
 };
