@@ -22,7 +22,7 @@ const ProfileHeading = styled.div`
 
 const Info = styled.div`
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-row: auto auto;
 `;
 
 const BasicInfo = styled.div`
@@ -31,12 +31,14 @@ const BasicInfo = styled.div`
 `;
 
 const BasicInfoWrapper = styled.div`
+  display: flex;
   border: 1px solid blue;
   align-items: center;
   flex-flow: wrap column;
   cursor: pointer;
   padding: 10px;
-
+  /* max-width: fit-content; */
+  width: 50%;
   &:hover {
     opacity: 0.8;
   }
@@ -54,7 +56,7 @@ const Img = styled.img`
 const AnimatorName = styled.h1`
   cursor: pointer;
   transition-duration: 2s;
-  font-size: 3em;
+  font-size: 200%;
   font-weight: 500;
 `;
 
@@ -79,15 +81,18 @@ const AboutAnimator = styled.div`
 
 const ProfileNavigator = styled.nav`
   display: flex;
+  align-items: center;
+  margin: 0 auto;
   gap: 3rem;
   height: 50px;
 `;
 
 const Options = styled.div`
   margin: 10px;
-  font-size: 1rem;
+  font-size: 1.3rem;
   cursor: pointer;
   transition: 0.2s ease;
+  font-weight: 900;
   &:hover {
     color: #b2792d;
     text-decoration: underline;
@@ -120,6 +125,7 @@ const Profile = () => {
             <AboutAnimator>
               <ProfileNavigator>
                 <Options>About</Options>
+                <Options>Videos</Options>
                 <Options>Art Works</Options>
                 <Options>Experience</Options>
                 <Options>Contact</Options>
