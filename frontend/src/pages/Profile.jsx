@@ -3,6 +3,9 @@ import styled from "styled-components";
 
 import ProfileImg from "../assets/Body.jpg";
 
+import Card from "../components/Card";
+
+import DefaultImage from "../assets/landscape.jpg";
 //MUI ICONS
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -17,7 +20,7 @@ const Container = styled.div`
 const Wrapper = styled.div``;
 
 const ProfileHeading = styled.div`
-  margin-top: 50px;
+  height: 100%;
 `;
 
 const Info = styled.div`
@@ -28,6 +31,7 @@ const Info = styled.div`
 const BasicInfo = styled.div`
   display: flex;
   border: 1px solid red;
+  background-image: url(${DefaultImage});
 `;
 
 const BasicInfoWrapper = styled.div`
@@ -39,6 +43,7 @@ const BasicInfoWrapper = styled.div`
   padding: 10px;
   /* max-width: fit-content; */
   width: 50%;
+
   &:hover {
     opacity: 0.8;
   }
@@ -99,6 +104,15 @@ const Options = styled.div`
   }
 `;
 
+const AboutSide = styled.div``;
+
+const ProfileVideoContainer = styled.div`
+  display: flex;
+  flex-flow: wrap row;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Profile = () => {
   return (
     <Container>
@@ -121,17 +135,24 @@ const Profile = () => {
                   <TwitterIcon />
                 </SocialMediaWrapper>
               </BasicInfoWrapper>
+              <AboutSide>{/* <H1>ABOUT</H1> */}</AboutSide>
             </BasicInfo>
             <AboutAnimator>
               <ProfileNavigator>
-                <Options>About</Options>
                 <Options>Videos</Options>
                 <Options>Art Works</Options>
                 <Options>Experience</Options>
-                <Options>Contact</Options>
               </ProfileNavigator>
             </AboutAnimator>
           </Info>
+          <ProfileVideoContainer>
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+          </ProfileVideoContainer>
         </ProfileHeading>
       </Wrapper>
     </Container>

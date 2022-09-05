@@ -18,7 +18,7 @@ const SharedStyle = css`
 `;
 
 const Wrapper = styled.div`
-  background-color: #121084;
+  background-color: #132550;
   ${SharedStyle}
   flex-flow: wrap column;
   align-items: center;
