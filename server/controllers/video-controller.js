@@ -110,14 +110,22 @@ export const sub = async (request, response, next) => {
 };
 
 export const getByTag = async (request, response, next) => {
+  const tags = request.query.tags.split(',');
   try {
+    const videos = await VideoModel.find({ tags: { $in: tags } }).limit(20);
+    response.status(200).json(videos);
   } catch (err) {
     next(err);
   }
 };
 
 export const search = async (request, response, next) => {
+  const query = request.query.q;
   try {
+    const video = await VideoModel.find({
+      title: { $regex: query, $options: 'i' },
+    });
+    response.status(200).json(video);
   } catch (err) {
     next(err);
   }
