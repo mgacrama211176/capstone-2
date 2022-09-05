@@ -1,20 +1,23 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import ProfileImg from "../assets/Body.jpg";
+import ProfileImg from '../assets/Body.jpg';
 
-import Card from "../components/Card";
+import Card from '../components/Card';
+import Footer from '../components/Footer';
 
-import DefaultImage from "../assets/landscape.jpg";
+import DefaultImage from '../assets/landscape.jpg';
+
 //MUI ICONS
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import YouTubeIcon from "@mui/icons-material/YouTube";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import TwitterIcon from "@mui/icons-material/Twitter";
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 const Container = styled.div`
   scroll-behavior: smooth;
+  height: 100vh;
 `;
 
 const Wrapper = styled.div``;
@@ -152,9 +155,22 @@ const Profile = () => {
             <Card />
             <Card />
             <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
           </ProfileVideoContainer>
         </ProfileHeading>
       </Wrapper>
+      <Footer />
     </Container>
   );
 };
