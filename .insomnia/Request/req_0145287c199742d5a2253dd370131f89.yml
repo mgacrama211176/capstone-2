@@ -1,0 +1,31 @@
+_id: req_0145287c199742d5a2253dd370131f89
+type: Request
+parentId: fld_c6c41dcd5dc54e9293f643c50276cb38
+modified: 1662385871269
+created: 1662385850806
+url: localhost:3000/api/users/find/6315f51be38915d7385e117b
+name: Get User by ID
+description: ""
+method: GET
+body:
+  mimeType: application/json
+  text: |-
+    {
+        "username":"user1",
+        "email":"user1@user1.com",
+        "password":"user1"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_d7a957297b2542bc904ee6903e937c16
+authentication: {}
+metaSortKey: -1662383643337
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

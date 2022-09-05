@@ -1,0 +1,32 @@
+_id: req_a66748559cad409e853301df0edc31e8
+type: Request
+parentId: fld_226e947620574bdb89d5fb4ddb7de5ff
+modified: 1662385019754
+created: 1662384665249
+url: localhost:3000/api/videos
+name: Add Video
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+        "title":"test video2",
+        "desc": "test desc2",
+        "imgUrl": "test2",
+        "videoUrl":"test2"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_df3c667ea21347e9b12c712fe9b366eb
+authentication: {}
+metaSortKey: -1662384665249
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

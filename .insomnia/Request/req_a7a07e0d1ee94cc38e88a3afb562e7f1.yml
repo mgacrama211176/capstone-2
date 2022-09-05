@@ -1,0 +1,30 @@
+_id: req_a7a07e0d1ee94cc38e88a3afb562e7f1
+type: Request
+parentId: fld_c6c41dcd5dc54e9293f643c50276cb38
+modified: 1662385942612
+created: 1662383643537
+url: localhost:3000/api/auth/signin
+name: SignIn
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	  "username":"admin5",
+        "password":"admin5"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_1c98c37f6dbc4f2383d35e85c58c7584
+authentication: {}
+metaSortKey: -1662383643537
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

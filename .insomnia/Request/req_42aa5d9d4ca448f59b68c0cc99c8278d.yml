@@ -1,0 +1,30 @@
+_id: req_42aa5d9d4ca448f59b68c0cc99c8278d
+type: Request
+parentId: fld_6172dd892bc94b46bfd845f4fe8e3a17
+modified: 1662387349314
+created: 1662385930864
+url: localhost:3000/api/comments
+name: Adding of comments on Specific Video ID
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"desc":"3rd comment",
+    	"videoId": "630c991ae9c309777354d90a"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_ce032e01f21d464ea8fede879381e71a
+authentication: {}
+metaSortKey: -1662385930864
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

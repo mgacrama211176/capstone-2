@@ -1,0 +1,21 @@
+_id: req_f3757eb81a494e6587d80273adbd1230
+type: Request
+parentId: fld_226e947620574bdb89d5fb4ddb7de5ff
+modified: 1662385084559
+created: 1662385057824
+url: localhost:3000/api/videos/random
+name: Get Random Videos
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1662385057824
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

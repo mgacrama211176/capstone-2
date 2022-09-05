@@ -1,0 +1,21 @@
+_id: req_03555d63504a425bb55187874ed68b3d
+type: Request
+parentId: fld_226e947620574bdb89d5fb4ddb7de5ff
+modified: 1662385359730
+created: 1662385112341
+url: localhost:3000/api/videos/6315fb3441c045c8757bfc0a
+name: delete Video
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1662385077163.5
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

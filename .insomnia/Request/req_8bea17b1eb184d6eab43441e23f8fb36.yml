@@ -1,0 +1,31 @@
+_id: req_8bea17b1eb184d6eab43441e23f8fb36
+type: Request
+parentId: fld_c6c41dcd5dc54e9293f643c50276cb38
+modified: 1662385691471
+created: 1662383572689
+url: ""
+name: SignUp
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+        "username":"admin7",
+        "email":"admin7@admin7.com",
+        "password":"admin7"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_d7a957297b2542bc904ee6903e937c16
+authentication: {}
+metaSortKey: -1662383643487
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

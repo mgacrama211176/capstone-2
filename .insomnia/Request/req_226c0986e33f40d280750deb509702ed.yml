@@ -1,0 +1,31 @@
+_id: req_226c0986e33f40d280750deb509702ed
+type: Request
+parentId: fld_c6c41dcd5dc54e9293f643c50276cb38
+modified: 1662385817681
+created: 1662385806188
+url: localhost:3000/api/users/6315f4dee38915d7385e1179
+name: Delete User
+description: ""
+method: DELETE
+body:
+  mimeType: application/json
+  text: |-
+    {
+        "username":"user1",
+        "email":"user1@user1.com",
+        "password":"user1"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_d7a957297b2542bc904ee6903e937c16
+authentication: {}
+metaSortKey: -1662383643387
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

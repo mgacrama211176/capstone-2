@@ -1,0 +1,21 @@
+_id: req_36394daa4daa42c887b288c802becc5c
+type: Request
+parentId: fld_226e947620574bdb89d5fb4ddb7de5ff
+modified: 1662385407168
+created: 1662385128796
+url: localhost:3000/api/videos/find/6315fb4941c045c8757bfc0e
+name: Find Specific Video
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1662385086833.25
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

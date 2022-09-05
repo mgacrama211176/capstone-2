@@ -1,0 +1,21 @@
+_id: req_ba966d890fa34b3c8e56d09a85cef129
+type: Request
+parentId: fld_226e947620574bdb89d5fb4ddb7de5ff
+modified: 1662385564356
+created: 1662385281420
+url: localhost:3000/api/videos/trend
+name: Subscribe to a channel
+description: ""
+method: PUT
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1662385095294.2812
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

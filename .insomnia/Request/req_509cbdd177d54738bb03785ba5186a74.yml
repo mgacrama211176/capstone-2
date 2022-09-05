@@ -1,0 +1,32 @@
+_id: req_509cbdd177d54738bb03785ba5186a74
+type: Request
+parentId: fld_226e947620574bdb89d5fb4ddb7de5ff
+modified: 1662385421586
+created: 1662384983937
+url: localhost:3000/api/videos/6315fb4941c045c8757bfc0e
+name: Update Video
+description: ""
+method: PUT
+body:
+  mimeType: application/json
+  text: |-
+    {
+        "title":"test video updated",
+        "desc": "test desc updated",
+        "imgUrl": "test updated",
+        "videoUrl":"test updated"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_8efba5259048405e8c88c6959f7e8b18
+authentication: {}
+metaSortKey: -1662384983937
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

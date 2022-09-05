@@ -1,0 +1,21 @@
+_id: req_842577ed49894d73b1c2e188f400481b
+type: Request
+parentId: fld_226e947620574bdb89d5fb4ddb7de5ff
+modified: 1662385460539
+created: 1662385217278
+url: localhost:3000/api/videos/trend
+name: Get trending Videos
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1662385094085.5625
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

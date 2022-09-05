@@ -1,0 +1,21 @@
+_id: req_7892f909ea55472dbc11caf7c34563dc
+type: Request
+parentId: fld_226e947620574bdb89d5fb4ddb7de5ff
+modified: 1662385441819
+created: 1662385163258
+url: localhost:3000/api/videos/view/6315fb4941c045c8757bfc0e
+name: Add Views on Video
+description: ""
+method: PUT
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1662385091668.125
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
