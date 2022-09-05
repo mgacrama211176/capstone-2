@@ -86,7 +86,7 @@ export const like = async (request, response, next) => {
       $addToSet: { likes: id },
       $pull: { dislikes: id },
     });
-    response.status(200).json('The video has been Liked!');
+    response.status(200).json(`${videoId}:The video has been liked`);
   } catch (err) {
     next(err);
   }
@@ -95,12 +95,13 @@ export const like = async (request, response, next) => {
 //localhost:3000/api/users/dislike/:videoId
 export const dislike = async (request, response, next) => {
   const id = request.user.id;
-  const videoId = request.params.id;
+  const videoId = request.params.videoId;
   try {
     await Video.findByIdAndUpdate(videoId, {
       $addToSet: { dislikes: id },
       $pull: { likes: id },
     });
+    response.status(200).json(`${videoId}: The video has been disliked`);
   } catch (err) {
     next(err);
   }
