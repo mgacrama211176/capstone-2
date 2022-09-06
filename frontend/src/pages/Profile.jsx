@@ -116,7 +116,7 @@ const ProfileVideoContainer = styled.div`
   align-items: center;
 `;
 
-const Profile = () => {
+const Profile = ({ type, video }) => {
   return (
     <Container>
       <Wrapper>
@@ -148,26 +148,7 @@ const Profile = () => {
               </ProfileNavigator>
             </AboutAnimator>
           </Info>
-          <ProfileVideoContainer>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-          </ProfileVideoContainer>
+          <ProfileVideoContainer>{/* <Card /> */}</ProfileVideoContainer>
         </ProfileHeading>
       </Wrapper>
       <Footer />
