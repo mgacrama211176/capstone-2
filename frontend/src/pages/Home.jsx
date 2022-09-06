@@ -8,6 +8,10 @@ import Card from '../components/Card';
 //framer motion
 import { motion } from 'framer-motion';
 
+// libraries
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
@@ -28,6 +32,19 @@ const Container = styled.div`
 const Wrapper = styled.div``;
 
 const Home = () => {
+  // fetching data using the use state hook
+  const [videos, setVideos] = useState([]);
+
+  useEffect(() => {
+    const fetchingVideos = async () => {
+      const randomReturn = await axios.get(
+        'http://localhost:4000/api/videos/random'
+      );
+      setVideos(randomReturn.data);
+    };
+    fetchingVideos();
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -35,22 +52,9 @@ const Home = () => {
       exit={{ opcaity: 0 }}
     >
       <Container>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {videos.map((video) => (
+          <Card key={video._id} />
+        ))}
       </Container>
     </motion.div>
   );

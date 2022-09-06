@@ -8,6 +8,8 @@ import commentRoute from './routes/comments-route.js';
 import authRoute from './routes/auth.js';
 import cookieParser from 'cookie-parser';
 
+import cors from 'cors';
+
 const app = express();
 dotenv.config();
 
@@ -24,6 +26,7 @@ const connectDB = () => {
 
 app.use(cookieParser());
 app.use(express.json());
+app.use(cors());
 app.use('/api/auth', authRoute);
 app.use('/api/users', userRoute);
 app.use('/api/videos', videoRoute);
@@ -39,7 +42,7 @@ app.use((err, request, response, next) => {
   });
 });
 
-app.listen(3000, () => {
+app.listen(4000, () => {
   connectDB();
   console.log('express connected');
 });
