@@ -75,7 +75,7 @@ export const addView = async (request, response, next) => {
 
 export const random = async (request, response, next) => {
   try {
-    const videos = await VideoModel.aggregate([{ $sample: { size: 20 } }]);
+    const videos = await VideoModel.aggregate([{ $sample: { size: 5 } }]);
     response.status(200).json(videos);
   } catch (err) {
     next(err);

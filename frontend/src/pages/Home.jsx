@@ -31,19 +31,19 @@ const Container = styled.div`
 
 const Wrapper = styled.div``;
 
-const Home = () => {
+const Home = ({ type }) => {
   // fetching data using the use state hook
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
     const fetchingVideos = async () => {
       const randomReturn = await axios.get(
-        'http://localhost:4000/api/videos/random'
+        `http://localhost:4000/api/videos/${type}`
       );
       setVideos(randomReturn.data);
     };
     fetchingVideos();
-  }, []);
+  }, [type]);
 
   return (
     <motion.div
@@ -53,7 +53,7 @@ const Home = () => {
     >
       <Container>
         {videos.map((video) => (
-          <Card key={video._id} />
+          <Card key={video._id} video={video} />
         ))}
       </Container>
     </motion.div>
