@@ -17,6 +17,8 @@ const VideoSchema = new mongoose.Schema(
     imgUrl: {
       type: String,
       required: true,
+      default:
+        'https://jpralves.net/img/2018/05/PM157_DontMessWithDaMonkey.jpg',
     },
     videoUrl: {
       type: String,

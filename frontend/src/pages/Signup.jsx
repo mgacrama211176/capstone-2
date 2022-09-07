@@ -199,6 +199,19 @@ const H6 = styled.h6`
 `;
 
 const Signup = () => {
+  const [user, setUser] = useState({
+    username: '',
+    email: '',
+    userCategory: '',
+    password: '',
+  });
+
+  const onChangeHandle = (e) => {
+    const newUser = { ...user };
+    newUser[e.target.id] = e.target.value;
+    setUser(newUser);
+    console.log(newUser);
+  };
   return (
     <motion.div
       initial={{ width: 0, opacity: 0 }}
@@ -225,13 +238,13 @@ const Signup = () => {
           <H4> Email Address </H4>
           <InputWrapper>
             <EmailIcon />
-            <Input placeholder="Username@user.com" type="text" />
+            <Input placeholder="Username@user.com" type="text" id="email" />
           </InputWrapper>
 
           <H4> User Name </H4>
           <InputWrapper>
             <PersonIcon />
-            <Input placeholder="User Name" type="text" />
+            <Input placeholder="User Name" type="text" id="username" />
           </InputWrapper>
 
           <H4> User Category </H4>
@@ -249,8 +262,12 @@ const Signup = () => {
           <InputWrapper>
             <LockIcon />
             <PasswordWrapper>
-              <Input placeholder="Password" type="password" />
-              <Input placeholder="Confirm Password" type="password" />
+              <Input placeholder="Password" type="password" id="password" />
+              <Input
+                placeholder="Confirm Password"
+                type="password"
+                id="ConfirmPassword"
+              />
             </PasswordWrapper>
           </InputWrapper>
 
