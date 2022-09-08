@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Logo from '../assets/Logo.png';
 import { device } from '../media';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import { loginFailed, loginStart, loginSuccess } from '../redux/userSlice';
 
 //MUI
 import EmailIcon from '@mui/icons-material/Email';
@@ -160,6 +164,42 @@ const H6 = styled.h6`
 `;
 
 const Signin = () => {
+  const nav = useNavigate();
+  const [user, setUser] = useState({
+    email: '',
+    password: '',
+  });
+  const dispatch = useDispatch();
+
+  const [loggedUser, setLoggedUser] = useState('');
+
+  console.log(loggedUser);
+
+  const onChangeHandle = (e) => {
+    const newUser = { ...user };
+    newUser[e.target.id] = e.target.value;
+    setUser(newUser);
+    console.log(newUser);
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    dispatch(loginStart);
+
+    try {
+      const login = await axios.post('http://localhost:4000/api/auth/signin', {
+        email: user.email,
+        password: user.password,
+      });
+      console.log(login.data);
+      setLoggedUser(login.data);
+      dispatch(loginSuccess(login.data));
+      nav('/');
+    } catch (err) {
+      dispatch(loginFailed);
+    }
+  };
+
   return (
     <motion.div
       initial={{ width: 0, opacity: 0 }}
@@ -187,16 +227,30 @@ const Signin = () => {
           <H4> Email Address </H4>
           <InputWrapper>
             <EmailIcon />
-            <Input placeholder="E-Mail@user.com" type="text" />
+            <Input
+              id="email"
+              placeholder="E-Mail@user.com"
+              type="text"
+              onChange={(e) => {
+                onChangeHandle(e);
+              }}
+            />
           </InputWrapper>
           <H4> Password </H4>
           <InputWrapper>
             <LockIcon />
-            <Input placeholder="Password" type="password" />
+            <Input
+              id="password"
+              placeholder="Password"
+              type="password"
+              onChange={(e) => {
+                onChangeHandle(e);
+              }}
+            />
           </InputWrapper>
 
           <InputWrapper>
-            <Button>
+            <Button onClick={handleLogin}>
               Login
               <LoginIcon />
             </Button>

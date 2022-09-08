@@ -325,16 +325,7 @@ const Video = () => {
 
             <Title>Recommended Videos</Title>
 
-            <Recommendation>
-              <Card type="sm" />
-              <Card type="sm" />
-              <Card type="sm" />
-              <Card type="sm" />
-              <Card type="sm" />
-              <Card type="sm" />
-              <Card type="sm" />
-              <Card type="sm" />
-            </Recommendation>
+            <Recommendation>{/* <Card type="sm" /> */}</Recommendation>
 
             <ViewComments></ViewComments>
 

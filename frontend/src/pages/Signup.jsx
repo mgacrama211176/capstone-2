@@ -6,10 +6,7 @@ import { device } from '../media';
 //MUI
 import LockIcon from '@mui/icons-material/Lock';
 import LoginIcon from '@mui/icons-material/Login';
-import Box from '@mui/material/Box';
 import CategoryIcon from '@mui/icons-material/Category';
-import TextField from '@mui/material/TextField';
-import AccountCircle from '@mui/icons-material/AccountCircle';
 import EmailIcon from '@mui/icons-material/Email';
 
 //Icons
@@ -259,20 +256,7 @@ const Signup = () => {
             Or
             <Hr />
           </HrContainer>
-          {/* <H4> Email Address </H4> */}
-
-          {/* <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-            <EmailIcon sx={{ color: 'inherit', mr: 1, my: 0.5 }} />
-            <TextField
-              id="email"
-              label="Email"
-              variant="standard"
-              sx={{ color: 'action.active' }}
-              onChange={(e) => {
-                onChangeHandle(e);
-              }}
-            />
-          </Box> */}
+          <H4> Email Address </H4>
 
           <InputWrapper>
             <EmailIcon />

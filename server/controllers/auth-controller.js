@@ -24,7 +24,7 @@ export const signup = async (request, response, next) => {
 //login
 export const signIn = async (request, response, next) => {
   try {
-    const user = await UserModel.findOne({ username: request.body.username });
+    const user = await UserModel.findOne({ email: request.body.email });
     if (!user) {
       return next(createError(404, 'User not found'));
     } else {
