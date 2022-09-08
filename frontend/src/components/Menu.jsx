@@ -1,34 +1,37 @@
-import React, { useState } from "react";
-import styled, { createGlobalStyle, keyframes } from "styled-components";
-import { device } from "../media";
-
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import styled, { createGlobalStyle, keyframes } from 'styled-components';
+import { device } from '../media';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../redux/userSlice';
+import { useSelector } from 'react-redux';
 
 //MUI
-import HomeIcon from "@mui/icons-material/Home";
-import ExploreIcon from "@mui/icons-material/Explore";
-import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
-import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
-import HistoryIcon from "@mui/icons-material/History";
-import SettingsIcon from "@mui/icons-material/Settings";
-import FlagIcon from "@mui/icons-material/Flag";
-import LiveHelpIcon from "@mui/icons-material/LiveHelp";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import PersonPinIcon from "@mui/icons-material/PersonPin";
-import BrushIcon from "@mui/icons-material/Brush";
-import Filter2Icon from "@mui/icons-material/Filter2";
-import ThreeDRotationIcon from "@mui/icons-material/ThreeDRotation";
-import GestureIcon from "@mui/icons-material/Gesture";
-import VibrationIcon from "@mui/icons-material/Vibration";
+import HomeIcon from '@mui/icons-material/Home';
+import ExploreIcon from '@mui/icons-material/Explore';
+import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import HistoryIcon from '@mui/icons-material/History';
+import SettingsIcon from '@mui/icons-material/Settings';
+import FlagIcon from '@mui/icons-material/Flag';
+import LiveHelpIcon from '@mui/icons-material/LiveHelp';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import PersonPinIcon from '@mui/icons-material/PersonPin';
+import BrushIcon from '@mui/icons-material/Brush';
+import Filter2Icon from '@mui/icons-material/Filter2';
+import ThreeDRotationIcon from '@mui/icons-material/ThreeDRotation';
+import GestureIcon from '@mui/icons-material/Gesture';
+import VibrationIcon from '@mui/icons-material/Vibration';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Container = styled.div`
-  @import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap");
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
   flex: 1;
   background-color: ${({ theme }) => theme.bg};
   color: ${({ theme }) => theme.text};
   height: 170vh;
   font-size: 14px;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   position: sticky;
   top: 0;
   transition: 1s ease;
@@ -36,7 +39,7 @@ const Container = styled.div`
 
   & button,
   div {
-    font-family: "Inter", sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 400;
   }
 
@@ -52,12 +55,12 @@ const Wrapper = styled.div`
 `;
 
 const Item = styled.div`
-  @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+  @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
   display: flex;
   align-items: center;
   gap: 20px;
   cursor: pointer;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   padding: 6px 0;
   transition: 0.2s ease-in;
   color: ${({ theme }) => theme.text};
@@ -91,7 +94,7 @@ const Hr = styled.hr`
 const Login = styled.div``;
 
 const Button = styled.button`
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   padding: 5px 15px;
   background-color: transparent;
   border: 1px solid white;
@@ -117,24 +120,35 @@ const Button = styled.button`
 const MobileWrapper = styled.div``;
 
 const Menu = ({ darkmode, setDarkMode, burger }) => {
+  const currentUser = useSelector((state) => state.username.currentUser);
+
+  const nav = useNavigate();
+  const dispatch = useDispatch();
+
+  const OnclickLogout = () => {
+    dispatch(logout(currentUser));
+    nav('/');
+    console.log(logout);
+  };
+
   return (
     <Container style={{ display: `${burger}` }}>
       <Wrapper>
         <MobileWrapper>
           {/* <MenuIcon /> */}
-          <Link to="/" style={{ textDecoration: "none" }}>
+          <Link to="/" style={{ textDecoration: 'none' }}>
             <Item>
               <HomeIcon />
               HOME
             </Item>
           </Link>
-          <Link to="/trend" style={{ textDecoration: "none" }}>
+          <Link to="/trend" style={{ textDecoration: 'none' }}>
             <Item>
               <ExploreIcon />
               Explore
             </Item>
           </Link>
-          <Link to="/subscriptions" style={{ textDecoration: "none" }}>
+          <Link to="/subscriptions" style={{ textDecoration: 'none' }}>
             <Item>
               <SubscriptionsIcon />
               Subscription
@@ -150,15 +164,19 @@ const Menu = ({ darkmode, setDarkMode, burger }) => {
             History
           </Item>
           <Hr />
-          <Login>
-            Sign in to like videos, comment and subscribe.
-            <Link to={"/signin"} style={{ textDecoration: "none" }}>
-              <Button>
-                <PersonPinIcon />
-                Sign In
-              </Button>
-            </Link>
-          </Login>
+          {currentUser ? (
+            currentUser.username
+          ) : (
+            <Login>
+              Sign in to like videos, comment and subscribe.
+              <Link to={'/signin'} style={{ textDecoration: 'none' }}>
+                <Button>
+                  <PersonPinIcon />
+                  Sign In
+                </Button>
+              </Link>
+            </Login>
+          )}
           <Hr />
           Categories
           <Item>
@@ -196,8 +214,16 @@ const Menu = ({ darkmode, setDarkMode, burger }) => {
           </Item>
           <Item onClick={() => setDarkMode(!darkmode)}>
             <LightModeIcon />
-            {darkmode ? "Dark" : "Light"} Mode
+            {darkmode ? 'Dark' : 'Light'} Mode
           </Item>
+          {!currentUser ? (
+            ''
+          ) : (
+            <Item onClick={OnclickLogout}>
+              <LogoutIcon />
+              LOGOUT
+            </Item>
+          )}
         </MobileWrapper>
       </Wrapper>
     </Container>

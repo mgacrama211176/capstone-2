@@ -184,7 +184,7 @@ const Signin = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    dispatch(loginStart);
+    dispatch(loginStart(user));
 
     try {
       const login = await axios.post('http://localhost:4000/api/auth/signin', {

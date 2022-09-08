@@ -3,11 +3,13 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import logoImg from '../assets/Logo.png';
 import { device } from '../media';
+import { useSelector } from 'react-redux';
 
 //MUI
 import PersonPinIcon from '@mui/icons-material/PersonPin';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
+import VideoCallIcon from '@mui/icons-material/VideoCall';
 
 const Container = styled.div`
   position: relative;
@@ -100,7 +102,24 @@ const Button = styled.button`
   }
 `;
 
+const User = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.text};
+`;
+
+const Avatar = styled.img`
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #999;
+`;
+
 const Navbar = ({ setOpen, setClose }) => {
+  // THIS IS TO USE THE DATA ON REDUX
+  const currentUser = useSelector((state) => state.username.currentUser);
   return (
     <Container>
       <Wrapper>
@@ -124,12 +143,21 @@ const Navbar = ({ setOpen, setClose }) => {
           />
           <SearchIcon />
         </Search>
-        <Link to="/signin" style={{ textDecoration: 'none' }}>
-          <Button>
-            <PersonPinIcon />
-            Sign In
-          </Button>
-        </Link>
+
+        {currentUser ? (
+          <User>
+            <VideoCallIcon />
+            <Avatar />
+            {currentUser.username}
+          </User>
+        ) : (
+          <Link to="/signin" style={{ textDecoration: 'none' }}>
+            <Button>
+              <PersonPinIcon />
+              Sign In
+            </Button>
+          </Link>
+        )}
       </Wrapper>
     </Container>
   );

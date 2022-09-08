@@ -35,11 +35,22 @@ const UserSchema = new mongoose.Schema(
       type: [String],
     },
 
-    about: {
+    experience: {
       type: String,
     },
 
-    experience: {
+    fullName: {
+      type: String,
+    },
+    address: {
+      type: String,
+    },
+
+    birthdate: {
+      type: String,
+    },
+
+    about: {
       type: String,
     },
   },
