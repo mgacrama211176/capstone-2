@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Logo from '../assets/Logo.png';
+
 import { device } from '../media';
 
 //MUI
-import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 import LoginIcon from '@mui/icons-material/Login';
-import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import CategoryIcon from '@mui/icons-material/Category';
+import TextField from '@mui/material/TextField';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import EmailIcon from '@mui/icons-material/Email';
 
 //Icons
 import Facebook from '../assets/icons/facebook.png';
@@ -204,7 +204,15 @@ const Signup = () => {
     email: '',
     userCategory: '',
     password: '',
+    validpass: '',
   });
+
+  const Alert = styled.p`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  `;
 
   const onChangeHandle = (e) => {
     const newUser = { ...user };
@@ -212,6 +220,22 @@ const Signup = () => {
     setUser(newUser);
     console.log(newUser);
   };
+
+  const [validatedpass, setValidatedPass] = useState('');
+
+  useEffect(() => {
+    let status = '';
+    try {
+      if (user.password !== user.validpass) {
+        status = 'Password does not match!';
+        setValidatedPass(status);
+      } else status = 'Password Match!';
+      setValidatedPass(status);
+    } catch (err) {
+      status = err;
+    }
+  }, [user.password, user.validpass]);
+
   return (
     <motion.div
       initial={{ width: 0, opacity: 0 }}
@@ -235,54 +259,93 @@ const Signup = () => {
             Or
             <Hr />
           </HrContainer>
-          <H4> Email Address </H4>
+          {/* <H4> Email Address </H4> */}
+
+          {/* <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+            <EmailIcon sx={{ color: 'inherit', mr: 1, my: 0.5 }} />
+            <TextField
+              id="email"
+              label="Email"
+              variant="standard"
+              sx={{ color: 'action.active' }}
+              onChange={(e) => {
+                onChangeHandle(e);
+              }}
+            />
+          </Box> */}
+
           <InputWrapper>
             <EmailIcon />
-            <Input placeholder="Username@user.com" type="text" id="email" />
+            <Input
+              placeholder="Username@user.com"
+              type="text"
+              id="email"
+              onChange={(e) => {
+                onChangeHandle(e);
+              }}
+            />
           </InputWrapper>
-
           <H4> User Name </H4>
           <InputWrapper>
             <PersonIcon />
-            <Input placeholder="User Name" type="text" id="username" />
+            <Input
+              placeholder="User Name"
+              type="text"
+              id="username"
+              onChange={(e) => {
+                onChangeHandle(e);
+              }}
+            />
           </InputWrapper>
-
           <H4> User Category </H4>
           <InputWrapper>
             <CategoryIcon />
-            <Select id="category">
-              <Option value="Viewer">Viewer</Option>
+            <Select
+              id="userCategory"
+              onChange={(e) => {
+                onChangeHandle(e);
+              }}
+            >
+              <Option value="Viewer" select>
+                Viewer
+              </Option>
               <Option value="Animator">Animator</Option>
               <Option value="Employer">Employer</Option>
             </Select>
           </InputWrapper>
-
           <H4> Password </H4>
-
           <InputWrapper>
             <LockIcon />
             <PasswordWrapper>
-              <Input placeholder="Password" type="password" id="password" />
+              <Input
+                placeholder="Password"
+                type="password"
+                id="password"
+                onChange={(e) => {
+                  onChangeHandle(e);
+                }}
+              />
               <Input
                 placeholder="Confirm Password"
                 type="password"
-                id="ConfirmPassword"
+                id="validpass"
+                onChange={(e) => {
+                  onChangeHandle(e);
+                }}
               />
+              <Alert>{validatedpass}</Alert>
             </PasswordWrapper>
           </InputWrapper>
-
           <InputWrapper>
             <input type="checkbox" name="" id="" />
             <H6>I have read and understood the TERMS AND CONDITIONS</H6>
           </InputWrapper>
-
           <InputWrapper>
             <Button>
               SignUp
               <LoginIcon />
             </Button>
           </InputWrapper>
-
           <Options>
             <Link to={'/signin'} style={{ textDecoration: 'none' }}>
               <H6>Already Signed up? </H6>
