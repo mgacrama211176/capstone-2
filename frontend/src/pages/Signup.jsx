@@ -215,6 +215,7 @@ const Signup = () => {
     const newUser = { ...user };
     newUser[e.target.id] = e.target.value;
     setUser(newUser);
+    `  `;
     console.log(newUser);
   };
 
