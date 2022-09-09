@@ -7,6 +7,10 @@ import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { loginFailed, loginStart, loginSuccess } from '../redux/userSlice';
 
+//firebase
+import { auth, googleProvider, facebookProvider } from '../firebase';
+import { signInWithPopup } from 'firebase/auth';
+
 //MUI
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
@@ -173,13 +177,10 @@ const Signin = () => {
 
   const [loggedUser, setLoggedUser] = useState('');
 
-  console.log(loggedUser);
-
   const onChangeHandle = (e) => {
     const newUser = { ...user };
     newUser[e.target.id] = e.target.value;
     setUser(newUser);
-    console.log(newUser);
   };
 
   const handleLogin = async (e) => {
@@ -191,7 +192,6 @@ const Signin = () => {
         email: user.email,
         password: user.password,
       });
-      console.log(login.data);
       setLoggedUser(login.data);
       dispatch(loginSuccess(login.data));
       nav('/');
@@ -199,6 +199,35 @@ const Signin = () => {
       dispatch(loginFailed);
     }
   };
+
+  const signInWithGoogle = () => {
+    dispatch(loginStart());
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        setUser(result.user);
+        const googleUser = axios
+          .post('http://localhost:4000/api/auth/google', {
+            username: result.user.displayName,
+            email: result.user.email,
+            image: result.user.photoURL,
+          })
+          .then((response) => {
+            dispatch(loginSuccess(response.data));
+          });
+        console.log(googleUser);
+      })
+      .catch((error) => {
+        dispatch(loginFailed());
+      });
+  };
+
+  // const signInWithFacebook = async () => {
+  //   signInWithPopup(auth, facebookProvider)
+  //     .then((result) => {
+  //       console.log(result);
+  //     })
+  //     .catch((error) => {});
+  // };
 
   return (
     <motion.div
@@ -215,9 +244,12 @@ const Signin = () => {
           {/* <Image src={Logo}></Image> */}
           <Title>Login Using</Title>
           <IconsContainer>
-            <Icons src={Facebook} alt="facebook"></Icons>
-            <Icons src={Gmail} alt="gmail"></Icons>
-            <Icons src={Linkedin} alt="linkedin"></Icons>
+            <Icons
+              src={Facebook}
+              alt="facebook"
+              // onClick={signInWithFacebook}
+            ></Icons>
+            <Icons src={Gmail} alt="gmail" onClick={signInWithGoogle}></Icons>
           </IconsContainer>
           <HrContainer>
             <Hr />

@@ -249,7 +249,6 @@ const Signup = () => {
           <IconsContainer>
             <Icons src={Facebook} alt="facebook"></Icons>
             <Icons src={Gmail} alt="gmail"></Icons>
-            <Icons src={Linkedin} alt="linkedin"></Icons>
           </IconsContainer>
           <HrContainer>
             <Hr />
@@ -300,25 +299,28 @@ const Signup = () => {
           <H4> Password </H4>
           <InputWrapper>
             <LockIcon />
-            <PasswordWrapper>
-              <Input
-                placeholder="Password"
-                type="password"
-                id="password"
-                onChange={(e) => {
-                  onChangeHandle(e);
-                }}
-              />
-              <Input
-                placeholder="Confirm Password"
-                type="password"
-                id="validpass"
-                onChange={(e) => {
-                  onChangeHandle(e);
-                }}
-              />
-              <Alert>{validatedpass}</Alert>
-            </PasswordWrapper>
+            <>
+              <PasswordWrapper>
+                <Input
+                  placeholder="Password"
+                  type="password"
+                  id="password"
+                  onChange={(e) => {
+                    onChangeHandle(e);
+                  }}
+                />
+                <Input
+                  placeholder="Confirm Password"
+                  type="password"
+                  id="validpass"
+                  onChange={(e) => {
+                    onChangeHandle(e);
+                  }}
+                />
+
+                <Alert>{validatedpass}</Alert>
+              </PasswordWrapper>
+            </>
           </InputWrapper>
           <InputWrapper>
             <input type="checkbox" name="" id="" />

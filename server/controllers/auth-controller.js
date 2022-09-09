@@ -48,3 +48,29 @@ export const signIn = async (request, response, next) => {
     next(err);
   }
 };
+
+export const googleSignIn = async (request, response, next) => {
+  try {
+    const user = await UserModel.findOne({ email: request.body.email });
+    if (user) {
+      const token = jwt.sign({ id: user._id }, process.env.JWT);
+      response
+        .cookie('access_token', token, { httpOnly: true })
+        .status(200)
+        .json(user._doc);
+    } else {
+      const NewUser = new UserModel({
+        ...request.body,
+        fromGoogle: true,
+      });
+      const savedUser = await NewUser.save();
+      const token = jwt.sign({ id: savedUser._id }, process.env.JWT);
+      response
+        .cookie('access_token', token, { httpOnly: true })
+        .status(200)
+        .json(savedUser._doc);
+    }
+  } catch (err) {
+    next(err);
+  }
+};

@@ -143,12 +143,10 @@ const Navbar = ({ setOpen, setClose }) => {
           />
           <SearchIcon />
         </Search>
-
         {currentUser ? (
           <User>
-            <VideoCallIcon />
-            <Avatar />
             {currentUser.username}
+            <Avatar src={currentUser.image} />
           </User>
         ) : (
           <Link to="/signin" style={{ textDecoration: 'none' }}>

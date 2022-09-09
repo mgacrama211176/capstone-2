@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import styled, { createGlobalStyle, keyframes } from 'styled-components';
 import { device } from '../media';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { logout } from '../redux/userSlice';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 //MUI
 import HomeIcon from '@mui/icons-material/Home';
@@ -68,18 +68,7 @@ const Item = styled.div`
     background-color: transparent;
     color: #b2792d;
   }
-  /* &:after {
-    content: '';
-    position: absolute;
-    width: 78%;
-    transform: scaleX(0);
-    height: 2px;
-    background-color: #0087ca;
-    transition: transform 0.25s ease-out;
-  }
-  &:hover:after {
-    transform: scaleX(1);
-  } */
+
   @media (max-width: 1440px) {
     gap: 10px;
     font-size: 12px;
@@ -121,6 +110,7 @@ const MobileWrapper = styled.div``;
 
 const Menu = ({ darkmode, setDarkMode, burger }) => {
   const currentUser = useSelector((state) => state.username.currentUser);
+  // console.log(currentUser);
 
   const nav = useNavigate();
   const dispatch = useDispatch();
@@ -128,7 +118,6 @@ const Menu = ({ darkmode, setDarkMode, burger }) => {
   const OnclickLogout = () => {
     dispatch(logout(currentUser));
     nav('/');
-    console.log(logout);
   };
 
   return (
@@ -163,22 +152,23 @@ const Menu = ({ darkmode, setDarkMode, burger }) => {
             <HistoryIcon />
             History
           </Item>
-          <Hr />
           {currentUser ? (
-            currentUser.username
+            ''
           ) : (
-            <Login>
-              Sign in to like videos, comment and subscribe.
-              <Link to={'/signin'} style={{ textDecoration: 'none' }}>
-                <Button>
-                  <PersonPinIcon />
-                  Sign In
-                </Button>
-              </Link>
-            </Login>
+            <>
+              <Hr />
+              <Login>
+                Sign in to like videos, comment and subscribe.
+                <Link to={'/signin'} style={{ textDecoration: 'none' }}>
+                  <Button>
+                    <PersonPinIcon />
+                    Sign In
+                  </Button>
+                </Link>
+              </Login>
+            </>
           )}
           <Hr />
-          Categories
           <Item>
             <BrushIcon />
             Traditional Animation
