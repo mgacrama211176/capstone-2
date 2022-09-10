@@ -1,25 +1,25 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
-import CommentsBox from '../components/CommentsBox';
-import ViewComments from '../components/ViewComments';
-import Card from '../components/Card';
+import React from "react";
+import styled, { css } from "styled-components";
+import CommentsBox from "../components/CommentsBox";
+import ViewComments from "../components/ViewComments";
+import Card from "../components/Card";
 //MUI
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import ThumbDownIcon from '@mui/icons-material/ThumbDown';
-import ScreenShareIcon from '@mui/icons-material/ScreenShare';
-import SaveAltIcon from '@mui/icons-material/SaveAlt';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import ThumbDownIcon from "@mui/icons-material/ThumbDown";
+import ScreenShareIcon from "@mui/icons-material/ScreenShare";
+import SaveAltIcon from "@mui/icons-material/SaveAlt";
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 
 //framer motion
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 //Media Queries
-import { device } from '../media';
+import { device } from "../media";
 
 const Container = styled.div`
   display: flex;
   gap: 24px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   max-width: 100vw;
 `;
 
@@ -273,7 +273,7 @@ const Video = () => {
       <Container>
         <Content>
           <VideoWrapper>
-            <Iframe src="https://www.youtube.com/embed/tgbNymZ7vqY?playlist=tgbNymZ7vqY&loop=1"></Iframe>
+            <Iframe src="https://www.youtube.com/embed/GtL1huin9EE"></Iframe>
           </VideoWrapper>
 
           <VideoInformationContainer>
@@ -325,16 +325,7 @@ const Video = () => {
 
             <Title>Recommended Videos</Title>
 
-            <Recommendation>
-              <Card type="sm" />
-              <Card type="sm" />
-              <Card type="sm" />
-              <Card type="sm" />
-              <Card type="sm" />
-              <Card type="sm" />
-              <Card type="sm" />
-              <Card type="sm" />
-            </Recommendation>
+            <Recommendation>{/* <Card type="sm" /> */}</Recommendation>
 
             <ViewComments></ViewComments>
 

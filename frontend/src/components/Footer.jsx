@@ -1,14 +1,15 @@
-import React from "react";
-import styled, { css } from "styled-components";
+import React from 'react';
+import styled, { css } from 'styled-components';
 
 //MUI ICONS
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import CopyrightIcon from "@mui/icons-material/Copyright";
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import CopyrightIcon from '@mui/icons-material/Copyright';
 
 const Container = styled.div`
   max-width: 100vw;
+  position: relative;
 `;
 
 const SharedStyle = css`
@@ -55,9 +56,9 @@ function Footer() {
         <br></br>
         <P>Lorem ipsum Lorem ipsum Lorem ipsum</P>
         <IconWrapper>
-          <FacebookIcon style={{ cursor: "pointer" }} />
-          <InstagramIcon style={{ cursor: "pointer" }} />
-          <TwitterIcon style={{ cursor: "pointer" }} />
+          <FacebookIcon style={{ cursor: 'pointer' }} />
+          <InstagramIcon style={{ cursor: 'pointer' }} />
+          <TwitterIcon style={{ cursor: 'pointer' }} />
         </IconWrapper>
         <Copyright>
           <CopyrightIcon />

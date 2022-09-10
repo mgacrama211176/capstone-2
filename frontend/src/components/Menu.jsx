@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import styled, { createGlobalStyle, keyframes } from "styled-components";
 import { device } from "../media";
-
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { logout } from "../redux/userSlice";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 //MUI
 import HomeIcon from "@mui/icons-material/Home";
@@ -20,19 +22,20 @@ import Filter2Icon from "@mui/icons-material/Filter2";
 import ThreeDRotationIcon from "@mui/icons-material/ThreeDRotation";
 import GestureIcon from "@mui/icons-material/Gesture";
 import VibrationIcon from "@mui/icons-material/Vibration";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const Container = styled.div`
   @import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap");
   flex: 1;
   background-color: ${({ theme }) => theme.bg};
   color: ${({ theme }) => theme.text};
-  height: 170vh;
+  height: 120vh;
   font-size: 14px;
   font-family: "Inter", sans-serif;
   position: sticky;
   top: 0;
   transition: 1s ease;
-  padding-top: 60px;
+  padding-top: 5px;
 
   & button,
   div {
@@ -55,7 +58,7 @@ const Item = styled.div`
   @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
   cursor: pointer;
   font-family: "Inter", sans-serif;
   padding: 6px 0;
@@ -65,18 +68,7 @@ const Item = styled.div`
     background-color: transparent;
     color: #b2792d;
   }
-  /* &:after {
-    content: '';
-    position: absolute;
-    width: 78%;
-    transform: scaleX(0);
-    height: 2px;
-    background-color: #0087ca;
-    transition: transform 0.25s ease-out;
-  }
-  &:hover:after {
-    transform: scaleX(1);
-  } */
+
   @media (max-width: 1440px) {
     gap: 10px;
     font-size: 12px;
@@ -117,6 +109,17 @@ const Button = styled.button`
 const MobileWrapper = styled.div``;
 
 const Menu = ({ darkmode, setDarkMode, burger }) => {
+  const currentUser = useSelector((state) => state.username.currentUser);
+  // console.log(currentUser);
+
+  const nav = useNavigate();
+  const dispatch = useDispatch();
+
+  const OnclickLogout = () => {
+    dispatch(logout(currentUser));
+    nav("/");
+  };
+
   return (
     <Container style={{ display: `${burger}` }}>
       <Wrapper>
@@ -149,18 +152,23 @@ const Menu = ({ darkmode, setDarkMode, burger }) => {
             <HistoryIcon />
             History
           </Item>
+          {currentUser ? (
+            ""
+          ) : (
+            <>
+              <Hr />
+              <Login>
+                Sign in to like videos, comment and subscribe.
+                <Link to={"/signin"} style={{ textDecoration: "none" }}>
+                  <Button>
+                    <PersonPinIcon />
+                    Sign In
+                  </Button>
+                </Link>
+              </Login>
+            </>
+          )}
           <Hr />
-          <Login>
-            Sign in to like videos, comment and subscribe.
-            <Link to={"/signin"} style={{ textDecoration: "none" }}>
-              <Button>
-                <PersonPinIcon />
-                Sign In
-              </Button>
-            </Link>
-          </Login>
-          <Hr />
-          Categories
           <Item>
             <BrushIcon />
             Traditional Animation
@@ -190,14 +198,18 @@ const Menu = ({ darkmode, setDarkMode, burger }) => {
             <FlagIcon />
             Report
           </Item>
-          <Item>
-            <LiveHelpIcon />
-            Help
-          </Item>
           <Item onClick={() => setDarkMode(!darkmode)}>
             <LightModeIcon />
             {darkmode ? "Dark" : "Light"} Mode
           </Item>
+          {!currentUser ? (
+            ""
+          ) : (
+            <Item onClick={OnclickLogout}>
+              <LogoutIcon />
+              LOGOUT
+            </Item>
+          )}
         </MobileWrapper>
       </Wrapper>
     </Container>
