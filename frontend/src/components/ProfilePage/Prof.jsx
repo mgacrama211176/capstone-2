@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Shots from "../../assets/Shots.jpg";
 import TimeLine from "./TimeLine";
 
+import { useSelector } from "react-redux";
+
 const Profile = styled.div`
   background-color: white;
   border-radius: 6px;
@@ -39,14 +41,15 @@ const TypoTitle = styled.p`
 `;
 
 const Prof = () => {
+  const currentUser = useSelector((state) => state.username.currentUser);
   return (
     <Profile>
       <ProfileName>
-        <TypoName>Marlon Gacrama</TypoName>
-        <TypoTitle>margacrama@gmail.com</TypoTitle>
+        <TypoName>{currentUser.username}</TypoName>
+        <TypoTitle>{currentUser.email}</TypoTitle>
       </ProfileName>
       <ImgCon>
-        <Pimg src={Shots}></Pimg>
+        <Pimg src={currentUser.image}></Pimg>
       </ImgCon>
       <Pinfo>
         <TimeLine />

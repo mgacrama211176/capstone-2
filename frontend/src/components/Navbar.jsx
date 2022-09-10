@@ -1,15 +1,15 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import logoImg from '../assets/Logo.png';
-import { device } from '../media';
-import { useSelector } from 'react-redux';
+import React from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import logoImg from "../assets/Logo.png";
+import { device } from "../media";
+import { useSelector } from "react-redux";
 
 //MUI
-import PersonPinIcon from '@mui/icons-material/PersonPin';
-import SearchIcon from '@mui/icons-material/Search';
-import MenuIcon from '@mui/icons-material/Menu';
-import VideoCallIcon from '@mui/icons-material/VideoCall';
+import PersonPinIcon from "@mui/icons-material/PersonPin";
+import SearchIcon from "@mui/icons-material/Search";
+import MenuIcon from "@mui/icons-material/Menu";
+import VideoCallIcon from "@mui/icons-material/VideoCall";
 
 const Container = styled.div`
   position: relative;
@@ -128,7 +128,7 @@ const Navbar = ({ setOpen, setClose }) => {
             <MenuIcon />
           </Burger>
 
-          <Link to="/" style={{ textDecoration: 'none' }}>
+          <Link to="/" style={{ textDecoration: "none" }}>
             <Logo>
               <Img src={logoImg} />
             </Logo>
@@ -143,13 +143,19 @@ const Navbar = ({ setOpen, setClose }) => {
           />
           <SearchIcon />
         </Search>
+
         {currentUser ? (
-          <User>
-            {currentUser.username}
-            <Avatar src={currentUser.image} />
-          </User>
+          <Link
+            to="/profile/${currentUser._id}"
+            style={{ textDecoration: "none" }}
+          >
+            <User>
+              {currentUser.username}
+              <Avatar src={currentUser.image} />
+            </User>
+          </Link>
         ) : (
-          <Link to="/signin" style={{ textDecoration: 'none' }}>
+          <Link to="/signin" style={{ textDecoration: "none" }}>
             <Button>
               <PersonPinIcon />
               Sign In
