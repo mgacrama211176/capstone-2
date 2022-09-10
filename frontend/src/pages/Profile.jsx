@@ -1,29 +1,30 @@
 import React from "react";
-import styled from "styled-components";
-
-import ProfileImg from "../assets/Body.jpg";
-
-import Card from "../components/Card";
 import Footer from "../components/Footer";
-
+import styled from "styled-components";
 import Prof from "../components/ProfilePage/Prof";
 import Header from "../components/ProfilePage/Header";
-import Portfolio from "../components/ProfilePage/Portfolio";
-import Resume from "../components/ProfilePage/Resume";
+
+import BGimage from "../assets/bgimage.jpg";
 
 import { Grid, Container } from "@mui/material";
 
+const ContainerWrapper = styled.div`
+  background-image: url(${BGimage});
+`;
 const Profile = ({ type, video }) => {
   return (
     <Container>
-      <Grid container>
-        <Grid item xs={12} sm={12} md={4} lg={3}>
-          <Prof />
+      <ContainerWrapper>
+        <Grid container>
+          <Grid item xs={12} sm={12} md={4} lg={3}>
+            <Prof />
+          </Grid>
+          <Grid item xs>
+            <Header />
+          </Grid>
         </Grid>
-        <Grid item xs style={{ backgroundColor: "red" }}>
-          xyz
-        </Grid>
-      </Grid>
+        <Footer />
+      </ContainerWrapper>
     </Container>
   );
 };

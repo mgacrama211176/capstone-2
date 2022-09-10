@@ -1,20 +1,28 @@
 import React from "react";
 import styled from "styled-components";
 import Shots from "../../assets/Shots.jpg";
+import TimeLine from "./TimeLine";
 
 const Profile = styled.div`
   background-color: white;
   border-radius: 6px;
   width: 100%;
   display: inline-block;
+  border: 1px solid black;
+  margin: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
 `;
 
-const ProfileName = styled.div``;
+const ProfileName = styled.div`
+  padding: 20px;
+`;
+
 const ImgCon = styled.figure`
   margin-top: -10px;
-  -webkit-clip-path: polygon(0 9%, 100% 0, 100% 94%, 0% 100%);
-  clip-path: polygon(0 9%, 100% 0, 100% 94%, 0% 100%);
+  -webkit-clip-path: polygon(0 9%, 100% 100%, 50% 94%, 0% 100%);
+  clip-path: polygon(0 9%, 100% 0, 100% 85%, 0% 100%);
 `;
+
 const Pimg = styled.img`
   width: 100%;
 `;
@@ -34,13 +42,15 @@ const Prof = () => {
   return (
     <Profile>
       <ProfileName>
-        <TypoName>Steve</TypoName>
-        <TypoTitle>Fil Animator</TypoTitle>
+        <TypoName>Marlon Gacrama</TypoName>
+        <TypoTitle>margacrama@gmail.com</TypoTitle>
       </ProfileName>
       <ImgCon>
         <Pimg src={Shots}></Pimg>
       </ImgCon>
-      <Pinfo>Insert Timeline</Pinfo>
+      <Pinfo>
+        <TimeLine />
+      </Pinfo>
     </Profile>
   );
 };
