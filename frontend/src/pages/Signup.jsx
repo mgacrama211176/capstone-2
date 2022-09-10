@@ -1,30 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 
-import { device } from '../media';
+import { device } from "../media";
 
 //MUI
-import LockIcon from '@mui/icons-material/Lock';
-import LoginIcon from '@mui/icons-material/Login';
-import CategoryIcon from '@mui/icons-material/Category';
-import EmailIcon from '@mui/icons-material/Email';
+import LockIcon from "@mui/icons-material/Lock";
+import LoginIcon from "@mui/icons-material/Login";
+import CategoryIcon from "@mui/icons-material/Category";
+import EmailIcon from "@mui/icons-material/Email";
 
 //Icons
-import Facebook from '../assets/icons/facebook.png';
-import Gmail from '../assets/icons/gmail.png';
-import Linkedin from '../assets/icons/linkedin.png';
-import PersonIcon from '@mui/icons-material/Person';
+import Facebook from "../assets/icons/facebook.png";
+import Gmail from "../assets/icons/gmail.png";
+import Linkedin from "../assets/icons/linkedin.png";
+import PersonIcon from "@mui/icons-material/Person";
 
 //Framer Motion
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   color: ${({ theme }) => theme.titleColor};
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   margin: 30px;
 
   /* Mobile S */
@@ -197,11 +197,11 @@ const H6 = styled.h6`
 
 const Signup = () => {
   const [user, setUser] = useState({
-    username: '',
-    email: '',
-    userCategory: '',
-    password: '',
-    validpass: '',
+    username: "",
+    email: "",
+    userCategory: "",
+    password: "",
+    validpass: "",
   });
 
   const Alert = styled.p`
@@ -219,15 +219,17 @@ const Signup = () => {
     console.log(newUser);
   };
 
-  const [validatedpass, setValidatedPass] = useState('');
+  const saveUser = async () => {};
+
+  const [validatedpass, setValidatedPass] = useState("");
 
   useEffect(() => {
-    let status = '';
+    let status = "";
     try {
       if (user.password !== user.validpass) {
-        status = 'Password does not match!';
+        status = "Password does not match!";
         setValidatedPass(status);
-      } else status = 'Password Match!';
+      } else status = "Password Match!";
       setValidatedPass(status);
     } catch (err) {
       status = err;
@@ -237,7 +239,7 @@ const Signup = () => {
   return (
     <motion.div
       initial={{ width: 0, opacity: 0 }}
-      animate={{ width: '100%', opacity: 1 }}
+      animate={{ width: "100%", opacity: 1 }}
       exit={{
         x: window.innerWidth,
         y: window.innerHeight,
@@ -246,16 +248,8 @@ const Signup = () => {
       <Container>
         <LoginWrapper>
           {/* <Image src={Logo}></Image> */}
-          <Title>Signup Using</Title>
-          <IconsContainer>
-            <Icons src={Facebook} alt="facebook"></Icons>
-            <Icons src={Gmail} alt="gmail"></Icons>
-          </IconsContainer>
-          <HrContainer>
-            <Hr />
-            Or
-            <Hr />
-          </HrContainer>
+          <Title>Signup</Title>
+
           <H4> Email Address </H4>
 
           <InputWrapper>
@@ -328,13 +322,13 @@ const Signup = () => {
             <H6>I have read and understood the TERMS AND CONDITIONS</H6>
           </InputWrapper>
           <InputWrapper>
-            <Button>
+            <Button onClick={saveUser}>
               SignUp
               <LoginIcon />
             </Button>
           </InputWrapper>
           <Options>
-            <Link to={'/signin'} style={{ textDecoration: 'none' }}>
+            <Link to={"/signin"} style={{ textDecoration: "none" }}>
               <H6>Already Signed up? </H6>
             </Link>
             <H6>Forgot Password </H6>
