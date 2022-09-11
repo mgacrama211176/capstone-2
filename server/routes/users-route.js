@@ -8,6 +8,7 @@ import {
   like,
   dislike,
   getAllUser,
+  resetPassword,
 } from '../controllers/user-controller.js';
 import { verifyToken } from '../verifyToken.js';
 
@@ -22,8 +23,11 @@ router.delete('/:id', verifyToken, deleteUser);
 //For get user
 router.get('/find/:id', getUser);
 
-//For get user using email
-router.get('/find/email/:email', getAllUser);
+//For getting user using email for forgot password
+router.put('/find/email/:email', getAllUser);
+
+//After getting the password verify if token and expire is found on database
+router.put('/find/email/reset/:resetPasswordToken', resetPassword);
 
 //For subscribe
 router.put('/sub/:id', verifyToken, subscribe);

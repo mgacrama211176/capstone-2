@@ -25,7 +25,7 @@ const AnimatedRoutes = () => {
         <Route path="/signin" element={<Signin />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/Fpassword" element={<Password />}></Route>
-        <Route path="/receivedEmail" element={<ReceivedEmail />}></Route>
+        <Route path="/receivedEmail/:token" element={<ReceivedEmail />}></Route>
         <Route path="/video/:id" element={<Video />}></Route>
         <Route path="/profile/:id" element={<Profile />}></Route>
       </Routes>

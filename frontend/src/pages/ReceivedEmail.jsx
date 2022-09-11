@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { device } from '../media';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { loginFailed, loginStart, loginSuccess } from '../redux/userSlice';
@@ -125,6 +125,10 @@ const Alert = styled.p`
 
 //START ALL FUNCTIONS HERE
 const Signin = () => {
+  const [user, setUser] = useState({
+    password: '',
+  });
+  const [validatedpass, setValidatedPass] = useState('');
   //TOAST
   const Notify = () =>
     toast.success('Password has been reset!', {
@@ -137,11 +141,13 @@ const Signin = () => {
       progress: undefined,
     });
 
-  const nav = useNavigate();
+  const query = new URLSearchParams(location.search);
+  const token = query.get(`token`);
+  console.log(token);
 
-  const [user, setUser] = useState({
-    password: '',
-  });
+  const verifyToken = async () => {};
+
+  useEffect(() => {}, []);
 
   const onChangeHandle = (e) => {
     const newUser = { ...user };
@@ -153,8 +159,6 @@ const Signin = () => {
   const onSubmitReset = () => {
     Notify();
   };
-
-  const [validatedpass, setValidatedPass] = useState('');
 
   //CHECKER IF NEW PASSWORD MATCHES
   useEffect(() => {
