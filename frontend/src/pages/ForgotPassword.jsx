@@ -153,6 +153,18 @@ const Signin = () => {
     });
   };
 
+  const Empty = () => {
+    toast.error('E-mail cant be empty', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   const [user, setUser] = useState({
     email: '',
   });
@@ -177,7 +189,7 @@ const Signin = () => {
 
       setUser({ email: '' });
     } catch (err) {
-      console.log(err);
+      Empty();
     }
   };
 
