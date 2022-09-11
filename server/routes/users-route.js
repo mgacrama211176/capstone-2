@@ -7,6 +7,7 @@ import {
   unsubscribe,
   like,
   dislike,
+  getAllUser,
 } from '../controllers/user-controller.js';
 import { verifyToken } from '../verifyToken.js';
 
@@ -20,6 +21,9 @@ router.delete('/:id', verifyToken, deleteUser);
 
 //For get user
 router.get('/find/:id', getUser);
+
+//For get user using email
+router.get('/find/email/:email', getAllUser);
 
 //For subscribe
 router.put('/sub/:id', verifyToken, subscribe);

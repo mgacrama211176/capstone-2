@@ -1,25 +1,18 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Logo from '../assets/Logo.png';
 import { device } from '../media';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { loginFailed, loginStart, loginSuccess } from '../redux/userSlice';
 
-//firebase
-import { auth, googleProvider, facebookProvider } from '../firebase';
-import { signInWithPopup } from 'firebase/auth';
+//Toastify
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 //MUI
 import EmailIcon from '@mui/icons-material/Email';
-import LockIcon from '@mui/icons-material/Lock';
 import LoginIcon from '@mui/icons-material/Login';
-
-//Icons
-import Facebook from '../assets/icons/facebook.png';
-import Gmail from '../assets/icons/gmail.png';
-import Linkedin from '../assets/icons/linkedin.png';
 
 //Framer Motion
 import { motion } from 'framer-motion';
@@ -77,32 +70,11 @@ const LoginWrapper = styled.div`
   margin-top: 2em;
 `;
 
-const Image = styled.img`
-  max-width: 25%;
-`;
-
 const Title = styled.h1`
   margin-bottom: 10px;
 
   @media ${device.mobileS} {
     font-size: 20px;
-  }
-`;
-
-const IconsContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-`;
-
-const Icons = styled.img`
-  max-width: 5%;
-  cursor: pointer;
-
-  /* Mobile S */
-  @media ${device.mobileS} {
-    max-width: 2em;
   }
 `;
 
@@ -113,18 +85,6 @@ const InputWrapper = styled.div`
 `;
 
 const H4 = styled.h4``;
-
-const HrContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`;
-
-const Hr = styled.hr`
-  margin: 15px 0px;
-  border: 0.5px solid #b2792d;
-  max-width: 10px;
-`;
 
 const Input = styled.input`
   border-radius: 5px;
@@ -142,7 +102,7 @@ const Button = styled.button`
   border: 1px solid white;
   color: ${({ theme }) => theme.textSoft};
   background-color: ${({ theme }) => theme.bg};
-  transition: 0.5s ease-in;
+  transition: 0.2s ease-in;
   width: 15em;
   justify-content: center;
   &:hover {
@@ -167,15 +127,35 @@ const H6 = styled.h6`
   }
 `;
 
+//START ALL FUNCTIONS HERE
 const Signin = () => {
-  const nav = useNavigate();
+  //TOAST
+  const Notify = () =>
+    toast.success('E-mail sent for password reset!', {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+    });
+
+  const NotFound = () => {
+    toast.error('Email not found', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   const [user, setUser] = useState({
     email: '',
-    password: '',
   });
-  const dispatch = useDispatch();
-
-  const [loggedUser, setLoggedUser] = useState('');
 
   const onChangeHandle = (e) => {
     const newUser = { ...user };
@@ -183,54 +163,25 @@ const Signin = () => {
     setUser(newUser);
   };
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    dispatch(loginStart(user));
-
+  const checkEmail = async () => {
     try {
-      const login = await axios.post('http://localhost:4000/api/auth/signin', {
-        email: user.email,
-        password: user.password,
-      });
-      setLoggedUser(login.data);
+      const result = await axios.get(
+        `http://localhost:4000/api/users/find/email/${user.email}`
+      );
+      if (!result.data) {
+        NotFound();
+      } else {
+        console.log(result.data);
+        Notify();
+      }
 
-      dispatch(loginSuccess(login.data));
-      nav('/');
+      setUser({ email: '' });
     } catch (err) {
-      dispatch(loginFailed);
+      console.log(err);
     }
   };
 
-  const signInWithGoogle = () => {
-    dispatch(loginStart());
-    signInWithPopup(auth, googleProvider)
-      .then((result) => {
-        setUser(result.user);
-        const googleUser = axios
-          .post('http://localhost:4000/api/auth/google', {
-            username: result.user.displayName,
-            email: result.user.email,
-            image: result.user.photoURL,
-          })
-          .then((response) => {
-            dispatch(loginSuccess(response.data));
-          });
-        console.log(googleUser);
-        nav('/');
-      })
-      .catch((error) => {
-        dispatch(loginFailed());
-      });
-  };
-
-  const signInWithFacebook = async () => {
-    signInWithPopup(auth, facebookProvider)
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((error) => {});
-  };
-
+  // START ALL ELEMENTS HERE
   return (
     <motion.div
       initial={{ width: 0, opacity: 0 }}
@@ -241,61 +192,45 @@ const Signin = () => {
       }}
       // transition={{'1s'}}
     >
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+      />
+      {/* Same as */}
+      <ToastContainer />
+      <ToastContainer />
       <Container>
         <LoginWrapper>
           {/* <Image src={Logo}></Image> */}
-          <Title>Login Using</Title>
-          <IconsContainer>
-            <Icons
-              src={Facebook}
-              alt="facebook"
-              onClick={signInWithFacebook}
-            ></Icons>
-            <Icons src={Gmail} alt="gmail" onClick={signInWithGoogle}></Icons>
-          </IconsContainer>
-          <HrContainer>
-            <Hr />
-            Or
-            <Hr />
-          </HrContainer>
-          <H4> Email Address </H4>
+          <Title>FORGOT PASSWORD</Title>
+          <H4> Enter email address </H4>
           <InputWrapper>
             <EmailIcon />
             <Input
               id="email"
-              placeholder="E-Mail@user.com"
+              placeholder="Email"
               type="text"
               onChange={(e) => {
                 onChangeHandle(e);
               }}
+              value={user.email}
             />
           </InputWrapper>
-          <H4> Password </H4>
           <InputWrapper>
-            <LockIcon />
-            <Input
-              id="password"
-              placeholder="Password"
-              type="password"
-              onChange={(e) => {
-                onChangeHandle(e);
-              }}
-            />
-          </InputWrapper>
-
-          <InputWrapper>
-            <Button onClick={handleLogin}>
-              Login
+            <Button onClick={checkEmail}>
+              SUBMIT
               <LoginIcon />
             </Button>
           </InputWrapper>
-
           <Options>
             <Link to={'/signup'} style={{ textDecoration: 'none' }}>
               <H6>Not yet registered? </H6>
-            </Link>
-            <Link to={'/Fpassword'} style={{ textDecoration: 'none' }}>
-              <H6>Forgot Password </H6>
             </Link>
           </Options>
         </LoginWrapper>

@@ -7,6 +7,8 @@ import Video from '../pages/Video';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Profile from '../pages/Profile';
+import Password from '../pages/ForgotPassword';
+import ReceivedEmail from '../pages/ReceivedEmail';
 
 //Framer Motion
 import { AnimatePresence } from 'framer-motion';
@@ -22,6 +24,8 @@ const AnimatedRoutes = () => {
         <Route path="/sub" element={<Home type="sub" />}></Route>
         <Route path="/signin" element={<Signin />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
+        <Route path="/Fpassword" element={<Password />}></Route>
+        <Route path="/receivedEmail" element={<ReceivedEmail />}></Route>
         <Route path="/video/:id" element={<Video />}></Route>
         <Route path="/profile/:id" element={<Profile />}></Route>
       </Routes>

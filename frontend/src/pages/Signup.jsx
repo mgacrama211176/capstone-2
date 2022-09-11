@@ -347,7 +347,9 @@ const Signup = () => {
             <Link to={'/signin'} style={{ textDecoration: 'none' }}>
               <H6>Already Signed up? </H6>
             </Link>
-            <H6>Forgot Password </H6>
+            <Link to={'/Fpassword'} style={{ textDecoration: 'none' }}>
+              <H6>Forgot Password </H6>
+            </Link>
           </Options>
         </LoginWrapper>
       </Container>

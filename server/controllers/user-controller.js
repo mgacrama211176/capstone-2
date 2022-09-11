@@ -42,6 +42,17 @@ export const getUser = async (request, response, next) => {
   }
 };
 
+//localhost:3000/api/users/find
+export const getAllUser = async (request, response, next) => {
+  try {
+    const user = await User.findOne({ email: request.params.email });
+
+    response.status(200).json(user);
+  } catch (err) {
+    next(err);
+  }
+};
+
 //localhost:3000/api/users/sub/UserID to search
 export const subscribe = async (request, response, next) => {
   try {
