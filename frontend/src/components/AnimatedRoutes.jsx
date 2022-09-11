@@ -1,15 +1,15 @@
-import React from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import React from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
 //ROUTER DOM
-import Home from "../pages/Home";
-import Video from "../pages/Video";
-import Signin from "../pages/Signin";
-import Signup from "../pages/Signup";
-import Profile from "../pages/Profile";
+import Home from '../pages/Home';
+import Video from '../pages/Video';
+import Signin from '../pages/Signin';
+import Signup from '../pages/Signup';
+import Profile from '../pages/Profile';
 
 //Framer Motion
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence } from 'framer-motion';
 
 const AnimatedRoutes = () => {
   const location = useLocation();

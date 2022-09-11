@@ -1,35 +1,40 @@
-import * as React from "react";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Box from "@mui/material/Box";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-export default function ColorTabs() {
-  const [value, setValue] = React.useState("one");
+const Container = styled.div`
+  margin: 30px;
+  padding: 5px;
+  border: 1px solid white;
+  border-radius: 10px;
+  background-color: white;
+`;
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+const ContainerWrapper = styled.div`
+  color: black;
+`;
 
-  const Container = styled.div`
-    margin: 20px;
-  `;
+const Navigation = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
+const NavigationItems = styled.div`
+  cursor: pointer;
+`;
+
+const Header = () => {
   return (
     <Container>
-      <Box sx={{ width: "100%" }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          textColor="primary"
-          indicatorColor="primary"
-          aria-label="primary tabs example"
-        >
-          <Tab value="HOME" label="HOME" />
-          <Tab value="VIDEOS" label="VIDEOS" />
-          <Tab value="ABOUT" label="ABOUT" />
-        </Tabs>
-      </Box>
+      <ContainerWrapper>
+        <Navigation>
+          <NavigationItems>HOME</NavigationItems>
+          <NavigationItems>VIDEOS</NavigationItems>
+          <NavigationItems>WORK HISTORY</NavigationItems>
+          <NavigationItems>UPDATE INFORMATION</NavigationItems>
+        </Navigation>
+      </ContainerWrapper>
     </Container>
   );
-}
+};
+
+export default Header;
