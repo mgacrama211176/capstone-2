@@ -25,6 +25,10 @@ import Linkedin from '../assets/icons/linkedin.png';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
+//Toastify
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Container = styled.div`
   display: flex;
   align-items: center;
@@ -177,6 +181,16 @@ const Signin = () => {
 
   const [loggedUser, setLoggedUser] = useState('');
 
+  const failedLoggin = toast.error('🦄 Wow so easy!', {
+    position: 'top-right',
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+  });
+
   const onChangeHandle = (e) => {
     const newUser = { ...user };
     newUser[e.target.id] = e.target.value;
@@ -193,10 +207,10 @@ const Signin = () => {
         password: user.password,
       });
       setLoggedUser(login.data);
-
       dispatch(loginSuccess(login.data));
       nav('/');
     } catch (err) {
+      failedLoggin();
       dispatch(loginFailed);
     }
   };
@@ -242,6 +256,18 @@ const Signin = () => {
       // transition={{'1s'}}
     >
       <Container>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+        />
+        {/* Same as */}
+        <ToastContainer />
         <LoginWrapper>
           {/* <Image src={Logo}></Image> */}
           <Title>Login Using</Title>

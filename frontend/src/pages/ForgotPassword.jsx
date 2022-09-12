@@ -177,7 +177,7 @@ const Signin = () => {
 
   const checkEmail = async () => {
     try {
-      const result = await axios.get(
+      const result = await axios.put(
         `http://localhost:4000/api/users/find/email/${user.email}`
       );
       if (!result.data) {

@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { device } from '../media';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { loginFailed, loginStart, loginSuccess } from '../redux/userSlice';
@@ -125,6 +130,7 @@ const Alert = styled.p`
 
 //START ALL FUNCTIONS HERE
 const Signin = () => {
+  const { token } = useParams();
   const [user, setUser] = useState({
     password: '',
   });
@@ -141,14 +147,6 @@ const Signin = () => {
       progress: undefined,
     });
 
-  const query = new URLSearchParams(location.search);
-  const token = query.get(`token`);
-  console.log(token);
-
-  const verifyToken = async () => {};
-
-  useEffect(() => {}, []);
-
   const onChangeHandle = (e) => {
     const newUser = { ...user };
     newUser[e.target.id] = e.target.value;
@@ -156,8 +154,18 @@ const Signin = () => {
     console.log(newUser);
   };
 
-  const onSubmitReset = () => {
-    Notify();
+  const onSubmitReset = async () => {
+    try {
+      const reset = await axios.put(
+        `http://localhost:4000/api/users/find/email/reset/${token}`,
+        {
+          password: user.password,
+        }
+      );
+      console.log(reset);
+      console.log(user.password);
+      Notify();
+    } catch (error) {}
   };
 
   //CHECKER IF NEW PASSWORD MATCHES
