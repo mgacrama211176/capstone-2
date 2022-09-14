@@ -181,16 +181,6 @@ const Signin = () => {
 
   const [loggedUser, setLoggedUser] = useState('');
 
-  const failedLoggin = toast.error('🦄 Wow so easy!', {
-    position: 'top-right',
-    autoClose: 3000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-  });
-
   const onChangeHandle = (e) => {
     const newUser = { ...user };
     newUser[e.target.id] = e.target.value;
@@ -210,7 +200,15 @@ const Signin = () => {
       dispatch(loginSuccess(login.data));
       nav('/');
     } catch (err) {
-      failedLoggin();
+      failedLoggin = toast.error('Incorrect password or animator not found', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
       dispatch(loginFailed);
     }
   };

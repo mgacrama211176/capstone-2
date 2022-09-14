@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import tile from '../assets/home_post_2.gif';
 import { device } from '../media';
@@ -145,8 +145,9 @@ const Card = ({ type, video }) => {
     fetchingChannel();
   }, [video.userId]);
 
+  const path = useLocation();
   return (
-    <Link to="/video/test" style={{ textDecoration: 'none' }}>
+    <Link to={`/video/${video._id}`} style={{ textDecoration: 'none' }}>
       <Container type={type}>
         <Image type={type} src={video.imgUrl} />
         <Details type={type}>
