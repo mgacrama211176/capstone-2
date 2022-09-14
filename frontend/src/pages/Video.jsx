@@ -319,8 +319,10 @@ const Video = () => {
               <Buttons>
                 <Like>
                   <ThumbUpIcon />
+
                   {currentVideo.likes?.length}
                 </Like>
+
                 <Dislike>
                   <ThumbDownIcon />
                   Dislike
@@ -350,11 +352,11 @@ const Video = () => {
               </Subscribe>
             </Channel>
             <Description>{currentVideo.desc}</Description>
-
+            <Hr />
             <Title>Recommended Videos</Title>
 
             <Recommendation>{/* <Card type="sm" /> */}</Recommendation>
-
+            <Hr />
             <ViewComments></ViewComments>
 
             <CommentsBox />
