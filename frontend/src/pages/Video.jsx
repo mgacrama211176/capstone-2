@@ -274,9 +274,6 @@ const Video = () => {
   const { currentUser } = useSelector((state) => state.username);
   const { currentVideo } = useSelector((state) => state.video);
 
-  console.log(currentUser);
-  console.log(currentVideo);
-
   const dispatch = useDispatch();
   const path = useLocation().pathname.split('/')[2];
   const [channel, setChannel] = useState({});
@@ -287,8 +284,10 @@ const Video = () => {
         const videoResponse = await axios.get(
           `http://localhost:4000/api/videos/find/${path}`
         );
+        console.log(videoResponse);
+
         const channelResponse = await axios.get(
-          `http://localhost:4000/api/videos/find/${videoResponse.userId}`
+          `http://localhost:4000/api/users/find/${videoResponse.data.userId}`
         );
 
         setChannel(channelResponse.data);
@@ -307,20 +306,20 @@ const Video = () => {
       <Container>
         <Content>
           <VideoWrapper>
-            <Iframe src="https://www.youtube.com/embed/GtL1huin9EE"></Iframe>
+            <Iframe src={currentVideo.videoUrl}></Iframe>
           </VideoWrapper>
 
           <VideoInformationContainer>
-            {/* <Title>{currentVideo.title}</Title> */}
+            <Title>{currentVideo.title}</Title>
             <Info>
-              {/* {currentVideo.views} views • {format(currentVideo.createdAt)} */}
+              {currentVideo.views} views • {format(currentVideo.createdAt)}
             </Info>
             <Hr />
             <Details>
               <Buttons>
                 <Like>
                   <ThumbUpIcon />
-                  {/* {currentVideo.likes?.length} */}
+                  {currentVideo.likes?.length}
                 </Like>
                 <Dislike>
                   <ThumbDownIcon />
@@ -330,19 +329,15 @@ const Video = () => {
                   <ScreenShareIcon />
                   Share
                 </Share>
-                <Save>
-                  <SaveAltIcon />
-                  Save
-                </Save>
               </Buttons>
             </Details>
 
             <Hr />
             <Channel>
               <ChannelInfo>
-                <Image src={channel.img} />
+                <Image src={channel.image} />
                 <ChannelDetail>
-                  <ChannelName>{channel.name}</ChannelName>
+                  <ChannelName>{channel.username}</ChannelName>
                   <ChannelCounter>
                     {channel.subscribers} subscribers
                   </ChannelCounter>
@@ -354,7 +349,7 @@ const Video = () => {
                 SUBSCRIBE
               </Subscribe>
             </Channel>
-            {/* <Description>{currentVideo.desc}</Description> */}
+            <Description>{currentVideo.desc}</Description>
 
             <Title>Recommended Videos</Title>
 

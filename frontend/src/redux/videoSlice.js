@@ -16,8 +16,7 @@ export const videoSlice = createSlice({
     },
     FetchSuccess: (state, action) => {
       state.loading = false;
-      state.currentUser = action.payload;
-      state.message = 'logged in!';
+      state.currentVideo = action.payload;
     },
     FetchFailed: (state) => {
       state.loading = false;
