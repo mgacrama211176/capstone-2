@@ -284,7 +284,6 @@ const Video = () => {
         const videoResponse = await axios.get(
           `http://localhost:4000/api/videos/find/${path}`
         );
-        console.log(videoResponse);
 
         const channelResponse = await axios.get(
           `http://localhost:4000/api/users/find/${videoResponse.data.userId}`
@@ -294,11 +293,12 @@ const Video = () => {
         dispatch(FetchSuccess(videoResponse.data));
       } catch (err) {}
     };
+    console.log(currentUser._id);
     fetchData();
   }, [path, dispatch]);
 
-
   // UPDATED
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -319,12 +319,17 @@ const Video = () => {
             <Hr />
             <Details>
               <Buttons>
-                <Like>
-                  <ThumbUpIcon />
-
-                  {currentVideo.likes?.length}
-                </Like>
-
+                {currentVideo.likes?.includes(currentUser._id) ? (
+                  <Like>
+                    <ThumbUpIcon style={{ color: '#0675e8' }} />
+                    {currentVideo.likes?.length}
+                  </Like>
+                ) : (
+                  <Like>
+                    <ThumbUpIcon />
+                    {currentVideo.likes?.length}
+                  </Like>
+                )}
                 <Dislike>
                   <ThumbDownIcon />
                   Dislike
