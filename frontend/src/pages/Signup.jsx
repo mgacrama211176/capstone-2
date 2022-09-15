@@ -31,7 +31,6 @@ const Container = styled.div`
   @media ${device.mobileS} {
     max-width: 320px;
     margin: 40px 0px;
-    /* height: calc(100vh - 56px); */
   }
 
   /* Mobile M */
@@ -128,18 +127,6 @@ const H4 = styled.h4`
   }
 `;
 
-const HrContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`;
-
-const Hr = styled.hr`
-  margin: 15px 0px;
-  border: 0.5px solid #b2792d;
-  max-width: 10px;
-`;
-
 const Input = styled.input`
   border-radius: 5px;
   padding: 5px;
@@ -216,7 +203,6 @@ const Signup = () => {
     newUser[e.target.id] = e.target.value;
     setUser(newUser);
     `  `;
-    console.log(newUser);
   };
 
   const [validatedpass, setValidatedPass] = useState('');

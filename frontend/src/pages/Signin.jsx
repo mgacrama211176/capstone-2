@@ -1,38 +1,38 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { device } from "../media";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import axios from "axios";
-import { loginFailed, loginStart, loginSuccess } from "../redux/userSlice";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { device } from '../media';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import { loginFailed, loginStart, loginSuccess } from '../redux/userSlice';
 
 //firebase
-import { auth, googleProvider, facebookProvider } from "../firebase";
-import { signInWithPopup } from "firebase/auth";
+import { auth, googleProvider, facebookProvider } from '../firebase';
+import { signInWithPopup } from 'firebase/auth';
 
 //MUI
-import EmailIcon from "@mui/icons-material/Email";
-import LockIcon from "@mui/icons-material/Lock";
-import LoginIcon from "@mui/icons-material/Login";
+import EmailIcon from '@mui/icons-material/Email';
+import LockIcon from '@mui/icons-material/Lock';
+import LoginIcon from '@mui/icons-material/Login';
 
 //Icons
-import Facebook from "../assets/icons/facebook.png";
-import Gmail from "../assets/icons/gmail.png";
+import Facebook from '../assets/icons/facebook.png';
+import Gmail from '../assets/icons/gmail.png';
 
 //Framer Motion
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 //Toastify
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { userNotFound, incorrectPassword, blank } from '../components/Toasts';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   color: ${({ theme }) => theme.titleColor};
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 
   /* Mobile S */
   @media ${device.mobileS} {
@@ -172,12 +172,12 @@ const H6 = styled.h6`
 const Signin = () => {
   const nav = useNavigate();
   const [user, setUser] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
   const dispatch = useDispatch();
 
-  const [loggedUser, setLoggedUser] = useState("");
+  const [loggedUser, setLoggedUser] = useState('');
 
   const onChangeHandle = (e) => {
     const newUser = { ...user };
@@ -188,25 +188,27 @@ const Signin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     dispatch(loginStart(user));
-
     try {
-      const login = await axios.post("http://localhost:4000/api/auth/signin", {
-        email: user.email,
-        password: user.password,
-      });
+      const login = await axios
+        .post('http://localhost:4000/api/auth/signin', {
+          email: user.email,
+          password: user.password,
+        })
+        .catch((err) => {
+          if (err.response.statusText === 'Unauthorized') {
+            incorrectPassword();
+          } else if (err.response.statusText === 'Not Found') {
+            userNotFound();
+          } else {
+            blank();
+          }
+        });
+      console.log(login.data);
       setLoggedUser(login.data);
       dispatch(loginSuccess(login.data));
-      nav("/");
+      nav('/');
     } catch (err) {
       dispatch(loginFailed);
-      toast.error("Password incorrect or User not found", {
-        position: "top-right",
-        autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        draggable: true,
-        progress: undefined,
-      });
     }
   };
 
@@ -216,7 +218,7 @@ const Signin = () => {
       .then((result) => {
         setUser(result.user);
         const googleUser = axios
-          .post("http://localhost:4000/api/auth/google", {
+          .post('http://localhost:4000/api/auth/google', {
             username: result.user.displayName,
             email: result.user.email,
             image: result.user.photoURL,
@@ -225,7 +227,7 @@ const Signin = () => {
             dispatch(loginSuccess(response.data));
           });
         console.log(googleUser);
-        nav("/");
+        nav('/');
       })
       .catch((error) => {
         dispatch(loginFailed());
@@ -243,7 +245,7 @@ const Signin = () => {
   return (
     <motion.div
       initial={{ width: 0, opacity: 0 }}
-      animate={{ width: "100%", opacity: 1 }}
+      animate={{ width: '100%', opacity: 1 }}
       exit={{
         x: window.innerWidth,
         y: window.innerHeight,
@@ -251,6 +253,17 @@ const Signin = () => {
       // transition={{'1s'}}
     >
       <Container>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <LoginWrapper>
           {/* <Image src={Logo}></Image> */}
           <Title>Login Using</Title>
@@ -300,10 +313,10 @@ const Signin = () => {
           </InputWrapper>
 
           <Options>
-            <Link to={"/signup"} style={{ textDecoration: "none" }}>
+            <Link to={'/signup'} style={{ textDecoration: 'none' }}>
               <H6>Not yet registered? </H6>
             </Link>
-            <Link to={"/Fpassword"} style={{ textDecoration: "none" }}>
+            <Link to={'/Fpassword'} style={{ textDecoration: 'none' }}>
               <H6>Forgot Password </H6>
             </Link>
           </Options>

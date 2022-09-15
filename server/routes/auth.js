@@ -13,10 +13,6 @@ router.post('/signup', signup);
 router.post('/signin', signIn);
 
 router.post('/google', googleSignIn);
-
-//Googlt Auth
-
-// router.post("/google", signup);
 //facebook Auth
 
 // router.post("/facebook", signup);
