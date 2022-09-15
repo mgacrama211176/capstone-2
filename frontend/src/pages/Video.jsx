@@ -297,6 +297,8 @@ const Video = () => {
     fetchData();
   }, [path, dispatch]);
 
+
+  // UPDATED
   return (
     <motion.div
       initial={{ opacity: 0 }}
