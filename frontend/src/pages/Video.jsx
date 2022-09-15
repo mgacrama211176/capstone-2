@@ -1,32 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import styled, { css } from 'styled-components';
-import CommentsBox from '../components/CommentsBox';
-import ViewComments from '../components/ViewComments';
-import Card from '../components/Card';
+import React, { useState, useEffect } from "react";
+import styled, { css } from "styled-components";
+import CommentsBox from "../components/CommentsBox";
+import ViewComments from "../components/ViewComments";
+import Card from "../components/Card";
 //MUI
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import ThumbDownIcon from '@mui/icons-material/ThumbDown';
-import ScreenShareIcon from '@mui/icons-material/ScreenShare';
-import SaveAltIcon from '@mui/icons-material/SaveAlt';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import ThumbDownIcon from "@mui/icons-material/ThumbDown";
+import ScreenShareIcon from "@mui/icons-material/ScreenShare";
+import SaveAltIcon from "@mui/icons-material/SaveAlt";
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 
 //framer motion
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 //Media Queries
-import { device } from '../media';
+import { device } from "../media";
 
 //redux
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
-import axios from 'axios';
-import { FetchSuccess } from '../redux/videoSlice';
-import { format } from 'timeago.js';
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
+import { FetchSuccess } from "../redux/videoSlice";
+import { format } from "timeago.js";
 
 const Container = styled.div`
   display: flex;
   gap: 24px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   max-width: 100vw;
 `;
 
@@ -275,7 +275,7 @@ const Video = () => {
   const { currentVideo } = useSelector((state) => state.video);
 
   const dispatch = useDispatch();
-  const path = useLocation().pathname.split('/')[2];
+  const path = useLocation().pathname.split("/")[2];
   const [channel, setChannel] = useState({});
 
   useEffect(() => {
@@ -284,7 +284,6 @@ const Video = () => {
         const videoResponse = await axios.get(
           `http://localhost:4000/api/videos/find/${path}`
         );
-        console.log(videoResponse);
 
         const channelResponse = await axios.get(
           `http://localhost:4000/api/users/find/${videoResponse.data.userId}`
@@ -296,7 +295,6 @@ const Video = () => {
     };
     fetchData();
   }, [path, dispatch]);
-
 
   // UPDATED
   return (
