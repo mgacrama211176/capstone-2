@@ -1,8 +1,8 @@
 // import mongoose from "mongoose";
-import UserModel from '../models/User.js';
-import bcrypt from 'bcrypt';
-import { createError } from '../error.js';
-import jwt from 'jsonwebtoken';
+import UserModel from "../models/User.js";
+import bcrypt from "bcrypt";
+import { createError } from "../error.js";
+import jwt from "jsonwebtoken";
 
 export const signup = async (request, response, next) => {
   try {
@@ -26,22 +26,22 @@ export const signIn = async (request, response, next) => {
   try {
     const user = await UserModel.findOne({ email: request.body.email });
     if (!user) {
-      return next(createError(404, 'User not found'));
+      return next(createError(404, "User not found"));
     } else {
       const checkPassword = await bcrypt.compare(
         request.body.password,
         user.password
       );
       if (!checkPassword) {
-        return next(createError(401, 'Incorrect password'));
+        return next(createError(401, "Incorrect password"));
       } else {
         const token = jwt.sign({ id: user._id }, process.env.JWT);
         const { password, ...others } = user._doc;
 
         response
-          .cookie('access_token', token, { httpOnly: true })
+          .cookie("access_token", token, { httpOnly: true })
           .status(200)
-          .json(others);
+          .json([others, token]);
       }
     }
   } catch (err) {
@@ -55,7 +55,7 @@ export const googleSignIn = async (request, response, next) => {
     if (user) {
       const token = jwt.sign({ id: user._id }, process.env.JWT);
       response
-        .cookie('access_token', token, { httpOnly: true })
+        .cookie("access_token", token, { httpOnly: true })
         .status(200)
         .json(user._doc);
     } else {
@@ -66,7 +66,7 @@ export const googleSignIn = async (request, response, next) => {
       const savedUser = await NewUser.save();
       const token = jwt.sign({ id: savedUser._id }, process.env.JWT);
       response
-        .cookie('access_token', token, { httpOnly: true })
+        .cookie("access_token", token, { httpOnly: true })
         .status(200)
         .json(savedUser._doc);
     }

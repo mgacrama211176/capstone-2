@@ -27,6 +27,9 @@ import { Link } from "react-router-dom";
 import { userNotFound, incorrectPassword, blank } from "../components/Toasts";
 import { toast, ToastContainer } from "react-toastify";
 
+//js-cookie
+import Cookies from "js-cookie";
+
 const Container = styled.div`
   display: flex;
   align-items: center;
@@ -177,8 +180,6 @@ const Signin = () => {
   });
   const dispatch = useDispatch();
 
-  const [loggedUser, setLoggedUser] = useState("");
-
   const onChangeHandle = (e) => {
     const newUser = { ...user };
     newUser[e.target.id] = e.target.value;
@@ -204,10 +205,11 @@ const Signin = () => {
           }
         });
 
-      console.log(login.data);
-      setLoggedUser(login.data);
-      dispatch(loginSuccess(login.data));
-      nav("/");
+      console.log(login);
+      dispatch(loginSuccess(login.data[0]));
+      // nav("/");
+      // Cookies.get("");
+      Cookies.set("access_token", login.data[1]);
     } catch (err) {
       dispatch(loginFailed);
     }
