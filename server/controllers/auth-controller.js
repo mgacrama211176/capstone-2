@@ -2,8 +2,6 @@
 import UserModel from "../models/User.js";
 import bcrypt from "bcrypt";
 import { createError } from "../error.js";
-import jwt from "jsonwebtoken";
-
 export const signup = async (request, response, next) => {
   try {
     const salt = bcrypt.genSaltSync(10);
@@ -35,13 +33,9 @@ export const signIn = async (request, response, next) => {
       if (!checkPassword) {
         return next(createError(401, "Incorrect password"));
       } else {
-        const token = jwt.sign({ id: user._id }, process.env.JWT);
         const { password, ...others } = user._doc;
-
-        response
-          .cookie("access_token", token, { httpOnly: true })
-          .status(200)
-          .json([others, token]);
+        console.log(user);
+        response.status(200).json([others]);
       }
     }
   } catch (err) {
@@ -53,7 +47,6 @@ export const googleSignIn = async (request, response, next) => {
   try {
     const user = await UserModel.findOne({ email: request.body.email });
     if (user) {
-      const token = jwt.sign({ id: user._id }, process.env.JWT);
       response
         .cookie("access_token", token, { httpOnly: true })
         .status(200)
@@ -64,11 +57,7 @@ export const googleSignIn = async (request, response, next) => {
         fromGoogle: true,
       });
       const savedUser = await NewUser.save();
-      const token = jwt.sign({ id: savedUser._id }, process.env.JWT);
-      response
-        .cookie("access_token", token, { httpOnly: true })
-        .status(200)
-        .json(savedUser._doc);
+      response.status(200).json(savedUser._doc);
     }
   } catch (err) {
     next(err);

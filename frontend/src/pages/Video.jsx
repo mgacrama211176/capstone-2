@@ -25,7 +25,8 @@ import { format } from "timeago.js";
 import { current } from "@reduxjs/toolkit";
 
 //TOAST
-import { loginRequired } from "../components/Toasts";
+import { loginRequired, Liked, Disliked } from "../components/Toasts";
+import { ToastContainer } from "react-toastify";
 
 const Container = styled.div`
   display: flex;
@@ -302,18 +303,26 @@ const Video = () => {
   }, [path, dispatch]);
 
   const likeHandler = async () => {
-    const like = await axios.put(
-      `http://localhost:4000/api/users/like/${currentVideo._id}`
-    );
+    if (currentUser === null) {
+      loginRequired();
+    } else {
+      const like = await axios.put(
+        `http://localhost:4000/api/users/like/${currentUser._id}/${currentVideo._id}`
+      );
+      Liked();
+    }
   };
 
   const dislikeHandler = async () => {
-    await axios.put(
-      `http://localhost:4000/api/users/dislike/${currentVideo._id}`
-    );
+    if (currentUser === null) {
+      loginRequired();
+    } else {
+      await axios.put(
+        `http://localhost:4000/api/users/dislike/${currentUser._id}/${currentVideo._id}`
+      );
+      Disliked();
+    }
   };
-
-  console.log(currentUser._id);
 
   // console.log(currentUser);
   return (
@@ -323,6 +332,17 @@ const Video = () => {
       exit={{ opcaity: 0 }}
     >
       <Container>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <Content>
           <VideoWrapper>
             <Iframe src={currentVideo?.videoUrl}></Iframe>
@@ -347,29 +367,14 @@ const Video = () => {
                   {currentVideo?.likes?.length}
                 </Like>
 
-                {/* {currentUser === null ? (
-                  <Like onClick={likeHandler}>
-                    <ThumbUpIcon />
-                  </Like>
-                ) : (
-                  <Like onClick={likeHandler}>
-                    {currentVideo.likes?.includes(currentUser._id) ? (
-                      <ThumbUpIcon style={{ color: '#0675e8' }} />
-                    ) : (
-                      <ThumbUpIcon />
-                    )}
-                    {currentVideo.likes?.length}
-                  </Like>
-                )} */}
-
-                {/* <Dislike onClick={dislikeHandler}>
-                  {currentVideo.dislikes?.includes(currentUser._id) ? (
-                    <ThumbDownIcon style={{ color: '#red' }} />
+                <Dislike onClick={dislikeHandler}>
+                  {currentVideo.dislikes?.includes(currentUser?._id) ? (
+                    <ThumbDownIcon style={{ color: "#red" }} />
                   ) : (
                     <ThumbDownIcon />
                   )}
                   Dislike
-                </Dislike> */}
+                </Dislike>
 
                 <Share>
                   <ScreenShareIcon />

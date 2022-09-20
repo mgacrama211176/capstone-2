@@ -1,4 +1,4 @@
-import express from 'express';
+import express from "express";
 import {
   addVideo,
   addView,
@@ -10,20 +10,19 @@ import {
   sub,
   trend,
   updateVideo,
-} from '../controllers/video-controller.js';
-import { verifyToken } from '../verifyToken.js';
+} from "../controllers/video-controller.js";
 
 const router = express();
 
-router.post('/', verifyToken, addVideo);
-router.put('/:id', verifyToken, updateVideo);
-router.delete('/:id', verifyToken, deleteVideo);
-router.get('/find/:id', getVideo);
-router.put('/view/:id', addView);
-router.get('/trend', trend);
-router.get('/random', random);
-router.get('/sub', verifyToken, sub);
-router.get('/tags', verifyToken, getByTag);
-router.get('/search', search);
+router.post("/", addVideo);
+router.put("/:id", updateVideo);
+router.delete("/:id", deleteVideo);
+router.get("/find/:id", getVideo);
+router.put("/view/:id", addView);
+router.get("/trend", trend);
+router.get("/random", random);
+router.get("/sub", sub);
+router.get("/tags", getByTag);
+router.get("/search", search);
 
 export default router;

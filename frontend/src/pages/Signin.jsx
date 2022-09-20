@@ -25,7 +25,7 @@ import { Link } from "react-router-dom";
 
 //Toastify
 import { userNotFound, incorrectPassword, blank } from "../components/Toasts";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 //js-cookie
 import Cookies from "js-cookie";
@@ -207,8 +207,7 @@ const Signin = () => {
 
       console.log(login);
       dispatch(loginSuccess(login.data[0]));
-      // nav("/");
-      // Cookies.get("");
+      nav("/");
       Cookies.set("access_token", login.data[1]);
     } catch (err) {
       dispatch(loginFailed);
