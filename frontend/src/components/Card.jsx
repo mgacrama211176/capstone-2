@@ -145,6 +145,8 @@ const Card = ({ type, video }) => {
     fetchingChannel();
   }, [video.userId]);
 
+  console.log(video.userId);
+
   const path = useLocation();
   return (
     <Link to={`/video/${video._id}`} style={{ textDecoration: 'none' }}>

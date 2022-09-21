@@ -1,4 +1,5 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -37,21 +38,28 @@ const Text = styled.span`
   font-size: 14px;
 `;
 
-const CommentsBox = () => {
+const CommentsBox = ({ comment }) => {
+  const [channel, setChannel] = useState({});
+
+  useEffect(() => {
+    const fetchComments = async () => {
+      const responseToComments = await axios.get(
+        `http://localhost:4000/api/users/find/${comment.userId}`
+      );
+      setChannel(responseToComments.data);
+    };
+    fetchComments();
+  }, [comment.userId]);
+
   return (
     <Container>
-      <Avatar src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350" />
+      <Avatar src={channel?.image} />
       <Details>
         <Name>
-          test 1 |<Date>1 Day ago</Date>
+          {channel?.username} |<Date>1 Day ago</Date>
         </Name>
 
-        <Text>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam,
-          tempora pariatur expedita recusandae modi possimus suscipit odit,
-          consequuntur molestiae quas accusamus laborum at praesentium eaque
-          iure. Veniam impedit nulla amet.
-        </Text>
+        <Text>{comment.desc}</Text>
       </Details>
     </Container>
   );

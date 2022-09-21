@@ -1,9 +1,9 @@
-import { createError } from "../error.js";
-import User from "../models/User.js";
-import Video from "../models/Video.js";
-import crypto from "crypto";
-import nodemailer from "nodemailer";
-import bcrypt from "bcrypt";
+import { createError } from '../error.js';
+import User from '../models/User.js';
+import Video from '../models/Video.js';
+import crypto from 'crypto';
+import nodemailer from 'nodemailer';
+import bcrypt from 'bcrypt';
 
 //localhost:3000/api/users/UserID with body
 export const update = async (request, response, next) => {
@@ -19,7 +19,7 @@ export const update = async (request, response, next) => {
       response.status(200).json(updatedUser);
     } catch (err) {}
   } else {
-    return next(createError(403, "You can only update your account!"));
+    return next(createError(403, 'You can only update your account!'));
   }
 };
 
@@ -28,10 +28,10 @@ export const deleteUser = async (request, response, next) => {
   if (request.params.id) {
     try {
       const deleteUser = await User.findByIdAndDelete(request.params.id);
-      response.status(200).json("User Deleted");
+      response.status(200).json('User Deleted');
     } catch (err) {}
   } else {
-    return next(createError(403, "You can only delete your account!"));
+    return next(createError(403, 'You can only delete your account!'));
   }
 };
 
@@ -49,7 +49,7 @@ export const getUser = async (request, response, next) => {
 //finding userInfo for resetting the password then send email for bcrypt
 export const getAllUser = async (request, response, next) => {
   try {
-    const token = crypto.randomBytes(20).toString("hex");
+    const token = crypto.randomBytes(20).toString('hex');
     const user = await User.findOneAndUpdate(
       { email: request.params.email },
       {
@@ -62,13 +62,13 @@ export const getAllUser = async (request, response, next) => {
     response.status(200).json(user);
 
     const transporter = nodemailer.createTransport({
-      host: "smtp.mail.yahoo.com",
+      host: 'smtp.mail.yahoo.com',
       port: 465,
-      service: "yahoo",
+      service: 'yahoo',
       secure: false,
       auth: {
-        user: "mrln_gcrm@yahoo.com",
-        pass: "cunpdabriiaimtpi",
+        user: 'mrln_gcrm@yahoo.com',
+        pass: 'cunpdabriiaimtpi',
       },
       debug: false,
       logger: true,
@@ -77,9 +77,9 @@ export const getAllUser = async (request, response, next) => {
     // console.log(transporter);
 
     const mailOptions = {
-      from: "mrln_gcrm@yahoo.com",
+      from: 'mrln_gcrm@yahoo.com',
       to: request.params.email,
-      subject: "FilAnime Password Reset link",
+      subject: 'FilAnime Password Reset link',
       text:
         `You are receiving this email because you (or someone else) have requested to reset the password on your account. \n \n` +
         `Please click on the link below or paste this into your browser to complete the process within one hour of receiving it: \n \n` +
@@ -89,14 +89,14 @@ export const getAllUser = async (request, response, next) => {
 
     // console.log(mailOptions);
 
-    console.log("Sending Email");
+    console.log('Sending Email');
 
     transporter.sendMail(mailOptions, (err, info) => {
       if (err) {
-        console.error("there was an error: ", err);
+        console.error('there was an error: ', err);
       } else {
-        console.log("here is the response: ", info);
-        response.status(200).json("Email sent!");
+        console.log('here is the response: ', info);
+        response.status(200).json('Email sent!');
       }
     });
   } catch (err) {
@@ -120,36 +120,40 @@ export const resetPassword = async (request, response, next) => {
   }
 };
 
-//localhost:3000/api/users/sub/UserID to search
+//localhost:4000/api/users/sub/:currentUserId/:Channel
 export const subscribe = async (request, response, next) => {
+  const currentUser = request.params.currentUserId;
+  const currentChannel = request.params.currentChannelId;
+  // console.log(
+  //   `currentUserId: ${currentUser} currentVideoID: ${currentChannel}`
+  // );
   try {
-    await User.findByIdAndUpdate(request.user.id, {
-      $push: { subscribedUsers: request.params.id },
+    const pushed = await User.findByIdAndUpdate(currentUser, {
+      $push: { subscribedUsers: currentChannel },
     });
-    await User.findByIdAndUpdate(request.params.id, {
+    console.log(pushed);
+    await User.findByIdAndUpdate(currentChannel, {
       $inc: { subscribers: 1 },
     });
 
-    response.status(200).json("Subscribed successfull");
+    response.status(200).json('Subscribed successfull');
   } catch (err) {
     next(err);
   }
 };
 
-//localhost:3000/api/users/unsub/UserID to search
+//localhost:4000/api/users/unsub/:currentUserId/:Channel
 export const unsubscribe = async (request, response, next) => {
+  const currentUser = request.params.currentUserId;
+  const currentChannel = request.params.currentChannelId;
   try {
-    try {
-      await User.findByIdAndUpdate(request.params.id, {
-        $pull: { subscribedUsers: request.params.id },
-      });
-      await User.findByIdAndUpdate(request.params.id, {
-        $inc: { subscribers: -1 },
-      });
-      response.status(200).json("User Unsubscribed");
-    } catch (err) {
-      next(err);
-    }
+    await User.findByIdAndUpdate(currentUser, {
+      $pull: { subscribedUsers: currentChannel },
+    });
+    await User.findByIdAndUpdate(currentChannel, {
+      $inc: { subscribers: -1 },
+    });
+    response.status(200).json('User Unsubscribed');
   } catch (err) {
     next(err);
   }

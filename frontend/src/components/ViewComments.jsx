@@ -1,5 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import CommentsBox from './CommentsBox';
+import axios from 'axios';
+
+//MUI
+import SendIcon from '@mui/icons-material/Send';
 
 const Container = styled.div``;
 
@@ -25,13 +31,36 @@ const Input = styled.input`
   color: ${({ theme }) => theme.titleColor};
 `;
 
-const ViewComments = () => {
+const ViewComments = ({ videoId }) => {
+  const [comments, setComments] = useState([]);
+
+  const { currentUser } = useSelector((state) => state.username);
+
+  useEffect(() => {
+    const fetchComments = async () => {
+      const responseComments = await axios.get(
+        `http://localhost:4000/api/comments/${videoId}`
+      );
+      console.log(responseComments.data);
+      setComments(responseComments.data);
+    };
+    fetchComments();
+  }, [videoId]);
+
+  const addComment = async () => {
+    const newComment = await axios.get(``);
+  };
+
   return (
     <Container>
       <NewComment>
-        <Avatar src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350" />
+        <Avatar src={currentUser.image} />
         <Input placeholder="Add new comment" />
+        <SendIcon style={{ cursor: 'pointer' }} />
       </NewComment>
+      {comments.map((comment) => (
+        <CommentsBox key={comment._id} comment={comment} />
+      ))}
     </Container>
   );
 };

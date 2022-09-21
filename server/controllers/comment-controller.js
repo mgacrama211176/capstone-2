@@ -4,9 +4,11 @@ import VideoModel from '../models/Video.js';
 
 //localhost:3000/api/comments
 export const addComment = async (request, response, next) => {
+  const currentUser = request.params.currentUser;
+  console.log(currentUser);
   const newComment = new CommentModel({
     ...request.body,
-    userId: request.user.id,
+    userId: currentUser,
   });
   try {
     const savedComment = await newComment.save();

@@ -1,37 +1,42 @@
-import React, { useState, useEffect } from "react";
-import styled, { css } from "styled-components";
-import CommentsBox from "../components/CommentsBox";
-import ViewComments from "../components/ViewComments";
-import Card from "../components/Card";
+import React, { useState, useEffect } from 'react';
+import styled, { css } from 'styled-components';
+import CommentsBox from '../components/CommentsBox';
+import ViewComments from '../components/ViewComments';
+import Card from '../components/Card';
 //MUI
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import ThumbDownIcon from "@mui/icons-material/ThumbDown";
-import ScreenShareIcon from "@mui/icons-material/ScreenShare";
-import SaveAltIcon from "@mui/icons-material/SaveAlt";
-import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import ScreenShareIcon from '@mui/icons-material/ScreenShare';
+import SaveAltIcon from '@mui/icons-material/SaveAlt';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 
 //framer motion
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
 //Media Queries
-import { device } from "../media";
+import { device } from '../media';
 
 //redux
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
-import axios from "axios";
-import { FetchSuccess } from "../redux/videoSlice";
-import { format } from "timeago.js";
-import { current } from "@reduxjs/toolkit";
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
+import {
+  FetchSuccess,
+  LikeFunction,
+  DislikeFunction,
+} from '../redux/videoSlice';
+import { subscription } from '../redux/userSlice';
+import { format } from 'timeago.js';
+import { current } from '@reduxjs/toolkit';
 
 //TOAST
-import { loginRequired, Liked, Disliked } from "../components/Toasts";
-import { ToastContainer } from "react-toastify";
+import { loginRequired, Liked, Disliked } from '../components/Toasts';
+import { ToastContainer } from 'react-toastify';
 
 const Container = styled.div`
   display: flex;
   gap: 24px;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   max-width: 100vw;
 `;
 
@@ -46,11 +51,12 @@ const VideoWrapper = styled.div`
   max-width: 100vw;
 `;
 
-const Iframe = styled.iframe`
+const VideoFrame = styled.video`
+  max-height: 720px;
   margin-top: 10px;
   border: none;
   width: 100%;
-  height: 30vh;
+  object-fit: cover;
 `;
 
 const VideoInformationContainer = styled.div`
@@ -122,7 +128,6 @@ const Dislike = styled.div`
   transition: transform 0.2s;
   &:hover {
     color: red;
-
     transform: scale(1.1);
   }
 `;
@@ -280,7 +285,7 @@ const Video = () => {
   const { currentVideo } = useSelector((state) => state.video);
 
   const dispatch = useDispatch();
-  const path = useLocation().pathname.split("/")[2];
+  const path = useLocation().pathname.split('/')[2];
   const [channel, setChannel] = useState({});
 
   useEffect(() => {
@@ -309,6 +314,7 @@ const Video = () => {
       const like = await axios.put(
         `http://localhost:4000/api/users/like/${currentUser._id}/${currentVideo._id}`
       );
+      dispatch(LikeFunction(currentUser._id));
       Liked();
     }
   };
@@ -320,11 +326,22 @@ const Video = () => {
       await axios.put(
         `http://localhost:4000/api/users/dislike/${currentUser._id}/${currentVideo._id}`
       );
+      dispatch(DislikeFunction(currentUser._id));
       Disliked();
     }
   };
 
-  // console.log(currentUser);
+  const subscribeHandler = async () => {
+    currentUser.subscribedUsers.includes(channel._id)
+      ? await axios.put(
+          `http://localhost:4000/api/users/unsub/${currentUser._id}/${channel._id}`
+        )
+      : await axios.put(
+          `http://localhost:4000/api/users/sub/${currentUser._id}/${channel._id}`
+        );
+    dispatch(subscription(channel._id));
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -345,7 +362,7 @@ const Video = () => {
         />
         <Content>
           <VideoWrapper>
-            <Iframe src={currentVideo?.videoUrl}></Iframe>
+            <VideoFrame src={currentVideo?.videoUrl}></VideoFrame>
           </VideoWrapper>
 
           <VideoInformationContainer>
@@ -360,7 +377,7 @@ const Video = () => {
                   {currentUser === null ? (
                     <ThumbUpIcon />
                   ) : currentVideo?.likes?.includes(currentUser._id) ? (
-                    <ThumbUpIcon style={{ color: "#0675e8" }} />
+                    <ThumbUpIcon style={{ color: '#0675e8' }} />
                   ) : (
                     <ThumbUpIcon />
                   )}
@@ -368,8 +385,8 @@ const Video = () => {
                 </Like>
 
                 <Dislike onClick={dislikeHandler}>
-                  {currentVideo.dislikes?.includes(currentUser?._id) ? (
-                    <ThumbDownIcon style={{ color: "#red" }} />
+                  {currentVideo?.dislikes.includes(currentUser?._id) ? (
+                    <ThumbDownIcon style={{ color: '#red' }} />
                   ) : (
                     <ThumbDownIcon />
                   )}
@@ -395,9 +412,11 @@ const Video = () => {
                 </ChannelDetail>
               </ChannelInfo>
 
-              <Subscribe>
+              <Subscribe onClick={subscribeHandler}>
                 <NotificationsActiveIcon />
-                SUBSCRIBE
+                {currentUser.subscribedUsers?.includes(channel._id)
+                  ? 'SUBSCRIBED'
+                  : 'SUBSCRIBE'}
               </Subscribe>
             </Channel>
             <Description>{currentVideo?.desc}</Description>
@@ -406,17 +425,7 @@ const Video = () => {
 
             <Recommendation>{/* <Card type="sm" /> */}</Recommendation>
             <Hr />
-            <ViewComments></ViewComments>
-
-            <CommentsBox />
-            <CommentsBox />
-            <CommentsBox />
-            <CommentsBox />
-            <CommentsBox />
-            <CommentsBox />
-            <CommentsBox />
-            <CommentsBox />
-            <CommentsBox />
+            <ViewComments videoId={currentVideo._id} />
           </VideoInformationContainer>
         </Content>
       </Container>
