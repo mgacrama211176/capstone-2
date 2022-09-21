@@ -1,18 +1,20 @@
-import { createError } from '../error.js';
-import CommentModel from '../models/Comments.js';
-import VideoModel from '../models/Video.js';
+import { createError } from "../error.js";
+import CommentModel from "../models/Comments.js";
+import VideoModel from "../models/Video.js";
 
-//localhost:3000/api/comments
+//localhost:3000/api/comments/CurrentUser
 export const addComment = async (request, response, next) => {
   const currentUser = request.params.currentUser;
-  console.log(currentUser);
+  const currentVideo = request.params.currentVideo;
+  const desc = request.body.desc;
+
   const newComment = new CommentModel({
-    ...request.body,
+    desc: desc,
     userId: currentUser,
+    videoId: currentVideo,
   });
   try {
     const savedComment = await newComment.save();
-
     console.log(savedComment);
     response.status(200).json(savedComment);
   } catch (err) {
@@ -30,7 +32,7 @@ export const deleteComment = async (request, response, next) => {
       request.user.id === video.userId
     ) {
       await CommentModel.findByIdAndDelete(request.params.id);
-      response.status(200).json('Comment Deleted!');
+      response.status(200).json("Comment Deleted!");
     } else {
       return next(
         createError(
