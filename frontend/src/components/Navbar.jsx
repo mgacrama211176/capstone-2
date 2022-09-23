@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import logoImg from '../assets/Logo.png';
@@ -52,14 +52,14 @@ const Img = styled.img`
 `;
 
 const Search = styled.div`
-  position: absolute;
+  position: relative;
   left: 0px;
   right: 0;
   margin: auto;
   width: 50%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   padding: 5px;
   border: 1px solid #b2792d;
   border-radius: 5px;
@@ -102,14 +102,6 @@ const Button = styled.button`
   }
 `;
 
-const User = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 500;
-  color: ${({ theme }) => theme.text};
-`;
-
 const Avatar = styled.img`
   width: 32px;
   height: 32px;
@@ -117,7 +109,21 @@ const Avatar = styled.img`
   background-color: #999;
 `;
 
+const Upload = styled.div`
+  color: white;
+`;
+
 const Navbar = ({ setOpen, setClose }) => {
+  const [display, setDisplay] = useState('block');
+
+  const User = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    color: ${({ theme }) => theme.text};
+  `;
+
   // THIS IS TO USE THE DATA ON REDUX
   const currentUser = useSelector((state) => state.username.currentUser);
   return (
@@ -134,6 +140,7 @@ const Navbar = ({ setOpen, setClose }) => {
             </Logo>
           </Link>
         </LeftContainer>
+
         <Search>
           <Input
             type="search"
@@ -145,15 +152,22 @@ const Navbar = ({ setOpen, setClose }) => {
         </Search>
 
         {currentUser ? (
-          <Link
-            to={`/profile/${currentUser._id}`}
-            style={{ textDecoration: 'none' }}
-          >
-            <User>
-              {currentUser.username}
-              <Avatar src={currentUser.image} />
-            </User>
-          </Link>
+          <>
+            <Link
+              to={`/profile/${currentUser._id}`}
+              style={{ textDecoration: 'none' }}
+            >
+              <User>
+                {currentUser.username}
+                <Avatar src={currentUser.image} />
+              </User>
+            </Link>
+
+            <Upload>
+              <VideoCallIcon style={{ cursor: 'pointer', margin: '10px' }} />
+              Upload Video
+            </Upload>
+          </>
         ) : (
           <Link to="/signin" style={{ textDecoration: 'none' }}>
             <Button>
