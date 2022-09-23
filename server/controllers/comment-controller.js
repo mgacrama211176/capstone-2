@@ -8,17 +8,17 @@ export const addComment = async (request, response, next) => {
   const currentVideo = request.params.currentVideo;
   const desc = request.body.desc;
 
-  const newComment = new CommentModel({
-    desc: desc,
-    userId: currentUser,
-    videoId: currentVideo,
-  });
   try {
+    const newComment = new CommentModel({
+      userId: currentUser,
+      videoId: currentVideo,
+      desc: desc,
+    });
     const savedComment = await newComment.save();
     console.log(savedComment);
     response.status(200).json(savedComment);
   } catch (err) {
-    next(err);
+    console.log(err);
   }
 };
 
