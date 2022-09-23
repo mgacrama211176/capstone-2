@@ -58,6 +58,8 @@ const ViewComments = ({ videoId }) => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+    console.log(currentUser._id);
+    console.log(videoId);
     try {
       const currentUserComment = await axios.post(
         `http://localhost:4000/api/comments/${currentUser._id}/${videoId}`,
