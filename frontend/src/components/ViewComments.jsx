@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import styled from "styled-components";
-import CommentsBox from "./CommentsBox";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import styled from 'styled-components';
+import CommentsBox from './CommentsBox';
+import axios from 'axios';
 
 //MUI
-import SendIcon from "@mui/icons-material/Send";
+import SendIcon from '@mui/icons-material/Send';
 
 const Container = styled.div``;
 
@@ -46,7 +46,7 @@ const ViewComments = ({ videoId }) => {
     fetchComments();
   }, [videoId]);
 
-  const [newComment, setNewComment] = useState("");
+  const [newComment, setNewComment] = useState('');
 
   const onChangeHandler = (e) => {
     const latestComment = { ...newComment };
@@ -54,7 +54,7 @@ const ViewComments = ({ videoId }) => {
 
     setNewComment(latestComment);
   };
-  console.log(newComment);
+  console.log(newComment.comment);
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -64,7 +64,7 @@ const ViewComments = ({ videoId }) => {
       const currentUserComment = await axios.post(
         `http://localhost:4000/api/comments/${currentUser._id}/${videoId}`,
         {
-          desc: newComment,
+          desc: newComment.comment,
         }
       );
 
@@ -85,7 +85,7 @@ const ViewComments = ({ videoId }) => {
           id="comment"
           type="text"
         />
-        <SendIcon style={{ cursor: "pointer" }} onClick={onSubmitHandler} />
+        <SendIcon style={{ cursor: 'pointer' }} onClick={onSubmitHandler} />
       </NewComment>
       {comments.map((comment) => (
         <CommentsBox key={comment._id} comment={comment} />

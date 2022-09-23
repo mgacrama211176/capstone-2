@@ -53,7 +53,7 @@ const CommentsBox = ({ comment }) => {
 
   return (
     <Container>
-      <Avatar src={channel?.image} />
+      <Avatar src={channel.image} />
       <Details>
         <Name>
           {channel?.username} |<Date>1 Day ago</Date>
