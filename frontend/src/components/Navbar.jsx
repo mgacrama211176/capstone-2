@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import logoImg from '../assets/Logo.png';
 import { device } from '../media';
 import { useSelector } from 'react-redux';
+import Upload from '../components/Upload';
 
 //MUI
 import PersonPinIcon from '@mui/icons-material/PersonPin';
@@ -24,7 +25,6 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
-
   justify-content: space-between;
   position: relative;
   width: 100%;
@@ -109,7 +109,7 @@ const Avatar = styled.img`
   background-color: #999;
 `;
 
-const Upload = styled.div`
+const UploadButton = styled.div`
   color: white;
 `;
 
@@ -124,60 +124,69 @@ const Navbar = ({ setOpen, setClose }) => {
     color: ${({ theme }) => theme.text};
   `;
 
+  const [openModal, setOpenModal] = useState(false);
+
+  const uploadVideo = () => {};
+
   // THIS IS TO USE THE DATA ON REDUX
   const currentUser = useSelector((state) => state.username.currentUser);
   return (
-    <Container>
-      <Wrapper>
-        <LeftContainer>
-          <Burger onClick={setOpen}>
-            <MenuIcon />
-          </Burger>
+    <>
+      <Container>
+        <Wrapper>
+          <LeftContainer>
+            <Burger onClick={setOpen}>
+              <MenuIcon />
+            </Burger>
 
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            <Logo>
-              <Img src={logoImg} />
-            </Logo>
-          </Link>
-        </LeftContainer>
-
-        <Search>
-          <Input
-            type="search"
-            name="search"
-            id="search"
-            placeholder="Search..."
-          />
-          <SearchIcon />
-        </Search>
-
-        {currentUser ? (
-          <>
-            <Link
-              to={`/profile/${currentUser._id}`}
-              style={{ textDecoration: 'none' }}
-            >
-              <User>
-                {currentUser.username}
-                <Avatar src={currentUser.image} />
-              </User>
+            <Link to="/" style={{ textDecoration: 'none' }}>
+              <Logo>
+                <Img src={logoImg} />
+              </Logo>
             </Link>
+          </LeftContainer>
 
-            <Upload>
-              <VideoCallIcon style={{ cursor: 'pointer', margin: '10px' }} />
-              Upload Video
-            </Upload>
-          </>
-        ) : (
-          <Link to="/signin" style={{ textDecoration: 'none' }}>
-            <Button>
-              <PersonPinIcon />
-              Sign In
-            </Button>
-          </Link>
-        )}
-      </Wrapper>
-    </Container>
+          <Search>
+            <Input
+              type="search"
+              name="search"
+              id="search"
+              placeholder="Search..."
+            />
+            <SearchIcon />
+          </Search>
+
+          <UploadButton>
+            <VideoCallIcon
+              style={{ cursor: 'pointer', margin: '10px' }}
+              onClick={() => setOpenModal(true)}
+            />
+          </UploadButton>
+
+          {currentUser ? (
+            <>
+              <Link
+                to={`/profile/${currentUser._id}`}
+                style={{ textDecoration: 'none' }}
+              >
+                <User>
+                  {currentUser.username}
+                  <Avatar src={currentUser.image} />
+                </User>
+              </Link>
+            </>
+          ) : (
+            <Link to="/signin" style={{ textDecoration: 'none' }}>
+              <Button>
+                <PersonPinIcon />
+                Sign In
+              </Button>
+            </Link>
+          )}
+        </Wrapper>
+      </Container>
+      {openModal && <Upload setOpenModal={setOpenModal} />}
+    </>
   );
 };
 
