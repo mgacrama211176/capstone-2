@@ -83,3 +83,26 @@ export const Uploaded = () => {
     progress: undefined,
   });
 };
+export const CommentSuccess = () => {
+  toast.success("Comment Added!", {
+    position: "top-right",
+    autoClose: 1000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+};
+
+export const SubscribeErrorNotif = () => {
+  toast.error("You can't follow your own channel!", {
+    position: "top-right",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+};

@@ -30,7 +30,6 @@ const TimelineItem = styled.div`
 
 const CustomTimeLine = () => {
   const currentUser = useSelector((state) => state.username.currentUser);
-  console.log(currentUser);
   return (
     <Timeline>
       <TimelineItem>
@@ -39,7 +38,7 @@ const CustomTimeLine = () => {
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>
-          User Category: <p>{currentUser.userCategory}</p>
+          User Category: <p>{currentUser?.userCategory}</p>
         </TimelineContent>
       </TimelineItem>
 
@@ -49,7 +48,7 @@ const CustomTimeLine = () => {
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>
-          Email: <p>{currentUser.email}</p>
+          Email: <p>{currentUser?.email}</p>
         </TimelineContent>
       </TimelineItem>
 
@@ -58,17 +57,7 @@ const CustomTimeLine = () => {
           <TimelineDot />
         </TimelineSeparator>
         <TimelineContent>
-          Address: <p>{currentUser.address}</p>
-        </TimelineContent>
-      </TimelineItem>
-
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>
-          Subscribers: <p>{currentUser.subscribers}</p>
+          Address: <p>{currentUser?.address}</p>
         </TimelineContent>
       </TimelineItem>
 
@@ -78,7 +67,17 @@ const CustomTimeLine = () => {
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>
-          Subscribed Users: <p>{currentUser.subscribedUsers.length}</p>
+          Subscribers: <p>{currentUser?.subscribers}</p>
+        </TimelineContent>
+      </TimelineItem>
+
+      <TimelineItem>
+        <TimelineSeparator>
+          <TimelineDot />
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent>
+          Subscribed Users: <p>{currentUser?.subscribedUsers.length}</p>
         </TimelineContent>
       </TimelineItem>
     </Timeline>

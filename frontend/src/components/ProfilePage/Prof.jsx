@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Shots from "../../assets/Shots.jpg";
 import TimeLine from "./TimeLine";
+import { useLocation, useParams } from "react-router-dom";
 
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 const Profile = styled.div`
   background-color: white;
@@ -41,20 +43,57 @@ const TypoTitle = styled.p`
 `;
 
 const Prof = () => {
+  let { id } = useParams();
+
+  const [retrivedUser, setRetrievedUser] = useState({});
+
+  useEffect(() => {
+    const getProfile = async () => {
+      const profile = await axios.get(
+        `http://localhost:4000/api/users/find/${id}`
+      );
+      setRetrievedUser(profile.data);
+    };
+    getProfile();
+  }, [id]);
+
+  console.log(retrivedUser);
+
   const currentUser = useSelector((state) => state.username.currentUser);
   return (
-    <Profile>
-      <ProfileName>
-        <TypoName>{currentUser.username}</TypoName>
-        <TypoTitle>{currentUser.email}</TypoTitle>
-      </ProfileName>
-      <ImgCon>
-        <Pimg src={currentUser.image}></Pimg>
-      </ImgCon>
-      <Pinfo>
-        <TimeLine />
-      </Pinfo>
-    </Profile>
+    <>
+      <Profile>
+        {retrivedUser._id ? (
+          <>
+            {" "}
+            <ProfileName>
+              <TypoName>{retrivedUser?.username}</TypoName>
+              <TypoTitle>{retrivedUser?.email}</TypoTitle>
+            </ProfileName>
+            <ImgCon>
+              <Pimg src={retrivedUser?.image}></Pimg>
+            </ImgCon>
+            <Pinfo>
+              <TimeLine />
+            </Pinfo>
+          </>
+        ) : (
+          <>
+            {" "}
+            <ProfileName>
+              <TypoName>{currentUser?.username}</TypoName>
+              <TypoTitle>{currentUser?.email}</TypoTitle>
+            </ProfileName>
+            <ImgCon>
+              <Pimg src={currentUser?.image}></Pimg>
+            </ImgCon>
+            <Pinfo>
+              <TimeLine />
+            </Pinfo>
+          </>
+        )}
+      </Profile>
+    </>
   );
 };
 

@@ -4,6 +4,9 @@ import styled from "styled-components";
 import CommentsBox from "./CommentsBox";
 import axios from "axios";
 
+//TOAST
+import { CommentSuccess } from "./Toasts";
+
 //MUI
 import SendIcon from "@mui/icons-material/Send";
 
@@ -49,9 +52,8 @@ const ViewComments = ({ videoId }) => {
   const [newComment, setNewComment] = useState("");
 
   const onChangeHandler = (e) => {
-    const latestComment = { ...newComment };
-    latestComment[e.target.id] = e.target.value;
-
+    const latestComment = ([e.target.id] = e.target.value);
+    console.log(latestComment);
     setNewComment(latestComment);
   };
 
@@ -63,9 +65,11 @@ const ViewComments = ({ videoId }) => {
       const currentUserComment = await axios.post(
         `http://localhost:4000/api/comments/${currentUser._id}/${videoId}`,
         {
-          desc: newComment.comment,
+          desc: newComment,
         }
       );
+      CommentSuccess();
+      setNewComment("");
 
       console.log(currentUserComment);
     } catch (err) {
@@ -85,6 +89,7 @@ const ViewComments = ({ videoId }) => {
             onChange={(e) => onChangeHandler(e)}
             id="comment"
             type="text"
+            value={newComment}
           />
           <SendIcon style={{ cursor: "pointer" }} onClick={onSubmitHandler} />
         </NewComment>

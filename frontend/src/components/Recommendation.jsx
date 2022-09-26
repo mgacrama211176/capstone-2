@@ -6,6 +6,8 @@ import Card from "./Card";
 
 const Container = styled.div`
   flex: 2;
+  display: flex;
+  flex-flow: wrap row;
 `;
 
 const Wrapper = styled.div``;

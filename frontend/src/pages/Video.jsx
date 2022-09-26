@@ -18,7 +18,7 @@ import { device } from "../media";
 
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import axios from "axios";
 import {
   FetchSuccess,
@@ -30,7 +30,12 @@ import { format } from "timeago.js";
 import { current } from "@reduxjs/toolkit";
 
 //TOAST
-import { loginRequired, Liked, Disliked } from "../components/Toasts";
+import {
+  loginRequired,
+  Liked,
+  Disliked,
+  SubscribeErrorNotif,
+} from "../components/Toasts";
 import { ToastContainer } from "react-toastify";
 
 const Container = styled.div`
@@ -164,18 +169,6 @@ const Hr = styled.hr`
   margin: 15px 0px;
   width: 100%;
 `;
-
-// const Recommendation = styled.div`
-//   display: flex;
-//   align-items: center;
-//   flex: 2;
-//   flex-direction: row;
-//   max-width: 100vw;
-//   gap: 3rem;
-
-//   overflow: auto;
-//   white-space: nowrap;
-// `;
 
 const Channel = styled.div`
   display: flex;
@@ -334,21 +327,25 @@ const Video = () => {
 
   const subscribeHandler = async () => {
     try {
-      currentUser.subscribedUsers.includes(channel._id)
-        ? await axios.put(
-            `http://localhost:4000/api/users/unsub/${currentUser._id}/${channel._id}`
-          )
-        : await axios.put(
-            `http://localhost:4000/api/users/sub/${currentUser._id}/${channel._id}`
-          );
-      dispatch(subscription(channel._id));
+      if (currentUser._id === channel._id) {
+        SubscribeErrorNotif();
+      } else {
+        currentUser.subscribedUsers.includes(channel._id)
+          ? await axios.put(
+              `http://localhost:4000/api/users/unsub/${currentUser._id}/${channel._id}`
+            )
+          : await axios.put(
+              `http://localhost:4000/api/users/sub/${currentUser._id}/${channel._id}`
+            );
+        dispatch(subscription(channel._id));
+      }
     } catch (err) {
       loginRequired();
     }
   };
 
-  // console.log(currentVideo.tags);
-
+  const channelContainer = channel._id;
+  console.log(channelContainer);
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -410,7 +407,9 @@ const Video = () => {
             <Hr />
             <Channel>
               <ChannelInfo>
-                <Image src={channel.image} />
+                <Link to={`/profile/${channelContainer}`}>
+                  <Image src={channel.image} />
+                </Link>
                 <ChannelDetail>
                   <ChannelName>{channel.username}</ChannelName>
                   <ChannelCounter>
@@ -422,8 +421,8 @@ const Video = () => {
               <Subscribe onClick={subscribeHandler}>
                 <NotificationsActiveIcon />
                 {currentUser?.subscribedUsers?.includes(channel._id)
-                  ? "SUBSCRIBED"
-                  : "SUBSCRIBE"}
+                  ? "FOLLOWED"
+                  : "FOLLOW"}
               </Subscribe>
             </Channel>
             <Description>{currentVideo?.desc}</Description>

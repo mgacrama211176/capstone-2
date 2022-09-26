@@ -133,8 +133,6 @@ const Card = ({ type, video }) => {
   // fetching user data information using useState hook
   const [channel, setChannel] = useState({});
 
-  console.log(video);
-
   useEffect(() => {
     const fetchingChannel = async () => {
       const channel = await axios.get(
