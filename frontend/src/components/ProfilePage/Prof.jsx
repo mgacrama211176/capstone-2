@@ -69,7 +69,17 @@ const CVbt = styled.button`
   vertical-align: baseline;
   width: auto;
   margin-left: 64px;
-  margin-botton: 5px;
+
+  &:hover,
+  :focus {
+    background-color: #fb8332;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  }
+  &:active {
+    background-color: #c85000;
+    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+    transform: translateY(0);
+  }
 `;
 
 const Prof = () => {

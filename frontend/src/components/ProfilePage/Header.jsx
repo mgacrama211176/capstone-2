@@ -44,6 +44,16 @@ export default function CenteredTabs() {
     vertical-align: baseline;
     width: auto;
     margin-left: 270px;
+    &:hover,
+    :focus {
+      background-color: #fb8332;
+      box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    }
+    &:active {
+      background-color: #c85000;
+      box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+      transform: translateY(0);
+    }
   `;
 
   const handleChange = (event, newValue) => {
@@ -55,7 +65,6 @@ export default function CenteredTabs() {
       <Tabs value={value} onChange={handleChange} centered>
         <Tab label={<HomeIcon />} />
         <Tab label="VIDEOS" />
-        <Tab label="PORTFOLIO" />
         <Tab label="UPDATE PROFILE" />
         <Hirebt variant="contained">
           Hire me! <BadgeOutlinedIcon />
