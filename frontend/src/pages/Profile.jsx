@@ -1,12 +1,13 @@
-import React from 'react';
-import Footer from '../components/Footer';
-import styled from 'styled-components';
-import Prof from '../components/ProfilePage/Prof';
-import Header from '../components/ProfilePage/Header';
+import React from "react";
+import Footer from "../components/Footer";
+import styled from "styled-components";
+import Prof from "../components/ProfilePage/Prof";
+import Header from "../components/ProfilePage/Header";
 
-import BGimage from '../assets/bgimage.jpg';
+import BGimage from "../assets/bgimage.jpg";
 
-import { Grid, Container } from '@mui/material';
+import { Grid, Container } from "@mui/material";
+import Updateprof from "../components/ProfileContent/Updateprof";
 
 //63170d67abf1eb0be1fc3113
 
@@ -25,10 +26,11 @@ const Profile = ({ type, video }) => {
           </Grid>
           <Grid item xs>
             <Header />
+            <Updateprof />
           </Grid>
         </Grid>
-        <Footer />
       </ContainerWrapper>
+      <Footer />
     </Container>
   );
 };
