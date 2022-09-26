@@ -1,16 +1,16 @@
-import React from 'react';
-import styled from 'styled-components';
-import { device } from '../media';
+import React from "react";
+import styled from "styled-components";
+import { device } from "../media";
 
 //Components
-import Card from '../components/Card';
+import Card from "../components/Card";
 
 //framer motion
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 // libraries
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const Container = styled.div`
   display: flex;

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import styled from 'styled-components';
-import CommentsBox from './CommentsBox';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import styled from "styled-components";
+import CommentsBox from "./CommentsBox";
+import axios from "axios";
 
 //MUI
-import SendIcon from '@mui/icons-material/Send';
+import SendIcon from "@mui/icons-material/Send";
 
 const Container = styled.div``;
 
@@ -46,7 +46,7 @@ const ViewComments = ({ videoId }) => {
     fetchComments();
   }, [videoId]);
 
-  const [newComment, setNewComment] = useState('');
+  const [newComment, setNewComment] = useState("");
 
   const onChangeHandler = (e) => {
     const latestComment = { ...newComment };
@@ -54,7 +54,6 @@ const ViewComments = ({ videoId }) => {
 
     setNewComment(latestComment);
   };
-  console.log(newComment.comment);
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -74,19 +73,23 @@ const ViewComments = ({ videoId }) => {
     }
   };
 
-  // console.log(currentUser);
   return (
     <Container>
-      <NewComment>
-        <Avatar src={currentUser.image} />
-        <Input
-          placeholder="Add new comment"
-          onChange={(e) => onChangeHandler(e)}
-          id="comment"
-          type="text"
-        />
-        <SendIcon style={{ cursor: 'pointer' }} onClick={onSubmitHandler} />
-      </NewComment>
+      {currentUser === null ? (
+        ""
+      ) : (
+        <NewComment>
+          <Avatar src={currentUser?.image} />
+          <Input
+            placeholder="Add new comment"
+            onChange={(e) => onChangeHandler(e)}
+            id="comment"
+            type="text"
+          />
+          <SendIcon style={{ cursor: "pointer" }} onClick={onSubmitHandler} />
+        </NewComment>
+      )}
+
       {comments.map((comment) => (
         <CommentsBox key={comment._id} comment={comment} />
       ))}

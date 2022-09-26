@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import logoImg from '../assets/Logo.png';
-import { device } from '../media';
-import { useSelector } from 'react-redux';
-import Upload from '../components/Upload';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import logoImg from "../assets/Logo.png";
+import { device } from "../media";
+import { useSelector } from "react-redux";
+import Upload from "../components/Upload";
 
 //MUI
-import PersonPinIcon from '@mui/icons-material/PersonPin';
-import SearchIcon from '@mui/icons-material/Search';
-import MenuIcon from '@mui/icons-material/Menu';
-import VideoCallIcon from '@mui/icons-material/VideoCall';
+import PersonPinIcon from "@mui/icons-material/PersonPin";
+import SearchIcon from "@mui/icons-material/Search";
+import MenuIcon from "@mui/icons-material/Menu";
+import VideoCallIcon from "@mui/icons-material/VideoCall";
 
 const Container = styled.div`
   position: relative;
@@ -114,7 +114,7 @@ const UploadButton = styled.div`
 `;
 
 const Navbar = ({ setOpen, setClose }) => {
-  const [display, setDisplay] = useState('block');
+  const [display, setDisplay] = useState("block");
 
   const User = styled.div`
     display: flex;
@@ -130,6 +130,7 @@ const Navbar = ({ setOpen, setClose }) => {
 
   // THIS IS TO USE THE DATA ON REDUX
   const currentUser = useSelector((state) => state.username.currentUser);
+
   return (
     <>
       <Container>
@@ -139,7 +140,7 @@ const Navbar = ({ setOpen, setClose }) => {
               <MenuIcon />
             </Burger>
 
-            <Link to="/" style={{ textDecoration: 'none' }}>
+            <Link to="/" style={{ textDecoration: "none" }}>
               <Logo>
                 <Img src={logoImg} />
               </Logo>
@@ -155,28 +156,31 @@ const Navbar = ({ setOpen, setClose }) => {
             />
             <SearchIcon />
           </Search>
-
-          <UploadButton>
-            <VideoCallIcon
-              style={{ cursor: 'pointer', margin: '10px' }}
-              onClick={() => setOpenModal(true)}
-            />
-          </UploadButton>
+          {currentUser === null ? (
+            ""
+          ) : (
+            <UploadButton>
+              <VideoCallIcon
+                style={{ cursor: "pointer", margin: "10px" }}
+                onClick={() => setOpenModal(true)}
+              />
+            </UploadButton>
+          )}
 
           {currentUser ? (
             <>
               <Link
                 to={`/profile/${currentUser._id}`}
-                style={{ textDecoration: 'none' }}
+                style={{ textDecoration: "none" }}
               >
                 <User>
-                  {currentUser.username}
+                  {/* {currentUser.username} */}
                   <Avatar src={currentUser.image} />
                 </User>
               </Link>
             </>
           ) : (
-            <Link to="/signin" style={{ textDecoration: 'none' }}>
+            <Link to="/signin" style={{ textDecoration: "none" }}>
               <Button>
                 <PersonPinIcon />
                 Sign In
@@ -185,7 +189,9 @@ const Navbar = ({ setOpen, setClose }) => {
           )}
         </Wrapper>
       </Container>
-      {openModal && <Upload setOpenModal={setOpenModal} />}
+      {openModal && (
+        <Upload setOpenModal={setOpenModal} currentUser={currentUser?._id} />
+      )}
     </>
   );
 };

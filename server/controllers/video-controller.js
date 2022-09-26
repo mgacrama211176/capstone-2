@@ -4,8 +4,10 @@ import User from "../models/User.js";
 import UserModel from "../models/User.js";
 
 export const addVideo = async (request, response, next) => {
-  const newVideo = new VideoModel({ ...request.body });
+  const currentUser = request.params.currentUser;
+  const newVideo = new VideoModel({ ...request.body, userId: currentUser });
   console.log(newVideo);
+  response.status(200).json(newVideo);
   try {
     const savedVideo = await newVideo.save();
     response.status(200).json(savedVideo);
@@ -112,7 +114,7 @@ export const sub = async (request, response, next) => {
 };
 
 export const getByTag = async (request, response, next) => {
-  const tags = request.query.tags.split(",");
+  const tags = request.query.tags;
   try {
     const videos = await VideoModel.find({ tags: { $in: tags } }).limit(20);
     response.status(200).json(videos);

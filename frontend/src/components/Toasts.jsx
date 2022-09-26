@@ -71,3 +71,15 @@ export const Disliked = () => {
     progress: undefined,
   });
 };
+
+export const Uploaded = () => {
+  toast.success("Video Uploaded", {
+    position: "top-right",
+    autoClose: 1000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+};

@@ -14,7 +14,7 @@ import {
 
 const router = express();
 
-router.post("/", addVideo);
+router.post("/:currentUser", addVideo);
 router.put("/:id", updateVideo);
 router.delete("/:id", deleteVideo);
 router.get("/find/:id", getVideo);

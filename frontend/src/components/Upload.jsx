@@ -1,6 +1,8 @@
-import { height } from '@mui/system';
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import app from "../firebase";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 //firebase/store
 import {
@@ -8,7 +10,10 @@ import {
   ref,
   uploadBytesResumable,
   getDownloadURL,
-} from 'firebase/storage';
+} from "firebase/storage";
+
+//Toaster
+import { Uploaded } from "./Toasts";
 
 const Container = styled.div`
   width: 100%;
@@ -23,8 +28,8 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 600px;
-  height: 600px;
+  width: 60%;
+  height: 80%;
   background-color: white;
   color: black;
   padding: 20px;
@@ -97,16 +102,17 @@ const Option = styled.option``;
 
 const Label = styled.label``;
 
-const Upload = ({ setOpenModal }) => {
+const Upload = ({ setOpenModal, currentUser }) => {
+  const nav = useNavigate();
   const [thumbnail, setThumbnail] = useState(undefined);
   const [video, setVideo] = useState(undefined);
   const [thumbnailPercentage, setThumbnailPercentage] = useState(0);
   const [videoPercentage, setVideoPercentage] = useState(0);
 
   const [uploadInformation, setUploadInformation] = useState({
-    title: '',
-    desc: '',
-    tags: 'Traditional Animation',
+    title: "",
+    desc: "",
+    tags: "Traditional Animation",
   });
 
   const onChangeHandleInformation = (e) => {
@@ -117,24 +123,24 @@ const Upload = ({ setOpenModal }) => {
   };
 
   const uploadFile = (file, urlType) => {
-    const storage = getStorage();
+    const storage = getStorage(app);
     const fileName = new Date().getTime() + file.name;
     const storageRef = ref(storage, fileName);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on(
-      'state_changed',
+      "state_changed",
       (snapshot) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        urlType === 'imgUrl'
-          ? setThumbnailPercentage(progress)
-          : setVideoPercentage(progress);
+        urlType === "imgUrl"
+          ? setThumbnailPercentage(Math.round(progress))
+          : setVideoPercentage(Math.round(progress));
         switch (snapshot.state) {
-          case 'paused':
+          case "paused":
             console.log(`Upload is paused`);
             break;
-          case 'running':
+          case "running":
             console.log(`Upload is running`);
             break;
           default:
@@ -153,12 +159,30 @@ const Upload = ({ setOpenModal }) => {
   };
 
   useEffect(() => {
-    uploadFile(video);
+    video && uploadFile(video, "videoUrl");
   }, [video]);
 
   useEffect(() => {
-    uploadFile(thumbnail);
+    thumbnail && uploadFile(thumbnail, "imgUrl");
   }, [thumbnail]);
+
+  const uploadHandler = async (e) => {
+    e.preventDefault();
+
+    const response = await axios.post(
+      `http://localhost:4000/api/videos/${currentUser}`,
+      {
+        title: uploadInformation.title,
+        desc: uploadInformation.desc,
+        tags: uploadInformation.tags,
+        videoUrl: uploadInformation.videoUrl,
+        imgUrl: uploadInformation.imgUrl,
+      }
+    );
+    setOpenModal(false);
+    response.status === 200 && nav("/");
+    Uploaded();
+  };
 
   return (
     <Container>
@@ -166,11 +190,16 @@ const Upload = ({ setOpenModal }) => {
         <Close onClick={() => setOpenModal(false)}>X</Close>
 
         <Title>Upload video</Title>
-        <Input
-          type="file"
-          accept="video/*"
-          onChange={(e) => SetVideo(e.target.files[0])}
-        />
+        {videoPercentage > 0 ? (
+          "Video Uploaded at: " + videoPercentage + "%"
+        ) : (
+          <Input
+            type="file"
+            accept="video/*"
+            onChange={(e) => setVideo(e.target.files[0])}
+          />
+        )}
+
         <Input
           type="text"
           placeholder="Title"
@@ -196,13 +225,19 @@ const Upload = ({ setOpenModal }) => {
           <Option value="Stop Motion">Stop Motion</Option>
         </Select>
         <Label>Thumbnail</Label>
-        <Input
-          type="file"
-          accept="image/*"
-          placeholder="Thumbnail"
-          onChange={(e) => setThumbnail(e.target.files[0])}
-        />
-        <Button>Upload</Button>
+
+        {thumbnailPercentage > 0 ? (
+          "Thumbnail uploaded at: " + thumbnailPercentage + "%"
+        ) : (
+          <Input
+            type="file"
+            accept="image/*"
+            placeholder="Thumbnail"
+            onChange={(e) => setThumbnail(e.target.files[0])}
+          />
+        )}
+
+        <Button onClick={uploadHandler}>Upload</Button>
       </Wrapper>
     </Container>
   );

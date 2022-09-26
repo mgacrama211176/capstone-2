@@ -205,10 +205,8 @@ const Signin = () => {
           }
         });
 
-      console.log(login);
       dispatch(loginSuccess(login.data[0]));
       nav("/");
-      Cookies.set("access_token", login.data[1]);
     } catch (err) {
       dispatch(loginFailed);
     }
