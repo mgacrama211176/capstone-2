@@ -143,20 +143,18 @@ const Menu = ({ darkmode, setDarkMode, burger }) => {
               Subscription
             </Item>
           </Link>
-          <Hr />
-          <Item>
-            <LibraryBooksIcon />
-            Library
-          </Item>
-          <Item>
-            <HistoryIcon />
-            History
-          </Item>
+          <Link to="/library" style={{ textDecoration: "none" }}>
+            <Item>
+              <LibraryBooksIcon />
+              Library
+            </Item>
+          </Link>
           {currentUser ? (
             ""
           ) : (
             <>
               <Hr />
+
               <Login>
                 Sign in to like videos, comment and subscribe.
                 <Link to={"/signin"} style={{ textDecoration: "none" }}>
@@ -169,6 +167,7 @@ const Menu = ({ darkmode, setDarkMode, burger }) => {
             </>
           )}
           <Hr />
+          CATEGORIES:
           <Item>
             <BrushIcon />
             Traditional Animation

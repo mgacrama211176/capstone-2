@@ -1,14 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   currentUser: null,
   loading: false,
   error: false,
-  message: '',
+  message: "",
 };
 
 export const userSlice = createSlice({
-  name: 'username',
+  name: "username",
   initialState,
   reducers: {
     loginStart: (state) => {
@@ -18,7 +18,7 @@ export const userSlice = createSlice({
       state.loading = false;
       state.currentUser = action.payload;
 
-      state.message = 'logged in!';
+      state.message = "logged in!";
     },
     loginFailed: (state) => {
       state.loading = false;
@@ -28,7 +28,7 @@ export const userSlice = createSlice({
       state.currentUser = null;
       state.loading = false;
       state.error = false;
-      state.message = 'logged out!';
+      state.message = "logged out!";
     },
     subscription: (state, action) => {
       if (state.currentUser.subscribedUsers.includes(action.payload)) {
@@ -42,10 +42,21 @@ export const userSlice = createSlice({
         state.currentUser.subscribedUsers.push(action.payload);
       }
     },
+    save: (state, action) => {
+      if (state.currentUser.savedVideo.includes(action.payload)) {
+        state.currentUser.savedVideo.splic();
+      }
+    },
   },
 });
 
-export const { loginStart, loginSuccess, loginFailed, logout, subscription } =
-  userSlice.actions;
+export const {
+  loginStart,
+  loginSuccess,
+  loginFailed,
+  logout,
+  subscription,
+  save,
+} = userSlice.actions;
 
 export default userSlice.reducer;

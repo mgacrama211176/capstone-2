@@ -1,4 +1,4 @@
-import express from 'express';
+import express from "express";
 import {
   update,
   deleteUser,
@@ -9,35 +9,39 @@ import {
   dislike,
   getAllUser,
   resetPassword,
-} from '../controllers/user-controller.js';
+  saveVideo,
+} from "../controllers/user-controller.js";
 
 const router = express();
 
 //For update
-router.put('/:id', update);
+router.put("/:id", update);
 
 //For delete
-router.delete('/delete/:id', deleteUser);
+router.delete("/delete/:id", deleteUser);
 
 //For get user
-router.get('/find/:id', getUser);
+router.get("/find/:id", getUser);
 
 //For getting user using email for forgot password
-router.put('/find/email/:email', getAllUser);
+router.put("/find/email/:email", getAllUser);
 
 //After getting the password verify if token and expire is found on database
-router.put('/find/email/reset/:resetPasswordToken', resetPassword);
+router.put("/find/email/reset/:resetPasswordToken", resetPassword);
 
 //For subscribe
-router.put('/sub/:currentUserId/:currentChannelId', subscribe);
+router.put("/sub/:currentUserId/:currentChannelId", subscribe);
 
 //For unsubscribe
-router.put('/unsub/:currentUserId/:currentChannelId', unsubscribe);
+router.put("/unsub/:currentUserId/:currentChannelId", unsubscribe);
 
 //For like a video
-router.put('/like/:id/:videoId', like);
+router.put("/like/:id/:videoId", like);
 
 //For unlike a video
-router.put('/dislike/:id/:videoId', dislike);
+router.put("/dislike/:id/:videoId", dislike);
+
+//For saving Videos
+router.put("/save/:currentUserId/:currentVideoId", saveVideo);
 
 export default router;

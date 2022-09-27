@@ -345,94 +345,110 @@ const Video = () => {
   };
 
   const channelContainer = channel._id;
+
+  const saveVideo = async () => {
+    try {
+      const saving = await axios.put(
+        `http://localhost:4000/api/users/save/${currentUser._id}/${currentVideo._id}`
+      );
+      console.log(saving);
+    } catch (err) {}
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opcaity: 0 }}
     >
-      <Container>
-        <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-        <Content>
-          <VideoWrapper>
-            <VideoFrame src={currentVideo?.videoUrl} controls></VideoFrame>
-          </VideoWrapper>
+      <>
+        <Container>
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+          <Content>
+            <VideoWrapper>
+              <VideoFrame src={currentVideo?.videoUrl} controls></VideoFrame>
+            </VideoWrapper>
 
-          <VideoInformationContainer>
-            <Title>{currentVideo?.title}</Title>
-            <Info>
-              {currentVideo?.views} views • {format(currentVideo?.createdAt)}
-            </Info>
-            <Hr />
-            <Details>
-              <Buttons>
-                <Like onClick={likeHandler}>
-                  {currentUser === null ? (
-                    <ThumbUpIcon />
-                  ) : currentVideo?.likes?.includes(currentUser._id) ? (
-                    <ThumbUpIcon style={{ color: "#0675e8" }} />
-                  ) : (
-                    <ThumbUpIcon />
-                  )}
-                  {currentVideo?.likes?.length}
-                </Like>
+            <VideoInformationContainer>
+              <Title>{currentVideo?.title}</Title>
+              <Info>
+                {currentVideo?.views} views • {format(currentVideo?.createdAt)}
+              </Info>
+              <Hr />
+              <Details>
+                <Buttons>
+                  <Like onClick={likeHandler}>
+                    {currentUser === null ? (
+                      <ThumbUpIcon />
+                    ) : currentVideo?.likes?.includes(currentUser._id) ? (
+                      <ThumbUpIcon style={{ color: "#0675e8" }} />
+                    ) : (
+                      <ThumbUpIcon />
+                    )}
+                    {currentVideo?.likes?.length}
+                  </Like>
+                  <Dislike onClick={dislikeHandler}>
+                    {currentVideo?.dislikes.includes(currentUser?._id) ? (
+                      <ThumbDownIcon style={{ color: "#red" }} />
+                    ) : (
+                      <ThumbDownIcon />
+                    )}
+                    Dislike
+                  </Dislike>
+                  <Save onClick={saveVideo}>
+                    {currentVideo?.saved.includes(currentUser?._id) ? (
+                      <SaveAltIcon style={{ color: "#04a86c" }} />
+                    ) : (
+                      <SaveAltIcon />
+                    )}
+                    {currentVideo?.saved.includes(currentUser?._id)
+                      ? "SAVED"
+                      : "SAVE"}
+                  </Save>
+                </Buttons>
+              </Details>
 
-                <Dislike onClick={dislikeHandler}>
-                  {currentVideo?.dislikes.includes(currentUser?._id) ? (
-                    <ThumbDownIcon style={{ color: "#red" }} />
-                  ) : (
-                    <ThumbDownIcon />
-                  )}
-                  Dislike
-                </Dislike>
+              <Hr />
+              <Channel>
+                <ChannelInfo>
+                  <Link to={`/profile/${channelContainer}`}>
+                    <Image src={channel.image} />
+                  </Link>
+                  <ChannelDetail>
+                    <ChannelName>{channel.username}</ChannelName>
+                    <ChannelCounter>
+                      {channel.subscribers} subscribers
+                    </ChannelCounter>
+                  </ChannelDetail>
+                </ChannelInfo>
 
-                <Share>
-                  <ScreenShareIcon />
-                  Share
-                </Share>
-              </Buttons>
-            </Details>
-
-            <Hr />
-            <Channel>
-              <ChannelInfo>
-                <Link to={`/profile/${channelContainer}`}>
-                  <Image src={channel.image} />
-                </Link>
-                <ChannelDetail>
-                  <ChannelName>{channel.username}</ChannelName>
-                  <ChannelCounter>
-                    {channel.subscribers} subscribers
-                  </ChannelCounter>
-                </ChannelDetail>
-              </ChannelInfo>
-
-              <Subscribe onClick={subscribeHandler}>
-                <NotificationsActiveIcon />
-                {currentUser?.subscribedUsers?.includes(channel._id)
-                  ? "FOLLOWED"
-                  : "FOLLOW"}
-              </Subscribe>
-            </Channel>
-            <Description>{currentVideo?.desc}</Description>
-            <Hr />
-            <Title>Recommended Videos</Title>
-            <Recommendation tags={currentVideo.tags[0]} />
-            <Hr />
-            <ViewComments videoId={currentVideo?._id} />
-          </VideoInformationContainer>
-        </Content>
-      </Container>
+                <Subscribe onClick={subscribeHandler}>
+                  <NotificationsActiveIcon />
+                  {currentUser?.subscribedUsers?.includes(channel._id)
+                    ? "FOLLOWED"
+                    : "FOLLOW"}
+                </Subscribe>
+              </Channel>
+              <Description>{currentVideo?.desc}</Description>
+              <Hr />
+              <Title>Recommended Videos</Title>
+              <Recommendation tags={currentVideo.tags[0]} />
+              <Hr />
+              <ViewComments videoId={currentVideo?._id} />
+            </VideoInformationContainer>
+          </Content>
+        </Container>
+      </>
     </motion.div>
   );
 };

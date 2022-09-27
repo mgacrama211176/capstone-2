@@ -69,6 +69,9 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    saveVideos: {
+      type: [String],
+    },
   },
   { timestamps: true }
 );
