@@ -61,7 +61,7 @@ export const CustomTimeLineSeparator = () => (
 
 export const HeaderLineSeparator = () => (
   <TimelineSeparator className={"head_padding"}>
-    <TimelineDot classname={"head_dot"}>{<WorkIcon />}</TimelineDot>
+    <TimelineDot className={"head_dot"}>{<WorkIcon />}</TimelineDot>
     <TimelineConnector />
   </TimelineSeparator>
 );

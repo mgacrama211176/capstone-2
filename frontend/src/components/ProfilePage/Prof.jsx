@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Shots from "../../assets/Shots.jpg";
-import TimeLine from "./TimeLine";
 import { useLocation, useParams } from "react-router-dom";
 import TimeLine from "../TimeComp/TimeLine";
 import FeedIcon from "@mui/icons-material/Feed";
@@ -98,8 +97,6 @@ const Prof = () => {
     getProfile();
   }, [id]);
 
-  console.log(retrivedUser);
-
   const currentUser = useSelector((state) => state.username.currentUser);
   return (
     <>
@@ -132,6 +129,7 @@ const Prof = () => {
               <TimeLine />
               <CVbt variant="contained">
                 Download CV <FeedIcon />
+                asdsad
               </CVbt>
             </Pinfo>
           </>

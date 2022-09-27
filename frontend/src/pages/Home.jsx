@@ -36,13 +36,16 @@ const Home = ({ type }) => {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    const fetchingVideos = async () => {
-      const randomReturn = await axios.get(
-        `http://localhost:4000/api/videos/${type}`
-      );
-      setVideos(randomReturn.data);
-    };
-    fetchingVideos();
+    if (type) {
+      const fetchingVideos = async () => {
+        const randomReturn = await axios.get(
+          `http://localhost:4000/api/videos/${type}`
+        );
+        setVideos(randomReturn.data);
+      };
+      fetchingVideos();
+    } else {
+    }
   }, [type]);
 
   return (

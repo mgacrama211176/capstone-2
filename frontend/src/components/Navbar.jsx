@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logoImg from "../assets/Logo.png";
 import { device } from "../media";
 import { useSelector } from "react-redux";
@@ -115,6 +115,8 @@ const UploadButton = styled.div`
 
 const Navbar = ({ setOpen, setClose }) => {
   const [display, setDisplay] = useState("block");
+  const [openModal, setOpenModal] = useState(false);
+  const [q, setQ] = useState("");
 
   const User = styled.div`
     display: flex;
@@ -124,13 +126,12 @@ const Navbar = ({ setOpen, setClose }) => {
     color: ${({ theme }) => theme.text};
   `;
 
-  const [openModal, setOpenModal] = useState(false);
-
   const uploadVideo = () => {};
 
   // THIS IS TO USE THE DATA ON REDUX
   const currentUser = useSelector((state) => state.username.currentUser);
 
+  const nav = useNavigate();
   return (
     <>
       <Container>
@@ -153,8 +154,16 @@ const Navbar = ({ setOpen, setClose }) => {
               name="search"
               id="search"
               placeholder="Search..."
+              onChange={(e) => setQ(e.target.value)}
+              value={q}
             />
-            <SearchIcon />
+            <SearchIcon
+              onClick={() => {
+                nav(`/search?q=${q}`);
+                setQ("");
+              }}
+              style={{ cursor: "pointer" }}
+            />
           </Search>
           {currentUser === null ? (
             ""

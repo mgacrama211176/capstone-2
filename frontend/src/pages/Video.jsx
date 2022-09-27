@@ -345,7 +345,6 @@ const Video = () => {
   };
 
   const channelContainer = channel._id;
-  console.log(channelContainer);
   return (
     <motion.div
       initial={{ opacity: 0 }}

@@ -22,7 +22,6 @@ const Recommendation = ({ tags }) => {
       const response = await axios.get(
         `http://localhost:4000/api/videos/tags?tags=${tags}`
       );
-      console.log(response.data);
       setVideos(response.data);
     };
     fetchVideos();
