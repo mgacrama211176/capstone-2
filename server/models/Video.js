@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const VideoSchema = new mongoose.Schema(
   {
@@ -18,7 +18,7 @@ const VideoSchema = new mongoose.Schema(
       type: String,
       required: true,
       default:
-        "https://jpralves.net/img/2018/05/PM157_DontMessWithDaMonkey.jpg",
+        'https://jpralves.net/img/2018/05/PM157_DontMessWithDaMonkey.jpg',
     },
     videoUrl: {
       type: String,
@@ -40,14 +40,10 @@ const VideoSchema = new mongoose.Schema(
       type: [String],
       default: [],
     },
-    saved: {
-      type: [String],
-      default: [],
-    },
   },
   { timestamps: true }
 );
 
-const VideoModel = mongoose.model("video", VideoSchema);
+const VideoModel = mongoose.model('video', VideoSchema);
 
 export default VideoModel;
