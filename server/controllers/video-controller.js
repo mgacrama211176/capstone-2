@@ -135,3 +135,20 @@ export const search = async (request, response, next) => {
     next(err);
   }
 };
+
+export const library = async (request, response, next) => {
+  const currentUser = request.params.currentUser;
+  try {
+    const user = await User.findById(currentUser);
+    const savedVideos = user.saveVideos;
+
+    const list = await Promise.all(
+      savedVideos.map((videoId) => {
+        return VideoModel.find({ _id: videoId });
+      })
+    );
+    response
+      .status(200)
+      .json(list.flat().sort((a, b) => b.createdAt - a.createdAt));
+  } catch (err) {}
+};
