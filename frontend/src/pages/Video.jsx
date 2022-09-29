@@ -26,7 +26,7 @@ import {
   DislikeFunction,
 } from '../redux/videoSlice';
 
-import { subscription, saveVideo } from '../redux/userSlice';
+import { subscription, reduxSaveVideo } from '../redux/userSlice';
 import { format } from 'timeago.js';
 import { current } from '@reduxjs/toolkit';
 
@@ -36,6 +36,7 @@ import {
   Liked,
   Disliked,
   SubscribeErrorNotif,
+  SaveNotif,
 } from '../components/Toasts';
 import { ToastContainer } from 'react-toastify';
 
@@ -337,6 +338,7 @@ const Video = () => {
           : await axios.put(
               `http://localhost:4000/api/users/sub/${currentUser._id}/${channel._id}`
             );
+        // console.log(dispatch(subscription(channel._id)));
         dispatch(subscription(channel._id));
       }
     } catch (err) {
@@ -348,18 +350,21 @@ const Video = () => {
 
   const saveVideo = async () => {
     try {
-      if (currentUser.saveVideos.includes(currentVideo._id)) {
+      if (currentUser?.saveVideos.includes(currentVideo._id)) {
         const unsave = await axios.put(
           `http://localhost:4000/api/users/unsave/${currentUser._id}/${currentVideo._id}`
         );
-        console.log(unsave.data.saveVideos);
+        dispatch(reduxSaveVideo(currentVideo._id));
       } else {
-        const saving = await axios.put(
+        await axios.put(
           `http://localhost:4000/api/users/save/${currentUser._id}/${currentVideo._id}`
         );
-        dispatch(saveVideo(currentVideo._id));
+        SaveNotif();
+        dispatch(reduxSaveVideo(currentVideo._id));
       }
-    } catch (err) {}
+    } catch (err) {
+      loginRequired();
+    }
   };
 
   return (

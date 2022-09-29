@@ -31,7 +31,6 @@ export const userSlice = createSlice({
       state.message = 'logged out!';
     },
     subscription: (state, action) => {
-      console.log(state.currentUser.subscribedUsers);
       if (state.currentUser.subscribedUsers.includes(action.payload)) {
         state.currentUser.subscribedUsers.splice(
           state.currentUser.subscribedUsers.findIndex(
@@ -44,13 +43,17 @@ export const userSlice = createSlice({
       }
     },
 
-    saveVideo: (state, action) => {
-      if (!state.currentUser.savedVideo.includes(action.payload)) {
-        state.currentUser.savedVideo.push(action.payload);
+    reduxSaveVideo: (state, action) => {
+      if (!state.currentUser.saveVideos.includes(action.payload)) {
+        state.currentUser.saveVideos.push(action.payload);
       } else {
-        state.currentUser.savedVideo.pull(action.payload);
+        state.currentUser.saveVideos.splice(
+          state.currentUser.saveVideos.findIndex(
+            (videoid) => videoid === action.payload
+          ),
+          1
+        );
       }
-      state.currentUser = action.payload;
     },
   },
 });
@@ -61,7 +64,7 @@ export const {
   loginFailed,
   logout,
   subscription,
-  save,
+  reduxSaveVideo,
 } = userSlice.actions;
 
 export default userSlice.reducer;
