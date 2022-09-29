@@ -2,95 +2,35 @@
     --mcolor: #ffc500;
 }
 
-/*
-Header
+/*<!-- HTML !-->
+<button class="button-54" role="button">Button 54</button>
 
-import React from 'react';
-import styled from 'styled-components';
-
-const Container = styled.div`
-  margin: 30px;
-  padding: 5px;
-  border: 1px solid white;
-  border-radius: 10px;
-  background-color: white;
-`;
-
-const ContainerWrapper = styled.div`
-  color: black;
-`;
-
-const Navigation = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const NavigationItems = styled.div`
-  cursor: pointer;
-`;
-
-const Header = () => {
-  return (
-    <Container>
-      <ContainerWrapper>
-        <Navigation>
-          <NavigationItems>HOME</NavigationItems>
-          <NavigationItems>VIDEOS</NavigationItems>
-          <NavigationItems>WORK HISTORY</NavigationItems>
-          <NavigationItems>UPDATE INFORMATION</NavigationItems>
-        </Navigation>
-      </ContainerWrapper>
-    </Container>
-  );
-};
-
-export default Header;
-
-<!-- HTML !-->
-<button class="button-5" role="button">Button 5</button>
-
-/* CSS 
-.button-5 {
-  align-items: center;
-  background-clip: padding-box;
-  background-color: #fa6400;
-  border: 1px solid transparent;
-  border-radius: .25rem;
-  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  display: inline-flex;
-  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+ CSS 
+.button-54 {
+  font-family: "Open Sans", sans-serif;
   font-size: 16px;
-  font-weight: 600;
-  justify-content: center;
-  line-height: 1.25;
-  margin: 0;
-  min-height: 3rem;
-  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
-  position: relative;
+  letter-spacing: 2px;
   text-decoration: none;
-  transition: all 250ms;
+  text-transform: uppercase;
+  color: #000;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+  position: relative;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  vertical-align: baseline;
-  width: auto;
 }
 
-.button-5:hover,
-.button-5:focus {
-  background-color: #fb8332;
-  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+.button-54:active {
+  box-shadow: 0px 0px 0px 0px;
+  top: 5px;
+  left: 5px;
 }
 
-.button-5:hover {
-  transform: translateY(-1px);
-}
-
-.button-5:active {
-  background-color: #c85000;
-  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
-  transform: translateY(0);
+@media (min-width: 768px) {
+  .button-54 {
+    padding: 0.25em 0.75em;
+  }
 }
