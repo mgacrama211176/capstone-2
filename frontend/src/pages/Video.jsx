@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import styled, { css } from 'styled-components';
-import CommentsBox from '../components/CommentsBox';
-import ViewComments from '../components/ViewComments';
-import Recommendation from '../components/Recommendation';
+import React, { useState, useEffect } from "react";
+import styled, { css } from "styled-components";
+import CommentsBox from "../components/CommentsBox";
+import ViewComments from "../components/ViewComments";
+import Recommendation from "../components/Recommendation";
 //MUI
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import ThumbDownIcon from '@mui/icons-material/ThumbDown';
-import ScreenShareIcon from '@mui/icons-material/ScreenShare';
-import SaveAltIcon from '@mui/icons-material/SaveAlt';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import ThumbDownIcon from "@mui/icons-material/ThumbDown";
+import ScreenShareIcon from "@mui/icons-material/ScreenShare";
+import SaveAltIcon from "@mui/icons-material/SaveAlt";
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 
 //framer motion
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 //Media Queries
-import { device } from '../media';
+import { device } from "../media";
 
 //redux
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, Link } from 'react-router-dom';
-import axios from 'axios';
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, Link } from "react-router-dom";
+import axios from "axios";
 import {
   FetchSuccess,
   LikeFunction,
   DislikeFunction,
-} from '../redux/videoSlice';
+} from "../redux/videoSlice";
 
-import { subscription, reduxSaveVideo } from '../redux/userSlice';
-import { format } from 'timeago.js';
-import { current } from '@reduxjs/toolkit';
+import { subscription, reduxSaveVideo } from "../redux/userSlice";
+import { format } from "timeago.js";
+import { current } from "@reduxjs/toolkit";
 
 //TOAST
 import {
@@ -37,13 +37,13 @@ import {
   Disliked,
   SubscribeErrorNotif,
   SaveNotif,
-} from '../components/Toasts';
-import { ToastContainer } from 'react-toastify';
+} from "../components/Toasts";
+import { ToastContainer } from "react-toastify";
 
 const Container = styled.div`
   display: flex;
   gap: 24px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   max-width: 100vw;
 `;
 
@@ -281,8 +281,9 @@ const Video = () => {
   const { currentVideo } = useSelector((state) => state.video);
 
   const dispatch = useDispatch();
-  const path = useLocation().pathname.split('/')[2];
+  const path = useLocation().pathname.split("/")[2];
   const [channel, setChannel] = useState({});
+  const [viewCounter, setViewCounter] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -290,7 +291,6 @@ const Video = () => {
         const videoResponse = await axios.get(
           `http://localhost:4000/api/videos/find/${path}`
         );
-
         const channelResponse = await axios.get(
           `http://localhost:4000/api/users/find/${videoResponse.data.userId}`
         );
@@ -301,6 +301,19 @@ const Video = () => {
     };
     fetchData();
   }, [path, dispatch]);
+
+  useEffect(() => {
+    const views = async () => {
+      if (viewCounter === true) {
+        const increase = await axios.put(
+          `http://localhost:4000/api/videos/view/${path}`
+        );
+      } else {
+        return setViewCounter(true);
+      }
+    };
+    views();
+  }, [viewCounter]);
 
   const likeHandler = async () => {
     if (currentUser === null) {
@@ -403,7 +416,7 @@ const Video = () => {
                     {currentUser === null ? (
                       <ThumbUpIcon />
                     ) : currentVideo?.likes?.includes(currentUser._id) ? (
-                      <ThumbUpIcon style={{ color: '#0675e8' }} />
+                      <ThumbUpIcon style={{ color: "#0675e8" }} />
                     ) : (
                       <ThumbUpIcon />
                     )}
@@ -411,7 +424,7 @@ const Video = () => {
                   </Like>
                   <Dislike onClick={dislikeHandler}>
                     {currentVideo?.dislikes.includes(currentUser?._id) ? (
-                      <ThumbDownIcon style={{ color: '#red' }} />
+                      <ThumbDownIcon style={{ color: "#red" }} />
                     ) : (
                       <ThumbDownIcon />
                     )}
@@ -419,15 +432,15 @@ const Video = () => {
                   </Dislike>
 
                   <Save onClick={saveVideo}>
-                    {currentUser?.saveVideos.includes(currentVideo?._id) ? (
-                      <SaveAltIcon style={{ color: '#04a86c' }} />
+                    {currentUser?.saveVideos?.includes(currentVideo?._id) ? (
+                      <SaveAltIcon style={{ color: "#04a86c" }} />
                     ) : (
                       <SaveAltIcon />
                     )}
 
-                    {currentUser?.saveVideos.includes(currentVideo?._id)
-                      ? 'SAVED'
-                      : 'SAVE'}
+                    {currentUser?.saveVideos?.includes(currentVideo?._id)
+                      ? "SAVED"
+                      : "SAVE"}
                   </Save>
                 </Buttons>
               </Details>
@@ -449,8 +462,8 @@ const Video = () => {
                 <Subscribe onClick={subscribeHandler}>
                   <NotificationsActiveIcon />
                   {currentUser?.subscribedUsers?.includes(channel._id)
-                    ? 'FOLLOWED'
-                    : 'FOLLOW'}
+                    ? "FOLLOWED"
+                    : "FOLLOW"}
                 </Subscribe>
               </Channel>
               <Description>{currentVideo?.desc}</Description>
