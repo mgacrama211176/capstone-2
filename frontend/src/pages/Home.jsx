@@ -38,13 +38,12 @@ const Home = ({ type }) => {
   // fetching data using the use state hook
   const [videos, setVideos] = useState([]);
   const { currentUser } = useSelector((state) => state.username);
-  console.log(currentUser._id);
 
   useEffect(() => {
     if (type === "sub") {
       const fetchingVideos = async () => {
         const randomReturn = await axios.get(
-          `http://localhost:4000/api/videos/${type}/${currentUser._id}`
+          `http://localhost:4000/api/videos/${type}/${currentUser?._id}`
         );
         setVideos(randomReturn.data);
       };
