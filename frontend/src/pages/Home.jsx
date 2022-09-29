@@ -48,6 +48,14 @@ const Home = ({ type }) => {
         setVideos(randomReturn.data);
       };
       fetchingVideos();
+    } else if (type === "library") {
+      const fetchingVideos = async () => {
+        const randomReturn = await axios.get(
+          `http://localhost:4000/api/videos/${type}/${currentUser?._id}`
+        );
+        setVideos(randomReturn.data);
+      };
+      fetchingVideos();
     } else {
       const fetchingVideos = async () => {
         const randomReturn = await axios.get(

@@ -10,7 +10,6 @@ import Profile from "../pages/Profile";
 import Password from "../pages/ForgotPassword";
 import ReceivedEmail from "../pages/ReceivedEmail";
 import Search from "../pages/Search";
-import Library from "../pages/Library";
 
 //Framer Motion
 import { AnimatePresence } from "framer-motion";
@@ -24,7 +23,7 @@ const AnimatedRoutes = () => {
         <Route path="/" element={<Home type="random" />}></Route>
         <Route path="/trend" element={<Home type="trend" />}></Route>
         <Route path="/sub" element={<Home type="sub" />}></Route>
-        <Route path="/library" element={<Library />}></Route>
+        <Route path="/library" element={<Home type="library" />}></Route>
 
         <Route path="/search" element={<Search />}></Route>
         <Route path="/signin" element={<Signin />}></Route>
