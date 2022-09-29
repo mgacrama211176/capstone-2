@@ -12,6 +12,9 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+//redux
+import { useDispatch, useSelector } from "react-redux";
+
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
@@ -34,9 +37,19 @@ const Wrapper = styled.div``;
 const Home = ({ type }) => {
   // fetching data using the use state hook
   const [videos, setVideos] = useState([]);
+  const { currentUser } = useSelector((state) => state.username);
+  console.log(currentUser._id);
 
   useEffect(() => {
-    if (type) {
+    if (type === "sub") {
+      const fetchingVideos = async () => {
+        const randomReturn = await axios.get(
+          `http://localhost:4000/api/videos/${type}/${currentUser._id}`
+        );
+        setVideos(randomReturn.data);
+      };
+      fetchingVideos();
+    } else {
       const fetchingVideos = async () => {
         const randomReturn = await axios.get(
           `http://localhost:4000/api/videos/${type}`
@@ -44,7 +57,6 @@ const Home = ({ type }) => {
         setVideos(randomReturn.data);
       };
       fetchingVideos();
-    } else {
     }
   }, [type]);
 
