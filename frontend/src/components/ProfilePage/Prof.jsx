@@ -43,42 +43,29 @@ const TypoTitle = styled.p`
 `;
 
 const CVbt = styled.button`
-  border-radius: 5rem;
-  align-items: center;
-  background-clip: padding-box;
-  background-color: #ffc500;
-  border: 1px solid transparent;
-  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
-  box-sizing: border-box;
-  color: black;
-  cursor: pointer;
-  display: inline-flex;
-  font-size: 16px;
-  font-weight: 600;
-  justify-content: center;
-  line-height: 1.25;
-  margin: 0;
-  min-height: 3rem;
-  padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
-  position: relative;
+  font-family: "Open Sans", sans-serif;
+  font-size: 15px;
+  letter-spacing: 2px;
   text-decoration: none;
-  transition: all 250ms;
+  text-transform: uppercase;
+  color: #000;
+  width: 200px;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
+  position: relative;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  vertical-align: baseline;
-  width: auto;
-  margin-left: 64px;
+  margin-left: 40px;
+  margin-bottom: 8px;
 
-  &:hover,
-  :focus {
-    background-color: #fb8332;
-    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-  }
   &:active {
-    background-color: #c85000;
-    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
-    transform: translateY(0);
+    box-shadow: 0px 0px 0px 0px;
+    top: 5px;
+    left: 5px;
   }
 `;
 
@@ -127,13 +114,10 @@ const Prof = () => {
             </ImgCon>
             <Pinfo>
               <TimeLine />
-              <CVbt variant="contained">
-                Download CV <FeedIcon />
-                asdsad
-              </CVbt>
             </Pinfo>
           </>
         )}
+        <CVbt variant="contained">Download CV</CVbt>
       </Profile>
     </>
   );

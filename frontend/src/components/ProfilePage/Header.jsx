@@ -43,7 +43,7 @@ export default function CenteredTabs() {
     touch-action: manipulation;
     vertical-align: baseline;
     width: auto;
-    margin-left: 270px;
+    margin-left: 100px;
     &:hover,
     :focus {
       background-color: #fb8332;
@@ -58,10 +58,11 @@ export default function CenteredTabs() {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    const location = useLocation();
   };
 
   return (
-    <Box sx={{ width: "100%", bgcolor: "transparent" }}>
+    <Box sx={{ width: "100%", ml: 2, my: 2, bgcolor: "transparent" }}>
       <Tabs value={value} onChange={handleChange} centered>
         <Tab label={<HomeIcon />} />
         <Tab label="VIDEOS" />
