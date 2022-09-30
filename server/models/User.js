@@ -72,6 +72,10 @@ const UserSchema = new mongoose.Schema(
     saveVideos: {
       type: [String],
     },
+    uploadCV: {
+      type: String,
+      default: "",
+    },
   },
   { timestamps: true }
 );
