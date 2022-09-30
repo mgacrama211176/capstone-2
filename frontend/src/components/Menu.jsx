@@ -173,7 +173,8 @@ const Menu = ({ darkmode, setDarkMode, burger }) => {
             </>
           )}
           <Hr />
-          CATEGORIES:
+          CATEGORIES
+          <Hr />
           <Item>
             <BrushIcon />
             Traditional Animation
