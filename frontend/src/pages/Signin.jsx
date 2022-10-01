@@ -1,41 +1,42 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { device } from "../media";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import axios from "axios";
-import { loginFailed, loginStart, loginSuccess } from "../redux/userSlice";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { device } from '../media';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import { loginFailed, loginStart, loginSuccess } from '../redux/userSlice';
 
 //firebase
-import { auth, googleProvider, facebookProvider } from "../firebase";
-import { signInWithPopup } from "firebase/auth";
+import { auth, googleProvider, facebookProvider } from '../firebase';
+import { signInWithPopup } from 'firebase/auth';
 
 //MUI
-import EmailIcon from "@mui/icons-material/Email";
-import LockIcon from "@mui/icons-material/Lock";
-import LoginIcon from "@mui/icons-material/Login";
+import EmailIcon from '@mui/icons-material/Email';
+import LockIcon from '@mui/icons-material/Lock';
+import LoginIcon from '@mui/icons-material/Login';
 
 //Icons
-import Facebook from "../assets/icons/facebook.png";
-import Gmail from "../assets/icons/gmail.png";
+import Facebook from '../assets/icons/facebook.png';
+import Gmail from '../assets/icons/gmail.png';
 
 //Framer Motion
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 //Toastify
-import { userNotFound, incorrectPassword, blank } from "../components/Toasts";
-import { ToastContainer } from "react-toastify";
+import { userNotFound, incorrectPassword, blank } from '../components/Toasts';
+import { toast, ToastContainer } from 'react-toastify';
 
 //js-cookie
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie';
+import useAuth from '../hooks/useAuth';
 
 const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   color: ${({ theme }) => theme.titleColor};
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 
   /* Mobile S */
   @media ${device.mobileS} {
@@ -175,10 +176,12 @@ const H6 = styled.h6`
 const Signin = () => {
   const nav = useNavigate();
   const [user, setUser] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
+  const [hasError, setHasError] = useState(false);
   const dispatch = useDispatch();
+  const { login, getUser } = useAuth();
 
   const onChangeHandle = (e) => {
     const newUser = { ...user };
@@ -188,27 +191,39 @@ const Signin = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    dispatch(loginStart(user));
-    try {
-      const login = await axios
-        .post("http://localhost:4000/api/auth/signin", {
-          email: user.email,
-          password: user.password,
-        })
-        .catch((err) => {
-          if (err.response.statusText === "Unauthorized") {
-            incorrectPassword();
-          } else if (err.response.statusText === "Not Found") {
-            userNotFound();
-          } else {
-            blank();
-          }
-        });
+    const { email, password } = user;
 
-      dispatch(loginSuccess(login.data[0]));
-      nav("/");
-    } catch (err) {
-      dispatch(loginFailed);
+    // Normally this is unnecessary since required attribute has been added
+    // But, this is a fallback incase the browser do not support required attributes i.e Safari
+    // For improvements, you can add a validation library to validate form
+    // 👇
+    if (email === '' || password === '') {
+      setHasError(true);
+
+      return;
+    }
+
+    dispatch(loginStart());
+
+    try {
+      const user = await login(email, password);
+
+      // No need for this because of the custom hook we created
+      // 👇
+      // const login = await axios.post(
+      //   import.meta.env.VITE_BACKEND_URL + '/api/auth/signin',
+      //   {
+      //     email,
+      //     password,
+      //   }
+      // );
+
+      dispatch(loginSuccess(user));
+      nav('/');
+    } catch (error) {
+      console.log(error);
+      dispatch(loginFailed(error.message));
+      toast.error(error.message);
     }
   };
 
@@ -218,7 +233,7 @@ const Signin = () => {
       .then((result) => {
         setUser(result.user);
         const googleUser = axios
-          .post("http://localhost:4000/api/auth/google", {
+          .post('http://localhost:4000/api/auth/google', {
             username: result.user.displayName,
             email: result.user.email,
             image: result.user.photoURL,
@@ -227,7 +242,7 @@ const Signin = () => {
             dispatch(loginSuccess(response.data));
           });
         console.log(googleUser);
-        nav("/");
+        nav('/');
       })
       .catch((error) => {
         dispatch(loginFailed());
@@ -245,7 +260,7 @@ const Signin = () => {
   return (
     <motion.div
       initial={{ width: 0, opacity: 0 }}
-      animate={{ width: "100%", opacity: 1 }}
+      animate={{ width: '100%', opacity: 1 }}
       exit={{
         x: window.innerWidth,
         y: window.innerHeight,
@@ -281,42 +296,46 @@ const Signin = () => {
             <Hr />
           </HrContainer>
           <H4> Email Address </H4>
-          <InputWrapper>
-            <EmailIcon />
-            <Input
-              id="email"
-              placeholder="E-Mail@user.com"
-              type="text"
-              onChange={(e) => {
-                onChangeHandle(e);
-              }}
-            />
-          </InputWrapper>
-          <H4> Password </H4>
-          <InputWrapper>
-            <LockIcon />
-            <Input
-              id="password"
-              placeholder="Password"
-              type="password"
-              onChange={(e) => {
-                onChangeHandle(e);
-              }}
-            />
-          </InputWrapper>
+          <form onSubmit={handleLogin}>
+            <InputWrapper>
+              <EmailIcon />
+              <Input
+                id="email"
+                placeholder="E-Mail@user.com"
+                type="text"
+                onChange={(e) => {
+                  onChangeHandle(e);
+                }}
+                required
+              />
+            </InputWrapper>
+            <H4> Password </H4>
+            <InputWrapper>
+              <LockIcon />
+              <Input
+                id="password"
+                placeholder="Password"
+                type="password"
+                onChange={(e) => {
+                  onChangeHandle(e);
+                }}
+                required
+              />
+            </InputWrapper>
 
-          <InputWrapper>
-            <Button onClick={handleLogin}>
-              Login
-              <LoginIcon />
-            </Button>
-          </InputWrapper>
+            <InputWrapper>
+              <Button type="submit">
+                Login
+                <LoginIcon />
+              </Button>
+            </InputWrapper>
+          </form>
 
           <Options>
-            <Link to={"/signup"} style={{ textDecoration: "none" }}>
+            <Link to={'/signup'} style={{ textDecoration: 'none' }}>
               <H6>Not yet registered? </H6>
             </Link>
-            <Link to={"/Fpassword"} style={{ textDecoration: "none" }}>
+            <Link to={'/Fpassword'} style={{ textDecoration: 'none' }}>
               <H6>Forgot Password </H6>
             </Link>
           </Options>

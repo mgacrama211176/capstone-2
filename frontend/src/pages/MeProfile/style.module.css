@@ -1,0 +1,45 @@
+.pageContainer {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+}
+
+.banner {
+  width: 100%;
+}
+
+.bannerImage {
+  aspect-ratio: 1280 / 169;
+  width: 100%;
+  object-fit: contain;
+}
+
+.profileContainer {
+  display: flex;
+  margin-top: calc((150px / 2) - 150px);
+  gap: 2rem;
+  align-items: flex-end;
+}
+
+.basicInfoContainer {
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+  flex-grow: 2;
+}
+
+.subscribers {
+  font-size: 0.8rem;
+  font-weight: normal;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+}
+
+.avatarImage {
+  width: 150px;
+  height: 150px;
+}
+
+.contentContainer {
+  margin-top: 1rem;
+}

@@ -11,6 +11,7 @@ export const userSlice = createSlice({
   name: 'username',
   initialState,
   reducers: {
+    // You can improve your actions by giving them constant
     loginStart: (state) => {
       state.loading = true;
     },
@@ -20,9 +21,10 @@ export const userSlice = createSlice({
 
       state.message = 'logged in!';
     },
-    loginFailed: (state) => {
+    loginFailed: (state, action) => {
       state.loading = false;
       state.error = true;
+      state.message = action.payload;
     },
     logout: (state) => {
       state.currentUser = null;
