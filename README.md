@@ -21,6 +21,18 @@ not existing and notify and inform if email exists in database.
 
 [✅]- Send email for password Reset
 
+[✅]- Upload Video
+
+[✅]- Do comments
+
+[✅]- Like Vid
+
+[✅]- Sub Vid
+
+[✅]- Share Vid
+
+[✅- save Vid
+
 <!-- PROFILE PART -->
 
 [✅]- Profile now dynamic with every user
@@ -33,14 +45,7 @@ not existing and notify and inform if email exists in database.
 
 <!-- TO DO: -->
 
-[❌]- Upload Video
+[❌]- Categories
 
-[❌]- Do comments
 
-[❌]- Like Vid
 
-[❌]- Sub Vid
-
-[❌]- Share Vid
-
-[❌]- save Vid

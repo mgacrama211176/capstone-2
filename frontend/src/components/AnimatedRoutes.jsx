@@ -1,18 +1,18 @@
-import React from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import React from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
 //ROUTER DOM
-import Home from "../pages/Home";
-import Video from "../pages/Video";
-import Signin from "../pages/Signin";
-import Signup from "../pages/Signup";
-import Profile from "../pages/Profile";
-import Password from "../pages/ForgotPassword";
-import ReceivedEmail from "../pages/ReceivedEmail";
-import Search from "../pages/Search";
+import Home from '../pages/Home';
+import Video from '../pages/Video';
+import Signin from '../pages/Signin';
+import Signup from '../pages/Signup';
+import Profile from '../pages/Profile';
+import Password from '../pages/ForgotPassword';
+import ReceivedEmail from '../pages/ReceivedEmail';
+import Search from '../pages/Search';
 
 //Framer Motion
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence } from 'framer-motion';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -32,6 +32,28 @@ const AnimatedRoutes = () => {
         <Route path="/receivedEmail/:token" element={<ReceivedEmail />}></Route>
         <Route path="/video/:id" element={<Video />}></Route>
         <Route path="/profile/:id" element={<Profile />}></Route>
+
+        {/* CATEGORIES ROUTES */}
+        <Route
+          path="/traditional"
+          element={<Home category="Traditional Animation" type="category" />}
+        ></Route>
+        <Route
+          path="/2D"
+          element={<Home category="2D animation" type="category" />}
+        ></Route>
+        <Route
+          path="/3D"
+          element={<Home category="3D animation" type="category" />}
+        ></Route>
+        <Route
+          path="/Motion"
+          element={<Home category="Motion Graphics" type="category" />}
+        ></Route>
+        <Route
+          path="/Stop Motion"
+          element={<Home category="Stop Motion" type="category" />}
+        ></Route>
       </Routes>
     </AnimatePresence>
   );

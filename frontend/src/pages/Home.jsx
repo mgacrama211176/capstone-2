@@ -1,19 +1,19 @@
-import React from "react";
-import styled from "styled-components";
-import { device } from "../media";
+import React from 'react';
+import styled from 'styled-components';
+import { device } from '../media';
 
 //Components
-import Card from "../components/Card";
+import Card from '../components/Card';
 
 //framer motion
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
 // libraries
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 //redux
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 
 const Container = styled.div`
   display: flex;
@@ -34,13 +34,13 @@ const Container = styled.div`
 
 const Wrapper = styled.div``;
 
-const Home = ({ type }) => {
+const Home = ({ type, category }) => {
   // fetching data using the use state hook
   const [videos, setVideos] = useState([]);
   const { currentUser } = useSelector((state) => state.username);
 
   useEffect(() => {
-    if (type === "sub") {
+    if (type === 'sub') {
       const fetchingVideos = async () => {
         const randomReturn = await axios.get(
           `http://localhost:4000/api/videos/${type}/${currentUser?._id}`
@@ -48,10 +48,18 @@ const Home = ({ type }) => {
         setVideos(randomReturn.data);
       };
       fetchingVideos();
-    } else if (type === "library") {
+    } else if (type === 'library') {
       const fetchingVideos = async () => {
         const randomReturn = await axios.get(
           `http://localhost:4000/api/videos/${type}/${currentUser?._id}`
+        );
+        setVideos(randomReturn.data);
+      };
+      fetchingVideos();
+    } else if (type === 'category') {
+      const fetchingVideos = async () => {
+        const randomReturn = await axios.get(
+          `http://localhost:4000/api/videos/${type}/${category}`
         );
         setVideos(randomReturn.data);
       };
@@ -66,6 +74,22 @@ const Home = ({ type }) => {
       fetchingVideos();
     }
   }, [type]);
+
+  console.log(category);
+
+  // useEffect(() => {
+  //   if (category === 'traditional') {
+  //     const fetchingCategory = async () => {
+  //       const randomReturn = await axios.get(
+  //         `http://localhost:4000/api/videos/category/${category}`
+  //       );
+
+  //       console.log(randomReturn);
+  //       // setVideos(randomReturn.data);
+  //     };
+  //     fetchingCategory;
+  //   }
+  // }, [category]);
 
   return (
     <motion.div
