@@ -6,6 +6,7 @@ import { coloredTheme, darkTheme } from './utils/Theme';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import AnimatedRoutes from './components/AnimatedRoutes';
 import { device } from './media';
+import NewMenuUi from './components/NewMenuUi';
 
 const Continer = styled.div`
   display: flex;
@@ -77,6 +78,7 @@ const App = () => {
             burger={burger}
             style={{ position: 'relative', zIndex: '100' }}
           />
+          <NewMenuUi />
           <Main setDarkMode={setDarkMode} darkmode={darkmode}>
             <Navbar
               setOpen={setOpen}

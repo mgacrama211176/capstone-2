@@ -47,6 +47,7 @@ const Container = styled.div`
   gap: 24px;
   font-family: 'Roboto', sans-serif;
   max-width: 100vw;
+  padding: 0px 30px;
 `;
 
 const Content = styled.div`

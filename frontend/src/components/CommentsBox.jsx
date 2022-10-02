@@ -2,6 +2,10 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
+//MUI
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 const Container = styled.div`
   display: flex;
   gap: 10px;
@@ -25,6 +29,7 @@ const Name = styled.span`
   font-size: 13px;
   font-weight: bolder;
   color: ${({ theme }) => theme.titleColor};
+  display: flex;
 `;
 const Date = styled.span`
   font-size: 12px;
@@ -38,7 +43,12 @@ const Text = styled.span`
   font-size: 14px;
 `;
 
-const CommentsBox = ({ comment }) => {
+const Separator = styled.div`
+  position: absolute;
+  right: 0;
+`;
+
+const CommentsBox = ({ comment, currentUser }) => {
   const [channel, setChannel] = useState({});
 
   useEffect(() => {
@@ -51,12 +61,29 @@ const CommentsBox = ({ comment }) => {
     fetchComments();
   }, [comment.userId]);
 
+  console.log(comment);
+
+  const deleteComment = async () => {
+    if (currentUser !== comment.userId) {
+      console.log('Cant delete');
+    } else {
+      const deletedComment = await axios.delete(
+        `localhost:4000/api/comments/${comment._id}`
+      );
+      console.log('deleted');
+    }
+  };
+
   return (
     <Container>
       <Avatar src={channel.image} />
       <Details>
         <Name>
           {channel?.username} |<Date>1 Day ago</Date>
+          <Separator>
+            <EditIcon style={{ cursor: 'pointer' }} />
+            <DeleteIcon style={{ cursor: 'pointer' }} onClick={deleteComment} />
+          </Separator>
         </Name>
 
         <Text>{comment.desc}</Text>

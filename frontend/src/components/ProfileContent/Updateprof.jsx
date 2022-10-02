@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import IosShareIcon from "@mui/icons-material/IosShare";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import IosShareIcon from '@mui/icons-material/IosShare';
 
 const ContainerWrapper = styled.div`
   padding: 0px;
@@ -13,10 +13,11 @@ const ContainerWrapper = styled.div`
   background-color: #ffffffd3;
   width: 830px;
   height: 660px;
+  position: relative;
 `;
 
 const UpCvbt = styled.div`
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   letter-spacing: 2px;
   text-decoration: none;
@@ -91,7 +92,7 @@ const Updateprof = () => {
       <Box
         component="form"
         sx={{
-          "& > :not(style)": { m: 2, width: "30ch" },
+          '& > :not(style)': { m: 2, width: '30ch' },
         }}
         noValidate
         autoComplete="off"

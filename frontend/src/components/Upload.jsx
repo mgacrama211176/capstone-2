@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import app from "../firebase";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import app from '../firebase';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 //firebase/store
 import {
@@ -10,10 +10,10 @@ import {
   ref,
   uploadBytesResumable,
   getDownloadURL,
-} from "firebase/storage";
+} from 'firebase/storage';
 
 //Toaster
-import { Uploaded } from "./Toasts";
+import { Uploaded } from './Toasts';
 
 const Container = styled.div`
   width: 100%;
@@ -25,6 +25,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 5;
 `;
 
 const Wrapper = styled.div`
@@ -110,9 +111,9 @@ const Upload = ({ setOpenModal, currentUser }) => {
   const [videoPercentage, setVideoPercentage] = useState(0);
 
   const [uploadInformation, setUploadInformation] = useState({
-    title: "",
-    desc: "",
-    tags: "Traditional Animation",
+    title: '',
+    desc: '',
+    tags: 'Traditional Animation',
   });
 
   const onChangeHandleInformation = (e) => {
@@ -129,18 +130,18 @@ const Upload = ({ setOpenModal, currentUser }) => {
     const uploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on(
-      "state_changed",
+      'state_changed',
       (snapshot) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        urlType === "imgUrl"
+        urlType === 'imgUrl'
           ? setThumbnailPercentage(Math.round(progress))
           : setVideoPercentage(Math.round(progress));
         switch (snapshot.state) {
-          case "paused":
+          case 'paused':
             console.log(`Upload is paused`);
             break;
-          case "running":
+          case 'running':
             console.log(`Upload is running`);
             break;
           default:
@@ -159,11 +160,11 @@ const Upload = ({ setOpenModal, currentUser }) => {
   };
 
   useEffect(() => {
-    video && uploadFile(video, "videoUrl");
+    video && uploadFile(video, 'videoUrl');
   }, [video]);
 
   useEffect(() => {
-    thumbnail && uploadFile(thumbnail, "imgUrl");
+    thumbnail && uploadFile(thumbnail, 'imgUrl');
   }, [thumbnail]);
 
   const uploadHandler = async (e) => {
@@ -180,7 +181,7 @@ const Upload = ({ setOpenModal, currentUser }) => {
       }
     );
     setOpenModal(false);
-    response.status === 200 && nav("/");
+    response.status === 200 && nav('/');
     Uploaded();
   };
 
@@ -191,7 +192,7 @@ const Upload = ({ setOpenModal, currentUser }) => {
 
         <Title>Upload video</Title>
         {videoPercentage > 0 ? (
-          "Video Uploaded at: " + videoPercentage + "%"
+          'Video Uploaded at: ' + videoPercentage + '%'
         ) : (
           <Input
             type="file"
@@ -227,7 +228,7 @@ const Upload = ({ setOpenModal, currentUser }) => {
         <Label>Thumbnail</Label>
 
         {thumbnailPercentage > 0 ? (
-          "Thumbnail uploaded at: " + thumbnailPercentage + "%"
+          'Thumbnail uploaded at: ' + thumbnailPercentage + '%'
         ) : (
           <Input
             type="file"

@@ -1,6 +1,7 @@
-import { createError } from "../error.js";
-import CommentModel from "../models/Comments.js";
-import VideoModel from "../models/Video.js";
+import { createError } from '../error.js';
+import CommentModel from '../models/Comments.js';
+import VideoModel from '../models/Video.js';
+import User from '../models/User.js';
 
 //localhost:3000/api/comments/CurrentUser
 export const addComment = async (request, response, next) => {
@@ -24,15 +25,15 @@ export const addComment = async (request, response, next) => {
 
 //localhost:3000/api/comments
 export const deleteComment = async (request, response, next) => {
+  const comment = await CommentModel.findById(request.params.id);
+  const video = await VideoModel.findById(request.params.id);
   try {
-    const comment = await CommentModel.findById(request.params.id);
-    const video = await VideoModel.findById(request.params.id);
     if (
       request.user.id === comment.userId ||
       request.user.id === video.userId
     ) {
       await CommentModel.findByIdAndDelete(request.params.id);
-      response.status(200).json("Comment Deleted!");
+      response.status(200).json('Comment Deleted!');
     } else {
       return next(
         createError(
