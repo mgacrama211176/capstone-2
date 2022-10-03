@@ -17,8 +17,8 @@
   display: none;
 }
 .timeline .head_dot {
-  color: black !important;
-  background-color: #ffc500 !important;
+  color: #fff !important;
+  background-color: #132550 !important;
   font-size: small !important;
   padding: 10px !important;
 }
@@ -49,7 +49,7 @@
 /*Content Info*/
 .timeline .timeline_dot {
   color: black !important;
-  border-color: #ffc500 !important;
+  border-color: #132550 !important;
   padding: 5px !important;
 }
 

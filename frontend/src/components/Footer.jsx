@@ -6,10 +6,16 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import CopyrightIcon from '@mui/icons-material/Copyright';
+import Logo from '../assets/Logo.png';
 
 const Container = styled.div`
   max-width: 100vw;
   position: relative;
+`;
+
+const Imgcon = styled.img`
+  width: 100px;
+  height: 100px;
 `;
 
 const SharedStyle = css`
@@ -39,31 +45,24 @@ const IconWrapper = styled.div`
   margin-bottom: 10px;
 `;
 
-const Copyright = styled.div`
-  background-color: #0e54bd;
-  ${SharedStyle}
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  height: 2rem;
-`;
-
 function Footer() {
   return (
     <Container>
       <Wrapper>
-        <H2>ABOUT</H2>
+        <Imgcon src={Logo} alt="" />
+
+        <p>
+          {' '}
+          <CopyrightIcon />
+          2022 CopyRight: Filanime.com
+        </p>
         <br></br>
-        <P>Lorem ipsum Lorem ipsum Lorem ipsum</P>
+
         <IconWrapper>
           <FacebookIcon style={{ cursor: 'pointer' }} />
           <InstagramIcon style={{ cursor: 'pointer' }} />
           <TwitterIcon style={{ cursor: 'pointer' }} />
         </IconWrapper>
-        <Copyright>
-          <CopyrightIcon />
-          <p>2022 CopyRight: Filanime.com</p>
-        </Copyright>
       </Wrapper>
     </Container>
   );

@@ -25,7 +25,6 @@ const Container = styled.div`
   top: 130px;
   z-index: 6;
 `;
-
 const P = styled.p`
   display: none;
   color: white;

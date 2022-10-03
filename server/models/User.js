@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema(
   {
+    // username is the channelName
     username: {
       type: String,
       required: true,
@@ -15,7 +16,7 @@ const UserSchema = new mongoose.Schema(
 
     userCategory: {
       type: String,
-      default: 'Viewer',
+      default: 'Animator',
     },
 
     password: {
@@ -37,10 +38,6 @@ const UserSchema = new mongoose.Schema(
     fromGoogle: {
       type: Boolean,
       default: false,
-    },
-
-    experience: {
-      type: String,
     },
 
     fullName: {
