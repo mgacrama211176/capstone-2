@@ -53,6 +53,7 @@ const Separator = styled.div`
 
 const CommentsBox = ({ comment, currentUser }) => {
   const [channel, setChannel] = useState({});
+  const [editor, setEditor] = useState(false);
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -67,14 +68,14 @@ const CommentsBox = ({ comment, currentUser }) => {
   console.log(comment);
 
   const deleteComment = async () => {
-    if (currentUser !== comment.userId) {
-      UnauthorizedNotif();
-    } else {
-      const deletedComment = await axios.delete(
-        `http://localhost:4000/api/comments/${comment._id}`
-      );
-      DeleteNotif();
-    }
+    const deletedComment = await axios.delete(
+      `http://localhost:4000/api/comments/${comment._id}`
+    );
+    DeleteNotif();
+  };
+
+  const editComment = async () => {
+    console.log('EDIT');
   };
 
   return (
@@ -89,7 +90,10 @@ const CommentsBox = ({ comment, currentUser }) => {
                 ''
               ) : (
                 <>
-                  <EditIcon style={{ cursor: 'pointer' }} />
+                  <EditIcon
+                    style={{ cursor: 'pointer' }}
+                    onClick={editComment}
+                  />
                   <DeleteIcon
                     style={{ cursor: 'pointer' }}
                     onClick={deleteComment}

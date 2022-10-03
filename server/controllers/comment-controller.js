@@ -68,3 +68,39 @@ export const getComment = async (request, response, next) => {
     next(err);
   }
 };
+
+export const editComment = async (request, response, next) => {
+  const description = request.body.desc;
+  const commentId = request.params.commentId;
+  console.log(description);
+  console.log('dafuq');
+  console.log(commentId);
+
+  try {
+    const getNewComment = await CommentModel.findByIdAndUpdate(
+      commentId,
+      { $set: description },
+      { new: true }
+    );
+    response.status(200).json(getNewComment);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+// export const update = async (request, response, next) => {
+//   if (request.params.id) {
+//     try {
+//       const updatedUser = await User.findByIdAndUpdate(
+//         request.params.id,
+//         {
+//           $set: request.body,
+//         },
+//         { new: true }
+//       );
+//       response.status(200).json(updatedUser);
+//     } catch (err) {}
+//   } else {
+//     return next(createError(403, 'You can only update your account!'));
+//   }
+// };
