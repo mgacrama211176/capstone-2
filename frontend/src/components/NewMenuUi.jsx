@@ -29,7 +29,6 @@ const Container = styled.div`
 const P = styled.p`
   display: none;
   color: white;
-  transition: 3s ease;
 `;
 
 const SideBar = styled.div`
@@ -43,7 +42,6 @@ const SideBar = styled.div`
 const Items = styled.div`
   cursor: pointer;
   display: flex;
-
   transition: 3s ease;
   background-color: #132550;
   color: white;
@@ -60,7 +58,6 @@ const Item = styled.div`
   &:hover ${P} {
     display: block;
     color: white;
-    transition: 3s ease;
   }
 `;
 

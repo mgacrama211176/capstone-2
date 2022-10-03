@@ -5,14 +5,16 @@ import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
+
 
 import HomeIcon from "@mui/icons-material/Home";
 import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+
+//react-router-dom
+import {Link} from 'react-router-dom'
 
 export default function CenteredTabs() {
   const [value, setValue] = React.useState(0);
@@ -64,12 +66,14 @@ export default function CenteredTabs() {
   return (
     <Box sx={{ width: "100%", ml: 2, my: 2, bgcolor: "transparent" }}>
       <Tabs value={value} onChange={handleChange} centered>
-        <Tab label={<HomeIcon />} />
+        <Link to={'/About'} style={{ textDecoration: 'none' }}><Tab label={<HomeIcon />} /></Link>
         <Tab label="VIDEOS" />
-        <Tab label="UPDATE PROFILE" />
+        <Link to={'/Updateprof'} style={{ textDecoration: 'none' }}><Tab label="UPDATE PROFILE" /></Link>
+        <Link to='' onClick={()=>window.location = 'mailto:yourmail@domain.com'}>
         <Hirebt variant="contained">
           Hire me! <BadgeOutlinedIcon />
         </Hirebt>
+        </Link>
       </Tabs>
     </Box>
   );

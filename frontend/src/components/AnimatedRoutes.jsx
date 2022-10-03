@@ -54,6 +54,12 @@ const AnimatedRoutes = () => {
           path="/Stop Motion"
           element={<Home category="Stop Motion" type="category" />}
         ></Route>
+
+        {/* Profile Navigation */}
+        <Route path="/profile/:id/About" element={<Profile />}></Route>
+        <Route path="/profile/:id/videos" element={<Profile />}></Route>
+        <Route path="/profile/:id/updateProf" element={<Profile />}></Route>
+
       </Routes>
     </AnimatePresence>
   );

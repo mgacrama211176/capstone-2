@@ -20,6 +20,7 @@ const Container = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 10px;
+  margin-left: 10px;
 
   /* Mobile S */
   @media ${device.mobileS} {
