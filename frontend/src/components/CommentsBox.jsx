@@ -1,10 +1,13 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 
 //MUI
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+
+//TOAST
+import { DeleteNotif, UnauthorizedNotif } from './Toasts';
 
 const Container = styled.div`
   display: flex;
@@ -65,30 +68,41 @@ const CommentsBox = ({ comment, currentUser }) => {
 
   const deleteComment = async () => {
     if (currentUser !== comment.userId) {
-      console.log('Cant delete');
+      UnauthorizedNotif();
     } else {
       const deletedComment = await axios.delete(
-        `localhost:4000/api/comments/${comment._id}`
+        `http://localhost:4000/api/comments/${comment._id}`
       );
-      console.log('deleted');
+      DeleteNotif();
     }
   };
 
   return (
-    <Container>
-      <Avatar src={channel.image} />
-      <Details>
-        <Name>
-          {channel?.username} |<Date>1 Day ago</Date>
-          <Separator>
-            <EditIcon style={{ cursor: 'pointer' }} />
-            <DeleteIcon style={{ cursor: 'pointer' }} onClick={deleteComment} />
-          </Separator>
-        </Name>
+    <>
+      <Container>
+        <Avatar src={channel.image} />
+        <Details>
+          <Name>
+            {channel?.username} |<Date>1 Day ago</Date>
+            <Separator>
+              {currentUser !== comment.userId ? (
+                ''
+              ) : (
+                <>
+                  <EditIcon style={{ cursor: 'pointer' }} />
+                  <DeleteIcon
+                    style={{ cursor: 'pointer' }}
+                    onClick={deleteComment}
+                  />
+                </>
+              )}
+            </Separator>
+          </Name>
 
-        <Text>{comment.desc}</Text>
-      </Details>
-    </Container>
+          <Text>{comment.desc}</Text>
+        </Details>
+      </Container>
+    </>
   );
 };
 

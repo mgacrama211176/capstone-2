@@ -25,26 +25,36 @@ export const addComment = async (request, response, next) => {
 
 //localhost:3000/api/comments
 export const deleteComment = async (request, response, next) => {
-  const comment = await CommentModel.findById(request.params.id);
-  const video = await VideoModel.findById(request.params.id);
-  try {
-    if (
-      request.user.id === comment.userId ||
-      request.user.id === video.userId
-    ) {
-      await CommentModel.findByIdAndDelete(request.params.id);
-      response.status(200).json('Comment Deleted!');
-    } else {
-      return next(
-        createError(
-          403,
-          "You can't delete this since your it's not your comment."
-        )
-      );
-    }
-  } catch (err) {
-    next(err);
-  }
+  const commentId = request.params.commentId;
+  // const comment = await CommentModel.findById(request.params.id);
+  // const videoId = await VideoModel.findById(request.params.id);
+  // const currentuserId = await User.findById(request.params.id);
+
+  console.log(commentId);
+
+  const deleteComment = await CommentModel.findByIdAndDelete(commentId);
+  response.status(200).json('Comment Deleted');
+  // console.log(videoId);
+  // console.log(currentuserId);
+
+  // try {
+  //   if (
+  //     request.user.id === commentId.userId ||
+  //     request.user.id === videoId.userId
+  //   ) {
+  //     await CommentModel.findByIdAndDelete(request.params.id);
+  //     response.status(200).json('Comment Deleted!');
+  //   } else {
+  //     return next(
+  //       createError(
+  //         403,
+  //         "You can't delete this since your it's not your comment."
+  //       )
+  //     );
+  //   }
+  // } catch (err) {
+  //   next(err);
+  // }
 };
 
 //localhost:3000/api/comments
