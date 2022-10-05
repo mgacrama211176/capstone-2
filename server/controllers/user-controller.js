@@ -87,9 +87,6 @@ export const getAllUser = async (request, response, next) => {
         `If you did not request this, please ignore this email and your password will remain unchanged. \n`,
     };
 
-    // console.log(mailOptions);
-
-    console.log('Sending Email');
 
     transporter.sendMail(mailOptions, (err, info) => {
       if (err) {

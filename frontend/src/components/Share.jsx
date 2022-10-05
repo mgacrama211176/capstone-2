@@ -1,7 +1,7 @@
-import React from 'react';
-import { FacebookShareButton } from 'react-share';
-import ScreenShareIcon from '@mui/icons-material/ScreenShare';
-import styled from 'styled-components';
+import React, { useEffect } from "react";
+import { FacebookShareButton } from "react-share";
+import ScreenShareIcon from "@mui/icons-material/ScreenShare";
+import styled from "styled-components";
 
 const Container = styled.div``;
 
@@ -14,7 +14,6 @@ const Wrapper = styled.div`
 const share = ({ currentVideo }) => {
   //SHARING SHOULD BE WORKING ONCE DEPLOYED
   const shareUrl = `https://www.youtube.com/channel/UCmewiMiq1dSV1vlX6CGs_aQ`;
-  console.log(shareUrl);
   return (
     <Container>
       <FacebookShareButton url={shareUrl}>

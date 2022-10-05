@@ -20,7 +20,7 @@ router.post('/:currentUser', addVideo);
 router.put('/:id/:currentUser', updateVideo);
 router.delete('/:id', deleteVideo);
 router.get('/find/:id', getVideo);
-router.put('/view/:id', addView);
+router.put('/views/view/:videoId', addView);
 router.get('/trend', trend);
 router.get('/random', random);
 router.get('/sub/:currentUser', sub);

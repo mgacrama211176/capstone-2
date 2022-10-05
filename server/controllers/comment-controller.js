@@ -29,9 +29,6 @@ export const deleteComment = async (request, response, next) => {
   // const comment = await CommentModel.findById(request.params.id);
   // const videoId = await VideoModel.findById(request.params.id);
   // const currentuserId = await User.findById(request.params.id);
-
-  console.log(commentId);
-
   const deleteComment = await CommentModel.findByIdAndDelete(commentId);
   response.status(200).json('Comment Deleted');
   // console.log(videoId);
@@ -70,37 +67,17 @@ export const getComment = async (request, response, next) => {
 };
 
 export const editComment = async (request, response, next) => {
-  const description = request.body.desc;
+  const description = request.body;
   const commentId = request.params.commentId;
-  console.log(description);
-  console.log('dafuq');
-  console.log(commentId);
-
   try {
+    
     const getNewComment = await CommentModel.findByIdAndUpdate(
       commentId,
-      { $set: description },
+      { $set: description, },
       { new: true }
     );
     response.status(200).json(getNewComment);
   } catch (err) {
-    console.log(err);
+    response.json(err);
   }
 };
-
-// export const update = async (request, response, next) => {
-//   if (request.params.id) {
-//     try {
-//       const updatedUser = await User.findByIdAndUpdate(
-//         request.params.id,
-//         {
-//           $set: request.body,
-//         },
-//         { new: true }
-//       );
-//       response.status(200).json(updatedUser);
-//     } catch (err) {}
-//   } else {
-//     return next(createError(403, 'You can only update your account!'));
-//   }
-// };
