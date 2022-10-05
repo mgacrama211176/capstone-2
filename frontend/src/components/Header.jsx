@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 
-import Box from '@mui/material/Box';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+import Box from "@mui/material/Box";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
 
-import HomeIcon from '@mui/icons-material/Home';
-import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import HomeIcon from "@mui/icons-material/Home";
+import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 //react-router-dom
-import { useLocation, Link } from 'react-router-dom';
-import About from './ProfileNavigation/About';
+import { useLocation, Link } from "react-router-dom";
+import About from "./ProfileNavigation/About";
 
 //PROFILE NAVIGATION
 
@@ -67,25 +67,26 @@ export default function CenteredTabs({ currentUser }) {
   const [display, setDisplay] = useState(false);
 
   return (
-    <Box sx={{ width: '100%', ml: 2, my: 2, bgcolor: 'transparent' }}>
+    <Box sx={{ width: "100%", ml: 2, my: 2, bgcolor: "transparent" }}>
       <Tabs value={value} onChange={handleChange} centered>
         {/* NAVIGATION MENU */}
-        <Link to={`/profile/${currentUser._id}/About`}>
-          <Tab label={<HomeIcon />} />
-        </Link>
-        <Link to={`/profile/${currentUser._id}/videos`}>
-          <Tab label="VIDEOS" />
-        </Link>
-        <Link to={`/profile/${currentUser._id}/About`}>
-          <Tab label="UPDATE PROFILE" />
+        <Link to={`/profile/About/${currentUser._id}`}>
+          <Tab label="PROFILE" />
         </Link>
 
+        <Link to={`/profile/videos/${currentUser._id}`}>
+          <Tab label="VIDEOS" />
+        </Link>
+
+        <Link to={`/profile/updateProf/${currentUser._id}`}>
+          <Tab label="UPDATE PROFILE" />
+        </Link>
         {/* HIREME BTN */}
-        <Link onClick={() => (window.location = `${currentUser.email}`)}>
+        {/* <Link onClick={() => (window.location = `${currentUser.email}`)}>
           <Hirebt variant="contained">
             Hire me! <BadgeOutlinedIcon />
           </Hirebt>
-        </Link>
+        </Link> */}
       </Tabs>
     </Box>
   );

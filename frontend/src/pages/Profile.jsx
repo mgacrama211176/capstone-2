@@ -1,26 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import Footer from '../components/Footer';
-import styled from 'styled-components';
-import Prof from '../components/Prof';
-import Header from '../components/Header';
+import React, { useState, useEffect } from "react";
+import Footer from "../components/Footer";
+import styled from "styled-components";
+import Prof from "../components/Prof";
+import Header from "../components/Header";
 
-import BGimage from '../assets/bgimage.jpg';
+import BGimage from "../assets/bgimage.jpg";
 
-import { Grid, Container } from '@mui/material';
-import Updateprof from '../components/ProfileNavigation/Updateprof';
-import { useLocation, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Grid, Container } from "@mui/material";
+import { useLocation, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-import About from '../components/ProfileNavigation/About';
+//Navigation Menu
+import About from "../components/ProfileNavigation/About";
+import VideoProfile from "../components/ProfileNavigation/VideoProfile";
+import Updateprof from "../components/ProfileNavigation/Updateprof";
 
-import axios from 'axios';
+import axios from "axios";
 
 const ContainerWrapper = styled.div`
   background-image: url(${BGimage});
   margin-top: 50px;
   border-radius: 10px;
 `;
-const Profile = ({ type, video }) => {
+const Profile = ({ nav }) => {
   let { id } = useParams();
 
   const [retrivedUser, setRetrievedUser] = useState({});
@@ -46,8 +48,13 @@ const Profile = ({ type, video }) => {
           </Grid>
           <Grid item xs>
             <Header currentUser={currentUser} />
-            {/* <About /> */}
-            <Updateprof />
+            {nav === "about" ? (
+              <About />
+            ) : nav === "videos" ? (
+              <VideoProfile />
+            ) : (
+              <Updateprof />
+            )}
           </Grid>
         </Grid>
       </ContainerWrapper>

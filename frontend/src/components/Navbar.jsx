@@ -179,7 +179,7 @@ const Navbar = ({ setOpen, setClose }) => {
           {currentUser ? (
             <>
               <Link
-                to={`/profile/${currentUser._id}`}
+                to={`/profile/About/${currentUser._id}`}
                 style={{ textDecoration: "none" }}
               >
                 <User>

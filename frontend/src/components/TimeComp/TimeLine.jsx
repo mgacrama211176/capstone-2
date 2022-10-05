@@ -1,27 +1,25 @@
-import React from 'react';
+import React from "react";
 
-import Timeline from '@mui/lab/Timeline';
-import TimelineItem from '@mui/lab/TimelineItem';
-import TimelineSeparator from '@mui/lab/TimelineSeparator';
-import TimelineConnector from '@mui/lab/TimelineConnector';
-import TimelineContent from '@mui/lab/TimelineContent';
-import TimelineDot from '@mui/lab/TimelineDot';
+import Timeline from "@mui/lab/Timeline";
+import TimelineItem from "@mui/lab/TimelineItem";
+import TimelineSeparator from "@mui/lab/TimelineSeparator";
+import TimelineConnector from "@mui/lab/TimelineConnector";
+import TimelineContent from "@mui/lab/TimelineContent";
+import TimelineDot from "@mui/lab/TimelineDot";
 
-import WorkIcon from '@mui/icons-material/Work';
+import WorkIcon from "@mui/icons-material/Work";
 
-import '../../components/TimeComp/Time.css';
-import { Typography } from '@mui/material';
+import "../../components/TimeComp/Time.css";
+import { Typography } from "@mui/material";
 
 const TimeLine = ({ title, icon, children, currentUser }) => {
-  console.log(currentUser);
-
   return (
-    <Timeline className={'timeline'}>
+    <Timeline className={"timeline"}>
       {/*Item Header*/}
       <TimelineItem>
         <HeaderLineSeparator />
         <TimelineContent>
-          <Typography variant="h6" className={'timeline_header'}>
+          <Typography variant="h6" className={"timeline_header"}>
             My Profile
           </Typography>
         </TimelineContent>
@@ -39,7 +37,7 @@ const TimeLine = ({ title, icon, children, currentUser }) => {
       </TimelineItem>
 
       {currentUser.address === undefined ? (
-        ''
+        ""
       ) : (
         <TimelineItem>
           <CustomTimeLineSeparator />
@@ -65,15 +63,15 @@ const TimeLine = ({ title, icon, children, currentUser }) => {
 };
 
 export const CustomTimeLineSeparator = () => (
-  <TimelineSeparator className={'separator_padding'}>
-    <TimelineDot variant={'outlined'} className={'timeline_dot'} />
+  <TimelineSeparator className={"separator_padding"}>
+    <TimelineDot variant={"outlined"} className={"timeline_dot"} />
     <TimelineConnector />
   </TimelineSeparator>
 );
 
 export const HeaderLineSeparator = () => (
-  <TimelineSeparator className={'head_padding'}>
-    <TimelineDot className={'head_dot'}>{<WorkIcon />}</TimelineDot>
+  <TimelineSeparator className={"head_padding"}>
+    <TimelineDot className={"head_dot"}>{<WorkIcon />}</TimelineDot>
     <TimelineConnector />
   </TimelineSeparator>
 );

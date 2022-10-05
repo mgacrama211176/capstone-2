@@ -1,18 +1,19 @@
-import React from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import React from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 //ROUTER DOM
-import Home from '../pages/Home';
-import Video from '../pages/Video';
-import Signin from '../pages/Signin';
-import Signup from '../pages/Signup';
-import Profile from '../pages/Profile';
-import Password from '../pages/ForgotPassword';
-import ReceivedEmail from '../pages/ReceivedEmail';
-import Search from '../pages/Search';
+import Home from "../pages/Home";
+import Video from "../pages/Video";
+import Signin from "../pages/Signin";
+import Signup from "../pages/Signup";
+import Profile from "../pages/Profile";
+import Password from "../pages/ForgotPassword";
+import ReceivedEmail from "../pages/ReceivedEmail";
+import Search from "../pages/Search";
+import About from "../components/ProfileNavigation/About";
 
 //Framer Motion
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from "framer-motion";
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -31,7 +32,6 @@ const AnimatedRoutes = () => {
         <Route path="/Fpassword" element={<Password />}></Route>
         <Route path="/receivedEmail/:token" element={<ReceivedEmail />}></Route>
         <Route path="/video/:id" element={<Video />}></Route>
-        <Route path="/profile/:id" element={<Profile />}></Route>
 
         {/* CATEGORIES ROUTES */}
         <Route
@@ -56,10 +56,18 @@ const AnimatedRoutes = () => {
         ></Route>
 
         {/* Profile Navigation */}
-        <Route path="/profile/:id/About" element={<Profile />}></Route>
-        <Route path="/profile/:id/videos" element={<Profile />}></Route>
-        <Route path="/profile/:id/updateProf" element={<Profile />}></Route>
-
+        <Route
+          path="/profile/About/:id"
+          element={<Profile nav="about" />}
+        ></Route>
+        <Route
+          path="/profile/videos/:id"
+          element={<Profile nav="videos" />}
+        ></Route>
+        <Route
+          path="/profile/updateProf/:id"
+          element={<Profile nav="update" />}
+        ></Route>
       </Routes>
     </AnimatePresence>
   );
