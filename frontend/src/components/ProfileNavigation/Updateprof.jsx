@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import IosShareIcon from "@mui/icons-material/IosShare";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import IosShareIcon from '@mui/icons-material/IosShare';
 
 const ContainerWrapper = styled.div`
   padding: 0px;
@@ -118,7 +118,7 @@ const Updateprof = () => {
       <Headers> Channel name and description</Headers>
       <TextField
         sx={{
-          "& > :not(style)": { m: 2, width: "30ch" },
+          '& > :not(style)': { m: 2, width: '30ch' },
         }}
         id="outlined-name"
         label="Channel Name"
@@ -126,7 +126,7 @@ const Updateprof = () => {
       <br />
       <TextField
         sx={{
-          "& > :not(style)": { m: 2, width: "85ch" },
+          '& > :not(style)': { m: 2, width: '85ch' },
         }}
         id="outlined-multiline-static"
         label="Description"
@@ -137,7 +137,7 @@ const Updateprof = () => {
       <Box
         component="form"
         sx={{
-          "& > :not(style)": { m: 2, width: "30ch" },
+          '& > :not(style)': { m: 2, width: '30ch' },
         }}
         noValidate
         autoComplete="off"

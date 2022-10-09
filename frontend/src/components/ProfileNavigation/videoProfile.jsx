@@ -1,53 +1,12 @@
-import React from "react";
+import React from 'react';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  margin: 100px;
+`;
 
 const videoProfile = () => {
-  return (
-    <div>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur ab
-      voluptas temporibus quo sit, quisquam veritatis nisi, dolore iusto beatae
-      sed illum, animi labore iste eos recusandae! Dolorem, eligendi
-      quisquam!Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-      Consequatur ab voluptas temporibus quo sit, quisquam veritatis nisi,
-      dolore iusto beatae sed illum, animi labore iste eos recusandae! Dolorem,
-      eligendi quisquam!Lorem ipsum, dolor sit amet consectetur adipisicing
-      elit. Consequatur ab voluptas temporibus quo sit, quisquam veritatis nisi,
-      dolore iusto beatae sed illum, animi labore iste eos recusandae! Dolorem,
-      eligendi quisquam!Lorem ipsum, dolor sit amet consectetur adipisicing
-      elit. Consequatur ab voluptas temporibus quo sit, quisquam veritatis nisi,
-      dolore iusto beatae sed illum, animi labore iste eos recusandae! Dolorem,
-      eligendi quisquam!Lorem ipsum, dolor sit amet consectetur adipisicing
-      elit. Consequatur ab voluptas temporibus quo sit, quisquam veritatis nisi,
-      dolore iusto beatae sed illum, animi labore iste eos recusandae! Dolorem,
-      eligendi quisquam!Lorem ipsum, dolor sit amet consectetur adipisicing
-      elit. Consequatur ab voluptas temporibus quo sit, quisquam veritatis nisi,
-      dolore iusto beatae sed illum, animi labore iste eos recusandae! Dolorem,
-      eligendi quisquam!Lorem ipsum, dolor sit amet consectetur adipisicing
-      elit. Consequatur ab voluptas temporibus quo sit, quisquam veritatis nisi,
-      dolore iusto beatae sed illum, animi labore iste eos recusandae! Dolorem,
-      eligendi quisquam!Lorem ipsum, dolor sit amet consectetur adipisicing
-      elit. Consequatur ab voluptas temporibus quo sit, quisquam veritatis nisi,
-      dolore iusto beatae sed illum, animi labore iste eos recusandae! Dolorem,
-      eligendi quisquam!Lorem ipsum, dolor sit amet consectetur adipisicing
-      elit. Consequatur ab voluptas temporibus quo sit, quisquam veritatis nisi,
-      dolore iusto beatae sed illum, animi labore iste eos recusandae! Dolorem,
-      eligendi quisquam!Lorem ipsum, dolor sit amet consectetur adipisicing
-      elit. Consequatur ab voluptas temporibus quo sit, quisquam veritatis nisi,
-      dolore iusto beatae sed illum, animi labore iste eos recusandae! Dolorem,
-      eligendi quisquam!Lorem ipsum, dolor sit amet consectetur adipisicing
-      elit. Consequatur ab voluptas temporibus quo sit, quisquam veritatis nisi,
-      dolore iusto beatae sed illum, animi labore iste eos recusandae! Dolorem,
-      eligendi quisquam!Lorem ipsum, dolor sit amet consectetur adipisicing
-      elit. Consequatur ab voluptas temporibus quo sit, quisquam veritatis nisi,
-      dolore iusto beatae sed illum, animi labore iste eos recusandae! Dolorem,
-      eligendi quisquam!Lorem ipsum, dolor sit amet consectetur adipisicing
-      elit. Consequatur ab voluptas temporibus quo sit, quisquam veritatis nisi,
-      dolore iusto beatae sed illum, animi labore iste eos recusandae! Dolorem,
-      eligendi quisquam!Lorem ipsum, dolor sit amet consectetur adipisicing
-      elit. Consequatur ab voluptas temporibus quo sit, quisquam veritatis nisi,
-      dolore iusto beatae sed illum, animi labore iste eos recusandae! Dolorem,
-      eligendi quisquam!
-    </div>
-  );
+  return <Container>videoProfile</Container>;
 };
 
 export default videoProfile;
