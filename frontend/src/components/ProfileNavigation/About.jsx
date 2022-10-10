@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
 
 const ContainerWrapper = styled.div`
   padding: 0px;
@@ -50,7 +50,7 @@ const About = () => {
           </p>
           <p>
             If you're following this tutorial series, you can replace this text
-            with your own "About Me" content.
+            with your own "About Me" content.asdasdasdasdasd
           </p>
         </AboutCont>
       </AboutWrapper>

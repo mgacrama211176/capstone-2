@@ -3,12 +3,12 @@ import Footer from '../components/Footer';
 import styled from 'styled-components';
 import Prof from '../components/Prof';
 import Header from '../components/Header';
+import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import BGimage from '../assets/bgimage.jpg';
 
 import { Grid, Container } from '@mui/material';
-import { useLocation, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 //Navigation Menu
 import About from '../components/ProfileNavigation/About';
@@ -37,8 +37,6 @@ const Profile = ({ nav }) => {
     getProfile();
   }, [id]);
 
-  const currentUser = useSelector((state) => state.username.currentUser);
-
   return (
     <Container>
       <ContainerWrapper>
@@ -49,11 +47,11 @@ const Profile = ({ nav }) => {
           <Grid item xs>
             <Header retrivedUser={retrivedUser} />
             {nav === 'about' ? (
-              <About />
+              <About retrivedUser={retrivedUser} />
             ) : nav === 'videos' ? (
-              <VideoProfile />
+              <VideoProfile retrivedUser={retrivedUser} />
             ) : (
-              <Updateprof />
+              <Updateprof retrivedUser={retrivedUser} />
             )}
           </Grid>
         </Grid>

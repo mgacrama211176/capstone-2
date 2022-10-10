@@ -12,6 +12,7 @@ import {
   updateVideo,
   library,
   category,
+  getByUserId,
 } from '../controllers/video-controller.js';
 
 const router = express();
@@ -28,5 +29,6 @@ router.get('/tags', getByTag);
 router.get('/search', search);
 router.get('/library/:currentUser', library);
 router.get('/category/:category', category);
+router.get('/find/userVideos/:id', getByUserId);
 
 export default router;

@@ -5,18 +5,14 @@ import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
-import HomeIcon from '@mui/icons-material/Home';
 import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 //react-router-dom
-import { useLocation, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 //PROFILE NAVIGATION
 
-export default function CenteredTabs({ currentUser, retrivedUser }) {
+export default function CenteredTabs({ retrivedUser }) {
   const [value, setValue] = React.useState(0);
 
   const Hirebt = styled.button`
@@ -58,14 +54,9 @@ export default function CenteredTabs({ currentUser, retrivedUser }) {
     }
   `;
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-    const location = useLocation();
-  };
-
   return (
     <Box sx={{ width: '100%', ml: 2, my: 2, bgcolor: 'transparent' }}>
-      <Tabs value={value} onChange={handleChange} centered>
+      <Tabs value={value} centered>
         {/* NAVIGATION MENU */}
         <Link to={`/profile/About/${retrivedUser?._id}`}>
           <Tab label="PROFILE" />
