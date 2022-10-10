@@ -17,7 +17,7 @@ import About from './ProfileNavigation/About';
 
 //PROFILE NAVIGATION
 
-export default function CenteredTabs({ currentUser }) {
+export default function CenteredTabs({ currentUser, retrivedUser }) {
   const [value, setValue] = React.useState(0);
 
   const Hirebt = styled.button`
@@ -64,28 +64,28 @@ export default function CenteredTabs({ currentUser }) {
     const location = useLocation();
   };
 
-  const [display, setDisplay] = useState(false);
+  console.log(retrivedUser);
 
   return (
     <Box sx={{ width: '100%', ml: 2, my: 2, bgcolor: 'transparent' }}>
       <Tabs value={value} onChange={handleChange} centered>
         {/* NAVIGATION MENU */}
-        <Link to={`/profile/About/${currentUser._id}`}>
+        <Link to={`/profile/About/${retrivedUser?._id}`}>
           <Tab label="PROFILE" />
         </Link>
 
-        <Link to={`/profile/videos/${currentUser._id}`}>
+        <Link to={`/profile/videos/${retrivedUser?._id}`}>
           <Tab label="VIDEOS" />
         </Link>
 
-        <Link to={`/profile/updateProf/${currentUser._id}`}>
+        <Link to={`/profile/updateProf/${retrivedUser?._id}`}>
           <Tab label="UPDATE PROFILE" />
         </Link>
         {/* HIREME BTN */}
 
         <Hirebt
           variant="contained"
-          onClick={() => (window.location = `mailto:${currentUser.email}`)}
+          onClick={() => (window.location = `mailto:${retrivedUser?.email}`)}
         >
           Hire me! <BadgeOutlinedIcon />
         </Hirebt>
