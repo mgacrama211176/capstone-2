@@ -12,14 +12,14 @@ const Wrapper = styled.div``;
 const videoProfile = () => {
   const [videos, setVideos] = useState([]);
 
-  useEffect(() => {
-    const fetchingVideos = async () => {
-      videos = await axios.get(`http://localhost:4000/api/videos/random`);
-      setVideos(videos);
-      console.log(videos);
-    };
-    fetchingVideos();
-  }, []);
+  // useEffect(() => {
+  //   const fetchingVideos = async () => {
+  //     videos = await axios.get(`http://localhost:4000/api/videos/random`);
+  //     setVideos(videos);
+  //     console.log(videos);
+  //   };
+  //   fetchingVideos();
+  // }, []);
 
   return (
     <Container>
