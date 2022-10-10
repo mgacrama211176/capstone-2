@@ -1,5 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import styled, { createGlobalStyle, keyframes } from 'styled-components';
+import { device } from '../media';
+import { Link, useNavigate } from 'react-router-dom';
+import { logout } from '../redux/userSlice';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 //MUI
 import HomeIcon from '@mui/icons-material/Home';
@@ -26,127 +31,240 @@ const Container = styled.div`
   z-index: 6;
 `;
 const P = styled.p`
-  display: none;
-  color: white;
+  color: black;
+  font-size: 10px;
 `;
 
 const SideBar = styled.div`
   display: flex;
   flex-direction: column;
-  height: 80%;
-  gap: 5px;
+  height: 100%;
   justify-content: center;
-`;
-
-const Items = styled.div`
   cursor: pointer;
-  display: flex;
-  transition: 3s ease;
-  background-color: #132550;
-  color: white;
-  border-radius: 0px 10px 10px 0px;
-  padding: 10px;
+  transition: 1s ease;
 `;
 
 const Item = styled.div`
   display: flex;
+  text-decoration: none;
+  background: white;
+  color: #333;
+  text-transform: uppercase;
+  padding: 15px 0 15px 10px;
+  margin: 5px 0;
+  width: 200px;
+  position: relative;
+  margin-left: -140px;
+  transition: 0.5s ease;
   align-items: center;
-  gap: 5px;
-  transition: 3s ease;
+  transition: 1s ease;
+  border-radius: 0px 11px 11px 0px;
+
+  &:hover {
+    margin-left: 0px;
+  }
 
   &:hover ${P} {
     display: block;
-    color: white;
+    color: black;
   }
 `;
 
-const NewMenuUi = () => {
+const Span = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: right;
+  width: 70px;
+  height: 100%;
+  border-radius: 0px 10px 10px 0px;
+
+  line-height: 50px;
+  text-align: center;
+  background: ${({ theme }) => theme.bg};
+  color: #fff;
+  position: absolute;
+  right: 0;
+  top: 0;
+`;
+
+const I = styled.i`
+  font-size: 40px;
+  padding: 5px;
+`;
+
+const NewMenuUi = ({ darkmode, setDarkMode }) => {
+  const currentUser = useSelector((state) => state.username.currentUser);
+  // console.log(currentUser);
+
+  const nav = useNavigate();
+  const dispatch = useDispatch();
+
+  const OnclickLogout = () => {
+    dispatch(logout(currentUser));
+    nav('/');
+  };
+
   return (
     <Container>
       <SideBar>
-        <Items>
+        <Link to="/" style={{ textDecoration: 'none' }}>
           <Item>
-            <HomeIcon />
+            <Span>
+              <I>
+                <HomeIcon />
+              </I>
+            </Span>
             <P>HOME</P>
           </Item>
-        </Items>
-        <Items>
+        </Link>
+
+        <Link to="/trend" style={{ textDecoration: 'none' }}>
           <Item>
-            <ExploreIcon />
+            <Span>
+              <I>
+                <ExploreIcon />
+              </I>
+            </Span>
             <P>Explore</P>
           </Item>
-        </Items>
-        <Items>
-          <Item>
-            <SubscriptionsIcon />
-            <P>Subscription</P>
-          </Item>
-        </Items>
-        <Items>
-          <Item>
-            <LibraryBooksIcon />
-            <P>Library</P>
-          </Item>
-        </Items>
+        </Link>
 
-        <Items>
+        {currentUser ? (
+          <>
+            <Link to="/sub" style={{ textDecoration: 'none' }}>
+              <Item>
+                <Span>
+                  <I>
+                    <SubscriptionsIcon />
+                  </I>
+                </Span>
+                <P>Subscription</P>
+              </Item>
+            </Link>
+            <Link to="/library" style={{ textDecoration: 'none' }}>
+              <Item>
+                <Span>
+                  <I>
+                    <LibraryBooksIcon />
+                  </I>
+                </Span>
+                <P>Library</P>
+              </Item>
+            </Link>
+          </>
+        ) : (
+          <></>
+        )}
+
+        <Link to={'/traditional'}>
           <Item>
-            <BrushIcon />
+            <Span>
+              <I>
+                <BrushIcon />
+              </I>
+            </Span>
             <P>Traditional Animation</P>
           </Item>
-        </Items>
+        </Link>
 
-        <Items>
+        <Link to={'/2D'}>
           <Item>
-            <Filter2Icon />
+            <Span>
+              <I>
+                <Filter2Icon />
+              </I>
+            </Span>
             <P>2D Animation</P>
           </Item>
-        </Items>
+        </Link>
 
-        <Items>
+        <Link to={'/3D'}>
           <Item>
-            <ThreeDRotationIcon />
+            <Span>
+              <I>
+                <ThreeDRotationIcon />
+              </I>
+            </Span>
             <P>3D Animation</P>
           </Item>
-        </Items>
-        <Items>
+        </Link>
+
+        <Link to={'/Motion'}>
           <Item>
-            <GestureIcon />
+            <Span>
+              <I>
+                <GestureIcon />
+              </I>
+            </Span>
             <P>Motion Graphics</P>
           </Item>
-        </Items>
-        <Items>
+        </Link>
+
+        <Link to={'/Stop Motion'}>
           <Item>
-            <VibrationIcon />
+            <Span>
+              <I>
+                <VibrationIcon />
+              </I>
+            </Span>
+
             <P>Stop Motion</P>
           </Item>
-        </Items>
-        <Items>
-          <Item>
-            <SettingsIcon />
-            <P>Settings</P>
-          </Item>
-        </Items>
-        <Items>
-          <Item>
-            <FlagIcon />
-            <P>Report</P>
-          </Item>
-        </Items>
+        </Link>
 
-        <Items>
-          <Item>
-            <LiveHelpIcon />
-            <P>Help</P>
-          </Item>
-        </Items>
+        <Item>
+          <Span>
+            <I>
+              <SettingsIcon />
+            </I>
+          </Span>
 
-        <Items>
-          <Item>
-            <LightModeIcon />
-            <P>Dark Mode</P>
+          <P>Settings</P>
+        </Item>
+
+        <Item>
+          <Span>
+            <I>
+              <FlagIcon />
+            </I>
+          </Span>
+
+          <P>Report</P>
+        </Item>
+
+        <Item>
+          <Span>
+            <I>
+              <LiveHelpIcon />
+            </I>
+          </Span>
+
+          <P>Help</P>
+        </Item>
+
+        <Item onClick={() => setDarkMode(!darkmode)}>
+          <Span>
+            <I>
+              <LightModeIcon />
+            </I>
+          </Span>
+
+          <P>{darkmode ? 'Dark' : 'Light'} Mode</P>
+        </Item>
+
+        {!currentUser ? (
+          ''
+        ) : (
+          <Item onClick={OnclickLogout}>
+            <Span>
+              <I>
+                <LogoutIcon />
+              </I>
+            </Span>
+            LOG OUT
           </Item>
-        </Items>
+        )}
       </SideBar>
     </Container>
   );
