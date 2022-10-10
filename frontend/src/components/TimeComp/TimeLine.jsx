@@ -19,7 +19,9 @@ const TimeLine = ({ children, retrivedUser }) => {
       <TimelineItem>
         <HeaderLineSeparator />
         <TimelineContent>
-          <Typography className={"timeline_header"}>My Profile</Typography>
+          <Typography variant="h6" className={"timeline_header"}>
+            My Profile
+          </Typography>
         </TimelineContent>
       </TimelineItem>
 
