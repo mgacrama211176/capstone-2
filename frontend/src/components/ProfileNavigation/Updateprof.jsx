@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import Box from '@mui/material/Box';
@@ -16,7 +16,7 @@ const ContainerWrapper = styled.div`
   position: relative;
 `;
 
-const UpCvbt = styled.div`
+const UploadBtn = styled.div`
   appearance: button;
   background-color: #132550;
   background-image: none;
@@ -71,7 +71,6 @@ const Savebt = styled.div`
   box-shadow: #000 4px 4px 0 0, #000 4px 4px 0 1px;
   box-sizing: border-box;
   color: #ffff;
-
   cursor: pointer;
   display: inline-block;
   font-family: ITCAvantGardeStd-Bk, Arial, sans-serif;
@@ -107,12 +106,22 @@ const Savebt = styled.div`
   }
 `;
 
+const Input = styled.input``;
+
 const Headers = styled.div`
   margin-left: 16px;
   font-size: 20px;
 `;
 
 const Updateprof = () => {
+  const inputRef = useRef(null);
+
+  const handleClick = () => {
+    inputRef.current.click();
+  };
+
+  const OnchangePHandler = () => {};
+
   return (
     <ContainerWrapper>
       <Headers> Channel name and description</Headers>
@@ -151,9 +160,17 @@ const Updateprof = () => {
       </Box>
 
       <Savebt>Save changes</Savebt>
-      <UpCvbt>
+
+      <UploadBtn onClick={handleClick}>
+        <Input
+          type="file"
+          accept=".pdf"
+          style={{ display: 'none' }}
+          ref={inputRef}
+        />
         Upload CV <IosShareIcon />
-      </UpCvbt>
+        <p>(.pdf file Only)</p>
+      </UploadBtn>
     </ContainerWrapper>
   );
 };
