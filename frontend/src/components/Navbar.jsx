@@ -11,6 +11,7 @@ import PersonPinIcon from '@mui/icons-material/PersonPin';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import VideoCallIcon from '@mui/icons-material/VideoCall';
+import HoverMenu from './HoverMenu';
 
 const Container = styled.div`
   position: relative;
@@ -18,7 +19,8 @@ const Container = styled.div`
   background-color: ${({ theme }) => theme.bg};
   max-width: 100vw;
   padding: 0 1rem;
-  overflow: hidden;
+  overflow-block: inherit;
+  z-index: 99;
 `;
 
 const Wrapper = styled.div`
@@ -196,6 +198,7 @@ const Navbar = ({ setOpen, setClose }) => {
               </Button>
             </Link>
           )}
+          <HoverMenu />
         </Wrapper>
       </Container>
       {openModal && (
