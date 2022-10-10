@@ -13,7 +13,6 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 //react-router-dom
 import { useLocation, Link } from 'react-router-dom';
-import About from './ProfileNavigation/About';
 
 //PROFILE NAVIGATION
 
@@ -63,8 +62,6 @@ export default function CenteredTabs({ currentUser, retrivedUser }) {
     setValue(newValue);
     const location = useLocation();
   };
-
-  console.log(retrivedUser);
 
   return (
     <Box sx={{ width: '100%', ml: 2, my: 2, bgcolor: 'transparent' }}>
