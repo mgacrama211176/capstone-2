@@ -46,6 +46,7 @@ const Profile = ({ nav }) => {
           </Grid>
           <Grid item xs>
             <Header retrivedUser={retrivedUser} />
+
             {nav === 'about' ? (
               <About retrivedUser={retrivedUser} />
             ) : nav === 'videos' ? (
