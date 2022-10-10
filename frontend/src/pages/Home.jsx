@@ -20,7 +20,7 @@ const Container = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 10px;
-  margin-left: 10px;
+  margin-left: 55px;
 
   /* Mobile S */
   @media ${device.mobileS} {
@@ -29,11 +29,9 @@ const Container = styled.div`
 
   /* Tablet */
   @media ${device.tablet} {
-    gap: 40px;
+    gap: 10px;
   }
 `;
-
-const Wrapper = styled.div``;
 
 const Home = ({ type, category }) => {
   const [videos, setVideos] = useState([]);

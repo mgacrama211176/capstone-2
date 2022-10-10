@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
-import logoImg from "../assets/Logo.png";
-import { device } from "../media";
-import { useSelector } from "react-redux";
-import Upload from "../components/Upload";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { Link, useNavigate } from 'react-router-dom';
+import logoImg from '../assets/Logo.png';
+import { device } from '../media';
+import { useSelector } from 'react-redux';
+import Upload from '../components/Upload';
 
 //MUI
-import PersonPinIcon from "@mui/icons-material/PersonPin";
-import SearchIcon from "@mui/icons-material/Search";
-import MenuIcon from "@mui/icons-material/Menu";
-import VideoCallIcon from "@mui/icons-material/VideoCall";
+import PersonPinIcon from '@mui/icons-material/PersonPin';
+import SearchIcon from '@mui/icons-material/Search';
+import MenuIcon from '@mui/icons-material/Menu';
+import VideoCallIcon from '@mui/icons-material/VideoCall';
 
 const Container = styled.div`
   position: relative;
@@ -114,9 +114,9 @@ const UploadButton = styled.div`
 `;
 
 const Navbar = ({ setOpen, setClose }) => {
-  const [display, setDisplay] = useState("block");
+  const [display, setDisplay] = useState('block');
   const [openModal, setOpenModal] = useState(false);
-  const [q, setQ] = useState("");
+  const [q, setQ] = useState('');
 
   const User = styled.div`
     display: flex;
@@ -137,11 +137,11 @@ const Navbar = ({ setOpen, setClose }) => {
       <Container>
         <Wrapper>
           <LeftContainer>
-            <Burger onClick={setOpen}>
+            {/* <Burger onClick={setOpen}>
               <MenuIcon />
-            </Burger>
+            </Burger> */}
 
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <Link to="/" style={{ textDecoration: 'none' }}>
               <Logo>
                 <Img src={logoImg} />
               </Logo>
@@ -160,17 +160,17 @@ const Navbar = ({ setOpen, setClose }) => {
             <SearchIcon
               onClick={() => {
                 nav(`/search?q=${q}`);
-                setQ("");
+                setQ('');
               }}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: 'pointer' }}
             />
           </Search>
           {currentUser === null ? (
-            ""
+            ''
           ) : (
             <UploadButton>
               <VideoCallIcon
-                style={{ cursor: "pointer", margin: "10px" }}
+                style={{ cursor: 'pointer', margin: '10px' }}
                 onClick={() => setOpenModal(true)}
               />
             </UploadButton>
@@ -180,7 +180,7 @@ const Navbar = ({ setOpen, setClose }) => {
             <>
               <Link
                 to={`/profile/About/${currentUser._id}`}
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: 'none' }}
               >
                 <User>
                   {/* {currentUser.username} */}
@@ -189,7 +189,7 @@ const Navbar = ({ setOpen, setClose }) => {
               </Link>
             </>
           ) : (
-            <Link to="/signin" style={{ textDecoration: "none" }}>
+            <Link to="/signin" style={{ textDecoration: 'none' }}>
               <Button>
                 <PersonPinIcon />
                 Sign In

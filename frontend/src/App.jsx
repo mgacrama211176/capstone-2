@@ -72,13 +72,17 @@ const App = () => {
     <ThemeProvider theme={darkmode ? coloredTheme : darkTheme}>
       <Continer>
         <BrowserRouter>
-          <Menu
+          {/* <Menu
             setDarkMode={setDarkMode}
             darkmode={darkmode}
             burger={burger}
             style={{ position: 'relative', zIndex: '100' }}
+          /> */}
+          <NewMenuUi
+            darkmode={darkmode}
+            burger={burger}
+            setDarkMode={setDarkMode}
           />
-          <NewMenuUi />
           <Main setDarkMode={setDarkMode} darkmode={darkmode}>
             <Navbar
               setOpen={setOpen}
