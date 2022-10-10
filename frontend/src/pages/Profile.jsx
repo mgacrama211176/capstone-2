@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import Footer from '../components/Footer';
-import styled from 'styled-components';
-import Prof from '../components/Prof';
-import Header from '../components/Header';
-import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import Footer from "../components/Footer";
+import styled from "styled-components";
+import Prof from "../components/Prof";
+import Header from "../components/Header";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-import BGimage from '../assets/bgimage.jpg';
+import BGimage from "../assets/bgimage.jpg";
 
-import { Grid, Container } from '@mui/material';
+import { Grid, Container } from "@mui/material";
 
 //Media Queries
 import { device } from "../media";
 
 //Navigation Menu
-import About from '../components/ProfileNavigation/About';
-import VideoProfile from '../components/ProfileNavigation/VideoProfile';
-import Updateprof from '../components/ProfileNavigation/Updateprof';
+import About from "../components/ProfileNavigation/About";
+import VideoProfile from "../components/ProfileNavigation/VideoProfile";
+import Updateprof from "../components/ProfileNavigation/Updateprof";
 
-import axios from 'axios';
+import axios from "axios";
 
 const ContainerWrapper = styled.div`
   background-image: url(${BGimage});
@@ -51,6 +51,8 @@ const Profile = ({ nav }) => {
     getProfile();
   }, [id]);
 
+  const currentUser = useSelector((state) => state.username.currentUser);
+
   return (
     <Container>
       <ContainerWrapper>
@@ -61,9 +63,9 @@ const Profile = ({ nav }) => {
           <Grid item xs>
             <Header retrivedUser={retrivedUser} />
 
-            {nav === 'about' ? (
+            {nav === "about" ? (
               <About retrivedUser={retrivedUser} />
-            ) : nav === 'videos' ? (
+            ) : nav === "videos" ? (
               <VideoProfile retrivedUser={retrivedUser} />
             ) : (
               <Updateprof retrivedUser={retrivedUser} />

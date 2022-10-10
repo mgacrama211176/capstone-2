@@ -10,6 +10,9 @@ import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
 //react-router-dom
 import { Link } from "react-router-dom";
 
+//Media Queries
+import { device } from "../media";
+
 //PROFILE NAVIGATION
 
 export default function CenteredTabs({ retrivedUser }) {

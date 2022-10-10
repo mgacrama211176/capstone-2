@@ -1,11 +1,12 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
+//Media Queries
+import { device } from "../../media";
 
 const ContainerWrapper = styled.div`
   padding: 0px;
+  font-family: Roboto, Arial, sans-serif;
   margin-left: 15px;
   margin-top: 25px;
   margin-right: 10px;
@@ -29,6 +30,8 @@ const AboutWrapper = styled.div`
   height: 475px;
   margin: 30px;
   margin-right: 30px;
+  width: auto;
+
   background-color: #fedc008d;
   line-height: 2;
 `;
