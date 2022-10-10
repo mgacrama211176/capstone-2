@@ -5,9 +5,13 @@ import TimeLine from "./TimeComp/TimeLine";
 import axios from "axios";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 
+//Media Queries
+import { device } from "../media";
+
 const Profile = styled.div`
   background-color: white;
   border-radius: 6px;
+  max-width: 288px;
   width: 100%;
   display: inline-block;
   border: 1px solid black;
@@ -21,7 +25,9 @@ const ProfileName = styled.div`
 
 const ImgCon = styled.figure`
   margin-top: -10px;
+  max-width: 288px;
   clip-path: polygon(0 9%, 100% 0, 100% 85%, 0% 100%);
+  max-width: 288px;
 `;
 
 const Pimg = styled.img`
@@ -50,7 +56,7 @@ const CVbt = styled.button`
   color: #ffff;
   cursor: pointer;
   display: inline-block;
-  font-family: ITCAvantGardeStd-Bk, Arial, sans-serif;
+  font-family: Roboto, Arial, sans-serif;
   font-size: 16px;
   font-weight: bolder;
   line-height: 20px;

@@ -1,12 +1,17 @@
 .timeline {
   padding: 0 !important;
+  
+  
 }
-
+/* @media only screen and (max-width: 320px) */
 /* Header */
 
 /* Header Title */
 .timeline .timeline_header {
   padding-top: 7px;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 20px;
+  
 }
 
 .timeline .MuiTimelineitem-root {
@@ -57,7 +62,7 @@
   padding-left: 18px;
 }
 
-.timeline .timeline_content {
-  padding-top: 0px !important;
-  margin-bottom: 20px;
+.timeline .timeline_header {
+  font-family: Roboto, Arial, sans-serif;
+  font-weight: bolder;
 }

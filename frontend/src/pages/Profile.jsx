@@ -10,6 +10,9 @@ import { Grid, Container } from "@mui/material";
 import { useLocation, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+//Media Queries
+import { device } from "../media";
+
 //Navigation Menu
 import About from "../components/ProfileNavigation/About";
 import VideoProfile from "../components/ProfileNavigation/VideoProfile";
@@ -21,7 +24,18 @@ const ContainerWrapper = styled.div`
   background-image: url(${BGimage});
   margin-top: 50px;
   border-radius: 10px;
+  max-width: 100vw;
+
+  /* Tablet */
+  @media ${device.laptopL} {
+    max-width: 1919px;
+  }
+  /* Desktop */
+  @media ${device.desktop} {
+    max-width: 2559px;
+  }
 `;
+
 const Profile = ({ nav }) => {
   let { id } = useParams();
 

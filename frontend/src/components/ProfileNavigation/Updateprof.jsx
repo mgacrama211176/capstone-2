@@ -5,6 +5,9 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import IosShareIcon from "@mui/icons-material/IosShare";
 
+//Media Queries
+import { device } from "../../media";
+
 const ContainerWrapper = styled.div`
   padding: 0px;
   margin-left: 15px;
@@ -28,11 +31,10 @@ const UpCvbt = styled.div`
 
   cursor: pointer;
   display: inline-block;
-  font-family: ITCAvantGardeStd-Bk, Arial, sans-serif;
+  font-family: Roboto, Arial, sans-serif;
   font-size: 14px;
   font-weight: bolder;
   line-height: 20px;
-
   overflow: visible;
   padding: 12px 40px;
   text-align: center;
@@ -42,7 +44,7 @@ const UpCvbt = styled.div`
   -webkit-user-select: none;
   vertical-align: middle;
   white-space: nowrap;
-  margin-top: -350px;
+  margin-top: -330px;
   margin-bottom: 20px;
   margin-left: 380px;
 
@@ -74,7 +76,7 @@ const Savebt = styled.div`
 
   cursor: pointer;
   display: inline-block;
-  font-family: ITCAvantGardeStd-Bk, Arial, sans-serif;
+  font-family: Roboto, Arial, sans-serif;
   font-size: 14px;
   font-weight: bolder;
   line-height: 20px;
@@ -88,7 +90,7 @@ const Savebt = styled.div`
   -webkit-user-select: none;
   vertical-align: middle;
   white-space: nowrap;
-  margin-top: 50px;
+  margin-top: 20px;
   margin-left: 13px;
 
   &:focus {
@@ -110,6 +112,7 @@ const Savebt = styled.div`
 const Headers = styled.div`
   margin-left: 16px;
   font-size: 20px;
+  font-family: Roboto, Arial, sans-serif;
 `;
 
 const Updateprof = () => {

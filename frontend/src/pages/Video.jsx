@@ -45,7 +45,7 @@ import { ToastContainer } from "react-toastify";
 const Container = styled.div`
   display: flex;
   gap: 24px;
-  font-family: "Roboto", sans-serif;
+  font-family: Roboto, Arial, sans-serif;
   max-width: 100vw;
   padding: 0px 30px;
 `;
@@ -77,6 +77,7 @@ const VideoInformationContainer = styled.div`
 const Title = styled.h1`
   font-size: 18px;
   font-weight: 400;
+  font-family: Roboto, Arial, sans-serif;
   margin-top: 10px;
   margin-bottom: 10px;
   color: ${({ theme }) => theme.titleColor};
@@ -91,6 +92,7 @@ const Details = styled.div`
   display: flex;
   align-content: center;
   justify-content: space-between;
+  font-family: Roboto, Arial, sans-serif;
 
   @media ${device.mobileS} {
     font-size: 11px;
@@ -188,6 +190,7 @@ const ChannelDetail = styled.div`
 
 const ChannelName = styled.span`
   font-weight: bold;
+  font-family: Roboto, Arial, sans-serif;
 `;
 
 const ChannelCounter = styled.span`
@@ -198,6 +201,7 @@ const ChannelCounter = styled.span`
 
 const Description = styled.p`
   font-size: 14px;
+  font-family: Roboto, Arial, sans-serif;
 
   @media ${device.mobileS} {
     font-size: 12px;

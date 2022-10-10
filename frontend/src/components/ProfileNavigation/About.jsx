@@ -29,7 +29,7 @@ const AboutWrapper = styled.div`
   height: 475px;
   margin: 30px;
   margin-right: 30px;
-  background-color: #fede00;
+  background-color: #fedc008d;
   line-height: 2;
 `;
 

@@ -32,6 +32,7 @@ export default function CenteredTabs({ currentUser }) {
     cursor: pointer;
     display: inline-flex;
     font-size: 16px;
+    font-family: Roboto, Arial, sans-serif;
     font-weight: 600;
     justify-content: center;
     line-height: 1.25;
@@ -82,11 +83,10 @@ export default function CenteredTabs({ currentUser }) {
           <Tab label="UPDATE PROFILE" />
         </Link>
         {/* HIREME BTN */}
-        {/* <Link onClick={() => (window.location = `${currentUser.email}`)}>
-          <Hirebt variant="contained">
-            Hire me! <BadgeOutlinedIcon />
-          </Hirebt>
-        </Link> */}
+        {/* <Link onClick={() => (window.location = `${currentUser.email}`)}> */}
+        <Hirebt variant="contained">
+          Hire me! <BadgeOutlinedIcon />
+        </Hirebt>
       </Tabs>
     </Box>
   );
