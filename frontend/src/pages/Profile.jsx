@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from "react";
-import Footer from "../components/Footer";
-import styled from "styled-components";
-import Prof from "../components/Prof";
-import Header from "../components/Header";
+import React, { useState, useEffect } from 'react';
+import Footer from '../components/Footer';
+import styled from 'styled-components';
+import Prof from '../components/Prof';
+import Header from '../components/Header';
+import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-import BGimage from "../assets/bgimage.jpg";
+import BGimage from '../assets/bgimage.jpg';
 
-import { Grid, Container } from "@mui/material";
-import { useLocation, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Grid, Container } from '@mui/material';
 
 //Media Queries
 import { device } from "../media";
 
 //Navigation Menu
-import About from "../components/ProfileNavigation/About";
-import VideoProfile from "../components/ProfileNavigation/VideoProfile";
-import Updateprof from "../components/ProfileNavigation/Updateprof";
+import About from '../components/ProfileNavigation/About';
+import VideoProfile from '../components/ProfileNavigation/VideoProfile';
+import Updateprof from '../components/ProfileNavigation/Updateprof';
 
-import axios from "axios";
+import axios from 'axios';
 
 const ContainerWrapper = styled.div`
   background-image: url(${BGimage});
@@ -51,23 +51,22 @@ const Profile = ({ nav }) => {
     getProfile();
   }, [id]);
 
-  const currentUser = useSelector((state) => state.username.currentUser);
-
   return (
     <Container>
       <ContainerWrapper>
         <Grid container>
           <Grid item xs={12} sm={12} md={4} lg={3}>
-            <Prof currentUser={currentUser} />
+            <Prof retrivedUser={retrivedUser} />
           </Grid>
           <Grid item xs>
-            <Header currentUser={currentUser} />
-            {nav === "about" ? (
-              <About />
-            ) : nav === "videos" ? (
-              <VideoProfile />
+            <Header retrivedUser={retrivedUser} />
+
+            {nav === 'about' ? (
+              <About retrivedUser={retrivedUser} />
+            ) : nav === 'videos' ? (
+              <VideoProfile retrivedUser={retrivedUser} />
             ) : (
-              <Updateprof />
+              <Updateprof retrivedUser={retrivedUser} />
             )}
           </Grid>
         </Grid>

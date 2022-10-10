@@ -442,9 +442,10 @@ const Video = () => {
               </Details>
 
               <Hr />
+
               <Channel>
                 <ChannelInfo>
-                  <Link to={`/profile/${channelContainer}`}>
+                  <Link to={`/profile/About/${channelContainer}`}>
                     <Image src={channel.image} />
                   </Link>
                   <ChannelDetail>
@@ -462,6 +463,7 @@ const Video = () => {
                     : "FOLLOW"}
                 </Subscribe>
               </Channel>
+
               <Description>{currentVideo?.desc}</Description>
               <Hr />
               <Title>Recommended Videos</Title>

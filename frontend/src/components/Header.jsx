@@ -5,19 +5,14 @@ import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 
-import HomeIcon from "@mui/icons-material/Home";
 import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 //react-router-dom
-import { useLocation, Link } from "react-router-dom";
-import About from "./ProfileNavigation/About";
+import { Link } from "react-router-dom";
 
 //PROFILE NAVIGATION
 
-export default function CenteredTabs({ currentUser }) {
+export default function CenteredTabs({ retrivedUser }) {
   const [value, setValue] = React.useState(0);
 
   const Hirebt = styled.button`
@@ -60,31 +55,27 @@ export default function CenteredTabs({ currentUser }) {
     }
   `;
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-    const location = useLocation();
-  };
-
-  const [display, setDisplay] = useState(false);
-
   return (
     <Box sx={{ width: "100%", ml: 2, my: 2, bgcolor: "transparent" }}>
-      <Tabs value={value} onChange={handleChange} centered>
+      <Tabs value={value} centered>
         {/* NAVIGATION MENU */}
-        <Link to={`/profile/About/${currentUser._id}`}>
+        <Link to={`/profile/About/${retrivedUser?._id}`}>
           <Tab label="PROFILE" />
         </Link>
 
-        <Link to={`/profile/videos/${currentUser._id}`}>
+        <Link to={`/profile/videos/${retrivedUser?._id}`}>
           <Tab label="VIDEOS" />
         </Link>
 
-        <Link to={`/profile/updateProf/${currentUser._id}`}>
+        <Link to={`/profile/updateProf/${retrivedUser?._id}`}>
           <Tab label="UPDATE PROFILE" />
         </Link>
         {/* HIREME BTN */}
-        {/* <Link onClick={() => (window.location = `${currentUser.email}`)}> */}
-        <Hirebt variant="contained">
+
+        <Hirebt
+          variant="contained"
+          onClick={() => (window.location = `mailto:${retrivedUser?.email}`)}
+        >
           Hire me! <BadgeOutlinedIcon />
         </Hirebt>
       </Tabs>

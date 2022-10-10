@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
-import TimeLine from "./TimeComp/TimeLine";
-import axios from "axios";
-import FileDownloadIcon from "@mui/icons-material/FileDownload";
+import TimeLine from './TimeComp/TimeLine';
+import axios from 'axios';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
 
 //Media Queries
 import { device } from "../media";
@@ -90,22 +90,22 @@ const CVbt = styled.button`
   }
 `;
 
-const Prof = ({ currentUser }) => {
+const Prof = ({ retrivedUser }) => {
   return (
     <Profile>
       <ProfileName>
         <TypoName>
-          {currentUser.fullName !== undefined
-            ? currentUser.fullName
-            : currentUser.username}
+          {retrivedUser.fullName !== undefined
+            ? retrivedUser.fullName
+            : retrivedUser.username}
         </TypoName>
-        <TypoTitle>{currentUser.email}</TypoTitle>
+        <TypoTitle>{retrivedUser.email}</TypoTitle>
       </ProfileName>
       <ImgCon>
-        <Pimg src={currentUser.image}></Pimg>
+        <Pimg src={retrivedUser.image}></Pimg>
       </ImgCon>
       <Pinfo>
-        <TimeLine currentUser={currentUser} />
+        <TimeLine retrivedUser={retrivedUser} />
       </Pinfo>
       <CVbt variant="contained">
         Download CV

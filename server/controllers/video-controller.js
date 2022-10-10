@@ -71,9 +71,12 @@ export const getVideo = async (request, response, next) => {
 
 export const addView = async (request, response, next) => {
   try {
-     const increment = await VideoModel.findByIdAndUpdate(request.params.videoId, {
-      $inc: { views: 1 },
-    });
+    const increment = await VideoModel.findByIdAndUpdate(
+      request.params.videoId,
+      {
+        $inc: { views: 1 },
+      }
+    );
     response.status(200).json(increment);
   } catch (err) {
     next(err);
@@ -164,5 +167,16 @@ export const category = async (request, response, next) => {
     response.status(200).json(videos);
   } catch (err) {
     response.json(err);
+  }
+};
+
+export const getByUserId = async (request, response, next) => {
+  const id = request.params.id;
+
+  try {
+    const videos = await VideoModel.find({ userId: id });
+    response.status(200).json(videos);
+  } catch (err) {
+    response.status(500).json(err);
   }
 };

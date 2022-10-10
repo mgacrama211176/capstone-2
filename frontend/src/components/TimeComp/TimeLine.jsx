@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Timeline from "@mui/lab/Timeline";
 import TimelineItem from "@mui/lab/TimelineItem";
@@ -12,7 +12,7 @@ import WorkIcon from "@mui/icons-material/Work";
 import "../../components/TimeComp/Time.css";
 import { Typography } from "@mui/material";
 
-const TimeLine = ({ title, icon, children, currentUser }) => {
+const TimeLine = ({ children, retrivedUser }) => {
   return (
     <Timeline className={"timeline"}>
       {/*Item Header*/}
@@ -30,30 +30,30 @@ const TimeLine = ({ title, icon, children, currentUser }) => {
       <TimelineItem>
         <CustomTimeLineSeparator />
         <TimelineContent>
-          User Category: {currentUser.userCategory}
+          User Category: {retrivedUser.userCategory}
         </TimelineContent>
       </TimelineItem>
 
-      {currentUser.address === undefined ? (
+      {retrivedUser.address === undefined ? (
         ""
       ) : (
         <TimelineItem>
           <CustomTimeLineSeparator />
-          <TimelineContent>Address: {currentUser.address}</TimelineContent>
+          <TimelineContent>Address: {retrivedUser.address}</TimelineContent>
         </TimelineItem>
       )}
 
       <TimelineItem>
         <CustomTimeLineSeparator />
         <TimelineContent>
-          Subscribers: {currentUser.subscribers}
+          Subscribers: {retrivedUser.subscribers}
         </TimelineContent>
       </TimelineItem>
 
       <TimelineItem>
         <CustomTimeLineSeparator />
         <TimelineContent>
-          Subscribed Users: {currentUser.subscribedUsers.length}
+          Subscribed Users: {retrivedUser?.subscribedUsers?.length}
         </TimelineContent>
       </TimelineItem>
     </Timeline>
