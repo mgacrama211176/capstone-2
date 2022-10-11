@@ -19,7 +19,7 @@ const Container = styled.div`
   background-color: ${({ theme }) => theme.bg};
   max-width: 100vw;
   padding: 0 1rem;
-  overflow: hidden;
+  overflow: visible;
 `;
 
 const Wrapper = styled.div`
@@ -110,12 +110,7 @@ const Avatar = styled.img`
   background-color: #999;
 `;
 
-const UploadButton = styled.div`
-  color: white;
-`;
-
 const Navbar = ({ setOpen, setClose }) => {
-  const [display, setDisplay] = useState('block');
   const [openModal, setOpenModal] = useState(false);
   const [q, setQ] = useState('');
 
@@ -127,8 +122,6 @@ const Navbar = ({ setOpen, setClose }) => {
     color: ${({ theme }) => theme.text};
   `;
 
-  const uploadVideo = () => {};
-
   // THIS IS TO USE THE DATA ON REDUX
   const currentUser = useSelector((state) => state.username.currentUser);
 
@@ -138,10 +131,6 @@ const Navbar = ({ setOpen, setClose }) => {
       <Container>
         <Wrapper>
           <LeftContainer>
-            {/* <Burger onClick={setOpen}>
-              <MenuIcon />
-            </Burger> */}
-
             <Link to="/" style={{ textDecoration: 'none' }}>
               <Logo>
                 <Img src={logoImg} />
@@ -167,7 +156,7 @@ const Navbar = ({ setOpen, setClose }) => {
             />
           </Search>
 
-          <HoverMenu />
+          <HoverMenu setOpenModal={setOpenModal} />
         </Wrapper>
       </Container>
       {openModal && (
@@ -178,39 +167,3 @@ const Navbar = ({ setOpen, setClose }) => {
 };
 
 export default Navbar;
-
-// {
-//   currentUser === null ? (
-//     ''
-//   ) : (
-//     <UploadButton>
-//       <VideoCallIcon
-//         style={{ cursor: 'pointer', margin: '10px' }}
-//         onClick={() => setOpenModal(true)}
-//       />
-//     </UploadButton>
-//   );
-// }
-
-// {
-//   currentUser ? (
-//     <>
-//       <Link
-//         to={`/profile/About/${currentUser._id}`}
-//         style={{ textDecoration: 'none' }}
-//       >
-//         <User>
-//           {/* {currentUser.username} */}
-//           <Avatar src={currentUser.image} />
-//         </User>
-//       </Link>
-//     </>
-//   ) : (
-//     <Link to="/signin" style={{ textDecoration: 'none' }}>
-//       <Button>
-//         <PersonPinIcon />
-//         Sign In
-//       </Button>
-//     </Link>
-//   );
-// }

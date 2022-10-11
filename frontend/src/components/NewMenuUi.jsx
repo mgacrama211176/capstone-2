@@ -91,6 +91,10 @@ const Span = styled.span`
 const I = styled.i`
   font-size: 40px;
   padding: 5px;
+
+  &:hover {
+    color: #b2792d;
+  }
 `;
 
 const NewMenuUi = ({ darkmode, setDarkMode }) => {
@@ -212,36 +216,6 @@ const NewMenuUi = ({ darkmode, setDarkMode }) => {
             <P>Stop Motion</P>
           </Item>
         </Link>
-
-        <Item>
-          <Span>
-            <I>
-              <SettingsIcon />
-            </I>
-          </Span>
-
-          <P>Settings</P>
-        </Item>
-
-        <Item>
-          <Span>
-            <I>
-              <FlagIcon />
-            </I>
-          </Span>
-
-          <P>Report</P>
-        </Item>
-
-        <Item>
-          <Span>
-            <I>
-              <LiveHelpIcon />
-            </I>
-          </Span>
-
-          <P>Help</P>
-        </Item>
 
         <Item onClick={() => setDarkMode(!darkmode)}>
           <Span>

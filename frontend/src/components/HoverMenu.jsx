@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { device } from "../media";
+
+//REDUX
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { logout } from "../redux/userSlice";
 
 //MUI
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -10,6 +14,8 @@ import FlagIcon from "@mui/icons-material/Flag";
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonPinIcon from "@mui/icons-material/PersonPin";
+import VideoCallIcon from "@mui/icons-material/VideoCall";
+import Upload from "./Upload";
 
 const Container = styled.div``;
 
@@ -20,7 +26,7 @@ const DropdownContainer = styled.div``;
 const DropdownContent = styled.div`
   cursor: pointer;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 5px;
 `;
@@ -35,7 +41,7 @@ const Button = styled.button`
 const ContentWrapper = styled.div`
   position: absolute;
   right: 0px;
-  top: 60px;
+  top: 50px;
   border: solid #132550 0.5px;
   border-radius: 15px;
   padding: 5px;
@@ -61,9 +67,16 @@ const Avatar = styled.img`
   background-color: transparent;
 `;
 
-const HoverMenu = () => {
+const HoverMenu = ({ setOpenModal }) => {
+  const nav = useNavigate();
+  const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.username.currentUser);
   const [rightMenu, setRightMenu] = useState(false);
+
+  const OnclickLogout = () => {
+    dispatch(logout(currentUser));
+    nav("/");
+  };
 
   const onHover = () => {
     rightMenu ? setRightMenu(false) : setRightMenu(true);
@@ -124,7 +137,10 @@ const HoverMenu = () => {
                   </User>
                   {currentUser?.username}
                 </DropdownContent>
-                <DropdownContent>UPLOAD</DropdownContent>
+                <DropdownContent onClick={setOpenModal}>
+                  <VideoCallIcon />
+                  UPLOAD
+                </DropdownContent>
                 <DropdownContent>
                   <SettingsIcon />
                   SETTINGS
@@ -137,7 +153,7 @@ const HoverMenu = () => {
                   <LiveHelpIcon />
                   HELP
                 </DropdownContent>
-                <DropdownContent>
+                <DropdownContent onClick={OnclickLogout}>
                   <LogoutIcon />
                   LOG OUT
                 </DropdownContent>
