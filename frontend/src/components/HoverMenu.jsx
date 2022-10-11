@@ -10,6 +10,7 @@ import FlagIcon from '@mui/icons-material/Flag';
 import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
+import VideoCallIcon from '@mui/icons-material/VideoCall';
 
 const Container = styled.div``;
 
@@ -20,7 +21,7 @@ const DropdownContainer = styled.div``;
 const DropdownContent = styled.div`
   cursor: pointer;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 5px;
 `;
@@ -35,7 +36,7 @@ const Button = styled.button`
 const ContentWrapper = styled.div`
   position: absolute;
   right: 0px;
-  top: 60px;
+  top: 50px;
   border: solid #132550 0.5px;
   border-radius: 15px;
   padding: 5px;
@@ -124,7 +125,10 @@ const HoverMenu = () => {
                   </User>
                   {currentUser?.username}
                 </DropdownContent>
-                <DropdownContent>UPLOAD</DropdownContent>
+                <DropdownContent>
+                  <VideoCallIcon />
+                  UPLOAD
+                </DropdownContent>
                 <DropdownContent>
                   <SettingsIcon />
                   SETTINGS
