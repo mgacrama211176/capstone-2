@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Link, useNavigate } from 'react-router-dom';
-import { device } from '../media';
-import { useSelector } from 'react-redux';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { Link, useNavigate } from "react-router-dom";
+import { device } from "../media";
+import { useSelector } from "react-redux";
 
 //MUI
-import SettingsIcon from '@mui/icons-material/Settings';
-import FlagIcon from '@mui/icons-material/Flag';
-import LiveHelpIcon from '@mui/icons-material/LiveHelp';
-import LogoutIcon from '@mui/icons-material/Logout';
-import PersonPinIcon from '@mui/icons-material/PersonPin';
+import SettingsIcon from "@mui/icons-material/Settings";
+import FlagIcon from "@mui/icons-material/Flag";
+import LiveHelpIcon from "@mui/icons-material/LiveHelp";
+import LogoutIcon from "@mui/icons-material/Logout";
+import PersonPinIcon from "@mui/icons-material/PersonPin";
 
 const Container = styled.div``;
 
@@ -96,7 +96,7 @@ const HoverMenu = () => {
               <Button onMouseEnter={onHover}>
                 <Link
                   to={`/profile/About/${currentUser._id}`}
-                  style={{ textDecoration: 'none' }}
+                  style={{ textDecoration: "none" }}
                 >
                   <User>
                     {/* {currentUser.username} */}
@@ -106,7 +106,7 @@ const HoverMenu = () => {
               </Button>
             </>
           ) : (
-            <Link to="/signin" style={{ textDecoration: 'none' }}>
+            <Link to="/signin" style={{ textDecoration: "none" }}>
               <SignIn>
                 <PersonPinIcon />
                 Sign In
@@ -144,7 +144,7 @@ const HoverMenu = () => {
               </ContentWrapper>
             </>
           ) : (
-            ''
+            ""
           )}
         </DropdownContainer>
       </Wrapper>
