@@ -11,6 +11,7 @@ import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
 import VideoCallIcon from '@mui/icons-material/VideoCall';
+import Upload from './Upload';
 
 const Container = styled.div``;
 
@@ -62,7 +63,7 @@ const Avatar = styled.img`
   background-color: transparent;
 `;
 
-const HoverMenu = () => {
+const HoverMenu = ({ setOpenModal }) => {
   const currentUser = useSelector((state) => state.username.currentUser);
   const [rightMenu, setRightMenu] = useState(false);
 
@@ -125,7 +126,7 @@ const HoverMenu = () => {
                   </User>
                   {currentUser?.username}
                 </DropdownContent>
-                <DropdownContent>
+                <DropdownContent onClick={setOpenModal}>
                   <VideoCallIcon />
                   UPLOAD
                 </DropdownContent>

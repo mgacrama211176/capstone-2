@@ -164,7 +164,7 @@ const Navbar = ({ setOpen, setClose }) => {
             />
           </Search>
 
-          <HoverMenu />
+          <HoverMenu setOpenModal={setOpenModal} />
         </Wrapper>
       </Container>
       {openModal && (
