@@ -5,13 +5,13 @@ import logoImg from '../assets/Logo.png';
 import { device } from '../media';
 import { useSelector } from 'react-redux';
 import Upload from '../components/Upload';
+import HoverMenu from '../components/HoverMenu';
 
 //MUI
 import PersonPinIcon from '@mui/icons-material/PersonPin';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import VideoCallIcon from '@mui/icons-material/VideoCall';
-import HoverMenu from './HoverMenu';
 
 const Container = styled.div`
   position: relative;
@@ -19,8 +19,7 @@ const Container = styled.div`
   background-color: ${({ theme }) => theme.bg};
   max-width: 100vw;
   padding: 0 1rem;
-  overflow-block: inherit;
-  z-index: 99;
+  overflow: hidden;
 `;
 
 const Wrapper = styled.div`
@@ -116,6 +115,7 @@ const UploadButton = styled.div`
 `;
 
 const Navbar = ({ setOpen, setClose }) => {
+  const [display, setDisplay] = useState('block');
   const [openModal, setOpenModal] = useState(false);
   const [q, setQ] = useState('');
 
@@ -126,6 +126,8 @@ const Navbar = ({ setOpen, setClose }) => {
     font-weight: 500;
     color: ${({ theme }) => theme.text};
   `;
+
+  const uploadVideo = () => {};
 
   // THIS IS TO USE THE DATA ON REDUX
   const currentUser = useSelector((state) => state.username.currentUser);
@@ -164,37 +166,7 @@ const Navbar = ({ setOpen, setClose }) => {
               style={{ cursor: 'pointer' }}
             />
           </Search>
-          {currentUser === null ? (
-            ''
-          ) : (
-            <UploadButton>
-              <VideoCallIcon
-                style={{ cursor: 'pointer', margin: '10px' }}
-                onClick={() => setOpenModal(true)}
-              />
-            </UploadButton>
-          )}
 
-          {currentUser ? (
-            <>
-              <Link
-                to={`/profile/About/${currentUser._id}`}
-                style={{ textDecoration: 'none' }}
-              >
-                <User>
-                  {/* {currentUser.username} */}
-                  <Avatar src={currentUser.image} />
-                </User>
-              </Link>
-            </>
-          ) : (
-            <Link to="/signin" style={{ textDecoration: 'none' }}>
-              <Button>
-                <PersonPinIcon />
-                Sign In
-              </Button>
-            </Link>
-          )}
           <HoverMenu />
         </Wrapper>
       </Container>
@@ -206,3 +178,39 @@ const Navbar = ({ setOpen, setClose }) => {
 };
 
 export default Navbar;
+
+// {
+//   currentUser === null ? (
+//     ''
+//   ) : (
+//     <UploadButton>
+//       <VideoCallIcon
+//         style={{ cursor: 'pointer', margin: '10px' }}
+//         onClick={() => setOpenModal(true)}
+//       />
+//     </UploadButton>
+//   );
+// }
+
+// {
+//   currentUser ? (
+//     <>
+//       <Link
+//         to={`/profile/About/${currentUser._id}`}
+//         style={{ textDecoration: 'none' }}
+//       >
+//         <User>
+//           {/* {currentUser.username} */}
+//           <Avatar src={currentUser.image} />
+//         </User>
+//       </Link>
+//     </>
+//   ) : (
+//     <Link to="/signin" style={{ textDecoration: 'none' }}>
+//       <Button>
+//         <PersonPinIcon />
+//         Sign In
+//       </Button>
+//     </Link>
+//   );
+// }
