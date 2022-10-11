@@ -116,7 +116,6 @@ const UploadButton = styled.div`
 `;
 
 const Navbar = ({ setOpen, setClose }) => {
-  const [display, setDisplay] = useState('block');
   const [openModal, setOpenModal] = useState(false);
   const [q, setQ] = useState('');
 
@@ -127,8 +126,6 @@ const Navbar = ({ setOpen, setClose }) => {
     font-weight: 500;
     color: ${({ theme }) => theme.text};
   `;
-
-  const uploadVideo = () => {};
 
   // THIS IS TO USE THE DATA ON REDUX
   const currentUser = useSelector((state) => state.username.currentUser);
