@@ -1,33 +1,33 @@
-import React, { useState } from 'react';
-import styled, { createGlobalStyle, keyframes } from 'styled-components';
-import { device } from '../media';
-import { Link, useNavigate } from 'react-router-dom';
-import { logout } from '../redux/userSlice';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import React, { useState } from "react";
+import styled, { createGlobalStyle, keyframes } from "styled-components";
+import { device } from "../media";
+import { Link, useNavigate } from "react-router-dom";
+import { logout } from "../redux/userSlice";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 //MUI
-import HomeIcon from '@mui/icons-material/Home';
-import ExploreIcon from '@mui/icons-material/Explore';
-import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
-import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
-import BrushIcon from '@mui/icons-material/Brush';
-import Filter2Icon from '@mui/icons-material/Filter2';
-import ThreeDRotationIcon from '@mui/icons-material/ThreeDRotation';
-import GestureIcon from '@mui/icons-material/Gesture';
-import VibrationIcon from '@mui/icons-material/Vibration';
-import SettingsIcon from '@mui/icons-material/Settings';
-import FlagIcon from '@mui/icons-material/Flag';
-import LiveHelpIcon from '@mui/icons-material/LiveHelp';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import PersonPinIcon from '@mui/icons-material/PersonPin';
-import LogoutIcon from '@mui/icons-material/Logout';
+import HomeIcon from "@mui/icons-material/Home";
+import ExploreIcon from "@mui/icons-material/Explore";
+import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
+import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import BrushIcon from "@mui/icons-material/Brush";
+import Filter2Icon from "@mui/icons-material/Filter2";
+import ThreeDRotationIcon from "@mui/icons-material/ThreeDRotation";
+import GestureIcon from "@mui/icons-material/Gesture";
+import VibrationIcon from "@mui/icons-material/Vibration";
+import SettingsIcon from "@mui/icons-material/Settings";
+import FlagIcon from "@mui/icons-material/Flag";
+import LiveHelpIcon from "@mui/icons-material/LiveHelp";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import PersonPinIcon from "@mui/icons-material/PersonPin";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const Container = styled.div`
   margin: 0;
   padding: 0;
   position: absolute;
-  top: 130px;
+  top: 100px;
   z-index: 6;
 `;
 const P = styled.p`
@@ -51,7 +51,7 @@ const Item = styled.div`
   color: #333;
   text-transform: uppercase;
   padding: 15px 0 15px 10px;
-  margin: 5px 0;
+  margin: 2px 0;
   width: 200px;
   position: relative;
   margin-left: -140px;
@@ -106,13 +106,13 @@ const NewMenuUi = ({ darkmode, setDarkMode }) => {
 
   const OnclickLogout = () => {
     dispatch(logout(currentUser));
-    nav('/');
+    nav("/");
   };
 
   return (
     <Container>
       <SideBar>
-        <Link to="/" style={{ textDecoration: 'none' }}>
+        <Link to="/" style={{ textDecoration: "none" }}>
           <Item>
             <Span>
               <I>
@@ -123,7 +123,7 @@ const NewMenuUi = ({ darkmode, setDarkMode }) => {
           </Item>
         </Link>
 
-        <Link to="/trend" style={{ textDecoration: 'none' }}>
+        <Link to="/trend" style={{ textDecoration: "none" }}>
           <Item>
             <Span>
               <I>
@@ -136,7 +136,7 @@ const NewMenuUi = ({ darkmode, setDarkMode }) => {
 
         {currentUser ? (
           <>
-            <Link to="/sub" style={{ textDecoration: 'none' }}>
+            <Link to="/sub" style={{ textDecoration: "none" }}>
               <Item>
                 <Span>
                   <I>
@@ -146,7 +146,7 @@ const NewMenuUi = ({ darkmode, setDarkMode }) => {
                 <P>Subscription</P>
               </Item>
             </Link>
-            <Link to="/library" style={{ textDecoration: 'none' }}>
+            <Link to="/library" style={{ textDecoration: "none" }}>
               <Item>
                 <Span>
                   <I>
@@ -161,7 +161,7 @@ const NewMenuUi = ({ darkmode, setDarkMode }) => {
           <></>
         )}
 
-        <Link to={'/traditional'}>
+        <Link to={"/traditional"}>
           <Item>
             <Span>
               <I>
@@ -172,7 +172,7 @@ const NewMenuUi = ({ darkmode, setDarkMode }) => {
           </Item>
         </Link>
 
-        <Link to={'/2D'}>
+        <Link to={"/2D"}>
           <Item>
             <Span>
               <I>
@@ -183,7 +183,7 @@ const NewMenuUi = ({ darkmode, setDarkMode }) => {
           </Item>
         </Link>
 
-        <Link to={'/3D'}>
+        <Link to={"/3D"}>
           <Item>
             <Span>
               <I>
@@ -194,7 +194,7 @@ const NewMenuUi = ({ darkmode, setDarkMode }) => {
           </Item>
         </Link>
 
-        <Link to={'/Motion'}>
+        <Link to={"/Motion"}>
           <Item>
             <Span>
               <I>
@@ -205,7 +205,7 @@ const NewMenuUi = ({ darkmode, setDarkMode }) => {
           </Item>
         </Link>
 
-        <Link to={'/Stop Motion'}>
+        <Link to={"/Stop Motion"}>
           <Item>
             <Span>
               <I>
@@ -224,11 +224,11 @@ const NewMenuUi = ({ darkmode, setDarkMode }) => {
             </I>
           </Span>
 
-          <P>{darkmode ? 'Dark' : 'Light'} Mode</P>
+          <P>{darkmode ? "Dark" : "Light"} Mode</P>
         </Item>
 
         {!currentUser ? (
-          ''
+          ""
         ) : (
           <Item onClick={OnclickLogout}>
             <Span>
