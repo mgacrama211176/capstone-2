@@ -73,6 +73,8 @@ const HoverMenu = ({ setOpenModal }) => {
   const currentUser = useSelector((state) => state.username.currentUser);
   const [rightMenu, setRightMenu] = useState(false);
 
+  console.log(currentUser);
+
   const OnclickLogout = () => {
     dispatch(logout(currentUser));
     nav("/");

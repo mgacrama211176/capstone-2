@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Footer from "../components/Footer";
 import styled from "styled-components";
 import Prof from "../components/Prof";
-import Header from "../components/Header";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -94,8 +93,7 @@ const TypoTitle = styled.p`
 `;
 
 const MainWrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
+  margin-left: 100px;
 `;
 
 const CVbt = styled.button`
@@ -175,7 +173,6 @@ const Profile = ({ nav }) => {
         Subscribers: {retrivedUser.subscribers}
         Subscribed Users: {retrivedUser?.subscribedUsers?.length} */}
       </ProfileWrapper>
-      <Header />
     </MainWrapper>
   );
 };
