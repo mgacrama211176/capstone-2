@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
 import { device } from '../media';
+
+//REDUX
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { logout } from '../redux/userSlice';
 
 //MUI
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -64,8 +68,15 @@ const Avatar = styled.img`
 `;
 
 const HoverMenu = ({ setOpenModal }) => {
+  const nav = useNavigate();
+  const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.username.currentUser);
   const [rightMenu, setRightMenu] = useState(false);
+
+  const OnclickLogout = () => {
+    dispatch(logout(currentUser));
+    nav('/');
+  };
 
   const onHover = () => {
     rightMenu ? setRightMenu(false) : setRightMenu(true);
@@ -142,7 +153,7 @@ const HoverMenu = ({ setOpenModal }) => {
                   <LiveHelpIcon />
                   HELP
                 </DropdownContent>
-                <DropdownContent>
+                <DropdownContent onClick={OnclickLogout}>
                   <LogoutIcon />
                   LOG OUT
                 </DropdownContent>
