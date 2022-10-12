@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
-import { device } from "../media";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { Link, useNavigate } from 'react-router-dom';
+import { device } from '../media';
 
 //REDUX
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { logout } from "../redux/userSlice";
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { logout } from '../redux/userSlice';
 
 //MUI
-import SettingsIcon from "@mui/icons-material/Settings";
-import FlagIcon from "@mui/icons-material/Flag";
-import LiveHelpIcon from "@mui/icons-material/LiveHelp";
-import LogoutIcon from "@mui/icons-material/Logout";
-import PersonPinIcon from "@mui/icons-material/PersonPin";
-import VideoCallIcon from "@mui/icons-material/VideoCall";
-import Upload from "./Upload";
+import SettingsIcon from '@mui/icons-material/Settings';
+import FlagIcon from '@mui/icons-material/Flag';
+import LiveHelpIcon from '@mui/icons-material/LiveHelp';
+import LogoutIcon from '@mui/icons-material/Logout';
+import PersonPinIcon from '@mui/icons-material/PersonPin';
+import VideoCallIcon from '@mui/icons-material/VideoCall';
+import Upload from './Upload';
 
 const Container = styled.div``;
 
@@ -83,7 +83,7 @@ const HoverMenu = ({ setOpenModal }) => {
 
   const OnclickLogout = () => {
     dispatch(logout(currentUser));
-    nav("/");
+    nav('/');
   };
 
   const onHover = () => {
@@ -117,7 +117,7 @@ const HoverMenu = ({ setOpenModal }) => {
               <Button onMouseEnter={onHover}>
                 <Link
                   to={`/profile/About/${currentUser._id}`}
-                  style={{ textDecoration: "none" }}
+                  style={{ textDecoration: 'none' }}
                 >
                   <User>
                     {/* {currentUser.username} */}
@@ -127,7 +127,7 @@ const HoverMenu = ({ setOpenModal }) => {
               </Button>
             </>
           ) : (
-            <Link to="/signin" style={{ textDecoration: "none" }}>
+            <Link to="/signin" style={{ textDecoration: 'none' }}>
               <SignIn>
                 <PersonPinIcon />
                 Sign In
@@ -149,10 +149,12 @@ const HoverMenu = ({ setOpenModal }) => {
                   <VideoCallIcon />
                   UPLOAD
                 </DropdownContent>
-                <DropdownContent>
-                  <SettingsIcon />
-                  SETTINGS
-                </DropdownContent>
+                <Link to={'/update'} style={{ textDecoration: 'none' }}>
+                  <DropdownContent>
+                    <SettingsIcon />
+                    UPDATE PROFILE
+                  </DropdownContent>
+                </Link>
                 <DropdownContent>
                   <FlagIcon />
                   REPORT
@@ -168,7 +170,7 @@ const HoverMenu = ({ setOpenModal }) => {
               </ContentWrapper>
             </>
           ) : (
-            ""
+            ''
           )}
         </DropdownContainer>
       </Wrapper>
