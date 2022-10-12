@@ -93,7 +93,7 @@ const I = styled.i`
   padding: 5px;
 
   &:hover {
-    color: #b2792d;
+    color: ${({ theme }) => theme.menu};
   }
 `;
 
