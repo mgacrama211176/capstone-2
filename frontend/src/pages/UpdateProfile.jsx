@@ -15,6 +15,10 @@ const Container = styled.div`
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 30px;
 `;
 
 const H1 = styled.h1``;
@@ -28,7 +32,7 @@ const AccountSet = styled.div`
 const CardContainer = styled.div`
   border: 1px solid black;
   border-radius: 15px;
-  width: 20%;
+  width: 25em;
   height: 10%;
   box-shadow: 5px 5px ${({ theme }) => theme.hover};
 `;
@@ -47,6 +51,10 @@ const CardImage = styled.img`
 const UserInfo = styled.div`
   display: flex;
   flex-direction: column;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px;
+  gap: 10px;
 `;
 
 const UpdateContainer = styled.div``;
@@ -80,23 +88,63 @@ const UpdateProfile = () => {
         <CardContainer>
           <ImageContainer>
             <CardImage src={currentUser.image} />
-            <UserInfo>{currentUser.username}</UserInfo>
-            {currentUser.userCategory}
+            <UserInfo>
+              <p>{currentUser.username}</p>
+              <p>{currentUser.userCategory}</p>
+            </UserInfo>
           </ImageContainer>
         </CardContainer>
         <UpdateContainer>
           <InputContainers>
-            <TextField id="Username" label="Username" variant="outlined" />
-            <TextField id="Email" label="Email" variant="outlined" />
-            <TextField id="UserCat" label="User Category" variant="outlined" />
             <TextField
-              id="password"
-              label="password"
+              id="Username"
+              label={currentUser.username}
               variant="outlined"
-              type="password"
+              placeholder="new username"
             />
-            <TextField id="Full Name" label="Full Name" variant="outlined" />
-            <TextField id="Address" label="Address" variant="outlined" />
+            <TextField
+              id="Email"
+              label={currentUser.email}
+              variant="outlined"
+              placeholder="Email"
+            />
+            <TextField
+              id="UserCat"
+              label={currentUser.userCategory}
+              variant="outlined"
+              placeholder="Category"
+            />
+            {currentUser.fullName ? (
+              <TextField
+                id="Full Name"
+                label={currentUser.fullName}
+                variant="outlined"
+                placeholder="Full Name"
+              />
+            ) : (
+              <TextField
+                id="Full Name"
+                label="Full Name"
+                variant="outlined"
+                placeholder="Full Name"
+              />
+            )}
+
+            {currentUser.address ? (
+              <TextField
+                id="Address"
+                label={currentUser.address}
+                variant="outlined"
+                placeholder="Address"
+              />
+            ) : (
+              <TextField
+                id="Address"
+                label="Address"
+                variant="outlined"
+                placeholder="Address"
+              />
+            )}
 
             <TextField
               id="BirthDate"
@@ -104,7 +152,14 @@ const UpdateProfile = () => {
               variant="outlined"
               type="date"
             />
-            <TextField id="About" label="About" variant="outlined" />
+            <TextField
+              id="About"
+              label={`About the ${currentUser.userCategory}`}
+              variant="outlined"
+              multiline
+              maxRows={50}
+            />
+
             <FileUploadContainers>
               <TextField
                 id="ProfileImage"

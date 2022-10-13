@@ -15,6 +15,9 @@ import {
 //Toaster
 import { Uploaded } from './Toasts';
 
+//Progress Bar
+import ProgressBar from '@ramonak/react-progress-bar';
+
 const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -192,7 +195,15 @@ const Upload = ({ setOpenModal, currentUser }) => {
 
         <Title>Upload video</Title>
         {videoPercentage > 0 ? (
-          'Video Uploaded at: ' + videoPercentage + '%'
+          <>
+            <ProgressBar
+              completed={videoPercentage}
+              width="30rem"
+              bgColor="#B2792D"
+              baseBgColor="#132550"
+            />
+            {videoPercentage === 100 ? 'DONE!' : 'Uploading Video...'}
+          </>
         ) : (
           <Input
             type="file"
@@ -228,7 +239,15 @@ const Upload = ({ setOpenModal, currentUser }) => {
         <Label>Thumbnail</Label>
 
         {thumbnailPercentage > 0 ? (
-          'Thumbnail uploaded at: ' + thumbnailPercentage + '%'
+          <>
+            <ProgressBar
+              completed={thumbnailPercentage}
+              width="30rem"
+              bgColor="#B2792D"
+              baseBgColor="#132550"
+            />
+            {thumbnailPercentage === 100 ? 'DONE!' : 'Uploading Thumbnail...'}
+          </>
         ) : (
           <Input
             type="file"
