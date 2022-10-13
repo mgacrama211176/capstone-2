@@ -1,20 +1,20 @@
-import React from "react";
-import styled from "styled-components";
-import { device } from "../media";
+import React from 'react';
+import styled from 'styled-components';
+import { device } from '../media';
 
 //Components
-import Card from "../components/Card";
+import Card from '../components/Card';
 
 //framer motion
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
 // libraries
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 //redux
-import { useDispatch, useSelector } from "react-redux";
-import videoSlice from "../redux/videoSlice";
+import { useDispatch, useSelector } from 'react-redux';
+import videoSlice from '../redux/videoSlice';
 
 const Container = styled.div`
   display: flex;
@@ -39,7 +39,7 @@ const Home = ({ type, category }) => {
   const { currentUser } = useSelector((state) => state.username);
 
   useEffect(() => {
-    if (type === "sub") {
+    if (type === 'sub') {
       const fetchingVideos = async () => {
         const randomReturn = await axios.get(
           `http://localhost:4000/api/videos/${type}/${currentUser?._id}`
@@ -47,7 +47,7 @@ const Home = ({ type, category }) => {
         setVideos(randomReturn.data);
       };
       fetchingVideos();
-    } else if (type === "library") {
+    } else if (type === 'library') {
       const fetchingVideos = async () => {
         const randomReturn = await axios.get(
           `http://localhost:4000/api/videos/${type}/${currentUser?._id}`
@@ -55,7 +55,7 @@ const Home = ({ type, category }) => {
         setVideos(randomReturn.data);
       };
       fetchingVideos();
-    } else if (type === "category") {
+    } else if (type === 'category') {
       const fetchingVideos = async () => {
         const randomReturn = await axios.get(
           `http://localhost:4000/api/videos/${type}/${category}`
@@ -73,6 +73,10 @@ const Home = ({ type, category }) => {
       fetchingVideos();
     }
   }, [type]);
+
+  for (let i = 0; i < videos.length; i++) {
+    console.log(videos[i].tags);
+  }
 
   return (
     <motion.div

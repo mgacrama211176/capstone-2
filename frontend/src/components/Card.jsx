@@ -145,7 +145,6 @@ const Card = ({ type, video }) => {
 
   const path = useLocation();
 
-  console.log(channel.image);
   return (
     <Link to={`/video/${video?._id}`} style={{ textDecoration: 'none' }}>
       <Container type={type}>

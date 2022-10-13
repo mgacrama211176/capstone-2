@@ -176,9 +176,6 @@ const Upload = ({ setOpenModal, currentUser }) => {
     );
   };
 
-  console.log(uploadInformation.imgUrl);
-  console.log(uploadInformation.videoUrl);
-
   useEffect(() => {
     video && uploadFile(video, 'videoUrl');
   }, [video]);
