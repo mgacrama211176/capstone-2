@@ -5,9 +5,10 @@ import Prof from "../components/Prof";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import BGimage from "../assets/bgimage.jpg";
+import BGimage from "../assets/neon.jpg";
 
-import { Grid, Container } from "@mui/material";
+//MUI ICONS
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 
 //Media Queries
 import { device } from "../media";
@@ -23,85 +24,168 @@ import Tab from "@mui/material/Tab";
 import axios from "axios";
 
 const MainWrapper = styled.div`
-  /* background-color */
-  background:linear-gradient(90deg, rgba(18, 42, 177, 1) 0%, rgba(94, 111, 207, 1) 50%, rgba(112, 44, 147, 1) 100%);
-  display: flex;
-  border-radius: 25px;
-  color: white;
+  background-image: url(${BGimage});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
   font-family: Roboto, Arial, sans-serif;
-  margin: 100%;
-  padding 0;
-  margin-top: 10px;
-  margin-left: 80px;
-  margin-right: 80px;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
 
-  
-  
+  @media ${device.mobileS} {
+  }
+`;
+/* PROFILE Section*/
+const ProfWrapper = styled.div`
+  color: white;
+  background: #00000081;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20px;
 `;
 
-const ProfileWrapper = styled.div`
-background:linear-gradient(90deg, rgba(188, 0, 255, 1) 0%, rgba(36, 119, 187, 1) 50%, rgba(14, 9, 197, 1) 100%);
-  display: flex;
-  border-radius: 25px;
-  color: white;
-  font-family: Roboto, Arial, sans-serif;
-  margin: 100%;
-  padding 0;
-  margin-top: 10px;
-  margin-left: 80px;
-  margin-right: 80px;
-  align-items: center;
- `;
-
-const Videowrapper = styled.div`
-  background: linear-gradient(
-    90deg,
-    rgba(188, 0, 255, 1) 0%,
-    rgba(36, 119, 187, 1) 50%,
-    rgba(14, 9, 197, 1) 100%
-  );
-
-  display: flex;
-  border-radius: 25px;
-  color: white;
-  font-family: Roboto, Arial, sans-serif;
-  margin: 100%;
-  padding 0;
-  margin-top: 10px;
-  margin-left: 80px;
-  margin-right: 80px;
-  align-items: center;
-  justify-content: center;
-`;
+//Image Styling
 
 const ImgCon = styled.figure`
-  margin-top: 0.5%;
+  width: 10em;
+  height: 10em;
+  position: relative;
+`;
 
-  object-fit: cover;
-  width: 90px;
-  -webkit-clip-path: circle(46% at 50% 50%);
-  clip-path: circle(46% at 50% 50%);
+const Imginner = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
 `;
 
 const Pimg = styled.img`
+  min-width: 100%;
+  max-width: 105%;
+  min-height: 100%;
+  position: absolute;
   object-fit: cover;
 `;
 
-const TypoName = styled.p`
-  padding: 2rem;
-  text-decoration: uppercase;
-  font-size: 2rem;
-  align-content: center;
+// PROF INFO STYLING
+
+const Infowrapper = styled.div`
+  padding: 4em 4em 8em 4em;
+  width: 100%;
 `;
 
-const TypoDetails = styled.p`
-  padding: 2rem;
+const Infoleft = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 2em;
+  z-index: 5;
+  border-radius: 10px;
 `;
-const Typoemail = styled.p`
-  padding: 2rem;
+
+const Detailswrap = styled.div`
+  width: 100%;
+  display: flex;
+  padding: 0.5em;
+  gap: 2em;
+  z-index: 5;
+  border-radius: 10px;
 `;
+const UsernameWrapper = styled.span`
+  margin: 2.5rem 1rem;
+  text-decoration: uppercase;
+  font-size: 2rem;
+`;
+const Cattitle = styled.span`
+  margin: 0;
+`;
+const TypoDetails = styled.div``;
+const Typoemail = styled.p``;
+
+const Subbtn = styled.button`
+  margin: 10px;
+  padding: 0 30px;
+  text-align: center;
+  text-transform: uppercase;
+  max-height: 50px;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  border: 0px;
+  font-weight: 700;
+  box-shadow: 0px 0px 14px -7px #f1eee9;
+  margin-left: 80rem;
+  background-color: #00000049;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+
+  &:hover {
+    background-position: right center;
+
+    color: #fff;
+    text-decoration: none;
+  }
+  &:active {
+    transform: scale(1.3);
+  }
+`;
+//About Section
+const Aboutwrapper = styled.div`
+  color: white;
+  background: #00000081;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  margin-left: 20px;
+`;
+
+const Aboutme = styled.h1`
+  padding-left: 5rem;
+`;
+const ContentWrap = styled.p`
+  align-content: center;
+
+  padding: 5em;
+  display: grid;
+`;
+
+//Video Sectiton
+
+const VidWrapper = styled.div`
+  color: white;
+  background: #00000081;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  margin-left: 20px;
+`;
+
+//Contact Section
+
+const ContactWrapper = styled.div`
+  color: white;
+  background: #00000081;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  margin-left: 20px;
+`;
+
+const Pageseparator = styled.hr``;
 
 const Profile = ({ nav }) => {
   let { id } = useParams();
@@ -122,25 +206,70 @@ const Profile = ({ nav }) => {
 
   return (
     <MainWrapper>
-      <ProfileWrapper>
-        <ImgCon>
-          <Pimg src={retrivedUser.image}></Pimg>
-        </ImgCon>
-        <Typoemail>{retrivedUser.email}</Typoemail>
-        <TypoName>
-          {retrivedUser.fullName !== undefined
-            ? retrivedUser.fullName
-            : retrivedUser.username}
-        </TypoName>
+      <ProfWrapper>
+        <Infowrapper>
+          <Infoleft>
+            <ImgCon>
+              <Imginner>
+                <Pimg src={retrivedUser.image}></Pimg>
+              </Imginner>
+            </ImgCon>
 
-        <TypoDetails>User Category {retrivedUser.userCategory}</TypoDetails>
-        <TypoDetails>
-          <br />
-          {/* Address: {retrivedUser.address} */}
-          {retrivedUser.subscribers} Subscribers <br />
-          {retrivedUser?.subscribedUsers?.length} Subscribed Users
-        </TypoDetails>
-      </ProfileWrapper>
+            <UsernameWrapper>
+              {retrivedUser.fullName !== undefined
+                ? retrivedUser.fullName
+                : retrivedUser.username}
+              <br />
+              {retrivedUser.userCategory}
+
+              <PersonOutlineIcon />
+            </UsernameWrapper>
+            <Subbtn>Subscribe</Subbtn>
+          </Infoleft>
+          <Detailswrap>
+            <Cattitle></Cattitle>
+            {/* <Typoemail>{retrivedUser.email}</Typoemail> */}
+
+            <TypoDetails>
+              {/* Address: {retrivedUser.address} */}
+              {retrivedUser.subscribers} Subscribers
+              <br />
+              {retrivedUser?.subscribedUsers?.length} Subscribed Users
+            </TypoDetails>
+          </Detailswrap>
+        </Infowrapper>
+      </ProfWrapper>
+      <Pageseparator />
+      <Aboutwrapper>
+        <Aboutme>About Me</Aboutme>
+
+        <ContentWrap>
+          Even though I didn’t know it until several years later, my first foray
+          into Japanese culture was watching cartoons on Saturday mornings.
+          Entranced by the fantastic plot lines, giant eyes, and wonderful
+          animation, I was watching anime without even knowing it. Anime means
+          “animation” in Japan, so in theory, could apply to any form of
+          animation from around the world, but in modern times has come to refer
+          to any and all Japanese animation. When most people think of anime
+          they think of vibrant and beautifully drawn scenes, that are both
+          dramatic and heartfelt, sometimes with just a hint of magic. The
+          history of anime in Japan can be traced back to the late 19th century.
+          In fact, it was a French art movement called "Japonisme" that helped
+          inspire Japanese artists and create some of the first examples of
+          modern animation. However, it wasn't until World War II when Japan's
+          government started promoting cartoons as a way to raise morale that
+          the style really took off.
+        </ContentWrap>
+      </Aboutwrapper>
+      <Pageseparator />
+      <VidWrapper>
+        <Aboutme>Videos</Aboutme>
+      </VidWrapper>
+      <Pageseparator />
+      <ContactWrapper>
+        <Aboutme>Contact Me</Aboutme>
+      </ContactWrapper>
+      <Footer />
     </MainWrapper>
   );
 };
