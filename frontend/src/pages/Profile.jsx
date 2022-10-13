@@ -277,8 +277,15 @@ const Profile = ({ nav }) => {
           <ContentWrap>
             <hr />
             <h3>Details</h3>
+            <hr />
+            Name:{" "}
+            {retrivedUser.fullName !== undefined
+              ? retrivedUser.fullName
+              : retrivedUser.username}
+            <hr />
             <p>Contact user via email: {retrivedUser.email} </p>
-            <p>Address: {retrivedUser.address}</p>
+            <hr />
+            <p>Address: {retrivedUser.address}Cebu City</p>
           </ContentWrap>
         </Aboutwrapper>
         <Aboutwrapper>
@@ -287,7 +294,8 @@ const Profile = ({ nav }) => {
             <hr />
             <p>Joined July 13, 2022</p>
             <hr />
-
+            <p>Total views: 100</p>
+            <hr />
             <p>
               Report User <FlagIcon />
             </p>
