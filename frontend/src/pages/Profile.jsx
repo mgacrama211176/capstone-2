@@ -9,6 +9,7 @@ import BGimage from "../assets/neon.jpg";
 
 //MUI ICONS
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import FlagIcon from "@mui/icons-material/Flag";
 
 //Media Queries
 import { device } from "../media";
@@ -122,9 +123,9 @@ const Subbtn = styled.button`
   display: block;
   border: 0px;
   font-weight: 700;
-  box-shadow: 0px 0px 14px -7px #f1eee9;
+
   margin-left: 80rem;
-  background-color: #00000049;
+  background-color: #f51f1ff2;
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
@@ -133,7 +134,6 @@ const Subbtn = styled.button`
   &:hover {
     background-position: right center;
 
-    color: #fff;
     text-decoration: none;
   }
   &:active {
@@ -141,24 +141,38 @@ const Subbtn = styled.button`
   }
 `;
 //About Section
+
+const Row = styled.div`
+  display: flex;
+`;
 const Aboutwrapper = styled.div`
   color: white;
   background: #00000081;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  display: inline-block;
+  flex: 50%;
+  padding: 10px;
   margin-left: 20px;
+  display: inline-block;
 `;
 
 const Aboutme = styled.h1`
   padding-left: 5rem;
 `;
 const ContentWrap = styled.p`
+  align-items: center;
+  justify-content: center;
   align-content: center;
+  align-self: center;
+  margin-left: 45px;
+  padding: 3em 2em;
+`;
 
-  padding: 5em;
-  display: grid;
+const Aboutdetails = styled.p`
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  align-self: center;
+  margin-left: 45px;
+  padding: 2em;
 `;
 
 //Video Sectiton
@@ -240,27 +254,46 @@ const Profile = ({ nav }) => {
         </Infowrapper>
       </ProfWrapper>
       <Pageseparator />
-      <Aboutwrapper>
-        <Aboutme>About Me</Aboutme>
+      <Row>
+        <Aboutwrapper>
+          <Aboutme>About Me</Aboutme>
+          <Aboutdetails>
+            Even though I didn’t know it until several years later, my first
+            foray into Japanese culture was watching cartoons on Saturday
+            mornings. Entranced by the fantastic plot lines, giant eyes, and
+            wonderful animation, I was watching anime without even knowing it.
+            Anime means “animation” in Japan, so in theory, could apply to any
+            form of animation from around the world, but in modern times has
+            come to refer to any and all Japanese animation. When most people
+            think of anime they think of vibrant and beautifully drawn scenes,
+            that are both dramatic and heartfelt, sometimes with just a hint of
+            magic. The history of anime in Japan can be traced back to the late
+            19th century. In fact, it was a French art movement called
+            "Japonisme" that helped inspire Japanese artists and create some of
+            the first examples of modern animation. However, it wasn't until
+            World War II when Japan's government started promoting cartoons as a
+            way to raise morale that the style really took off.
+          </Aboutdetails>
+          <ContentWrap>
+            <hr />
+            <h3>Details</h3>
+            <p>Contact user via email: {retrivedUser.email} </p>
+            <p>Address: {retrivedUser.address}</p>
+          </ContentWrap>
+        </Aboutwrapper>
+        <Aboutwrapper>
+          <ContentWrap>
+            <h3>Stats</h3>
+            <hr />
+            <p>Joined July 13, 2022</p>
+            <hr />
 
-        <ContentWrap>
-          Even though I didn’t know it until several years later, my first foray
-          into Japanese culture was watching cartoons on Saturday mornings.
-          Entranced by the fantastic plot lines, giant eyes, and wonderful
-          animation, I was watching anime without even knowing it. Anime means
-          “animation” in Japan, so in theory, could apply to any form of
-          animation from around the world, but in modern times has come to refer
-          to any and all Japanese animation. When most people think of anime
-          they think of vibrant and beautifully drawn scenes, that are both
-          dramatic and heartfelt, sometimes with just a hint of magic. The
-          history of anime in Japan can be traced back to the late 19th century.
-          In fact, it was a French art movement called "Japonisme" that helped
-          inspire Japanese artists and create some of the first examples of
-          modern animation. However, it wasn't until World War II when Japan's
-          government started promoting cartoons as a way to raise morale that
-          the style really took off.
-        </ContentWrap>
-      </Aboutwrapper>
+            <p>
+              Report User <FlagIcon />
+            </p>
+          </ContentWrap>
+        </Aboutwrapper>
+      </Row>
       <Pageseparator />
       <VidWrapper>
         <Aboutme>Videos</Aboutme>
