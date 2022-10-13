@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import app from '../firebase';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import uploadIcon from '../assets/Loading.gif';
 
 //firebase/store
 import {
@@ -28,12 +29,12 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 5;
+  z-index: 100;
 `;
 
 const Wrapper = styled.div`
   width: 60%;
-  height: 80%;
+  height: 90%;
   background-color: white;
   color: black;
   padding: 20px;
@@ -82,7 +83,7 @@ const TextArea = styled.textarea`
 `;
 
 const Button = styled.button`
-  width: 100px;
+  width: 150px;
   height: 30px;
   border-radius: 10px;
   border-color: transparent;
@@ -105,6 +106,19 @@ const Select = styled.select`
 const Option = styled.option``;
 
 const Label = styled.label``;
+
+const Video = styled.video`
+  width: 320px;
+  height: 240px;
+`;
+
+const ThumbContainer = styled.div`
+  width: 10%;
+`;
+
+const UploadedImg = styled.img`
+  width: 100%;
+`;
 
 const Upload = ({ setOpenModal, currentUser }) => {
   const nav = useNavigate();
@@ -162,6 +176,9 @@ const Upload = ({ setOpenModal, currentUser }) => {
     );
   };
 
+  console.log(uploadInformation.imgUrl);
+  console.log(uploadInformation.videoUrl);
+
   useEffect(() => {
     video && uploadFile(video, 'videoUrl');
   }, [video]);
@@ -188,6 +205,17 @@ const Upload = ({ setOpenModal, currentUser }) => {
     Uploaded();
   };
 
+  const videoRef = useRef(null);
+  const thumbRef = useRef(null);
+
+  const handleVideoClick = () => {
+    videoRef.current.click();
+  };
+
+  const handleThumbClick = () => {
+    thumbRef.current.click();
+  };
+
   return (
     <Container>
       <Wrapper>
@@ -196,20 +224,66 @@ const Upload = ({ setOpenModal, currentUser }) => {
         <Title>Upload video</Title>
         {videoPercentage > 0 ? (
           <>
+            {videoPercentage === 100 ? (
+              <>
+                <Video src={uploadInformation.videoUrl} controls></Video>
+              </>
+            ) : (
+              ''
+            )}
             <ProgressBar
               completed={videoPercentage}
               width="30rem"
               bgColor="#B2792D"
               baseBgColor="#132550"
+              maxCompleted={100}
             />
-            {videoPercentage === 100 ? 'DONE!' : 'Uploading Video...'}
+            {videoPercentage === 100 ? 'DONE!' : `Uploading Video...`}
           </>
         ) : (
-          <Input
-            type="file"
-            accept="video/*"
-            onChange={(e) => setVideo(e.target.files[0])}
-          />
+          <>
+            <Input
+              type="file"
+              accept="video/*"
+              onChange={(e) => setVideo(e.target.files[0])}
+              style={{ display: 'none' }}
+              ref={videoRef}
+            />
+            <Button onClick={handleVideoClick}>Upload Video</Button>
+          </>
+        )}
+
+        {thumbnailPercentage > 0 ? (
+          <>
+            {thumbnailPercentage === 100 ? (
+              <>
+                <ThumbContainer>
+                  <UploadedImg src={uploadInformation.imgUrl} />
+                </ThumbContainer>
+              </>
+            ) : (
+              'Uploading Thumbnail...'
+            )}
+            <ProgressBar
+              completed={thumbnailPercentage}
+              width="30rem"
+              bgColor="#B2792D"
+              baseBgColor="#132550"
+            />
+            {thumbnailPercentage === 100 ? 'DONE!' : 'Uploading Thumbnail...'}
+          </>
+        ) : (
+          <>
+            <Input
+              type="file"
+              accept="image/*"
+              placeholder="Thumbnail"
+              onChange={(e) => setThumbnail(e.target.files[0])}
+              style={{ display: 'none' }}
+              ref={thumbRef}
+            />
+            <Button onClick={handleThumbClick}>Upload Thumbnail</Button>
+          </>
         )}
 
         <Input
@@ -220,7 +294,7 @@ const Upload = ({ setOpenModal, currentUser }) => {
         />
         <TextArea
           placeholder="Description"
-          rows={8}
+          rows={15}
           id="desc"
           onChange={(e) => onChangeHandleInformation(e)}
         ></TextArea>
@@ -236,26 +310,6 @@ const Upload = ({ setOpenModal, currentUser }) => {
           <Option value="Motion Graphics">Motion Graphics</Option>
           <Option value="Stop Motion">Stop Motion</Option>
         </Select>
-        <Label>Thumbnail</Label>
-
-        {thumbnailPercentage > 0 ? (
-          <>
-            <ProgressBar
-              completed={thumbnailPercentage}
-              width="30rem"
-              bgColor="#B2792D"
-              baseBgColor="#132550"
-            />
-            {thumbnailPercentage === 100 ? 'DONE!' : 'Uploading Thumbnail...'}
-          </>
-        ) : (
-          <Input
-            type="file"
-            accept="image/*"
-            placeholder="Thumbnail"
-            onChange={(e) => setThumbnail(e.target.files[0])}
-          />
-        )}
 
         <Button onClick={uploadHandler}>Upload</Button>
       </Wrapper>
