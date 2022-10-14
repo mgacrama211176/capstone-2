@@ -1,12 +1,12 @@
-import React from 'react';
-import styled from 'styled-components';
-import background from '../assets/Overcome-bro.png';
-import { useSelector } from 'react-redux';
+import React from "react";
+import styled from "styled-components";
+import background from "../assets/Overcome-bro.png";
+import { useSelector } from "react-redux";
 
 //MUI
-import TextField from '@mui/material/TextField';
-import Input from '@mui/material/Input';
-import InputAdornment from '@mui/material/InputAdornment';
+import TextField from "@mui/material/TextField";
+import Input from "@mui/material/Input";
+import InputAdornment from "@mui/material/InputAdornment";
 
 const Container = styled.div`
   margin: 0px 100px;
