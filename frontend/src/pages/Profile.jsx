@@ -26,7 +26,8 @@ const ProfWrapper = styled.div`
   position: relative;
   overflow: hidden;
   display: flex;
-  margin: 5rem 5rem;
+  margin: 0 5rem;
+  margin-bottom: 2%;
   justify-content: center;
   align-items: center;
 `;
@@ -148,6 +149,7 @@ const Aboutwrapper = styled.div`
   margin-left: 20px;
   display: inline-block;
   border-radius: 10%;
+  margin-bottom: 2%;
 `;
 
 const Aboutme = styled.h1`
@@ -216,7 +218,8 @@ const VidWrapper = styled.div`
   overflow: hidden;
   display: flex;
   margin-left: 20px;
-  border-radius: 2%;
+
+  margin-bottom: 2%;
 `;
 
 //Contact Section
@@ -232,6 +235,7 @@ const ContactWrapper = styled.div`
   align-content: center;
   justify-content: center;
   border-radius: 2%;
+  margin-bottom: 2%;
 `;
 
 const ContactInnerWrap = styled.div`
@@ -347,7 +351,7 @@ const Profile = ({ nav }) => {
           </Detailswrap>
         </Infowrapper>
       </ProfWrapper>
-      <Pageseparator />
+
       {/* About Section */}
       <Row>
         <Aboutwrapper>
@@ -403,11 +407,11 @@ const Profile = ({ nav }) => {
           </ContentWrap>
         </Aboutwrapper>
       </Row>
-      <Pageseparator />
+
       <VidWrapper>
         <Aboutme>Videos</Aboutme>
       </VidWrapper>
-      <Pageseparator />
+
       {/* Contact Me Section */}
       <ContactWrapper>
         <ContactInnerWrap>
