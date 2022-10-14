@@ -392,7 +392,7 @@ const Profile = ({ nav }) => {
           <ContentWrap>
             <Abtdthd>Stats</Abtdthd>
             <hr />
-            Joined {currentUser.createdAt}
+            Joined {currentUser?.createdAt}
             <hr />
             Total views: 100
             <hr />
