@@ -21,11 +21,12 @@ import { current } from "@reduxjs/toolkit";
 /* PROFILE Section*/
 const ProfWrapper = styled.div`
   color: white;
-  background: #00000081;
+  background: #000000ae;
   max-width: 100%;
   position: relative;
   overflow: hidden;
   display: flex;
+  margin: 5rem 5rem;
   justify-content: center;
   align-items: center;
 `;
@@ -209,19 +210,20 @@ const DownldCV = styled.button`
 
 const VidWrapper = styled.div`
   color: white;
-  background: #00000081;
+  background: #000000ae;
   max-width: 100%;
   position: relative;
   overflow: hidden;
   display: flex;
   margin-left: 20px;
+  border-radius: 2%;
 `;
 
 //Contact Section
 
 const ContactWrapper = styled.div`
   color: white;
-  background: #00000081;
+  background: #000000ae;
   max-width: 100%;
   position: relative;
   overflow: hidden;
@@ -229,6 +231,7 @@ const ContactWrapper = styled.div`
   margin-left: 20px;
   align-content: center;
   justify-content: center;
+  border-radius: 2%;
 `;
 
 const ContactInnerWrap = styled.div`
@@ -417,7 +420,7 @@ const Profile = ({ nav }) => {
               <TextField
                 label="Email"
                 helperText="Please enter your email"
-                defaultValue="ssuico78@gmail.com"
+                defaultValue="hatsunemiku@gmail.com"
               />
               <TextField
                 sx={{
