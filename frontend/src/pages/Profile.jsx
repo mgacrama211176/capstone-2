@@ -414,7 +414,11 @@ const Profile = ({ nav }) => {
               <ContactMailIcon />
             </ContactHeader>
             <Stack component="form" spacing={2} noValidate autoComplete="off">
-              <TextField label="Email" helperText="Please enter your email" />
+              <TextField
+                label="Email"
+                helperText="Please enter your email"
+                defaultValue="ssuico78@gmail.com"
+              />
               <TextField
                 sx={{
                   width: "50ch",
@@ -424,6 +428,7 @@ const Profile = ({ nav }) => {
                 multiline
                 rows={4}
                 helperText="Input some message"
+                defaultValue="Hi! I am interested with your videos and artworks."
               />
             </Stack>
             <Submitbtn>Send</Submitbtn>
