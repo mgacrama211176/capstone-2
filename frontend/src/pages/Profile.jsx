@@ -134,10 +134,6 @@ const Subbtn = styled.button`
   }
 `;
 
-//Navigation Bar
-
-const NavWrapper = styled.div``;
-
 const Bar = styled.div`
   height: 60px;
   width: 100%;
@@ -162,6 +158,7 @@ const Aboutwrapper = styled.div`
   padding: 10px;
   margin-left: 20px;
   display: inline-block;
+  border-radius: 10%;
 `;
 
 const Aboutme = styled.h1`
@@ -186,7 +183,7 @@ const Aboutdetails = styled.p`
 `;
 
 const Report = styled.p`
-  margin-bottom: 51%;
+  margin-bottom: 51.5%;
 `;
 
 const DownldCV = styled.button`
@@ -262,7 +259,7 @@ const ContactHeader = styled.h1`
 
 const Submitbtn = styled.button`
   margin: 10px;
-  padding: 20px;
+  padding: 20px 30px;
   text-align: center;
   text-transform: uppercase;
   max-height: 50px;
