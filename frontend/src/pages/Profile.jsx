@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
 import Footer from "../components/Footer";
 import styled from "styled-components";
-import Prof from "../components/Prof";
+
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+
+import Stack from "@mui/material/Stack";
 
 import BGimage from "../assets/neon.jpg";
 
 //MUI ICONS
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import FlagIcon from "@mui/icons-material/Flag";
+import ContactMailIcon from "@mui/icons-material/ContactMail";
 
 //Media Queries
 import { device } from "../media";
@@ -180,15 +185,50 @@ const Aboutdetails = styled.p`
   padding: 2em;
 `;
 
+const Report = styled.p`
+  margin-bottom: 51%;
+`;
+
+const DownldCV = styled.button`
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  max-height: 50px;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  border: 0px;
+  font-weight: 700;
+  position: absolute;
+
+  background-color: #f51f1ff2;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+
+  &:hover {
+    background-position: right center;
+
+    text-decoration: none;
+  }
+  &:active {
+    transform: scale(1.3);
+  }
+`;
+
 //Video Sectiton
 
 const VidWrapper = styled.div`
   color: white;
   background: #00000081;
-  width: 100%;
+  max-width: 100%;
   position: relative;
   overflow: hidden;
-  display: inline-block;
+  display: flex;
   margin-left: 20px;
 `;
 
@@ -197,13 +237,61 @@ const VidWrapper = styled.div`
 const ContactWrapper = styled.div`
   color: white;
   background: #00000081;
-  width: 100%;
+  max-width: 100%;
   position: relative;
   overflow: hidden;
-  display: inline-block;
+  display: flex;
   margin-left: 20px;
+  align-content: center;
+  justify-content: center;
 `;
 
+const ContactInnerWrap = styled.div`
+  background-color: #132550b3;
+
+  padding: 10% 15%;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  border-radius: 10%;
+`;
+const ContactDetails = styled.div``;
+
+const ContactHeader = styled.h1`
+  padding: 0;
+`;
+
+const Submitbtn = styled.button`
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  max-height: 50px;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  border: 0px;
+  font-weight: 700;
+  position: absolute;
+
+  background-color: #f51f1ff2;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+
+  &:hover {
+    background-position: right center;
+
+    text-decoration: none;
+  }
+  &:active {
+    transform: scale(1.3);
+  }
+`;
+
+///
 const Pageseparator = styled.hr``;
 
 const Profile = ({ nav }) => {
@@ -315,9 +403,16 @@ const Profile = ({ nav }) => {
             <hr />
             <p>Total views: 100</p>
             <hr />
-            <p>
+            <Report>
               Report User <FlagIcon />
+            </Report>
+            <hr />
+
+            <p>
+              You can check more about the user's info for business and
+              employment purposes by clicking "Download CV"
             </p>
+            <DownldCV>Download CV</DownldCV>
           </ContentWrap>
         </Aboutwrapper>
       </Row>
@@ -328,7 +423,28 @@ const Profile = ({ nav }) => {
       </VidWrapper>
       <Pageseparator />
       <ContactWrapper>
-        <Aboutme>Contact Me</Aboutme>
+        <ContactInnerWrap>
+          <ContactDetails>
+            <ContactHeader>
+              Contact Me
+              <ContactMailIcon />
+            </ContactHeader>
+            <Stack component="form" spacing={2} noValidate autoComplete="off">
+              <TextField label="Email" helperText="Please enter your email" />
+              <TextField
+                sx={{
+                  width: "50ch",
+                  height: "18ch",
+                }}
+                label="Message"
+                multiline
+                rows={4}
+                helperText="Input some message"
+              />
+            </Stack>
+            <Submitbtn>Send</Submitbtn>
+          </ContactDetails>
+        </ContactInnerWrap>
       </ContactWrapper>
       <Footer />
     </MainWrapper>
