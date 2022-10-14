@@ -5,27 +5,15 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
 
 import Stack from "@mui/material/Stack";
 
-import BGimage from "../assets/neon.jpg";
+import BGimage from "../assets/marshmello.webp";
 
 //MUI ICONS
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import FlagIcon from "@mui/icons-material/Flag";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
-
-//Media Queries
-import { device } from "../media";
-
-//Navigation Menu
-import About from "../components/ProfileNavigation/About";
-import VideoProfile from "../components/ProfileNavigation/VideoProfile";
-import Updateprof from "../components/ProfileNavigation/Updateprof";
-
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
 
 import axios from "axios";
 import { current } from "@reduxjs/toolkit";
@@ -99,7 +87,6 @@ const Cattitle = styled.span`
   margin: 0;
 `;
 const TypoDetails = styled.div``;
-const Typoemail = styled.p``;
 
 const Subbtn = styled.button`
   margin: 10px;
@@ -148,12 +135,13 @@ const Bar = styled.div`
 
 //About Section
 
+const Abtdthd = styled.h3``;
 const Row = styled.div`
   display: flex;
 `;
 const Aboutwrapper = styled.div`
   color: white;
-  background: #00000081;
+  background: #000000ae;
   flex: 50%;
   padding: 10px;
   margin-left: 20px;
@@ -183,7 +171,7 @@ const Aboutdetails = styled.p`
 `;
 
 const Report = styled.p`
-  margin-bottom: 51.5%;
+  margin-bottom: 30%;
 `;
 
 const DownldCV = styled.button`
@@ -324,6 +312,7 @@ const Profile = ({ nav }) => {
 
   return (
     <MainWrapper>
+      {/* Profile Section */}
       <ProfWrapper>
         <Infowrapper>
           <Infoleft>
@@ -346,10 +335,8 @@ const Profile = ({ nav }) => {
           </Infoleft>
           <Detailswrap>
             <Cattitle></Cattitle>
-            {/* <Typoemail>{retrivedUser.email}</Typoemail> */}
 
             <TypoDetails>
-              {/* Address: {retrivedUser.address} */}
               {retrivedUser.subscribers} Subscribers
               <br />
               {retrivedUser?.subscribedUsers?.length} Subscribed Users
@@ -358,6 +345,7 @@ const Profile = ({ nav }) => {
         </Infowrapper>
       </ProfWrapper>
       <Pageseparator />
+      {/* About Section */}
       <Row>
         <Aboutwrapper>
           <Aboutme>About Me</Aboutme>
@@ -379,46 +367,45 @@ const Profile = ({ nav }) => {
             way to raise morale that the style really took off.
           </Aboutdetails>
           <ContentWrap>
-            <hr />
-            <h3>Details</h3>
+            <Abtdthd>Details</Abtdthd>
             <hr />
             Name:{" "}
             {retrivedUser.fullName !== undefined
               ? retrivedUser.fullName
               : retrivedUser.username}
             <hr />
-            <p>Contact user via email: {retrivedUser.email} </p>
+            Birthdate: {retrivedUser.birthdate} July 13, 2000
             <hr />
-            <p>Address: {retrivedUser.address}Cebu City</p>
+            User email: {retrivedUser.email}
+            <hr />
+            Address: {retrivedUser.address}Cebu City
           </ContentWrap>
         </Aboutwrapper>
         <Aboutwrapper>
           <ContentWrap>
-            <h3>Stats</h3>
+            <Abtdthd>Stats</Abtdthd>
             <hr />
-            <p>Joined {currentUser.createdAt}</p>
+            Joined {currentUser.createdAt}
             <hr />
-            <p>Total views: 100</p>
+            Total views: 100
             <hr />
             <Report>
-              Report User <FlagIcon />
+              Report User
+              <FlagIcon />
             </Report>
             <hr />
-
-            <p>
-              You can check more about the user's info for business and
-              employment purposes by clicking "Download CV"
-            </p>
+            You can check more about the user's info for business and employment
+            purposes by clicking "Download CV"
             <DownldCV>Download CV</DownldCV>
           </ContentWrap>
         </Aboutwrapper>
       </Row>
       <Pageseparator />
       <VidWrapper>
-        <About />
         <Aboutme>Videos</Aboutme>
       </VidWrapper>
       <Pageseparator />
+      {/* Contact Me Section */}
       <ContactWrapper>
         <ContactInnerWrap>
           <ContactDetails>
