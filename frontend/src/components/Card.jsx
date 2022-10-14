@@ -144,6 +144,7 @@ const Card = ({ type, video }) => {
   }, [video?.userId]);
 
   const path = useLocation();
+
   return (
     <Link to={`/video/${video?._id}`} style={{ textDecoration: 'none' }}>
       <Container type={type}>

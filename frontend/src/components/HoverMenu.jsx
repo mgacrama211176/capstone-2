@@ -1,21 +1,20 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
-import { device } from "../media";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { Link, useNavigate } from 'react-router-dom';
+import { device } from '../media';
 
 //REDUX
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { logout } from "../redux/userSlice";
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { logout } from '../redux/userSlice';
 
 //MUI
-import SettingsIcon from "@mui/icons-material/Settings";
-import FlagIcon from "@mui/icons-material/Flag";
-import LiveHelpIcon from "@mui/icons-material/LiveHelp";
-import LogoutIcon from "@mui/icons-material/Logout";
-import PersonPinIcon from "@mui/icons-material/PersonPin";
-import VideoCallIcon from "@mui/icons-material/VideoCall";
-import Upload from "./Upload";
+import SettingsIcon from '@mui/icons-material/Settings';
+import FlagIcon from '@mui/icons-material/Flag';
+import LiveHelpIcon from '@mui/icons-material/LiveHelp';
+import LogoutIcon from '@mui/icons-material/Logout';
+import PersonPinIcon from '@mui/icons-material/PersonPin';
+import VideoCallIcon from '@mui/icons-material/VideoCall';
 
 const Container = styled.div``;
 
@@ -29,6 +28,14 @@ const DropdownContent = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 5px;
+  transition: 0.5s ease;
+  padding: 5px;
+  color: black;
+  &:hover {
+    background-color: ${({ theme }) => theme.hover};
+    border-radius: 15px;
+    color: white;
+  }
 `;
 
 const Button = styled.button`
@@ -73,16 +80,13 @@ const HoverMenu = ({ setOpenModal }) => {
   const currentUser = useSelector((state) => state.username.currentUser);
   const [rightMenu, setRightMenu] = useState(false);
 
-  console.log(currentUser);
-
   const OnclickLogout = () => {
     dispatch(logout(currentUser));
-    nav("/");
+    nav('/');
   };
 
   const onHover = () => {
     rightMenu ? setRightMenu(false) : setRightMenu(true);
-    console.log(rightMenu);
   };
 
   const SignIn = styled.div`
@@ -147,6 +151,12 @@ const HoverMenu = ({ setOpenModal }) => {
                   <SettingsIcon />
                   SETTINGS
                 </DropdownContent>
+                <Link to={'/update'} style={{ textDecoration: 'none' }}>
+                  <DropdownContent>
+                    <SettingsIcon />
+                    UPDATE PROFILE
+                  </DropdownContent>
+                </Link>
                 <DropdownContent>
                   <FlagIcon />
                   REPORT

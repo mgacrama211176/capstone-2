@@ -7,6 +7,9 @@ export const darkTheme = {
   content: "#373737",
   titleColor: "white",
   profileSubs: "#aaaaaa",
+  hover: "#B2792d",
+
+  menu: "#132550",
 };
 export const coloredTheme = {
   bg: "#132550",
@@ -17,4 +20,6 @@ export const coloredTheme = {
   content: "#ffffff",
   titleColor: "black",
   profileSubs: "white",
+  hover: "#132550",
+  menu: "#B2792d",
 };

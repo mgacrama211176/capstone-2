@@ -27,7 +27,7 @@ const Container = styled.div`
   margin: 0;
   padding: 0;
   position: absolute;
-  top: 130px;
+  top: 100px;
   z-index: 6;
 `;
 const P = styled.p`
@@ -51,7 +51,7 @@ const Item = styled.div`
   color: #333;
   text-transform: uppercase;
   padding: 15px 0 15px 10px;
-  margin: 5px 0;
+  margin: 2px 0;
   width: 200px;
   position: relative;
   margin-left: -140px;
@@ -93,7 +93,7 @@ const I = styled.i`
   padding: 5px;
 
   &:hover {
-    color: #b2792d;
+    color: ${({ theme }) => theme.menu};
   }
 `;
 

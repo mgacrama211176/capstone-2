@@ -6,7 +6,7 @@ import TextField from '@mui/material/TextField';
 import IosShareIcon from '@mui/icons-material/IosShare';
 
 //Media Queries
-import { device } from "../../media";
+import { device } from '../../media';
 
 const ContainerWrapper = styled.div`
   padding: 0px;

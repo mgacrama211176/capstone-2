@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import Menu from './components/Menu';
 import Navbar from './components/Navbar';
 import { coloredTheme, darkTheme } from './utils/Theme';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
@@ -72,12 +71,6 @@ const App = () => {
     <ThemeProvider theme={darkmode ? coloredTheme : darkTheme}>
       <Continer>
         <BrowserRouter>
-          {/* <Menu
-            setDarkMode={setDarkMode}
-            darkmode={darkmode}
-            burger={burger}
-            style={{ position: 'relative', zIndex: '100' }}
-          /> */}
           <NewMenuUi
             darkmode={darkmode}
             burger={burger}

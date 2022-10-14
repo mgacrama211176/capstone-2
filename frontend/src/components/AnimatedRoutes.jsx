@@ -10,6 +10,8 @@ import Profile from '../pages/Profile';
 import Password from '../pages/ForgotPassword';
 import ReceivedEmail from '../pages/ReceivedEmail';
 import Search from '../pages/Search';
+import Report from '../pages/Report';
+import Update from '../pages/UpdateProfile';
 
 //Framer Motion
 import { AnimatePresence } from 'framer-motion';
@@ -24,6 +26,7 @@ const AnimatedRoutes = () => {
         <Route path="/trend" element={<Home type="trend" />}></Route>
         <Route path="/sub" element={<Home type="sub" />}></Route>
         <Route path="/library" element={<Home type="library" />}></Route>
+        <Route path="/report" element={<Report />}></Route>
 
         <Route path="/search" element={<Search />}></Route>
         <Route path="/signin" element={<Signin />}></Route>
@@ -31,6 +34,7 @@ const AnimatedRoutes = () => {
         <Route path="/Fpassword" element={<Password />}></Route>
         <Route path="/receivedEmail/:token" element={<ReceivedEmail />}></Route>
         <Route path="/video/:id" element={<Video />}></Route>
+        <Route path="/update" element={<Update />}></Route>
 
         {/* CATEGORIES ROUTES */}
         <Route
