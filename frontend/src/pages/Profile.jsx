@@ -23,33 +23,18 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 
 import axios from "axios";
+import { current } from "@reduxjs/toolkit";
 
-const MainWrapper = styled.div`
-  background-image: url(${BGimage});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-  font-family: Roboto, Arial, sans-serif;
-  width: 100%;
-  position: relative;
-  -webkit-font-smoothing: antialiased;
-  scroll-behavior: smooth;
-
-  @media ${device.mobileS} {
-  }
-`;
 /* PROFILE Section*/
 const ProfWrapper = styled.div`
   color: white;
   background: #00000081;
-  width: 100%;
+  max-width: 100%;
   position: relative;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 20px;
 `;
 
 //Image Styling
@@ -81,6 +66,7 @@ const Pimg = styled.img`
 const Infowrapper = styled.div`
   padding: 4em 4em 8em 4em;
   width: 100%;
+  margin-left: 30px;
 `;
 
 const Infoleft = styled.div`
@@ -112,7 +98,7 @@ const Typoemail = styled.p``;
 
 const Subbtn = styled.button`
   margin: 10px;
-  padding: 0 30px;
+  padding: 20px;
   text-align: center;
   text-transform: uppercase;
   max-height: 50px;
@@ -123,8 +109,10 @@ const Subbtn = styled.button`
   display: block;
   border: 0px;
   font-weight: 700;
+  position: absolute;
 
-  margin-left: 80rem;
+  right: 0;
+  top: 95px;
   background-color: #f51f1ff2;
   cursor: pointer;
   user-select: none;
@@ -140,6 +128,23 @@ const Subbtn = styled.button`
     transform: scale(1.3);
   }
 `;
+
+//Navigation Bar
+
+const NavWrapper = styled.div``;
+
+const Bar = styled.div`
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0.5rem 0rem;
+  background-color: #fff;
+  color: black;
+  box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
+`;
+
 //About Section
 
 const Row = styled.div`
@@ -218,6 +223,20 @@ const Profile = ({ nav }) => {
 
   const currentUser = useSelector((state) => state.username.currentUser);
 
+  const MainWrapper = styled.div`
+    background-image: url("${BGimage}");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    font-family: Roboto, Arial, sans-serif;
+    width: 100%;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  `;
+
+  console.log(currentUser);
+
   return (
     <MainWrapper>
       <ProfWrapper>
@@ -292,7 +311,7 @@ const Profile = ({ nav }) => {
           <ContentWrap>
             <h3>Stats</h3>
             <hr />
-            <p>Joined July 13, 2022</p>
+            <p>Joined {currentUser.createdAt}</p>
             <hr />
             <p>Total views: 100</p>
             <hr />
@@ -304,6 +323,7 @@ const Profile = ({ nav }) => {
       </Row>
       <Pageseparator />
       <VidWrapper>
+        <About />
         <Aboutme>Videos</Aboutme>
       </VidWrapper>
       <Pageseparator />

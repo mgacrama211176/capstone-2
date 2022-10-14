@@ -4,61 +4,48 @@ import styled from "styled-components";
 //Media Queries
 import { device } from "../../media";
 
-const ContainerWrapper = styled.div`
-  padding: 0px;
-  font-family: Roboto, Arial, sans-serif;
-  margin-left: 15px;
-  margin-top: 25px;
-  margin-right: 10px;
-  width: 830px;
-  height: 660px;
-  position: relative;
-`;
+const ContainerWrapper = styled.div``;
 
-const FullName = styled.div`
-  padding-top: 20px;
-  font-size: 20px;
-  padding-left: 30px;
-`;
-
-const AboutWrapper = styled.div`
+const Row = styled.div`
   display: flex;
-  width: 45%;
-  padding: 40px;
-  padding-left: 70px;
-  padding-right: 70px;
-  height: 475px;
-  margin: 30px;
-  margin-right: 30px;
-  width: auto;
-
-  background-color: #fedc008d;
-  line-height: 2;
 `;
+const Aboutwrapper = styled.div`
+  color: white;
+  background: #00000081;
+  flex: 50%;
+  padding: 10px;
+  margin-left: 20px;
+  display: inline-block;
+`;
+
+const Aboutme = styled.h1`
+  padding-left: 5rem;
+`;
+const ContentWrap = styled.p`
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  align-self: center;
+  margin-left: 45px;
+  padding: 3em 2em;
+`;
+
+const Aboutdetails = styled.p`
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  align-self: center;
+  margin-left: 45px;
+  padding: 2em;
+`;
+const TitleHead = styled.h3``;
+const Contvalue = styled.p``;
 
 const AboutCont = styled.div``;
 
 const About = () => {
-  return (
-    <ContainerWrapper>
-      <FullName>Marlon Gacrama</FullName>
-      <AboutWrapper>
-        <AboutCont>
-          <h1>About me</h1>
-          <p>
-            Hi! I'm Sammy the Shark, Senior Selachimorpha at DigitalOcean by
-            day, dabbler in all things dev by night. This site is a
-            demonstration website for the tutorial series " ," which walks you
-            through building and customizing this website from start to finish.
-          </p>
-          <p>
-            If you're following this tutorial series, you can replace this text
-            with your own "About Me" content.asdasdasdasdasd
-          </p>
-        </AboutCont>
-      </AboutWrapper>
-    </ContainerWrapper>
-  );
+  return;
+  <ContainerWrapper>THIS IS ABOUT</ContainerWrapper>;
 };
 
 export default About;
