@@ -121,8 +121,6 @@ const CommentsBox = ({
     }
   };
 
-  console.log(comment);
-
   return (
     <>
       <Container>

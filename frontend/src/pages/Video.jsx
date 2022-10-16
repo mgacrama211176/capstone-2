@@ -8,9 +8,7 @@ import Share from '../components/Share';
 //MUI
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
-import ScreenShareIcon from '@mui/icons-material/ScreenShare';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 
 //framer motion
 import { motion } from 'framer-motion';
@@ -41,6 +39,7 @@ import {
   SaveNotif,
 } from '../components/Toasts';
 import { ToastContainer } from 'react-toastify';
+import Follow from '../components/Follow';
 
 const Container = styled.div`
   display: flex;
@@ -458,12 +457,7 @@ const Video = () => {
                   </ChannelDetail>
                 </ChannelInfo>
 
-                <Subscribe onClick={subscribeHandler}>
-                  <NotificationsActiveIcon />
-                  {currentUser?.subscribedUsers?.includes(channel._id)
-                    ? 'FOLLOWED'
-                    : 'FOLLOW'}
-                </Subscribe>
+                <Follow currentUser={currentUser} channel={channel} />
               </Channel>
 
               <Description>{currentVideo?.desc}</Description>
