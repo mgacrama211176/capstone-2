@@ -280,6 +280,8 @@ const Video = () => {
   const [channel, setChannel] = useState({});
   const [viewCounter, setViewCounter] = useState(false);
 
+  const channelID = channel._id;
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -334,25 +336,25 @@ const Video = () => {
     }
   };
 
-  const subscribeHandler = async () => {
-    try {
-      if (currentUser._id === channel._id) {
-        SubscribeErrorNotif();
-      } else {
-        currentUser.subscribedUsers.includes(channel._id)
-          ? await axios.put(
-              `http://localhost:4000/api/users/unsub/${currentUser._id}/${channel._id}`
-            )
-          : await axios.put(
-              `http://localhost:4000/api/users/sub/${currentUser._id}/${channel._id}`
-            );
-        // console.log(dispatch(subscription(channel._id)));
-        dispatch(subscription(channel._id));
-      }
-    } catch (err) {
-      loginRequired();
-    }
-  };
+  // const subscribeHandler = async () => {
+  //   try {
+  //     if (currentUser._id === channel._id) {
+  //       SubscribeErrorNotif();
+  //     } else {
+  //       currentUser.subscribedUsers.includes(channel._id)
+  //         ? await axios.put(
+  //             `http://localhost:4000/api/users/unsub/${currentUser._id}/${channel._id}`
+  //           )
+  //         : await axios.put(
+  //             `http://localhost:4000/api/users/sub/${currentUser._id}/${channel._id}`
+  //           );
+  //       // console.log(dispatch(subscription(channel._id)));
+  //       dispatch(subscription(channel._id));
+  //     }
+  //   } catch (err) {
+  //     loginRequired();
+  //   }
+  // };
 
   const channelContainer = channel._id;
 
@@ -457,7 +459,7 @@ const Video = () => {
                   </ChannelDetail>
                 </ChannelInfo>
 
-                <Follow currentUser={currentUser} channel={channel} />
+                <Follow currentUser={currentUser} channelID={channelID} />
               </Channel>
 
               <Description>{currentVideo?.desc}</Description>

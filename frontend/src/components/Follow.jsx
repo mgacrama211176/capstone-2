@@ -14,7 +14,9 @@ import { device } from '../media';
 //TOAST
 import { loginRequired, SubscribeErrorNotif } from '../components/Toasts';
 
-const Container = styled.div`
+const Container = styled.div``;
+
+const Wrapper = styled.div`
   background-color: red;
   font-weight: bold;
   color: white;
@@ -75,22 +77,23 @@ const Container = styled.div`
   }
 `;
 
-const Follow = ({ currentUser, channel }) => {
+const Follow = ({ currentUser, channelID }) => {
   const dispatch = useDispatch();
+
   const subscribeHandler = async () => {
     try {
-      if (currentUser._id === channel._id) {
+      if (currentUser._id === channelID) {
         SubscribeErrorNotif();
       } else {
-        currentUser.subscribedUsers.includes(channel._id)
+        currentUser.subscribedUsers.includes(channelID)
           ? await axios.put(
-              `http://localhost:4000/api/users/unsub/${currentUser._id}/${channel._id}`
+              `http://localhost:4000/api/users/unsub/${currentUser._id}/${channelID}`
             )
           : await axios.put(
-              `http://localhost:4000/api/users/sub/${currentUser._id}/${channel._id}`
+              `http://localhost:4000/api/users/sub/${currentUser._id}/${channelID}`
             );
         // console.log(dispatch(subscription(channel._id)));
-        dispatch(subscription(channel._id));
+        dispatch(subscription(channelID));
       }
     } catch (err) {
       console.log(err);
@@ -100,10 +103,20 @@ const Follow = ({ currentUser, channel }) => {
 
   return (
     <Container onClick={subscribeHandler}>
-      <NotificationsActiveIcon />
-      {currentUser?.subscribedUsers?.includes(channel._id)
-        ? 'FOLLOWED'
-        : 'FOLLOW'}
+      {currentUser._id === channelID ? (
+        ''
+      ) : (
+        <>
+          <Wrapper>
+            <NotificationsActiveIcon />
+            <>
+              {currentUser?.subscribedUsers?.includes(channelID)
+                ? 'FOLLOWED'
+                : 'FOLLOW'}
+            </>
+          </Wrapper>
+        </>
+      )}
     </Container>
   );
 };

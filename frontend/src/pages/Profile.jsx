@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import Footer from '../components/Footer';
 import styled from 'styled-components';
-
-import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import TextField from '@mui/material/TextField';
-
-import Stack from '@mui/material/Stack';
-
+import Follow from '../components/Follow';
+import Card from '../components/Card';
+import axios from 'axios';
 import BGimage from '../assets/marshmello.webp';
+
+//REDUX
+import { current } from '@reduxjs/toolkit';
+import { useSelector } from 'react-redux';
+
+//ROUTER DOM
+import { useParams } from 'react-router-dom';
 
 //MUI ICONS
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import FlagIcon from '@mui/icons-material/Flag';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
-
-import axios from 'axios';
-import { current } from '@reduxjs/toolkit';
-import Card from '../components/Card';
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
 
 /* PROFILE Section*/
 const ProfWrapper = styled.div`
@@ -92,14 +93,12 @@ const Cattitle = styled.span`
 const TypoDetails = styled.div``;
 
 const Subbtn = styled.button`
-  margin: 10px;
-  padding: 20px;
+  margin-right: 40px;
   text-align: center;
   text-transform: uppercase;
   max-height: 50px;
   transition: 0.5s;
   background-size: 200% auto;
-  color: white;
   border-radius: 10px;
   display: block;
   border: 0px;
@@ -108,7 +107,7 @@ const Subbtn = styled.button`
 
   right: 0;
   top: 95px;
-  background-color: #f51f1ff2;
+
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
@@ -333,8 +332,6 @@ const Profile = ({ nav }) => {
     scroll-behavior: smooth;
   `;
 
-  console.log(retrievedVideos);
-
   return (
     <MainWrapper>
       {/* Profile Section */}
@@ -356,7 +353,11 @@ const Profile = ({ nav }) => {
 
               <PersonOutlineIcon />
             </UsernameWrapper>
-            <Subbtn>Subscribe</Subbtn>
+            <Subbtn>
+              <>
+                <Follow currentUser={currentUser} channelID={id} />
+              </>
+            </Subbtn>
           </Infoleft>
           <Detailswrap>
             <Cattitle></Cattitle>
@@ -394,7 +395,7 @@ const Profile = ({ nav }) => {
           <ContentWrap>
             <Abtdthd>Details</Abtdthd>
             <hr />
-            Name:{' '}
+            Name:
             {retrivedUser.fullName !== undefined
               ? retrivedUser.fullName
               : retrivedUser.username}
@@ -429,9 +430,11 @@ const Profile = ({ nav }) => {
       <VidWrapper>
         <Aboutme>Videos</Aboutme>
         <VidContainer>
-          {retrievedVideos.map((video) => (
-            <Card key={video.id} video={video} />
-          ))}
+          <>
+            {retrievedVideos.map((video) => (
+              <Card key={video.id} video={video} />
+            ))}
+          </>
         </VidContainer>
       </VidWrapper>
 
