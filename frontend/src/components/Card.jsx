@@ -9,12 +9,18 @@ import { format } from 'timeago.js';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import { useSelector } from 'react-redux';
+
 const Container = styled.div`
   max-width: ${(props) => props.type !== 'sm' && '360px'};
   margin-bottom: ${(props) => (props.type === 'sm' ? '10px' : '45px')};
   display: ${(props) => (props.type === 'sm' ? 'flex' : '')};
   cursor: pointer;
   flex-wrap: wrap;
+
+  &:hover {
+    opacity: 0.5;
+  }
 
   /* Mobile S [fixed]*/
   @media ${device.mobileS} {
@@ -140,6 +146,9 @@ const Info = styled.div`
 const Card = ({ type, video }) => {
   // fetching user data information using useState hook
   const [channel, setChannel] = useState({});
+  const { currentUser } = useSelector((state) => state.username);
+
+  console.log(`${currentUser._id} ${channel._id}`);
 
   useEffect(() => {
     const fetchingChannel = async () => {
