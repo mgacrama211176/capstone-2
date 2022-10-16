@@ -203,6 +203,7 @@ const ChannelCounter = styled.span`
 const Description = styled.p`
   font-size: 14px;
   font-family: Roboto, Arial, sans-serif;
+  color: ${({ theme }) => theme.titleColor};
 
   @media ${device.mobileS} {
     font-size: 12px;

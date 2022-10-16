@@ -15,9 +15,6 @@ const Container = styled.div`
   display: ${(props) => (props.type === 'sm' ? 'flex' : '')};
   cursor: pointer;
   flex-wrap: wrap;
-  &:hover {
-    border: solid green 1px;
-  }
 
   /* Mobile S [fixed]*/
   @media ${device.mobileS} {

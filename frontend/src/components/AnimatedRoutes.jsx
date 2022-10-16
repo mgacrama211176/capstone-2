@@ -54,7 +54,7 @@ const AnimatedRoutes = () => {
           element={<Home category="Motion Graphics" type="category" />}
         ></Route>
         <Route
-          path="/Stop Motion"
+          path="/Stop"
           element={<Home category="Stop Motion" type="category" />}
         ></Route>
 
