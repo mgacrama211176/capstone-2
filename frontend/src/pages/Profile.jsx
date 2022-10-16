@@ -1,22 +1,23 @@
-import React, { useState, useEffect } from "react";
-import Footer from "../components/Footer";
-import styled from "styled-components";
+import React, { useState, useEffect } from 'react';
+import Footer from '../components/Footer';
+import styled from 'styled-components';
 
-import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import TextField from "@mui/material/TextField";
+import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import TextField from '@mui/material/TextField';
 
-import Stack from "@mui/material/Stack";
+import Stack from '@mui/material/Stack';
 
-import BGimage from "../assets/marshmello.webp";
+import BGimage from '../assets/marshmello.webp';
 
 //MUI ICONS
-import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import FlagIcon from "@mui/icons-material/Flag";
-import ContactMailIcon from "@mui/icons-material/ContactMail";
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import FlagIcon from '@mui/icons-material/Flag';
+import ContactMailIcon from '@mui/icons-material/ContactMail';
 
-import axios from "axios";
-import { current } from "@reduxjs/toolkit";
+import axios from 'axios';
+import { current } from '@reduxjs/toolkit';
+import Card from '../components/Card';
 
 /* PROFILE Section*/
 const ProfWrapper = styled.div`
@@ -217,9 +218,16 @@ const VidWrapper = styled.div`
   position: relative;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
   margin-left: 20px;
-
   margin-bottom: 2%;
+`;
+
+const VidContainer = styled.div`
+  display: flex;
+  flex-flow: wrap row;
+  padding: 20px;
+  gap: 10px;
 `;
 
 //Contact Section
@@ -290,6 +298,7 @@ const Profile = ({ nav }) => {
   let { id } = useParams();
 
   const [retrivedUser, setRetrievedUser] = useState({});
+  const [retrievedVideos, setRetrivedVideos] = useState([]);
 
   useEffect(() => {
     const getProfile = async () => {
@@ -298,13 +307,22 @@ const Profile = ({ nav }) => {
       );
       setRetrievedUser(profile.data);
     };
+
+    const fetchingVideos = async () => {
+      const Uploaded = await axios.get(
+        `http://localhost:4000/api/videos/find/userVideos/${id}`
+      );
+      setRetrivedVideos(Uploaded.data);
+    };
+
     getProfile();
+    fetchingVideos();
   }, [id]);
 
   const currentUser = useSelector((state) => state.username.currentUser);
 
   const MainWrapper = styled.div`
-    background-image: url("${BGimage}");
+    background-image: url('${BGimage}');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -315,7 +333,7 @@ const Profile = ({ nav }) => {
     scroll-behavior: smooth;
   `;
 
-  console.log(currentUser);
+  console.log(retrievedVideos);
 
   return (
     <MainWrapper>
@@ -376,7 +394,7 @@ const Profile = ({ nav }) => {
           <ContentWrap>
             <Abtdthd>Details</Abtdthd>
             <hr />
-            Name:{" "}
+            Name:{' '}
             {retrivedUser.fullName !== undefined
               ? retrivedUser.fullName
               : retrivedUser.username}
@@ -410,6 +428,11 @@ const Profile = ({ nav }) => {
 
       <VidWrapper>
         <Aboutme>Videos</Aboutme>
+        <VidContainer>
+          {retrievedVideos.map((video) => (
+            <Card key={video.id} video={video} />
+          ))}
+        </VidContainer>
       </VidWrapper>
 
       {/* Contact Me Section */}
@@ -428,8 +451,8 @@ const Profile = ({ nav }) => {
               />
               <TextField
                 sx={{
-                  width: "50ch",
-                  height: "18ch",
+                  width: '50ch',
+                  height: '18ch',
                 }}
                 label="Message"
                 multiline

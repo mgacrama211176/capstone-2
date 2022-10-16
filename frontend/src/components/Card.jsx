@@ -15,6 +15,9 @@ const Container = styled.div`
   display: ${(props) => (props.type === 'sm' ? 'flex' : '')};
   cursor: pointer;
   flex-wrap: wrap;
+  &:hover {
+    border: solid green 1px;
+  }
 
   /* Mobile S [fixed]*/
   @media ${device.mobileS} {
@@ -101,8 +104,7 @@ const ChannelImage = styled.img`
 
 const Texts = styled.div`
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
   min-width: ${(props) => (props.type === 'sm' ? '0px' : '300px')};
 
   /* Mobile S [fixed]*/
@@ -116,6 +118,15 @@ const Title = styled.h1`
   font-weight: 500;
   color: ${({ theme }) => theme.titleColor};
   display: flex;
+  width: 80%;
+
+  //Line Clamp
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  white-space: wrap;
+  overflow: hidden;
 `;
 
 const AnimatorName = styled.h2`
