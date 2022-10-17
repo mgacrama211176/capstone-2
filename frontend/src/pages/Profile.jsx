@@ -138,6 +138,7 @@ const Bar = styled.div`
 //About Section
 
 const Abtdthd = styled.h3``;
+
 const Row = styled.div`
   display: flex;
 `;
@@ -155,7 +156,7 @@ const Aboutwrapper = styled.div`
 const Aboutme = styled.h1`
   padding-left: 5rem;
 `;
-const ContentWrap = styled.p`
+const ContentWrap = styled.div`
   align-items: center;
   justify-content: center;
   align-content: center;
@@ -401,9 +402,11 @@ const Profile = ({ nav }) => {
             <Abtdthd>Details</Abtdthd>
             <hr />
             Name:
-            {retrivedUser.fullName !== undefined
-              ? retrivedUser.fullName
-              : retrivedUser.username}
+            <>
+              {retrivedUser.fullName !== undefined
+                ? retrivedUser.fullName
+                : retrivedUser.username}
+            </>
             <hr />
             Birthdate: {retrivedUser.birthdate} July 13, 2000
             <hr />
