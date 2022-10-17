@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import styled from "styled-components";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import styled from 'styled-components';
+import { format } from 'timeago.js';
 
 //MUI
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
-import SendIcon from "@mui/icons-material/Send";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
 
 //TOAST
-import { DeleteNotif, UnauthorizedNotif, CommentSuccess } from "./Toasts";
+import { DeleteNotif, UnauthorizedNotif, CommentSuccess } from './Toasts';
 
 const Container = styled.div`
   display: flex;
@@ -26,7 +27,7 @@ const Details = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 `;
 
 const Name = styled.span`
@@ -97,7 +98,7 @@ const CommentsBox = ({
     setSelectedComment(comment._id);
   };
 
-  const [updatedComment, setUpdatedComment] = useState("");
+  const [updatedComment, setUpdatedComment] = useState('');
 
   const onChangeHandler = (e) => {
     const latestComment = ([e.target.id] = e.target.value);
@@ -126,18 +127,18 @@ const CommentsBox = ({
         <Avatar src={channel.image} />
         <Details>
           <Name>
-            {channel?.username} |<Date>1 Day ago</Date>
+            {channel?.username} |<Date>{format(comment?.createdAt)}</Date>
             <Separator>
               {currentUser !== comment.userId ? (
-                ""
+                ''
               ) : (
                 <>
                   <EditIcon
-                    style={{ cursor: "pointer" }}
+                    style={{ cursor: 'pointer' }}
                     onClick={editComment}
                   />
                   <DeleteIcon
-                    style={{ cursor: "pointer" }}
+                    style={{ cursor: 'pointer' }}
                     onClick={deleteComment}
                   />
                 </>
@@ -154,7 +155,7 @@ const CommentsBox = ({
                   onChange={(e) => onChangeHandler(e)}
                 />
                 <SendIcon
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: 'pointer' }}
                   onClick={updatedSubmitHandler}
                 />
               </UpdateContainer>

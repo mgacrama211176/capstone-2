@@ -8,9 +8,7 @@ import Share from '../components/Share';
 //MUI
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
-import ScreenShareIcon from '@mui/icons-material/ScreenShare';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 
 //framer motion
 import { motion } from 'framer-motion';
@@ -41,6 +39,7 @@ import {
   SaveNotif,
 } from '../components/Toasts';
 import { ToastContainer } from 'react-toastify';
+import Follow from '../components/Follow';
 
 const Container = styled.div`
   display: flex;
@@ -203,6 +202,7 @@ const ChannelCounter = styled.span`
 const Description = styled.p`
   font-size: 14px;
   font-family: Roboto, Arial, sans-serif;
+  color: ${({ theme }) => theme.titleColor};
 
   @media ${device.mobileS} {
     font-size: 12px;
@@ -280,6 +280,8 @@ const Video = () => {
   const [channel, setChannel] = useState({});
   const [viewCounter, setViewCounter] = useState(false);
 
+  const channelID = channel._id;
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -334,25 +336,25 @@ const Video = () => {
     }
   };
 
-  const subscribeHandler = async () => {
-    try {
-      if (currentUser._id === channel._id) {
-        SubscribeErrorNotif();
-      } else {
-        currentUser.subscribedUsers.includes(channel._id)
-          ? await axios.put(
-              `http://localhost:4000/api/users/unsub/${currentUser._id}/${channel._id}`
-            )
-          : await axios.put(
-              `http://localhost:4000/api/users/sub/${currentUser._id}/${channel._id}`
-            );
-        // console.log(dispatch(subscription(channel._id)));
-        dispatch(subscription(channel._id));
-      }
-    } catch (err) {
-      loginRequired();
-    }
-  };
+  // const subscribeHandler = async () => {
+  //   try {
+  //     if (currentUser._id === channel._id) {
+  //       SubscribeErrorNotif();
+  //     } else {
+  //       currentUser.subscribedUsers.includes(channel._id)
+  //         ? await axios.put(
+  //             `http://localhost:4000/api/users/unsub/${currentUser._id}/${channel._id}`
+  //           )
+  //         : await axios.put(
+  //             `http://localhost:4000/api/users/sub/${currentUser._id}/${channel._id}`
+  //           );
+  //       // console.log(dispatch(subscription(channel._id)));
+  //       dispatch(subscription(channel._id));
+  //     }
+  //   } catch (err) {
+  //     loginRequired();
+  //   }
+  // };
 
   const channelContainer = channel._id;
 
@@ -457,12 +459,7 @@ const Video = () => {
                   </ChannelDetail>
                 </ChannelInfo>
 
-                <Subscribe onClick={subscribeHandler}>
-                  <NotificationsActiveIcon />
-                  {currentUser?.subscribedUsers?.includes(channel._id)
-                    ? 'FOLLOWED'
-                    : 'FOLLOW'}
-                </Subscribe>
+                <Follow currentUser={currentUser} channelID={channelID} />
               </Channel>
 
               <Description>{currentVideo?.desc}</Description>

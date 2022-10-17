@@ -2,21 +2,23 @@ import React, { useState, useEffect } from "react";
 import Footer from "../components/Footer";
 import styled from "styled-components";
 
-import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import TextField from "@mui/material/TextField";
-
-import Stack from "@mui/material/Stack";
-
 import BGimage from "../assets/neon.jpg";
+import Follow from "../components/Follow";
+import Card from "../components/Card";
+import axios from "axios";
+
+//REDUX
+import { useSelector } from "react-redux";
+
+//ROUTER DOM
+import { useParams } from "react-router-dom";
 
 //MUI ICONS
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import FlagIcon from "@mui/icons-material/Flag";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
-
-import axios from "axios";
-import { current } from "@reduxjs/toolkit";
+import TextField from "@mui/material/TextField";
+import Stack from "@mui/material/Stack";
 
 /* PROFILE Section*/
 const ProfWrapper = styled.div`
@@ -91,14 +93,12 @@ const Cattitle = styled.span`
 const TypoDetails = styled.div``;
 
 const Subbtn = styled.button`
-  margin: 10px;
-  padding: 20px;
+  margin-right: 40px;
   text-align: center;
   text-transform: uppercase;
   max-height: 50px;
   transition: 0.5s;
   background-size: 200% auto;
-  color: white;
   border-radius: 10px;
   display: block;
   border: 0px;
@@ -107,7 +107,7 @@ const Subbtn = styled.button`
 
   right: 0;
   top: 95px;
-  background-color: #f51f1ff2;
+
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
@@ -138,6 +138,7 @@ const Bar = styled.div`
 //About Section
 
 const Abtdthd = styled.h3``;
+
 const Row = styled.div`
   display: flex;
 `;
@@ -156,7 +157,7 @@ const Aboutwrapper = styled.div`
 const Aboutme = styled.h1`
   padding-left: 5rem;
 `;
-const ContentWrap = styled.p`
+const ContentWrap = styled.div`
   align-items: center;
   justify-content: center;
   align-content: center;
@@ -211,16 +212,28 @@ const DownldCV = styled.button`
 
 //Video Sectiton
 
+const Vidtitle = styled.h1`
+  color: black;
+  margin-left: 20px;
+`;
 const VidWrapper = styled.div`
   color: white;
-  background: #000000ae;
+  background: #f3ececac;
   max-width: 100%;
   position: relative;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
   margin-left: 20px;
   margin-right: 10px;
   margin-bottom: 2%;
+`;
+
+const VidContainer = styled.div`
+  display: flex;
+  flex-flow: wrap row;
+  padding: 20px;
+  gap: 10px;
 `;
 
 //Contact Section
@@ -293,6 +306,7 @@ const Profile = ({ nav }) => {
   let { id } = useParams();
 
   const [retrivedUser, setRetrievedUser] = useState({});
+  const [retrievedVideos, setRetrivedVideos] = useState([]);
 
   useEffect(() => {
     const getProfile = async () => {
@@ -301,7 +315,16 @@ const Profile = ({ nav }) => {
       );
       setRetrievedUser(profile.data);
     };
+
+    const fetchingVideos = async () => {
+      const Uploaded = await axios.get(
+        `http://localhost:4000/api/videos/find/userVideos/${id}`
+      );
+      setRetrivedVideos(Uploaded.data);
+    };
+
     getProfile();
+    fetchingVideos();
   }, [id]);
 
   const currentUser = useSelector((state) => state.username.currentUser);
@@ -317,8 +340,6 @@ const Profile = ({ nav }) => {
     -webkit-font-smoothing: antialiased;
     scroll-behavior: smooth;
   `;
-
-  console.log(currentUser);
 
   return (
     <MainWrapper>
@@ -341,7 +362,11 @@ const Profile = ({ nav }) => {
 
               <PersonOutlineIcon />
             </UsernameWrapper>
-            <Subbtn>Subscribe</Subbtn>
+            <Subbtn>
+              <>
+                <Follow currentUser={currentUser} channelID={id} />
+              </>
+            </Subbtn>
           </Infoleft>
           <Detailswrap>
             <Cattitle></Cattitle>
@@ -379,10 +404,12 @@ const Profile = ({ nav }) => {
           <ContentWrap>
             <Abtdthd>Details</Abtdthd>
             <hr />
-            Name:{" "}
-            {retrivedUser.fullName !== undefined
-              ? retrivedUser.fullName
-              : retrivedUser.username}
+            Name:
+            <>
+              {retrivedUser.fullName !== undefined
+                ? retrivedUser.fullName
+                : retrivedUser.username}
+            </>
             <hr />
             Birthdate: {retrivedUser.birthdate} July 13, 2000
             <hr />
@@ -412,7 +439,14 @@ const Profile = ({ nav }) => {
       </Row>
 
       <VidWrapper>
-        <Aboutme>Videos</Aboutme>
+        <Vidtitle>Videos</Vidtitle>
+        <VidContainer>
+          <>
+            {retrievedVideos.map((video) => (
+              <Card key={video.id} video={video} />
+            ))}
+          </>
+        </VidContainer>
       </VidWrapper>
 
       {/* Contact Me Section */}

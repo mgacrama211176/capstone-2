@@ -222,12 +222,15 @@ const Signup = () => {
 
   const onClickAddSubmit = async (e) => {
     e.preventDefault();
-    const NewUser = await axios.post("http://localhost:4000/api/auth/signup", {
+    const NewUser = await axios.post(`http://localhost:4000/api/auth/signup`, {
       email: user.email,
-      password: user.password,
-      userCategory: user.userCategory,
       username: user.username,
+      userCategory: user.userCategory,
+      password: user.password,
     });
+
+    console.log(NewUser);
+
     setUser({
       username: "",
       email: "",
@@ -235,7 +238,6 @@ const Signup = () => {
       password: "",
       validpass: "",
     });
-    console.log(NewUser);
   };
 
   return (
