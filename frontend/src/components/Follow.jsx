@@ -1,18 +1,18 @@
-import React from 'react';
-import styled from 'styled-components';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
-import axios from 'axios';
+import React from "react";
+import styled from "styled-components";
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+import axios from "axios";
 
 //redux
 
-import { useDispatch } from 'react-redux';
-import { subscription } from '../redux/userSlice';
+import { useDispatch } from "react-redux";
+import { subscription } from "../redux/userSlice";
 
 //Media Queries
-import { device } from '../media';
+import { device } from "../media";
 
 //TOAST
-import { loginRequired, SubscribeErrorNotif } from '../components/Toasts';
+import { loginRequired, SubscribeErrorNotif } from "../components/Toasts";
 
 const Container = styled.div``;
 
@@ -103,16 +103,16 @@ const Follow = ({ currentUser, channelID }) => {
 
   return (
     <Container onClick={subscribeHandler}>
-      {currentUser._id === channelID ? (
-        ''
+      {currentUser?._id === channelID ? (
+        ""
       ) : (
         <>
           <Wrapper>
             <NotificationsActiveIcon />
             <>
               {currentUser?.subscribedUsers?.includes(channelID)
-                ? 'FOLLOWED'
-                : 'FOLLOW'}
+                ? "FOLLOWED"
+                : "FOLLOW"}
             </>
           </Wrapper>
         </>
