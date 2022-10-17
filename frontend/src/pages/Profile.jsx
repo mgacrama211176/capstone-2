@@ -8,7 +8,7 @@ import TextField from "@mui/material/TextField";
 
 import Stack from "@mui/material/Stack";
 
-import BGimage from "../assets/marshmello.webp";
+import BGimage from "../assets/neon.jpg";
 
 //MUI ICONS
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
@@ -147,6 +147,7 @@ const Aboutwrapper = styled.div`
   flex: 50%;
   padding: 10px;
   margin-left: 20px;
+  margin-right: 10px;
   display: inline-block;
   border-radius: 10%;
   margin-bottom: 2%;
@@ -218,7 +219,7 @@ const VidWrapper = styled.div`
   overflow: hidden;
   display: flex;
   margin-left: 20px;
-
+  margin-right: 10px;
   margin-bottom: 2%;
 `;
 
@@ -232,6 +233,7 @@ const ContactWrapper = styled.div`
   overflow: hidden;
   display: flex;
   margin-left: 20px;
+  margin-right: 10px;
   align-content: center;
   justify-content: center;
   border-radius: 2%;
@@ -239,7 +241,7 @@ const ContactWrapper = styled.div`
 `;
 
 const ContactInnerWrap = styled.div`
-  background-color: #132550b3;
+  background-color: #f2f2f2b3;
 
   padding: 10% 15%;
   margin-top: 3%;
@@ -250,6 +252,7 @@ const ContactDetails = styled.div``;
 
 const ContactHeader = styled.h1`
   padding: 0;
+  color: black;
 `;
 
 const Submitbtn = styled.button`
