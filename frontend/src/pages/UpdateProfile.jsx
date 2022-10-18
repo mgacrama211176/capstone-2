@@ -193,6 +193,7 @@ const UpdateProfile = () => {
               variant="outlined"
               placeholder="Email"
             />
+
             <TextField
               sx={{ color: "white", fontWeight: "light" }}
               id="username"
