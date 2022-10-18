@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import background from "../assets/Overcome-bro.png";
+const ariaLabel = { "aria-label": "description" };
 import { useSelector } from "react-redux";
+
+import axios from "axios";
 
 //MUI
 import TextField from "@mui/material/TextField";
@@ -79,7 +82,42 @@ const Submit = styled.button``;
 const UpdateProfile = () => {
   const { currentUser } = useSelector((state) => state.username);
 
-  console.log(currentUser);
+  const [newData, setNewData] = useState({
+    username: "",
+    Email: "",
+    userCategory: "",
+    fullName: "",
+    address: "",
+    birthdate: "",
+    about: "",
+  });
+
+  const onChangeHandle = (e) => {
+    const newUser = { ...newData };
+    newUser[e.target.id] = e.target.value;
+    setNewData(newUser);
+  };
+
+  const onClickUpdateSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const update = await axios.post(
+        `http://localhost:4000/api/users/${currentUser._id}`,
+        {
+          username: newData.username,
+          Email: newData.Email,
+          userCategory: newData.userCategory,
+          fullName: newData.fullName,
+          address: newData.address,
+          birthdate: newData.birthdate,
+          about: newData.about,
+        }
+      );
+      console.log(update);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Container>
@@ -97,67 +135,77 @@ const UpdateProfile = () => {
         <UpdateContainer>
           <InputContainers>
             <TextField
-              id="Username"
-              label={currentUser.username}
-              variant="outlined"
-              placeholder="new username"
-            />
-            <TextField
+              disabled
               id="Email"
               label={currentUser.email}
               variant="outlined"
               placeholder="Email"
             />
             <TextField
-              id="UserCat"
+              id="username"
+              label={currentUser.username}
+              variant="outlined"
+              placeholder="Channel Name"
+              onChange={(e) => onChangeHandle(e)}
+            />
+
+            <TextField
+              id="userCategory"
               label={currentUser.userCategory}
               variant="outlined"
               placeholder="Category"
+              onChange={(e) => onChangeHandle(e)}
             />
             {currentUser.fullName ? (
               <TextField
-                id="Full Name"
+                id="fullName"
                 label={currentUser.fullName}
                 variant="outlined"
                 placeholder="Full Name"
+                onChange={(e) => onChangeHandle(e)}
               />
             ) : (
               <TextField
-                id="Full Name"
+                id="fullName"
                 label="Full Name"
                 variant="outlined"
                 placeholder="Full Name"
+                onChange={(e) => onChangeHandle(e)}
               />
             )}
 
             {currentUser.address ? (
               <TextField
-                id="Address"
+                id="address"
                 label={currentUser.address}
                 variant="outlined"
                 placeholder="Address"
+                onChange={(e) => onChangeHandle(e)}
               />
             ) : (
               <TextField
-                id="Address"
+                id="address"
                 label="Address"
                 variant="outlined"
                 placeholder="Address"
+                onChange={(e) => onChangeHandle(e)}
               />
             )}
 
             <TextField
-              id="BirthDate"
+              id="birthdate"
               // label="Birthdate"
               variant="outlined"
               type="date"
+              onChange={(e) => onChangeHandle(e)}
             />
             <TextField
-              id="About"
+              id="about"
               label={`About the ${currentUser.userCategory}`}
               variant="outlined"
               multiline
               maxRows={50}
+              onChange={(e) => onChangeHandle(e)}
             />
 
             <FileUploadContainers>
@@ -175,7 +223,7 @@ const UpdateProfile = () => {
             </FileUploadContainers>
           </InputContainers>
           <SubmitContainer>
-            <Submit>Update</Submit>
+            <Submit onClick={onClickUpdateSubmit}>Update</Submit>
           </SubmitContainer>
         </UpdateContainer>
       </Wrapper>
