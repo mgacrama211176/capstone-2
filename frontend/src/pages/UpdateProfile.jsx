@@ -46,11 +46,10 @@ const AccountSet = styled.div`
 
 const CardContainer = styled.div`
   position: relative;
-  border: 1px solid black;
-  border-radius: 50%;
+  /* border: 1px solid black; */
+  border-radius: 10px;
   width: 25em;
-  height: 10%;
-  box-shadow: 5px 5px ${({ theme }) => theme.hover};
+  height: 100%;
 `;
 
 const ImageContainer = styled.div`
@@ -59,8 +58,9 @@ const ImageContainer = styled.div`
 `;
 
 const CardImage = styled.img`
+  box-shadow: 5px 5px ${({ theme }) => theme.hover};
   width: 100%;
-  border-radius: 15px 15px 0 0;
+  border-radius: 50%;
   background-color: transparent;
 `;
 
@@ -71,6 +71,7 @@ const UserInfo = styled.div`
   font-weight: bold;
   padding: 10px;
   gap: 10px;
+  border: 1px solid black;
 `;
 
 const UpdateContainer = styled.div`
@@ -105,12 +106,13 @@ const Submit = styled.button``;
 const UpdateImageContainer = styled.div`
   position: absolute;
   display: block;
-  right: 20px;
+  right: 90px;
+  top: 50px;
   color: white;
   border-radius: 50%;
   border: 1px solid white;
   padding: 5px;
-  top: 10px;
+
   cursor: pointer;
 
   &:hover {
@@ -176,12 +178,12 @@ const UpdateProfile = () => {
           </UpdateImageContainer>
           <ImageContainer>
             <CardImage src={currentUser?.image} />
-            <UserInfo>
-              <p>{currentUser?.username}</p>
-              <p>{currentUser?.userCategory}</p>
-            </UserInfo>
           </ImageContainer>
         </CardContainer>
+        <UserInfo>
+          <p>{currentUser?.username}</p>
+          <p>{currentUser?.userCategory}</p>
+        </UserInfo>
 
         <UpdateContainer>
           <InputContainers>
