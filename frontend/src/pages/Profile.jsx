@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import Footer from '../components/Footer';
-import styled from 'styled-components';
-import Follow from '../components/Follow';
-import Card from '../components/Card';
-import axios from 'axios';
-import BGimage from '../assets/marshmello.webp';
+import React, { useState, useEffect } from "react";
+import Footer from "../components/Footer";
+import styled from "styled-components";
+import Follow from "../components/Follow";
+import Card from "../components/Card";
+import axios from "axios";
+import BGimage from "../assets/marshmello.webp";
 
 //REDUX
-import { current } from '@reduxjs/toolkit';
-import { useSelector } from 'react-redux';
+import { current } from "@reduxjs/toolkit";
+import { useSelector } from "react-redux";
 
 //ROUTER DOM
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
 //MUI ICONS
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import FlagIcon from '@mui/icons-material/Flag';
-import ContactMailIcon from '@mui/icons-material/ContactMail';
-import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import FlagIcon from "@mui/icons-material/Flag";
+import ContactMailIcon from "@mui/icons-material/ContactMail";
+import TextField from "@mui/material/TextField";
+import Stack from "@mui/material/Stack";
 
 /* PROFILE Section*/
 const ProfWrapper = styled.div`
@@ -148,6 +148,7 @@ const Aboutwrapper = styled.div`
   flex: 50%;
   padding: 10px;
   margin-left: 20px;
+  margin-right: 10px;
   display: inline-block;
   border-radius: 10%;
   margin-bottom: 2%;
@@ -224,6 +225,7 @@ const VidWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 20px;
+  margin-right: 10px;
   margin-bottom: 2%;
 `;
 
@@ -244,6 +246,7 @@ const ContactWrapper = styled.div`
   overflow: hidden;
   display: flex;
   margin-left: 20px;
+  margin-right: 10px;
   align-content: center;
   justify-content: center;
   border-radius: 2%;
@@ -251,7 +254,7 @@ const ContactWrapper = styled.div`
 `;
 
 const ContactInnerWrap = styled.div`
-  background-color: #eaecf3b3;
+  background-color: #f2f2f2b3;
 
   padding: 10% 15%;
   margin-top: 3%;
@@ -327,7 +330,7 @@ const Profile = ({ nav }) => {
   const currentUser = useSelector((state) => state.username.currentUser);
 
   const MainWrapper = styled.div`
-    background-image: url('${BGimage}');
+    background-image: url("${BGimage}");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -381,23 +384,7 @@ const Profile = ({ nav }) => {
       <Row>
         <Aboutwrapper>
           <Aboutme>About Me</Aboutme>
-          <Aboutdetails>
-            Even though I didn’t know it until several years later, my first
-            foray into Japanese culture was watching cartoons on Saturday
-            mornings. Entranced by the fantastic plot lines, giant eyes, and
-            wonderful animation, I was watching anime without even knowing it.
-            Anime means “animation” in Japan, so in theory, could apply to any
-            form of animation from around the world, but in modern times has
-            come to refer to any and all Japanese animation. When most people
-            think of anime they think of vibrant and beautifully drawn scenes,
-            that are both dramatic and heartfelt, sometimes with just a hint of
-            magic. The history of anime in Japan can be traced back to the late
-            19th century. In fact, it was a French art movement called
-            "Japonisme" that helped inspire Japanese artists and create some of
-            the first examples of modern animation. However, it wasn't until
-            World War II when Japan's government started promoting cartoons as a
-            way to raise morale that the style really took off.
-          </Aboutdetails>
+          <Aboutdetails>{retrivedUser.about}</Aboutdetails>
           <ContentWrap>
             <Abtdthd>Details</Abtdthd>
             <hr />
@@ -408,11 +395,11 @@ const Profile = ({ nav }) => {
                 : retrivedUser.username}
             </>
             <hr />
-            Birthdate: {retrivedUser.birthdate} July 13, 2000
+            Birthdate: {retrivedUser.birthdate}
             <hr />
             User email: {retrivedUser.email}
             <hr />
-            Address: {retrivedUser.address}Cebu City
+            Address: {retrivedUser.address}
           </ContentWrap>
         </Aboutwrapper>
         <Aboutwrapper>
@@ -467,8 +454,8 @@ const Profile = ({ nav }) => {
               />
               <TextField
                 sx={{
-                  width: '50ch',
-                  height: '18ch',
+                  width: "50ch",
+                  height: "18ch",
                 }}
                 label="Message"
                 multiline
