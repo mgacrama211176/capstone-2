@@ -47,13 +47,9 @@ export const deleteVideo = async (request, response, next) => {
     const video = await VideoModel.findById(request.params.id);
     if (!video) {
       return next(createError(404, 'video not found!'));
-    }
-    if (request.user.id === video.userId) {
-      await VideoModel.findByIdAndDelete(request.params.id);
-
-      response.status(200).json('Video has been deleted');
     } else {
-      return next(403, 'You can only delete your own video!');
+      await VideoModel.findByIdAndDelete(request.params.id);
+      response.status(200).json('Video has been deleted');
     }
   } catch (err) {
     next(err);

@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from "react";
-import Footer from "../components/Footer";
-import styled from "styled-components";
-import Follow from "../components/Follow";
-import Card from "../components/Card";
-import axios from "axios";
-import BGimage from "../assets/marshmello.webp";
+import React, { useState, useEffect } from 'react';
+import Footer from '../components/Footer';
+import styled from 'styled-components';
+import Follow from '../components/Follow';
+import Card from '../components/Card';
+import axios from 'axios';
+import BGimage from '../assets/marshmello.webp';
 
 //REDUX
-import { current } from "@reduxjs/toolkit";
-import { useSelector } from "react-redux";
+import { current } from '@reduxjs/toolkit';
+import { useSelector } from 'react-redux';
 
 //ROUTER DOM
-import { useParams } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 
 //MUI ICONS
-import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import FlagIcon from "@mui/icons-material/Flag";
-import ContactMailIcon from "@mui/icons-material/ContactMail";
-import TextField from "@mui/material/TextField";
-import Stack from "@mui/material/Stack";
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import FlagIcon from '@mui/icons-material/Flag';
+import ContactMailIcon from '@mui/icons-material/ContactMail';
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
 
 /* PROFILE Section*/
 const ProfWrapper = styled.div`
@@ -327,7 +327,7 @@ const Profile = ({ nav }) => {
   const currentUser = useSelector((state) => state.username.currentUser);
 
   const MainWrapper = styled.div`
-    background-image: url("${BGimage}");
+    background-image: url('${BGimage}');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -440,7 +440,12 @@ const Profile = ({ nav }) => {
         <VidContainer>
           <>
             {retrievedVideos.map((video) => (
-              <Card key={video.id} video={video} />
+              <Card
+                key={video.id}
+                video={video}
+                type="profile"
+                currentUser={currentUser}
+              />
             ))}
           </>
         </VidContainer>
@@ -462,8 +467,8 @@ const Profile = ({ nav }) => {
               />
               <TextField
                 sx={{
-                  width: "50ch",
-                  height: "18ch",
+                  width: '50ch',
+                  height: '18ch',
                 }}
                 label="Message"
                 multiline

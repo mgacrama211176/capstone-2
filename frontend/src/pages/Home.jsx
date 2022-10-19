@@ -75,8 +75,6 @@ const Home = ({ type, category }) => {
     }
   }, [type]);
 
-  for (let i = 0; i < videos.length; i++) {}
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
