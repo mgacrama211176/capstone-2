@@ -179,11 +179,11 @@ const UpdateProfile = () => {
           <ImageContainer>
             <CardImage src={currentUser?.image} />
           </ImageContainer>
+          <UserInfo>
+            <p>{currentUser.username}</p>
+            <p>{currentUser.userCategory}</p>
+          </UserInfo>
         </CardContainer>
-        <UserInfo>
-          <p>{currentUser?.username}</p>
-          <p>{currentUser?.userCategory}</p>
-        </UserInfo>
 
         <UpdateContainer>
           <InputContainers>
