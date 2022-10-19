@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Footer from "../components/Footer";
 import styled from "styled-components";
-
-import BGimage from "../assets/neon.jpg";
 import Follow from "../components/Follow";
 import Card from "../components/Card";
 import axios from "axios";
+import BGimage from "../assets/marshmello.webp";
 
 //REDUX
+import { current } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 
 //ROUTER DOM
@@ -427,7 +427,12 @@ const Profile = ({ nav }) => {
         <VidContainer>
           <>
             {retrievedVideos.map((video) => (
-              <Card key={video.id} video={video} />
+              <Card
+                key={video.id}
+                video={video}
+                type="profile"
+                currentUser={currentUser}
+              />
             ))}
           </>
         </VidContainer>
