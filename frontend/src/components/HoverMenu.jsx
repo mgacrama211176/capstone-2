@@ -136,13 +136,18 @@ const HoverMenu = ({ setOpenModal }) => {
           {rightMenu ? (
             <>
               <ContentWrapper onMouseLeave={onHover}>
-                <DropdownContent>
-                  <User>
-                    {/* {currentUser.username} */}
-                    <Avatar src={currentUser?.image} />
-                  </User>
-                  {currentUser?.username}
-                </DropdownContent>
+                <Link
+                  to={`/profile/About/${currentUser._id}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <DropdownContent>
+                    <User>
+                      {/* {currentUser.username} */}
+                      <Avatar src={currentUser?.image} />
+                    </User>
+                    {currentUser?.username}
+                  </DropdownContent>
+                </Link>
                 <DropdownContent onClick={setOpenModal}>
                   <VideoCallIcon />
                   UPLOAD
