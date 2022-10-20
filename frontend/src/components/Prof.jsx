@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import TimeLine from "./TimeComp/TimeLine";
-import axios from "axios";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 
 //Media Queries

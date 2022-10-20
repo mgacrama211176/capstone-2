@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
-import styled from 'styled-components';
-import axios from 'axios';
-import UploadPercent from '../components/UploadPercent';
+import React, { useEffect } from "react";
+import styled from "styled-components";
+import UploadPercent from "../components/UploadPercent";
 
 const Container = styled.div`
   margin: 50px 0px 0px 100px;

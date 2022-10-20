@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FacebookShareButton } from "react-share";
 import ScreenShareIcon from "@mui/icons-material/ScreenShare";
 import styled from "styled-components";

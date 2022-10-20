@@ -3,19 +3,28 @@ import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import tile from "../assets/home_post_2.gif";
 import { device } from "../media";
+import { DeleteVideoData } from "./CardFuntions";
+
+//Firebase
+// import { getStorage, ref, deleteObject } from "firebase/storage";
 
 //libraries
 import { format } from "timeago.js";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import { useSelector } from "react-redux";
+//Framer Motion
+import { motion } from "framer-motion";
+
+//TOASTER
+import { DeleteVideoNotif } from "./Toasts";
 
 const Container = styled.div`
-  max-width: ${(props) => props.type !== "sm" && "360px"};
+  max-width: ${(props) => props.type !== "sm" && "300px"};
   margin-bottom: ${(props) => (props.type === "sm" ? "10px" : "45px")};
   display: ${(props) => (props.type === "sm" ? "flex" : "")};
   cursor: pointer;
+  position: relative;
   flex-wrap: wrap;
 
   &:hover {
@@ -58,11 +67,39 @@ const Container = styled.div`
   }
 `;
 
+const OptionContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+`;
+
+const Options = styled.div`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  z-index: 10;
+`;
+
+const OptionsButton = styled.button`
+  cursor: pointer;
+  z-index: 99;
+  padding: 10px;
+
+  &:hover {
+    opacity: 1;
+    background-color: white;
+  }
+`;
+
 const Image = styled.img`
   width: ${(props) => (props.type === "sm" ? "15em" : "18em")};
   height: ${(props) => (props.type === "sm" ? "120px" : "202px")};
   background-color: #999;
   flex: 1;
+  border-radius: 10px 10px 5px 5px;
 `;
 
 const Details = styled.div`
@@ -108,7 +145,7 @@ const ChannelImage = styled.img`
 const Texts = styled.div`
   display: flex;
   flex-flow: column wrap;
-  min-width: ${(props) => (props.type === "sm" ? "0px" : "300px")};
+  min-width: ${(props) => (props.type === "sm" ? "0px" : "250px")};
 
   /* Mobile S [fixed]*/
   @media ${device.mobileS} {
@@ -143,10 +180,20 @@ const Info = styled.div`
   color: ${({ theme }) => theme.textSoft};
 `;
 
-const Card = ({ type, video }) => {
+const ImgContainer = styled.div`
+  position: relative;
+  width: 100px;
+`;
+
+const Card = ({ type, video, currentUser }) => {
   // fetching user data information using useState hook
   const [channel, setChannel] = useState({});
-  const { currentUser } = useSelector((state) => state.username);
+  const [hoverState, setHoverState] = useState(false);
+
+  const hoverOptions = () => {
+    hoverState ? setHoverState(false) : setHoverState(true);
+    console.log(hoverState);
+  };
 
   useEffect(() => {
     const fetchingChannel = async () => {
@@ -158,25 +205,97 @@ const Card = ({ type, video }) => {
     fetchingChannel();
   }, [video?.userId]);
 
-  const path = useLocation();
+  // console.log(type);
+
+  //CARD DELETE UPDATE
+
+  // const DeleteVideo = async () => {
+  //   console.log(video);
+  //   const storage = getStorage();
+
+  //   try {
+  //     const deleting = await axios.delete(
+  //       `http://localhost:4000/api/videos/${video._id}`
+  //     );
+  //     try {
+  //       const videoDelete = ref(storage, video.videoUrl);
+  //       const imgDelete = ref(storage, video.imgUrl);
+  //       deleteObject(videoDelete);
+  //       deleteObject(imgDelete);
+  //       console.log(`deleted from database`);
+  //       DeleteVideoNotif();
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  // const DeleteVideo = () => {
+  //   ;
+  // };
+
+  const EditVideo = () => {
+    console.log(`edited`);
+  };
 
   return (
-    <Link to={`/video/${video?._id}`} style={{ textDecoration: "none" }}>
-      <Container type={type}>
-        <Image type={type} src={video?.imgUrl} />
-        <Details type={type}>
-          <ChannelImage type={type} src={channel?.image} />
-          <Texts type={type}>
-            <Title>{video?.title}</Title>
-            <AnimatorName>{channel?.username}</AnimatorName>
-            <Info>
-              {video?.views} views • {format(video?.createdAt)}
-            </Info>
-          </Texts>
-        </Details>
+    <motion.button
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+      animate={{
+        border: "none",
+        backgroundColor: "transparent",
+        textAlign: "left",
+        width: "260px",
+      }}
+      transition={{ ease: "easeOut", duration: 0.4 }}
+    >
+      <Container
+        type={type}
+        onMouseEnter={hoverOptions}
+        // onMouseLeave={hoverOptions}
+      >
+        <OptionContainer>
+          {type === "profile" && channel?._id === currentUser?._id ? (
+            hoverState ? (
+              <>
+                <Options>
+                  <OptionsButton onClick={EditVideo}>Update</OptionsButton>
+                  <OptionsButton onClick={() => DeleteVideoData({ video })}>
+                    Delete
+                  </OptionsButton>
+                </Options>
+              </>
+            ) : (
+              ""
+            )
+          ) : (
+            ""
+          )}
+        </OptionContainer>
+        <Link to={`/video/${video?._id}`} style={{ textDecoration: "none" }}>
+          <ImgContainer>
+            <Image type={type} src={video?.imgUrl} />
+          </ImgContainer>
+          <Details type={type}>
+            <ChannelImage type={type} src={channel?.image} />
+            <Texts type={type}>
+              <Title>{video?.title}</Title>
+              <AnimatorName>{channel?.username}</AnimatorName>
+              <Info>
+                {video?.views} views • {format(video?.createdAt)}
+              </Info>
+            </Texts>
+          </Details>
+        </Link>
       </Container>
-    </Link>
+    </motion.button>
   );
 };
 
 export default Card;
+
+//framer-motion
+//keyframes
