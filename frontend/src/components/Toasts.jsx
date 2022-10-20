@@ -1,9 +1,9 @@
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const userNotFound = () => {
-  toast.error('User Not Found', {
-    position: 'top-right',
+  toast.error("User Not Found", {
+    position: "top-right",
     autoClose: 3000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -14,8 +14,8 @@ export const userNotFound = () => {
 };
 
 export const incorrectPassword = () => {
-  toast.error('Incorrect Password', {
-    position: 'top-right',
+  toast.error("Incorrect Password", {
+    position: "top-right",
     autoClose: 3000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -25,8 +25,8 @@ export const incorrectPassword = () => {
   });
 };
 export const blank = () => {
-  toast.error('Please dont leave the box blank', {
-    position: 'top-right',
+  toast.error("Please dont leave the box blank", {
+    position: "top-right",
     autoClose: 3000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -37,8 +37,8 @@ export const blank = () => {
 };
 
 export const loginRequired = () => {
-  toast.error('Please Login first', {
-    position: 'top-right',
+  toast.error("Please Login first", {
+    position: "top-right",
     autoClose: 3000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -49,8 +49,8 @@ export const loginRequired = () => {
 };
 
 export const Liked = () => {
-  toast.success('Liked', {
-    position: 'top-right',
+  toast.success("Liked", {
+    position: "top-right",
     autoClose: 1000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -61,8 +61,8 @@ export const Liked = () => {
 };
 
 export const Disliked = () => {
-  toast.error('Disliked', {
-    position: 'top-right',
+  toast.error("Disliked", {
+    position: "top-right",
     autoClose: 2000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -73,8 +73,8 @@ export const Disliked = () => {
 };
 
 export const Uploaded = () => {
-  toast.success('Video Uploaded', {
-    position: 'top-right',
+  toast.success("Video Uploaded", {
+    position: "top-right",
     autoClose: 1000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -84,8 +84,8 @@ export const Uploaded = () => {
   });
 };
 export const CommentSuccess = () => {
-  toast.success('Comment Added!', {
-    position: 'top-right',
+  toast.success("Comment Added!", {
+    position: "top-right",
     autoClose: 1000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -97,7 +97,7 @@ export const CommentSuccess = () => {
 
 export const SubscribeErrorNotif = () => {
   toast.error("You can't follow your own channel!", {
-    position: 'top-right',
+    position: "top-right",
     autoClose: 2000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -108,8 +108,8 @@ export const SubscribeErrorNotif = () => {
 };
 
 export const SaveNotif = () => {
-  toast.success('Video Saved!', {
-    position: 'top-right',
+  toast.success("Video Saved!", {
+    position: "top-right",
     autoClose: 1000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -120,8 +120,8 @@ export const SaveNotif = () => {
 };
 
 export const DeleteNotif = () => {
-  toast.success('Comment Deleted', {
-    position: 'top-right',
+  toast.success("Comment Deleted", {
+    position: "top-right",
     autoClose: 1000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -132,9 +132,21 @@ export const DeleteNotif = () => {
 };
 
 export const UnauthorizedNotif = () => {
-  toast.error('Unauthorized Action', {
-    position: 'top-right',
+  toast.error("Unauthorized Action", {
+    position: "top-right",
     autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+};
+
+export const DeleteVideoNotif = () => {
+  toast.success("Video Deleted", {
+    position: "top-right",
+    autoClose: 1000,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,

@@ -7,7 +7,6 @@ import axios from "axios";
 import BGimage from "../assets/marshmello.webp";
 
 //REDUX
-import { current } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 
 //ROUTER DOM
@@ -428,7 +427,7 @@ const Profile = ({ nav }) => {
           <>
             {retrievedVideos.map((video) => (
               <Card
-                key={video.id}
+                key={video._id}
                 video={video}
                 type="profile"
                 currentUser={currentUser}

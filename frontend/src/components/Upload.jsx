@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
-import styled from 'styled-components';
-import app from '../firebase';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import uploadIcon from '../assets/Loading.gif';
+import React, { useState, useEffect, useRef } from "react";
+import styled from "styled-components";
+import app from "../firebase";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import uploadIcon from "../assets/Loading.gif";
 
 //firebase/store
 import {
@@ -11,19 +11,19 @@ import {
   ref,
   uploadBytesResumable,
   getDownloadURL,
-} from 'firebase/storage';
+} from "firebase/storage";
 
 //Toaster
-import { Uploaded } from './Toasts';
+import { Uploaded } from "./Toasts";
 
 //Progress Bar
-import ProgressBar from '@ramonak/react-progress-bar';
+import ProgressBar from "@ramonak/react-progress-bar";
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
+  min-height: 150%;
   position: absolute;
-  top: 0;
+  top: 0px;
   left: 0;
   background-color: #4b4b4b55;
   display: flex;
@@ -34,7 +34,7 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   width: 60%;
-  height: 90%;
+  min-height: 100%;
   background-color: white;
   color: black;
   padding: 20px;
@@ -44,6 +44,7 @@ const Wrapper = styled.div`
   position: relative;
   border-radius: 15px;
   align-items: center;
+  overflow: scroll;
 `;
 
 const Close = styled.div`
@@ -128,9 +129,9 @@ const Upload = ({ setOpenModal, currentUser }) => {
   const [videoPercentage, setVideoPercentage] = useState(0);
 
   const [uploadInformation, setUploadInformation] = useState({
-    title: '',
-    desc: '',
-    tags: 'Traditional Animation',
+    title: "",
+    desc: "",
+    tags: "Traditional Animation",
   });
 
   const onChangeHandleInformation = (e) => {
@@ -147,18 +148,18 @@ const Upload = ({ setOpenModal, currentUser }) => {
     const uploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on(
-      'state_changed',
+      "state_changed",
       (snapshot) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        urlType === 'imgUrl'
+        urlType === "imgUrl"
           ? setThumbnailPercentage(Math.round(progress))
           : setVideoPercentage(Math.round(progress));
         switch (snapshot.state) {
-          case 'paused':
+          case "paused":
             console.log(`Upload is paused`);
             break;
-          case 'running':
+          case "running":
             console.log(`Upload is running`);
             break;
           default:
@@ -177,11 +178,11 @@ const Upload = ({ setOpenModal, currentUser }) => {
   };
 
   useEffect(() => {
-    video && uploadFile(video, 'videoUrl');
+    video && uploadFile(video, "videoUrl");
   }, [video]);
 
   useEffect(() => {
-    thumbnail && uploadFile(thumbnail, 'imgUrl');
+    thumbnail && uploadFile(thumbnail, "imgUrl");
   }, [thumbnail]);
 
   const uploadHandler = async (e) => {
@@ -198,7 +199,7 @@ const Upload = ({ setOpenModal, currentUser }) => {
       }
     );
     setOpenModal(false);
-    response.status === 200 && nav('/');
+    response.status === 200 && nav("/");
     Uploaded();
   };
 
@@ -226,7 +227,7 @@ const Upload = ({ setOpenModal, currentUser }) => {
                 <Video src={uploadInformation.videoUrl} controls></Video>
               </>
             ) : (
-              ''
+              ""
             )}
             <ProgressBar
               completed={videoPercentage}
@@ -235,7 +236,7 @@ const Upload = ({ setOpenModal, currentUser }) => {
               baseBgColor="#132550"
               maxCompleted={100}
             />
-            {videoPercentage === 100 ? 'DONE!' : `Uploading Video...`}
+            {videoPercentage === 100 ? "DONE!" : `Uploading Video...`}
           </>
         ) : (
           <>
@@ -243,7 +244,7 @@ const Upload = ({ setOpenModal, currentUser }) => {
               type="file"
               accept="video/*"
               onChange={(e) => setVideo(e.target.files[0])}
-              style={{ display: 'none' }}
+              style={{ display: "none" }}
               ref={videoRef}
             />
             <Button onClick={handleVideoClick}>Upload Video</Button>
@@ -259,7 +260,7 @@ const Upload = ({ setOpenModal, currentUser }) => {
                 </ThumbContainer>
               </>
             ) : (
-              'Uploading Thumbnail...'
+              "Uploading Thumbnail..."
             )}
             <ProgressBar
               completed={thumbnailPercentage}
@@ -267,7 +268,7 @@ const Upload = ({ setOpenModal, currentUser }) => {
               bgColor="#B2792D"
               baseBgColor="#132550"
             />
-            {thumbnailPercentage === 100 ? 'DONE!' : 'Uploading Thumbnail...'}
+            {thumbnailPercentage === 100 ? "DONE!" : "Uploading Thumbnail..."}
           </>
         ) : (
           <>
@@ -276,7 +277,7 @@ const Upload = ({ setOpenModal, currentUser }) => {
               accept="image/*"
               placeholder="Thumbnail"
               onChange={(e) => setThumbnail(e.target.files[0])}
-              style={{ display: 'none' }}
+              style={{ display: "none" }}
               ref={thumbRef}
             />
             <Button onClick={handleThumbClick}>Upload Thumbnail</Button>

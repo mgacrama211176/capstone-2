@@ -9,11 +9,6 @@ const Container = styled.div`
   display: flex;
   flex-flow: wrap row;
 `;
-
-const Wrapper = styled.div``;
-
-const Recommend = styled.div``;
-
 const Recommendation = ({ tags }) => {
   const [videos, setVideos] = useState([]);
 

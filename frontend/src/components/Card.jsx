@@ -3,6 +3,10 @@ import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import tile from "../assets/home_post_2.gif";
 import { device } from "../media";
+import { DeleteVideoData } from "./CardFuntions";
+
+//Firebase
+// import { getStorage, ref, deleteObject } from "firebase/storage";
 
 //libraries
 import { format } from "timeago.js";
@@ -11,6 +15,9 @@ import axios from "axios";
 
 //Framer Motion
 import { motion } from "framer-motion";
+
+//TOASTER
+import { DeleteVideoNotif } from "./Toasts";
 
 const Container = styled.div`
   max-width: ${(props) => props.type !== "sm" && "300px"};
@@ -200,17 +207,34 @@ const Card = ({ type, video, currentUser }) => {
 
   // console.log(type);
 
-  const DeleteVideo = async () => {
-    try {
-      console.log(video._id);
-      const deleting = await axios.delete(
-        `http://localhost:4000/api/videos/${video._id}`
-      );
-      console.log(`${video._id} has been deleted`);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //CARD DELETE UPDATE
+
+  // const DeleteVideo = async () => {
+  //   console.log(video);
+  //   const storage = getStorage();
+
+  //   try {
+  //     const deleting = await axios.delete(
+  //       `http://localhost:4000/api/videos/${video._id}`
+  //     );
+  //     try {
+  //       const videoDelete = ref(storage, video.videoUrl);
+  //       const imgDelete = ref(storage, video.imgUrl);
+  //       deleteObject(videoDelete);
+  //       deleteObject(imgDelete);
+  //       console.log(`deleted from database`);
+  //       DeleteVideoNotif();
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  // const DeleteVideo = () => {
+  //   ;
+  // };
 
   const EditVideo = () => {
     console.log(`edited`);
@@ -239,7 +263,9 @@ const Card = ({ type, video, currentUser }) => {
               <>
                 <Options>
                   <OptionsButton onClick={EditVideo}>Update</OptionsButton>
-                  <OptionsButton onClick={DeleteVideo}>Delete</OptionsButton>
+                  <OptionsButton onClick={() => DeleteVideoData({ video })}>
+                    Delete
+                  </OptionsButton>
                 </Options>
               </>
             ) : (

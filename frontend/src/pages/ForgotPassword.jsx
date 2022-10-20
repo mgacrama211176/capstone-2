@@ -1,29 +1,29 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { device } from '../media';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import axios from 'axios';
-import { loginFailed, loginStart, loginSuccess } from '../redux/userSlice';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { device } from "../media";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { loginFailed, loginStart, loginSuccess } from "../redux/userSlice";
 
 //Toastify
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 //MUI
-import EmailIcon from '@mui/icons-material/Email';
-import LoginIcon from '@mui/icons-material/Login';
+import EmailIcon from "@mui/icons-material/Email";
+import LoginIcon from "@mui/icons-material/Login";
 
 //Framer Motion
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   color: ${({ theme }) => theme.titleColor};
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 
   /* Mobile S */
   @media ${device.mobileS} {
@@ -131,8 +131,8 @@ const H6 = styled.h6`
 const Signin = () => {
   //TOAST
   const Notify = () =>
-    toast.success('E-mail sent for password reset!', {
-      position: 'top-right',
+    toast.success("E-mail sent for password reset!", {
+      position: "top-right",
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -142,8 +142,8 @@ const Signin = () => {
     });
 
   const NotFound = () => {
-    toast.error('Email not found', {
-      position: 'top-right',
+    toast.error("Email not found", {
+      position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -154,8 +154,8 @@ const Signin = () => {
   };
 
   const Empty = () => {
-    toast.error('E-mail cant be empty', {
-      position: 'top-right',
+    toast.error("E-mail cant be empty", {
+      position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -166,7 +166,7 @@ const Signin = () => {
   };
 
   const [user, setUser] = useState({
-    email: '',
+    email: "",
   });
 
   const onChangeHandle = (e) => {
@@ -187,7 +187,7 @@ const Signin = () => {
         Notify();
       }
 
-      setUser({ email: '' });
+      setUser({ email: "" });
     } catch (err) {
       Empty();
     }
@@ -197,12 +197,11 @@ const Signin = () => {
   return (
     <motion.div
       initial={{ width: 0, opacity: 0 }}
-      animate={{ width: '100%', opacity: 1 }}
+      animate={{ width: "100%", opacity: 1 }}
       exit={{
         x: window.innerWidth,
         y: window.innerHeight,
       }}
-      // transition={{'1s'}}
     >
       <ToastContainer
         position="top-right"
@@ -219,7 +218,6 @@ const Signin = () => {
       <ToastContainer />
       <Container>
         <LoginWrapper>
-          {/* <Image src={Logo}></Image> */}
           <Title>FORGOT PASSWORD</Title>
           <H4> Enter email address </H4>
           <InputWrapper>
@@ -241,7 +239,7 @@ const Signin = () => {
             </Button>
           </InputWrapper>
           <Options>
-            <Link to={'/signup'} style={{ textDecoration: 'none' }}>
+            <Link to={"/signup"} style={{ textDecoration: "none" }}>
               <H6>Not yet registered? </H6>
             </Link>
           </Options>
