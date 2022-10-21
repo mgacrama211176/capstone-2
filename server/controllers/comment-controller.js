@@ -31,7 +31,19 @@ export const deleteComment = async (request, response, next) => {
   response.status(200).json("Comment Deleted");
 };
 
-//localhost:4000/api/comments/
+//localhost:4000/api/comments/deleteAll/:videoId
+export const deleteAll = async (request, response, next) => {
+  const VideoId = request.params.videoId;
+  try {
+    console.log(VideoId);
+    const retrieveVideoComments = await CommentModel.deleteMany({
+      videoId: VideoId,
+    });
+    response.status(200).json(retrieveVideoComments);
+  } catch (err) {
+    response.json(err);
+  }
+};
 
 //localhost:3000/api/comments
 export const getComment = async (request, response, next) => {
