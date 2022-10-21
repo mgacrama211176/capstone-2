@@ -4,6 +4,7 @@ import background from "../assets/Overcome-bro.png";
 const ariaLabel = { "aria-label": "description" };
 import { useSelector } from "react-redux";
 import axios from "axios";
+import Footer from "../components/Footer";
 
 import BGimage from "../assets/neon.jpg";
 
@@ -19,11 +20,10 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 
-const Container = styled.div`
-  margin: 0px 100px;
-`;
+const Container = styled.div``;
 
 const Wrapper = styled.div`
+  margin: 0 100px;
   display: flex;
   justify-content: center;
   background-image: url("${BGimage}");
@@ -33,6 +33,7 @@ const Wrapper = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  margin-bottom: 1%;
   max-width: 100%;
   height: 700px;
   position: relative;
@@ -43,12 +44,12 @@ const H1 = styled.h1``;
 const AccountSet = styled.div`
   margin-top: 50px;
   font-size: 36px;
+  margin-left: 100px;
   margin-bottom: 20px;
 `;
 
 const CardContainer = styled.div`
   position: relative;
-
   width: 25em;
   height: 100%;
   margin-right: 10%;
@@ -78,7 +79,7 @@ const UserInfo = styled.div`
   align-items: center;
   padding: 10px;
   gap: 10px;
-  background-color: #00060aa9;
+  background-color: #00060ac0;
   border-radius: 20px;
   color: white;
 `;
@@ -90,7 +91,8 @@ const UpdateContainer = styled.div`
   justify-content: center;
   max-height: fit-content;
   align-items: center;
-  background-color: #f3f4f593;
+  border-radius: 20px;
+  background-color: #f3f4f5c3;
 `;
 
 const InputContainers = styled.div`
@@ -366,6 +368,7 @@ const UpdateProfile = () => {
           </SubmitContainer> */}
         </UpdateContainer>
       </Wrapper>
+      <Footer />
     </Container>
   );
 };
