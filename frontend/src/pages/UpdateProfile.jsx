@@ -17,6 +17,7 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import BrushIcon from "@mui/icons-material/Brush";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 
 const Container = styled.div`
   margin: 0px 100px;
@@ -33,6 +34,7 @@ const Wrapper = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   max-width: 100%;
+  height: 700px;
   position: relative;
 `;
 
@@ -46,32 +48,39 @@ const AccountSet = styled.div`
 
 const CardContainer = styled.div`
   position: relative;
-  /* border: 1px solid black; */
-  border-radius: 10px;
+
   width: 25em;
   height: 100%;
+  margin-right: 10%;
 `;
 
 const ImageContainer = styled.div`
   display: flex;
   flex-flow: wrap column;
+  margin-right: 5em;
+  padding: 2em;
 `;
 
 const CardImage = styled.img`
-  box-shadow: 5px 5px ${({ theme }) => theme.hover};
   width: 100%;
   border-radius: 50%;
   background-color: transparent;
+  margin-left: 18%;
 `;
 
 const UserInfo = styled.div`
   display: flex;
   flex-direction: column;
-  font-size: 16px;
+  align-items: center;
   font-weight: bold;
+  text-decoration: uppercase;
+  font-size: 2rem;
+  align-items: center;
   padding: 10px;
   gap: 10px;
-  border: 1px solid black;
+  background-color: #00060aa9;
+  border-radius: 20px;
+  color: white;
 `;
 
 const UpdateContainer = styled.div`
@@ -79,38 +88,34 @@ const UpdateContainer = styled.div`
   flex-flow: wrap column;
   gap: 30px;
   justify-content: center;
+  max-height: fit-content;
   align-items: center;
   background-color: #f3f4f593;
 `;
 
 const InputContainers = styled.div`
-  /* margin-left: 30px;
-  margin-right: 30px; */
-  padding: 0.5em 3em;
+  padding: 0 3em;
   display: flex;
+  margin-top: -30%;
   flex-direction: column;
   gap: 20px;
   width: 30em;
+  max-width: 30em;
 `;
 
 const FileUploadContainers = styled.div``;
-
-const SubmitContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 
 const Submit = styled.button``;
 
 const UpdateImageContainer = styled.div`
   position: absolute;
   display: block;
-  right: 90px;
+  right: 120px;
   top: 50px;
-  color: white;
+  color: #ffffff;
+  background-color: #00000053;
   border-radius: 50%;
-  border: 1px solid white;
+  border: 1px solid #00000053;
   padding: 5px;
 
   cursor: pointer;
@@ -118,6 +123,70 @@ const UpdateImageContainer = styled.div`
   &:hover {
     color: #1976d2;
     border: 1px solid #1976d2;
+    background-color: #1976d25c;
+  }
+`;
+
+const Upcv = styled.button`
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  max-height: 50px;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  border: 0px;
+  font-weight: 700;
+  position: absolute;
+  margin-top: 30%;
+  background-color: #f51f1ff2;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+
+  &:hover {
+    background-position: right center;
+
+    text-decoration: none;
+  }
+  &:active {
+    transform: scale(1.3);
+  }
+`;
+
+const Savebtn = styled.button`
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  max-height: 50px;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  border: 0px;
+  font-weight: 700;
+  position: absolute;
+  margin-top: 30%;
+  margin-left: 18%;
+  background-color: #f51f1ff2;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+
+  &:hover {
+    background-position: right center;
+
+    text-decoration: none;
+  }
+  &:active {
+    transform: scale(1.3);
   }
 `;
 
@@ -181,7 +250,10 @@ const UpdateProfile = () => {
           </ImageContainer>
           <UserInfo>
             <p>{currentUser.username}</p>
-            <p>{currentUser.userCategory}</p>
+            <p>
+              {currentUser.userCategory}
+              <PersonOutlineIcon />
+            </p>
           </UserInfo>
         </CardContainer>
 
@@ -197,7 +269,6 @@ const UpdateProfile = () => {
             />
 
             <TextField
-              sx={{ color: "white", fontWeight: "light" }}
               id="username"
               label={currentUser?.username}
               variant="outlined"
@@ -205,39 +276,12 @@ const UpdateProfile = () => {
               onChange={(e) => onChangeHandle(e)}
             />
 
-            {/* <TextField
-              id="userCategory"
-              label={currentUser.userCategory}
-              variant="outlined"
-              placeholder="Category"
-              onChange={(e) => onChangeHandle(e)}
-            /> */}
-
-            {/* <Select
-              id="userCategory"
-              onChange={(e) => onChangeHandle(e)}
-              value={newData.userCategory}
-            >
-              <MenuItem value="Animator">Animator</MenuItem>
-              <MenuItem value="Employer">Employer</MenuItem>
-            </Select> */}
-
-            {/* <Select
-              labelId="demo-select-small"
-              id="userCategory"
-              label="userCategory"
-              onChange={(e) => onChangeHandle(e)}
-            >
-              <MenuItem value="Animator">Animator</MenuItem>
-              <MenuItem value="Employer">Employer</MenuItem>
-            </Select> */}
-
             <Select
               name="userCategory"
               id="userCategory"
               onChange={(e) => onChangeHandle(e)}
             >
-              <Options value="Animation">Animation</Options>
+              <Options value="Animator">Animator</Options>
               <Options value="Employer">Employer</Options>
             </Select>
 
@@ -286,8 +330,9 @@ const UpdateProfile = () => {
             />
             <TextField
               id="about"
-              label={`About the ${currentUser?.userCategory}`}
+              label={`About `}
               variant="outlined"
+              helperText="Write a short description about your channel"
               multiline
               maxRows={50}
               onChange={(e) => onChangeHandle(e)}
@@ -308,26 +353,17 @@ const UpdateProfile = () => {
             </FileUploadContainers> */}
           </InputContainers>
 
-          <input type="file" />
-
-          <ButtonGroup
-            variant="contained"
-            aria-label="outlined primary button group"
-          >
-            {/* <Button>Upload Profile</Button>
-            <Button>Upload Background</Button> */}
-            <Button>Upload CV</Button>
-          </ButtonGroup>
-
-          <SubmitContainer>
+          <Upcv>Upload CV</Upcv>
+          <Savebtn onClick={onClickUpdateSubmit}>Save changes</Savebtn>
+          {/* <SubmitContainer>
             <Button
               variant="contained"
               endIcon={<SendIcon />}
-              onClick={onClickUpdateSubmit}
+              
             >
               Submit
             </Button>
-          </SubmitContainer>
+          </SubmitContainer> */}
         </UpdateContainer>
       </Wrapper>
     </Container>

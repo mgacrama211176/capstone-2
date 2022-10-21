@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Follow from "../components/Follow";
 import Card from "../components/Card";
 import axios from "axios";
-import BGimage from "../assets/marshmello.webp";
+import BGimage from "../assets/neon.jpg";
 
 //REDUX
 import { current } from "@reduxjs/toolkit";
@@ -32,6 +32,7 @@ const ProfWrapper = styled.div`
   margin-bottom: 2%;
   justify-content: center;
   align-items: center;
+  border-radius: 200px;
 `;
 
 //Image Styling
@@ -150,7 +151,7 @@ const Aboutwrapper = styled.div`
   margin-left: 20px;
   margin-right: 10px;
   display: inline-block;
-  border-radius: 10%;
+  border-radius: 40px;
   margin-bottom: 2%;
 `;
 
@@ -176,7 +177,7 @@ const Aboutdetails = styled.p`
 `;
 
 const Report = styled.p`
-  margin-bottom: 30%;
+  margin-bottom: 10%;
 `;
 
 const DownldCV = styled.button`
@@ -227,6 +228,7 @@ const VidWrapper = styled.div`
   margin-left: 20px;
   margin-right: 10px;
   margin-bottom: 2%;
+  border-radius: 40px;
 `;
 
 const VidContainer = styled.div`
@@ -249,7 +251,7 @@ const ContactWrapper = styled.div`
   margin-right: 10px;
   align-content: center;
   justify-content: center;
-  border-radius: 2%;
+  border-radius: 40px;
   margin-bottom: 2%;
 `;
 
@@ -259,7 +261,7 @@ const ContactInnerWrap = styled.div`
   padding: 10% 15%;
   margin-top: 3%;
   margin-bottom: 3%;
-  border-radius: 10%;
+  border-radius: 5em;
 `;
 const ContactDetails = styled.div``;
 
@@ -337,6 +339,7 @@ const Profile = ({ nav }) => {
     position: relative;
     font-family: Roboto, Arial, sans-serif;
     width: 100%;
+
     -webkit-font-smoothing: antialiased;
     scroll-behavior: smooth;
   `;
