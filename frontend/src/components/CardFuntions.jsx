@@ -13,9 +13,14 @@ export const DeleteVideoData = async ({ video }) => {
     const deleting = await axios.delete(
       `http://localhost:4000/api/videos/${video._id}`
     );
+    const deletingAllComments = await axios.delete(
+      `http://localhost:4000/api/comments/deleteAll/${video._id}`
+    );
+    console.log(deletingAllComments);
+    console.log(deleting);
     //delete video on firebase
-    // deleteObject(videoDelete);
-    // deleteObject(imgDelete);
+    deleteObject(videoDelete);
+    deleteObject(imgDelete);
 
     console.log(`deleted from database`);
     DeleteVideoNotif();
