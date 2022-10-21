@@ -1,13 +1,11 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import tile from "../assets/home_post_2.gif";
 import { device } from "../media";
 import { DeleteVideoData, UpdateVideoData } from "./CardFuntions";
 
 //libraries
 import { format } from "timeago.js";
-import { useState, useEffect } from "react";
 import axios from "axios";
 
 //Framer Motion
@@ -15,6 +13,13 @@ import { motion } from "framer-motion";
 
 //TOASTER
 import { DeleteVideoNotif } from "./Toasts";
+
+//MUI
+import ButtonGroup from "@mui/material/ButtonGroup";
+import Button from "@mui/material/Button";
+
+//MODAL PROPS HANDLER
+import { UpdateModal, DeleteModal } from "./VideoModal";
 
 const Container = styled.div`
   max-width: ${(props) => props.type !== "sm" && "300px"};
@@ -186,6 +191,18 @@ const Card = ({ type, video, currentUser }) => {
   // fetching user data information using useState hook
   const [channel, setChannel] = useState({});
   const [hoverState, setHoverState] = useState(false);
+  const [openUpdate, setOpenUpdate] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
+
+  const handleOpenUpdate = () => {
+    openUpdate ? setOpenUpdate(false) : setOpenUpdate(true);
+  };
+  UpdateModal({ openUpdate, handleOpenUpdate });
+
+  const handleOpenDelete = () => {
+    openDelete ? setOpenDelete(false) : setOpenDelete(true);
+    DeleteModal();
+  };
 
   const hoverOptions = () => {
     hoverState ? setHoverState(false) : setHoverState(true);
@@ -199,6 +216,8 @@ const Card = ({ type, video, currentUser }) => {
       setChannel(channel?.data);
     };
     fetchingChannel();
+
+    console.log(channel);
   }, [video?.userId]);
 
   return (
@@ -223,12 +242,17 @@ const Card = ({ type, video, currentUser }) => {
             hoverState ? (
               <>
                 <Options>
-                  <OptionsButton onClick={() => UpdateVideoData({ video })}>
-                    Update
-                  </OptionsButton>
-                  <OptionsButton onClick={() => DeleteVideoData({ video })}>
-                    Delete
-                  </OptionsButton>
+                  <ButtonGroup
+                    disableElevation
+                    variant="contained"
+                    aria-label="Disabled elevation buttons"
+                  >
+                    <Button onClick={handleOpenUpdate}>UPDATE</Button>
+                    <Button onClick={handleOpenDelete}>DELETE</Button>
+                    {/* <Button onClick={() => DeleteVideoData({ video })}>
+                      DELETE
+                    </Button> */}
+                  </ButtonGroup>
                 </Options>
               </>
             ) : (

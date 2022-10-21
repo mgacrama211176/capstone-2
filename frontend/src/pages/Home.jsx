@@ -62,7 +62,6 @@ const Home = ({ type, category }) => {
         );
         setVideos(randomReturn.data);
       };
-      console.log(fetchingVideos);
       fetchingVideos();
     } else {
       const fetchingVideos = async () => {

@@ -30,5 +30,5 @@ export const DeleteVideoData = async ({ video }) => {
 };
 
 export const UpdateVideoData = async ({ video }) => {
-  console.log(`${video._id}`);
+  console.log(video);
 };
