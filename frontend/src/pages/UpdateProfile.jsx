@@ -19,6 +19,7 @@ import BrushIcon from "@mui/icons-material/Brush";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
 const Container = styled.div``;
 
@@ -98,7 +99,7 @@ const UpdateContainer = styled.div`
 const InputContainers = styled.div`
   padding: 0 3em;
   display: flex;
-  margin-top: -30%;
+  margin-top: -20%;
   flex-direction: column;
   gap: 20px;
   width: 30em;
@@ -144,6 +145,7 @@ const Upcv = styled.button`
   font-weight: 700;
   position: absolute;
   margin-top: 30%;
+  margin-right: 5%;
   background-color: #f51f1ff2;
   cursor: pointer;
   user-select: none;
@@ -191,8 +193,19 @@ const Savebtn = styled.button`
     transform: scale(1.3);
   }
 `;
+const CVhelpContainer = styled.div`
+  display: block;
+  position: absolute;
+  margin-top: 29.8%;
+  margin-left: 4%;
+`;
 
-const Select = styled.select``;
+const Select = styled.select`
+  background-color: #fdfdfd36;
+  border-radius: 2px;
+  height: 55px;
+  position: relative;
+`;
 
 const Options = styled.option``;
 
@@ -356,16 +369,10 @@ const UpdateProfile = () => {
           </InputContainers>
 
           <Upcv>Upload CV</Upcv>
+          <CVhelpContainer>
+            <HelpOutlineIcon />
+          </CVhelpContainer>
           <Savebtn onClick={onClickUpdateSubmit}>Save changes</Savebtn>
-          {/* <SubmitContainer>
-            <Button
-              variant="contained"
-              endIcon={<SendIcon />}
-              
-            >
-              Submit
-            </Button>
-          </SubmitContainer> */}
         </UpdateContainer>
       </Wrapper>
       <Footer />
