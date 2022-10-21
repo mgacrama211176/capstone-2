@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Follow from "../components/Follow";
 import Card from "../components/Card";
 import axios from "axios";
-import BGimage from "../assets/neon.jpg";
+import BGimage from "../assets/tiger.jpg";
 
 //REDUX
 import { current } from "@reduxjs/toolkit";

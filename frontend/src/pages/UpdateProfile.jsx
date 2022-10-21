@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import Footer from "../components/Footer";
 
-import BGimage from "../assets/neon.jpg";
+import BGimage from "../assets/tiger.jpg";
 
 //MUI
 import TextField from "@mui/material/TextField";
@@ -34,6 +34,7 @@ const Wrapper = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  margin-top: 2.2%;
   margin-bottom: 1%;
   max-width: 100%;
   height: 700px;
@@ -254,7 +255,7 @@ const UpdateProfile = () => {
 
   return (
     <Container>
-      <AccountSet>Account Update</AccountSet>
+      {/* <AccountSet>Account Update</AccountSet> */}
       <Wrapper>
         <CardContainer>
           <UpdateImageContainer>
