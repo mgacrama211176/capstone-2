@@ -18,6 +18,7 @@ export const DeleteVideoData = async ({ video }) => {
     );
     console.log(deletingAllComments);
     console.log(deleting);
+
     //delete video on firebase
     deleteObject(videoDelete);
     deleteObject(imgDelete);
