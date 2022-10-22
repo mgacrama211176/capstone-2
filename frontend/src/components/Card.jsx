@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 
 //button Container for Delete and Update
 import VideoModalDelete from "./VideoModalDelete";
+import UpdateVideoModal from "./UpdateVideoModal";
 
 const Container = styled.div`
   max-width: ${(props) => props.type !== "sm" && "300px"};
@@ -221,6 +222,7 @@ const Card = ({ type, video, currentUser }) => {
               <>
                 <Options>
                   <VideoModalDelete video={video} />
+                  <UpdateVideoModal video={video} />
                 </Options>
               </>
             ) : (
