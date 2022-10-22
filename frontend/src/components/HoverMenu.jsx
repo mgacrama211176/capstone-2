@@ -137,7 +137,7 @@ const HoverMenu = ({ setOpenModal }) => {
             <>
               <ContentWrapper onMouseLeave={onHover}>
                 <Link
-                  to={`/profile/About/${currentUser._id}`}
+                  to={`/profile/About/${currentUser?._id}`}
                   style={{ textDecoration: "none" }}
                 >
                   <DropdownContent>
