@@ -29,8 +29,8 @@ const VideoSchema = new mongoose.Schema(
       default: 0,
     },
     tags: {
-      type: [String],
-      default: [],
+      type: String,
+
     },
     likes: {
       type: [String],

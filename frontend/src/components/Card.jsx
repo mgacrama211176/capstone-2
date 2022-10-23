@@ -1,23 +1,18 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import tile from "../assets/home_post_2.gif";
 import { device } from "../media";
-import { DeleteVideoData } from "./CardFuntions";
-
-//Firebase
-// import { getStorage, ref, deleteObject } from "firebase/storage";
 
 //libraries
 import { format } from "timeago.js";
-import { useState, useEffect } from "react";
 import axios from "axios";
 
 //Framer Motion
 import { motion } from "framer-motion";
 
-//TOASTER
-import { DeleteVideoNotif } from "./Toasts";
+//button Container for Delete and Update
+import VideoModalDelete from "./VideoModalDelete";
+import UpdateVideoModal from "./UpdateVideoModal";
 
 const Container = styled.div`
   max-width: ${(props) => props.type !== "sm" && "300px"};
@@ -192,7 +187,6 @@ const Card = ({ type, video, currentUser }) => {
 
   const hoverOptions = () => {
     hoverState ? setHoverState(false) : setHoverState(true);
-    console.log(hoverState);
   };
 
   useEffect(() => {
@@ -205,67 +199,30 @@ const Card = ({ type, video, currentUser }) => {
     fetchingChannel();
   }, [video?.userId]);
 
-  // console.log(type);
-
-  //CARD DELETE UPDATE
-
-  // const DeleteVideo = async () => {
-  //   console.log(video);
-  //   const storage = getStorage();
-
-  //   try {
-  //     const deleting = await axios.delete(
-  //       `http://localhost:4000/api/videos/${video._id}`
-  //     );
-  //     try {
-  //       const videoDelete = ref(storage, video.videoUrl);
-  //       const imgDelete = ref(storage, video.imgUrl);
-  //       deleteObject(videoDelete);
-  //       deleteObject(imgDelete);
-  //       console.log(`deleted from database`);
-  //       DeleteVideoNotif();
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // const DeleteVideo = () => {
-  //   ;
-  // };
-
-  const EditVideo = () => {
-    console.log(`edited`);
-  };
-
   return (
-    <motion.button
+    <motion.div
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       animate={{
         border: "none",
         backgroundColor: "transparent",
         textAlign: "left",
-        width: "260px",
+        width: "300px",
       }}
       transition={{ ease: "easeOut", duration: 0.4 }}
     >
       <Container
         type={type}
         onMouseEnter={hoverOptions}
-        // onMouseLeave={hoverOptions}
+        onMouseLeave={hoverOptions}
       >
         <OptionContainer>
           {type === "profile" && channel?._id === currentUser?._id ? (
             hoverState ? (
               <>
                 <Options>
-                  <OptionsButton onClick={EditVideo}>Update</OptionsButton>
-                  <OptionsButton onClick={() => DeleteVideoData({ video })}>
-                    Delete
-                  </OptionsButton>
+                  <VideoModalDelete video={video} />
+                  <UpdateVideoModal video={video} />
                 </Options>
               </>
             ) : (
@@ -291,7 +248,7 @@ const Card = ({ type, video, currentUser }) => {
           </Details>
         </Link>
       </Container>
-    </motion.button>
+    </motion.div>
   );
 };
 
