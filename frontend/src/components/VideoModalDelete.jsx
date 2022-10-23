@@ -56,7 +56,13 @@ const VideoModalDelete = ({ video }) => {
 
   return (
     <Container>
-      <Button onClick={handleOpen} variant="contained">
+      <Button
+        onClick={handleOpen}
+        variant="contained"
+        sx={{
+          backgroundColor: "#132550",
+        }}
+      >
         DELETE
       </Button>
       <Modal
