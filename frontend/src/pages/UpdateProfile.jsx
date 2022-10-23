@@ -180,8 +180,8 @@ const UpdateProfile = () => {
             <CardImage src={currentUser?.image} />
           </ImageContainer>
           <UserInfo>
-            <p>{currentUser.username}</p>
-            <p>{currentUser.userCategory}</p>
+            <p>{currentUser?.username}</p>
+            <p>{currentUser?.userCategory}</p>
           </UserInfo>
         </CardContainer>
 
@@ -237,7 +237,7 @@ const UpdateProfile = () => {
               id="userCategory"
               onChange={(e) => onChangeHandle(e)}
             >
-              <Options value="Animation">Animation</Options>
+              <Options value="Animator">Animator</Options>
               <Options value="Employer">Employer</Options>
             </Select>
 
@@ -283,13 +283,15 @@ const UpdateProfile = () => {
               variant="outlined"
               type="date"
               onChange={(e) => onChangeHandle(e)}
+              label="Birthdate"
             />
+
             <TextField
               id="about"
               label={`About the ${currentUser?.userCategory}`}
               variant="outlined"
               multiline
-              maxRows={50}
+              maxRows={5}
               onChange={(e) => onChangeHandle(e)}
             />
 
