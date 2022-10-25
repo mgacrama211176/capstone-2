@@ -27,7 +27,7 @@ const Wrapper = styled.div`
   margin: 0 100px;
   display: flex;
   justify-content: center;
-  background-image: url("${BGimage}");
+  background-color: black;
   border: 1px solid black;
   border-radius: 15px;
   padding: 30px;
@@ -38,7 +38,6 @@ const Wrapper = styled.div`
   margin-bottom: 1%;
   max-width: 100%;
   height: 700px;
-  position: relative;
 `;
 
 const H1 = styled.h1``;
@@ -339,7 +338,6 @@ const UpdateProfile = () => {
 
             <TextField
               id="birthdate"
-              // label="Birthdate"
               variant="outlined"
               type="date"
               onChange={(e) => onChangeHandle(e)}
@@ -353,20 +351,6 @@ const UpdateProfile = () => {
               maxRows={50}
               onChange={(e) => onChangeHandle(e)}
             />
-
-            {/* <FileUploadContainers>
-              <TextField
-                id="ProfileImage"
-                label="Profile Image"
-                variant="outlined"
-              />
-              <TextField
-                id="ProfileBackground"
-                label="Profile Background"
-                variant="outlined"
-              />
-              <TextField id="uploadCV" label="uploadCV" variant="outlined" />
-            </FileUploadContainers> */}
           </InputContainers>
 
           <Upcv>Upload CV</Upcv>

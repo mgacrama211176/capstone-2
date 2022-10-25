@@ -6,6 +6,17 @@ import Card from "../components/Card";
 import axios from "axios";
 import BGimage from "../assets/tiger.jpg";
 
+//MUI COMPONENTS
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
+
 //REDUX
 import { current } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
@@ -180,6 +191,37 @@ const Report = styled.p`
   margin-bottom: 10%;
 `;
 
+const Repbtn = styled.button`
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  max-height: 50px;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  border: 0px;
+  font-weight: 700;
+  position: absolute;
+
+  background-color: #f51f1ff2;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+
+  &:hover {
+    background-position: right center;
+
+    text-decoration: none;
+  }
+  &:active {
+    transform: scale(1.3);
+  }
+`;
+
 const DownldCV = styled.button`
   margin: 10px;
   padding: 20px;
@@ -214,12 +256,10 @@ const DownldCV = styled.button`
 //Video Sectiton
 
 const Vidtitle = styled.h1`
-  color: black;
+  color: white;
   margin-left: 20px;
 `;
 const VidWrapper = styled.div`
-  color: white;
-  background: #f3ececac;
   max-width: 100%;
   position: relative;
   overflow: hidden;
@@ -300,9 +340,20 @@ const Submitbtn = styled.button`
     transform: scale(1.3);
   }
 `;
+//MODAL
 
-///
-const Pageseparator = styled.hr``;
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  height: 250,
+  bgcolor: "#f3ededb9",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 const Profile = ({ nav }) => {
   let { id } = useParams();
@@ -331,8 +382,18 @@ const Profile = ({ nav }) => {
 
   const currentUser = useSelector((state) => state.username.currentUser);
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  ///MODAL
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+
+  ////
+
   const MainWrapper = styled.div`
-    background-image: url("${BGimage}");
+    background-color: black;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -414,8 +475,54 @@ const Profile = ({ nav }) => {
             Total views: 100
             <hr />
             <Report>
-              Report User
-              <FlagIcon />
+              <Repbtn onClick={handleOpen}>
+                Report user
+                <FlagIcon />
+              </Repbtn>
+              <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={style}>
+                  <Typography
+                    id="modal-modal-title"
+                    variant="h6"
+                    component="h2"
+                  >
+                    What is the issue?
+                  </Typography>
+
+                  <RadioGroup
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    defaultValue="female"
+                    name="radio-buttons-group"
+                  >
+                    <FormControlLabel
+                      value="female"
+                      control={<Radio />}
+                      label="Report 1"
+                    />
+                    <FormControlLabel
+                      value="male"
+                      control={<Radio />}
+                      label="Report 2"
+                    />
+                    <FormControlLabel
+                      value="other"
+                      control={<Radio />}
+                      label="Report 3"
+                    />
+                    <FormControlLabel
+                      value="other"
+                      control={<Radio />}
+                      label="Report 4"
+                    />
+                  </RadioGroup>
+                  <Repbtn onClick={handleOpen}>Submit report</Repbtn>
+                </Box>
+              </Modal>
             </Report>
             <hr />
             You can check more about the user's info for business and employment
